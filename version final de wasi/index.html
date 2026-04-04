@@ -493,6 +493,28 @@
   }
   .promos-avail.active { color: #2E7D32; font-weight: 500; }
 
+  /* ═══ CURSO NAV HIGHLIGHT ═══ */
+  .curso-nav-link {
+    background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.1)) !important;
+    border: 1px solid rgba(200,148,62,0.3) !important;
+    color: var(--oro) !important;
+    font-weight: 600 !important;
+    position: relative;
+  }
+  .curso-nav-link::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--oro);
+    display: inline-block;
+    margin-right: 0.3rem;
+    animation: cursoPulse 2s ease-in-out infinite;
+  }
+  [data-theme="dark"] .curso-nav-link {
+    background: linear-gradient(135deg, rgba(200,148,62,0.12), rgba(181,101,29,0.08)) !important;
+    border-color: rgba(200,148,62,0.25) !important;
+  }
+
   /* ═══ CURSO DE CAFÉ Y POSTRES ═══ */
   @keyframes cursoGlow {
     0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
@@ -1418,9 +1440,11 @@ function handleSearch() {
   document.getElementById('searchClear').classList.toggle('show', q.length > 0);
   const sections = document.querySelectorAll('.sec');
   const promos = document.getElementById('promos');
+  const cursoSec = document.getElementById('curso');
   let found = 0;
-  if (!q) { sections.forEach(s => s.style.display = ''); if (promos) promos.style.display = ''; document.getElementById('noResults').style.display = 'none'; return; }
+  if (!q) { sections.forEach(s => s.style.display = ''); if (promos) promos.style.display = ''; if (cursoSec) cursoSec.style.display = ''; document.getElementById('noResults').style.display = 'none'; return; }
   if (promos) promos.style.display = 'none';
+  if (cursoSec) { const cursoMatch = cursoSec.textContent.toLowerCase().includes(q); cursoSec.style.display = cursoMatch ? '' : 'none'; if (cursoMatch) found++; }
   sections.forEach(s => {
     const cards = s.querySelectorAll('.card');
     let secVisible = false;
@@ -1496,10 +1520,12 @@ function renderPromos() {
 // ═══ RENDER MENU ═══
 function render() {
   const md = 'Med', lg = L==='es' ? 'Grande / Jarra' : 'Large / Pitcher';
-  document.getElementById('cnavIn').innerHTML = D.map(c =>
+  const cursoNav = `<a class="cnav-a curso-nav-link" href="#curso" onclick="navClick(event,'curso')">${L==='es'?'Curso':'Course'}</a>`;
+  document.getElementById('cnavIn').innerHTML = cursoNav + D.map(c =>
     `<a class="cnav-a" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>`
   ).join('');
-  document.getElementById('bbarSel').innerHTML = D.map(c =>
+  const cursoOpt = `<option value="curso">${L==='es'?'Curso de Café':'Coffee Course'}</option>`;
+  document.getElementById('bbarSel').innerHTML = cursoOpt + D.map(c =>
     `<option value="${c.id}">${c.num}. ${c[L].n}</option>`
   ).join('');
   document.getElementById('mx').innerHTML = D.map(c => {
