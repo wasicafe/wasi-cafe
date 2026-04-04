@@ -543,6 +543,52 @@
   }
   .promos-avail.active { color: #2E7D32; font-weight: 500; }
 
+  /* ═══ WELCOME CURSO BUTTON ═══ */
+  .welcome-curso-btn {
+    display: flex; align-items: center; gap: 0.8rem;
+    width: 100%; max-width: 340px; margin: 1.2rem auto 0;
+    padding: 0.9rem 1rem; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(200,148,62,0.1), rgba(181,101,29,0.06));
+    border: 1.5px solid rgba(200,148,62,0.3);
+    text-decoration: none; color: var(--texto);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .welcome-curso-btn:hover {
+    background: linear-gradient(135deg, rgba(200,148,62,0.18), rgba(181,101,29,0.1));
+    border-color: var(--oro); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,148,62,0.2);
+  }
+  .welcome-curso-btn::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(200,148,62,0.08), transparent);
+    animation: cursoShimmer 4s ease-in-out infinite;
+  }
+  .welcome-curso-icon {
+    width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--oro), var(--terracota));
+    display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .welcome-curso-text {
+    flex: 1; display: flex; flex-direction: column; gap: 0.15rem; text-align: left;
+  }
+  .welcome-curso-text strong {
+    font-family: var(--display); font-size: 0.95rem; font-weight: 600;
+    color: var(--tostado); line-height: 1.2;
+  }
+  .welcome-curso-text small {
+    font-family: var(--body); font-size: 0.65rem; font-weight: 400;
+    color: var(--oro); letter-spacing: 0.02em;
+  }
+  .welcome-curso-arrow { color: var(--oro); flex-shrink: 0; }
+  [data-theme="dark"] .welcome-curso-btn {
+    background: linear-gradient(135deg, rgba(200,148,62,0.08), rgba(181,101,29,0.04));
+    border-color: rgba(200,148,62,0.25);
+  }
+  [data-theme="dark"] .welcome-curso-btn:hover {
+    background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.08));
+  }
+
   /* ═══ CURSO NAV HIGHLIGHT ═══ */
   .curso-nav-link {
     background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.1)) !important;
@@ -1058,6 +1104,18 @@
         Maps
       </a>
     </div>
+
+    <!-- Curso CTA -->
+    <a href="#curso" class="welcome-curso-btn" onclick="enterMenu(L||'es');setTimeout(()=>document.getElementById('curso').scrollIntoView({behavior:'smooth',block:'start'}),400);return false;">
+      <span class="welcome-curso-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+      </span>
+      <span class="welcome-curso-text">
+        <strong data-es="Curso de Café & Postres" data-en="Coffee & Desserts Course">Curso de Café &amp; Postres</strong>
+        <small data-es="4 clases/mes · S/ 300 · Inscríbete" data-en="4 classes/month · S/ 300 · Enroll now">4 clases/mes · S/ 300 · Inscríbete</small>
+      </span>
+      <svg class="welcome-curso-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
 
     <!-- WiFi -->
     <div class="wifi-section">
