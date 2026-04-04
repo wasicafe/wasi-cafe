@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Carta | Wasi Cafe — Café de Especialidad en Lima, Perú</title>
+<meta name="description" content="Descubre nuestra carta de café de especialidad, sándwiches peruanos, postres artesanales y más. Wasi Cafe, tu casa del café en San Isidro, Lima.">
+<meta name="theme-color" content="#FFFAF5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/png" href="LOGOS.png">
+<link rel="apple-touch-icon" href="LOGOS.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Wasi Cafe",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Luis Felipe Villarán 904",
+    "addressLocality": "San Isidro",
+    "addressRegion": "Lima",
+    "postalCode": "15046",
+    "addressCountry": "PE"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": -12.1015761, "longitude": -77.0289421 },
+  "servesCuisine": ["Peruvian", "Coffee", "Breakfast", "Brunch"],
+  "priceRange": "S/ 5 - S/ 49",
+  "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/carta/" },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "21:00" }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --espresso: #1C1410;
+    --tostado: #3D2B1F;
+    --cacao: #5C3D2E;
+    --terracota: #B5651D;
+    --oro: #C8943E;
+    --crema: #F5EDE3;
+    --hueso: #FAF6F1;
+    --arena: #E8DDD0;
+    --leche: #FFFAF5;
+    --texto: #2A1F17;
+    --suave: #6B5B50;
+    --linea: #D4C5B5;
+    --card-bg: #ffffff;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --body: 'Outfit', sans-serif;
+    --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* ═══ DARK MODE ═══ */
+  [data-theme="dark"] {
+    --espresso: #F5EDE3;
+    --tostado: #E8DDD0;
+    --cacao: #D4C5B5;
+    --terracota: #D4883A;
+    --oro: #DAA84E;
+    --crema: #2A2320;
+    --hueso: #1E1A17;
+    --arena: #332C26;
+    --leche: #161210;
+    --texto: #E8DDD0;
+    --suave: #A89888;
+    --linea: #3D3530;
+    --card-bg: #1E1A17;
+  }
+  [data-theme="dark"] .hdr {
+    background: rgba(22,18,16,0.92);
+    border-bottom-color: rgba(61,53,48,0.5);
+  }
+  [data-theme="dark"] .cnav {
+    background: rgba(22,18,16,0.92);
+    border-bottom-color: rgba(61,53,48,0.4);
+  }
+  [data-theme="dark"] .bbar {
+    background: rgba(22,18,16,0.95);
+    border-top-color: rgba(61,53,48,0.5);
+  }
+  [data-theme="dark"] .bbar-select {
+    background-color: var(--crema);
+    border-color: var(--linea);
+    color: var(--tostado);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A89888' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  }
+  [data-theme="dark"] .card { background: var(--card-bg); border-color: var(--linea); }
+  [data-theme="dark"] .card:active { background: var(--arena); }
+  [data-theme="dark"] .welcome { background: var(--leche); }
+  [data-theme="dark"] .lang-card { background: rgba(30,26,23,0.7); border-color: var(--linea); }
+  [data-theme="dark"] .lang-card:hover { background: rgba(200,148,62,0.1); }
+  [data-theme="dark"] .wifi-section { background: rgba(30,26,23,0.6); border-color: var(--linea); }
+  [data-theme="dark"] .wifi-qr { background: #fff; }
+  [data-theme="dark"] .wifi-modal { background: #1E1A17; }
+  [data-theme="dark"] .wifi-modal .wifi-qr { background: #fff; }
+  [data-theme="dark"] .search-input {
+    background: var(--crema); border-color: var(--linea); color: var(--texto);
+  }
+  [data-theme="dark"] .promo-card { background: var(--card-bg); border-color: var(--linea); }
+  [data-theme="dark"] meta[name="theme-color"] { content: "#161210"; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--body);
+    background: var(--leche);
+    color: var(--texto);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  /* ═══ WELCOME SCREEN ═══ */
+  .welcome {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--leche);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+  }
+  .welcome.hide { opacity: 0; transform: scale(1.04); pointer-events: none; }
+  .welcome-bg {
+    position: fixed; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .welcome-bg::before {
+    content: '';
+    position: absolute; top: -40%; left: -20%; width: 140%; height: 140%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(200,148,62,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(181,101,29,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(92,61,46,0.03) 0%, transparent 70%);
+    animation: bgFloat 12s ease-in-out infinite;
+  }
+  @keyframes bgFloat {
+    0%, 100% { transform: translate(0,0) rotate(0deg); }
+    33% { transform: translate(10px,-15px) rotate(1deg); }
+    66% { transform: translate(-8px,10px) rotate(-1deg); }
+  }
+  .welcome-content {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 2rem 1.5rem;
+    width: 100%; max-width: 420px;
+  }
+  .welcome-icon {
+    width: 56px; height: 56px; margin-bottom: 1.5rem;
+    opacity: 0; animation: wf 0.7s 0.2s ease forwards;
+  }
+  .welcome-icon svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 12px rgba(200,148,62,0.3)); }
+  .welcome-brand {
+    font-family: var(--display); font-size: 3rem; font-weight: 600;
+    color: var(--tostado); line-height: 1; margin-bottom: 0.3rem;
+    opacity: 0; animation: wf 0.7s 0.35s ease forwards;
+  }
+  .welcome-brand b { color: var(--oro); }
+  .welcome-sub {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--suave); margin-bottom: 1rem;
+    opacity: 0; animation: wf 0.7s 0.45s ease forwards;
+  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.45rem 1rem; border-radius: 100px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: wf 0.7s 0.5s ease forwards;
+  }
+  .status-badge.open { background: rgba(34,139,34,0.1); color: #228B22; border: 1px solid rgba(34,139,34,0.2); }
+  .status-badge.closed { background: rgba(180,60,60,0.1); color: #B43C3C; border: 1px solid rgba(180,60,60,0.2); }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+  }
+  .status-badge.open .status-dot { background: #228B22; animation: pulse 2s infinite; }
+  .status-badge.closed .status-dot { background: #B43C3C; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+  /* Schedule */
+  .schedule-row {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    font-size: 0.68rem; color: var(--suave); font-weight: 400;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: wf 0.7s 0.55s ease forwards;
+  }
+  .schedule-row svg { width: 14px; height: 14px; color: var(--oro); flex-shrink: 0; }
+
+  /* Lang cards */
+  .lang-cards {
+    display: flex; gap: 0.75rem; width: 100%; margin-bottom: 1.2rem;
+    opacity: 0; animation: wf 0.7s 0.6s ease forwards;
+  }
+  .lang-card {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    padding: 1.3rem 1rem;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(212,197,181,0.4); border-radius: 20px;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .lang-card:hover, .lang-card:active {
+    border-color: var(--oro); background: rgba(200,148,62,0.06);
+    transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,148,62,0.12);
+  }
+  .lang-card-flag { font-size: 2rem; line-height: 1; }
+  .lang-card-label { font-family: var(--display); font-size: 1.2rem; font-weight: 600; color: var(--tostado); }
+  .lang-card-sub { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--suave); }
+
+  /* Social + Maps row */
+  .welcome-actions {
+    display: flex; gap: 0.5rem; width: 100%; margin-bottom: 1.2rem;
+    opacity: 0; animation: wf 0.7s 0.65s ease forwards;
+  }
+  .welcome-action-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+    padding: 0.7rem 0.5rem; border-radius: 14px;
+    background: rgba(255,255,255,0.5); backdrop-filter: blur(12px);
+    border: 1px solid rgba(212,197,181,0.35);
+    text-decoration: none; color: var(--suave);
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: all 0.25s;
+  }
+  .welcome-action-btn:hover, .welcome-action-btn:active {
+    background: rgba(200,148,62,0.08); border-color: var(--oro); color: var(--tostado);
+    transform: translateY(-1px);
+  }
+  .welcome-action-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .welcome-action-btn.ig { color: #E1306C; }
+  .welcome-action-btn.tt { color: var(--texto); }
+  .welcome-action-btn.maps { color: #4285F4; }
+
+  /* WiFi section */
+  .wifi-section {
+    width: 100%; background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(212,197,181,0.35); border-radius: 20px;
+    padding: 1.5rem; text-align: center;
+    opacity: 0; animation: wf 0.7s 0.75s ease forwards;
+  }
+  .wifi-header { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+  .wifi-icon { width: 20px; height: 20px; color: var(--oro); }
+  .wifi-title { font-family: var(--display); font-size: 1.1rem; font-weight: 600; color: var(--tostado); }
+  .wifi-qr-container { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+  .wifi-qr {
+    width: 110px; height: 110px; background: #fff; border-radius: 14px; padding: 8px;
+    border: 1px solid rgba(212,197,181,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .wifi-qr canvas, .wifi-qr svg { width: 100% !important; height: 100% !important; }
+  .wifi-details { text-align: left; }
+  .wifi-detail-row { margin-bottom: 0.6rem; }
+  .wifi-detail-label { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--suave); margin-bottom: 0.1rem; }
+  .wifi-detail-value { font-size: 0.88rem; font-weight: 600; color: var(--tostado); letter-spacing: 0.02em; }
+  .wifi-detail-value.pass {
+    font-family: 'SF Mono', 'Fira Code', monospace; background: var(--crema);
+    padding: 0.25rem 0.55rem; border-radius: 8px; font-size: 0.82rem;
+    letter-spacing: 0.08em; display: inline-block; user-select: all; -webkit-user-select: all;
+  }
+  .wifi-hint { font-size: 0.62rem; color: var(--suave); font-weight: 300; margin-top: 1rem; }
+
+  /* Dark mode toggle on welcome */
+  .dark-toggle-wrap {
+    margin-top: 1.2rem;
+    opacity: 0; animation: wf 0.7s 0.85s ease forwards;
+  }
+  .dark-toggle {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem; border-radius: 100px;
+    background: transparent; border: 1px solid var(--linea);
+    color: var(--suave); font-family: var(--body);
+    font-size: 0.65rem; font-weight: 500; cursor: pointer;
+    transition: 0.25s;
+  }
+  .dark-toggle:hover { border-color: var(--oro); color: var(--tostado); }
+  .dark-toggle svg { width: 14px; height: 14px; }
+
+  @keyframes wf { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ═══ MAIN APP ═══ */
+  .app-wrap {
+    opacity: 0; transition: opacity 0.5s 0.2s ease;
+    padding-bottom: calc(60px + var(--safe-b));
+  }
+  .app-wrap.show { opacity: 1; }
+
+  /* ═══ HEADER ═══ */
+  .hdr {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,250,245,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,197,181,0.5);
+    padding: 0.65rem 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow 0.3s, background 0.4s;
+  }
+  .hdr.s { box-shadow: 0 2px 20px rgba(28,20,16,0.08); }
+  .hdr-logo { font-family: var(--display); font-size: 1.35rem; font-weight: 600; color: var(--tostado); text-decoration: none; }
+  .hdr-logo b { color: var(--oro); font-weight: 600; }
+  .hdr-right { display: flex; align-items: center; gap: 0.45rem; }
+  .hdr-btn {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: rgba(200,148,62,0.08); border: 1px solid rgba(200,148,62,0.2);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.25s; color: var(--oro);
+  }
+  .hdr-btn:hover, .hdr-btn:active { background: rgba(200,148,62,0.15); }
+  .hdr-btn svg { width: 16px; height: 16px; }
+  .lang-t { display: flex; border: 1px solid var(--linea); border-radius: 100px; overflow: hidden; }
+  .lang-b {
+    padding: 0.4rem 0.75rem; font-family: var(--body); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; border: none; color: var(--suave); cursor: pointer; transition: 0.25s;
+  }
+  .lang-b.on { background: var(--tostado); color: var(--crema); }
+
+  /* ═══ SEARCH BAR ═══ */
+  .search-wrap {
+    padding: 0.6rem 0.8rem; position: sticky; top: 48px; z-index: 89;
+    background: rgba(255,250,245,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  [data-theme="dark"] .search-wrap { background: rgba(22,18,16,0.92); }
+  .search-box { position: relative; }
+  .search-input {
+    width: 100%; padding: 0.6rem 0.85rem 0.6rem 2.4rem;
+    font-family: var(--body); font-size: 0.8rem; font-weight: 400;
+    color: var(--texto); background: var(--card-bg);
+    border: 1px solid var(--linea); border-radius: 12px;
+    outline: none; transition: 0.25s;
+  }
+  .search-input:focus { border-color: var(--oro); box-shadow: 0 0 0 3px rgba(200,148,62,0.1); }
+  .search-input::placeholder { color: var(--suave); font-weight: 300; }
+  .search-icon {
+    position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; color: var(--suave); pointer-events: none;
+  }
+  .search-clear {
+    position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--arena); border: none; color: var(--suave);
+    font-size: 0.75rem; cursor: pointer; display: none;
+    align-items: center; justify-content: center;
+  }
+  .search-clear.show { display: flex; }
+  .no-results {
+    text-align: center; padding: 3rem 1rem; color: var(--suave);
+    font-size: 0.85rem; font-weight: 300; display: none;
+  }
+
+  /* ═══ WIFI MODAL ═══ */
+  .wifi-modal-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(28,20,16,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .wifi-modal-overlay.show { opacity: 1; pointer-events: auto; }
+  .wifi-modal {
+    background: var(--leche); border-radius: 24px; padding: 2rem 1.5rem;
+    width: 100%; max-width: 340px; text-align: center;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 25px 60px rgba(28,20,16,0.2); position: relative;
+  }
+  .wifi-modal-overlay.show .wifi-modal { transform: scale(1) translateY(0); }
+
+  /* ═══ PROMOS SECTION ═══ */
+  .promos {
+    padding: 0 0.8rem; margin-bottom: 0.5rem;
+  }
+  .promos-header {
+    text-align: center; margin-bottom: 1rem;
+  }
+  .promos-tag {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+    background: linear-gradient(135deg, rgba(200,148,62,0.12), rgba(181,101,29,0.08));
+    border: 1px solid rgba(200,148,62,0.25);
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--oro); margin-bottom: 0.4rem;
+  }
+  .promos-title {
+    font-family: var(--display); font-size: 1.5rem; font-weight: 400;
+    font-style: italic; color: var(--tostado); line-height: 1.15;
+  }
+  .promos-scroll {
+    display: flex; gap: 0.7rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding-bottom: 0.5rem; scroll-snap-type: x proximity;
+  }
+  .promos-scroll::-webkit-scrollbar { display: none; }
+  .promo-card {
+    flex: 0 0 280px; scroll-snap-align: start;
+    background: var(--card-bg); border-radius: 16px;
+    border: 1.5px solid rgba(200,148,62,0.2); overflow: hidden;
+    position: relative;
+  }
+  .promo-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--oro), var(--terracota));
+  }
+  .promo-card-body { padding: 1rem; }
+  .promo-badge {
+    display: inline-block; padding: 0.2rem 0.55rem; border-radius: 6px;
+    background: linear-gradient(135deg, var(--oro), var(--terracota));
+    color: #fff; font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .promo-name {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+    color: var(--tostado); line-height: 1.2; margin-bottom: 0.2rem;
+  }
+  .promo-desc { font-size: 0.7rem; color: var(--suave); font-weight: 300; line-height: 1.4; margin-bottom: 0.5rem; }
+  .promo-price-row { display: flex; align-items: baseline; gap: 0.5rem; }
+  .promo-price {
+    font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: var(--oro);
+  }
+  .promo-old-price {
+    font-size: 0.75rem; color: var(--suave); text-decoration: line-through; font-weight: 400;
+  }
+  .promo-time {
+    display: flex; align-items: center; gap: 0.3rem;
+    font-size: 0.65rem; color: var(--suave); font-weight: 400; margin-top: 0.5rem;
+  }
+  .promo-time svg { flex-shrink: 0; }
+  .promo-time.active { color: #2E7D32; font-weight: 500; }
+  .promos.unavailable { opacity: 0.55; }
+  .promos-avail {
+    font-size: 0.7rem; color: var(--suave); font-weight: 400; margin-top: 0.3rem;
+  }
+  .promos-avail.active { color: #2E7D32; font-weight: 500; }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    padding: 5.2rem 1.2rem 1.5rem; text-align: center;
+    background: linear-gradient(180deg, rgba(200,148,62,0.05) 0%, var(--leche) 100%);
+  }
+  .hero-tag {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--oro); margin-bottom: 0.5rem; opacity: 0; animation: fu 0.6s 0.1s ease forwards;
+  }
+  .hero h1 {
+    font-family: var(--display); font-size: 2.6rem; font-weight: 400;
+    font-style: italic; color: var(--tostado); line-height: 1.05; margin-bottom: 0.6rem;
+    opacity: 0; animation: fu 0.6s 0.25s ease forwards;
+  }
+  .hero-p {
+    font-size: 0.85rem; font-weight: 300; color: var(--suave);
+    line-height: 1.55; max-width: 340px; margin: 0 auto;
+    opacity: 0; animation: fu 0.6s 0.4s ease forwards;
+  }
+  @keyframes fu { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ═══ CATEGORY NAV ═══ */
+  .cnav {
+    position: sticky; top: 90px; z-index: 88;
+    background: rgba(255,250,245,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(212,197,181,0.4);
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; scroll-snap-type: x proximity; scroll-padding-left: 1rem;
+  }
+  .cnav::-webkit-scrollbar { display: none; }
+  .cnav-in { display: inline-flex; gap: 0.35rem; padding: 0.55rem 1rem; min-width: max-content; }
+  .cnav-a {
+    padding: 0.45rem 0.9rem; font-family: var(--body); font-size: 0.68rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--suave); text-decoration: none;
+    border-radius: 100px; border: 1px solid transparent;
+    transition: 0.25s; flex-shrink: 0; white-space: nowrap; scroll-snap-align: start;
+  }
+  .cnav-a.on { color: var(--tostado); background: rgba(200,148,62,0.1); border-color: rgba(200,148,62,0.25); }
+
+  /* ═══ SECTIONS ═══ */
+  .mx { padding: 0 0 3rem; }
+  .sec { padding-top: 2.5rem; }
+  .sec-hd { text-align: center; padding: 0 1rem; margin-bottom: 1.4rem; }
+  .sec-num { font-family: var(--display); font-size: 0.72rem; color: var(--oro); letter-spacing: 0.12em; }
+  .sec-t {
+    font-family: var(--display); font-size: 1.75rem; font-weight: 400;
+    font-style: italic; color: var(--tostado); line-height: 1.15; margin: 0.15rem 0 0.25rem;
+  }
+  .sec-st { font-size: 0.75rem; font-weight: 300; color: var(--suave); }
+  .sec-div { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-top: 0.6rem; }
+  .sec-div .l { flex: 0 0 30px; height: 1px; background: var(--linea); }
+  .sec-div .d { width: 5px; height: 5px; background: var(--oro); transform: rotate(45deg); }
+
+  /* ═══ CARDS ═══ */
+  .grid { padding: 0 0.8rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .card {
+    display: flex; background: var(--card-bg); border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(212,197,181,0.35); transition: 0.3s;
+    position: relative;
+    /* Scroll animation */
+    opacity: 0; transform: translateY(20px);
+  }
+  .card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .card:active { transform: scale(0.985); }
+  .card-img {
+    flex: 0 0 115px; width: 115px; min-height: 100px;
+    position: relative; overflow: hidden; background: var(--arena);
+  }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-bd {
+    flex: 1; padding: 0.75rem 0.85rem; display: flex;
+    flex-direction: column; justify-content: center; min-width: 0;
+  }
+  .card-nm {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+    color: var(--tostado); line-height: 1.2; margin-bottom: 0.15rem;
+  }
+  .card-ds {
+    font-size: 0.72rem; font-weight: 300; color: var(--suave); line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .card-pr { font-family: var(--display); font-size: 1rem; font-weight: 600; color: var(--oro); margin-top: 0.35rem; }
+  .card-sizes { display: flex; gap: 0.8rem; margin-top: 0.35rem; flex-wrap: wrap; }
+  .card-sz { display: flex; flex-direction: column; align-items: flex-start; }
+  .sz-price { font-family: var(--display); font-size: 0.92rem; font-weight: 600; color: var(--oro); line-height: 1.2; }
+  .sz-price.alt { color: var(--terracota); }
+  .sz-label {
+    font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--suave);
+    background: var(--crema); padding: 0.12rem 0.35rem; border-radius: 3px; margin-top: 0.1rem;
+  }
+
+  /* Badges */
+  .card-badge {
+    position: absolute; top: 8px; left: 8px; z-index: 2;
+    padding: 0.18rem 0.5rem; border-radius: 6px;
+    font-size: 0.52rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #fff;
+  }
+  .card-badge.popular { background: linear-gradient(135deg, #E8563A, #F59E0B); }
+  .card-badge.nuevo { background: linear-gradient(135deg, #10B981, #059669); }
+  .card-badge.vegano { background: linear-gradient(135deg, #34D399, #059669); }
+
+  /* Featured */
+  .grid.feat { gap: 0.9rem; }
+  .card.feat { flex-direction: column; }
+  .card.feat .card-img { flex: none; width: 100%; height: 180px; }
+  .card.feat .card-bd { padding: 0.85rem 1rem 1rem; }
+  .card.feat .card-nm { font-size: 1.15rem; }
+
+  /* Compact */
+  .grid.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .card.cmp { flex-direction: column; }
+  .card.cmp .card-img { flex: none; width: 100%; height: 90px; }
+  .card.cmp .card-bd { padding: 0.55rem 0.65rem 0.65rem; }
+  .card.cmp .card-nm { font-size: 0.88rem; }
+  .card.cmp .card-pr { font-size: 0.88rem; margin-top: 0.2rem; }
+  .card.cmp .card-ds { font-size: 0.65rem; -webkit-line-clamp: 1; }
+
+  /* ═══ WHATSAPP BUTTON ═══ */
+  .whatsapp-fab {
+    position: fixed; bottom: calc(70px + var(--safe-b)); right: 1rem; z-index: 99;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #25D366; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: transform 0.3s; text-decoration: none;
+    animation: waBounce 0.5s 1s ease forwards;
+    opacity: 0;
+  }
+  .whatsapp-fab:hover, .whatsapp-fab:active { transform: scale(1.08); }
+  .whatsapp-fab svg { width: 26px; height: 26px; fill: #fff; }
+  @keyframes waBounce { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+
+  /* ═══ FOOTER ═══ */
+  .ftr {
+    text-align: center; padding: 2.5rem 1.2rem 2rem;
+    border-top: 1px solid var(--linea); margin-top: 2rem;
+  }
+  .ftr-brand { font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--tostado); margin-bottom: 0.6rem; }
+  .ftr p { font-size: 0.72rem; color: var(--suave); font-weight: 300; line-height: 1.7; }
+  .ftr .ac { color: var(--oro); font-weight: 500; }
+  .ftr-social { display: flex; justify-content: center; gap: 0.8rem; margin: 1rem 0; }
+  .ftr-social a {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--crema); border: 1px solid var(--linea);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--suave); text-decoration: none; transition: 0.25s;
+  }
+  .ftr-social a:hover { background: rgba(200,148,62,0.1); color: var(--oro); border-color: var(--oro); }
+  .ftr-social a svg { width: 16px; height: 16px; }
+  .ftr-addr { margin-top: 0.6rem; font-size: 0.68rem; }
+  .ftr-addr a { color: var(--terracota); text-decoration: none; }
+
+  /* ═══ BOTTOM BAR ═══ */
+  .bbar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,250,245,0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(212,197,181,0.5);
+    padding: 0.5rem 1rem calc(0.5rem + var(--safe-b));
+    display: flex; align-items: center; gap: 0.6rem;
+    transition: background 0.4s;
+  }
+  .bbar-select {
+    flex: 1; appearance: none; -webkit-appearance: none;
+    font-family: var(--body); font-size: 0.78rem; font-weight: 500;
+    color: var(--tostado); background: var(--crema);
+    border: 1px solid var(--linea); border-radius: 10px;
+    padding: 0.6rem 2.2rem 0.6rem 0.85rem; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235C3D2E' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.75rem center;
+    text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+  }
+  .bbar-top {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--tostado); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .bbar-top svg { width: 16px; height: 16px; stroke: var(--crema); fill: none; stroke-width: 2.5; }
+
+  /* ═══ DESKTOP ═══ */
+  @media (min-width: 640px) {
+    .welcome-content { max-width: 480px; }
+    .hero { padding: 7rem 2rem 2rem; }
+    .hero h1 { font-size: 3.5rem; }
+    .mx { max-width: 900px; margin: 0 auto; }
+    .grid { padding: 0 1.5rem; }
+    .grid.cmp { grid-template-columns: repeat(3, 1fr); }
+    .grid.feat { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .card-img { flex: 0 0 140px; width: 140px; }
+    .bbar { display: none; }
+    .app-wrap { padding-bottom: 0; }
+    .whatsapp-fab { bottom: 1.5rem; }
+    .promos { padding: 0 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .mx { max-width: 1100px; }
+    .grid:not(.cmp):not(.feat) { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid.feat { grid-template-columns: repeat(3, 1fr); }
+    .grid.cmp { grid-template-columns: repeat(4, 1fr); }
+    .card-img { flex: 0 0 155px; width: 155px; }
+  }
+
+  /* ═══ LOADING SCREEN ═══ */
+  .loader-screen {
+    position: fixed; inset: 0; z-index: 99999;
+    background: var(--leche);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  .loader-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader-logo {
+    width: 80px; height: 80px; object-fit: contain;
+    animation: loaderPulse 1.2s ease-in-out infinite;
+  }
+  .loader-dots {
+    display: flex; gap: 6px; margin-top: 1.2rem;
+  }
+  .loader-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--oro);
+    animation: loaderBounce 1.2s ease-in-out infinite;
+  }
+  .loader-dot:nth-child(2) { animation-delay: 0.15s; }
+  .loader-dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes loaderPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+  @keyframes loaderBounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-8px); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ LOADING SCREEN ═══════════════════════ -->
+<div class="loader-screen" id="loaderScreen">
+  <img src="LOGOS.png" alt="Wasi Cafe" class="loader-logo">
+  <div class="loader-dots">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ WELCOME SCREEN ═══════════════════════ -->
+<div class="welcome" id="welcome">
+  <div class="welcome-bg"></div>
+  <div class="welcome-content">
+    <div class="welcome-icon" style="width:80px;height:80px;">
+      <img src="LOGOS.png" alt="Wasi Cafe" style="width:100%;height:100%;object-fit:contain;">
+    </div>
+    <div class="welcome-brand">Wasi Cafe</div>
+    <div class="welcome-sub">San Isidro, Lima</div>
+
+    <!-- Open/Closed status -->
+    <div class="status-badge" id="statusBadge">
+      <span class="status-dot"></span>
+      <span id="statusText"></span>
+    </div>
+
+    <!-- Schedule -->
+    <div class="schedule-row" id="scheduleRow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span id="scheduleText"></span>
+    </div>
+
+    <!-- Language selector -->
+    <div class="lang-cards">
+      <div class="lang-card" onclick="enterMenu('es')" role="button" tabindex="0">
+        <div class="lang-card-flag">&#127477;&#127466;</div>
+        <div class="lang-card-label">Carta</div>
+        <div class="lang-card-sub">Espa&ntilde;ol</div>
+      </div>
+      <div class="lang-card" onclick="enterMenu('en')" role="button" tabindex="0">
+        <div class="lang-card-flag">&#127482;&#127480;</div>
+        <div class="lang-card-label">Menu</div>
+        <div class="lang-card-sub">English</div>
+      </div>
+    </div>
+
+    <!-- Social + Maps -->
+    <div class="welcome-actions">
+      <a href="https://www.instagram.com/wasi.cafe/" target="_blank" class="welcome-action-btn ig">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.tiktok.com/@wasi.caf" target="_blank" class="welcome-action-btn tt">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.39a8.16 8.16 0 004.76 1.52V7.46a4.85 4.85 0 01-1-.77z"/></svg>
+        TikTok
+      </a>
+      <a href="https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima" target="_blank" class="welcome-action-btn maps">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Maps
+      </a>
+    </div>
+
+    <!-- WiFi -->
+    <div class="wifi-section">
+      <div class="wifi-header">
+        <svg class="wifi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+        <span class="wifi-title">WiFi Gratis</span>
+      </div>
+      <div class="wifi-qr-container">
+        <div class="wifi-qr" id="wifiQr"></div>
+        <div class="wifi-details">
+          <div class="wifi-detail-row">
+            <div class="wifi-detail-label">Red / Network</div>
+            <div class="wifi-detail-value" id="wifiNameDisplay"></div>
+          </div>
+          <div class="wifi-detail-row">
+            <div class="wifi-detail-label">Contrase&ntilde;a / Password</div>
+            <div class="wifi-detail-value pass" id="wifiPassDisplay"></div>
+          </div>
+        </div>
+      </div>
+      <p class="wifi-hint"><span data-es="Escanea el QR para conectarte" data-en="Scan QR to connect automatically">Escanea el QR para conectarte</span></p>
+    </div>
+
+    <!-- Dark mode toggle -->
+    <div class="dark-toggle-wrap">
+      <button class="dark-toggle" onclick="toggleDark()">
+        <svg id="darkIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <span id="darkLabel" data-es="Modo oscuro" data-en="Dark mode">Modo oscuro</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ MAIN APP ═══════════════════════ -->
+<div class="app-wrap" id="appWrap">
+
+<header class="hdr" id="hdr">
+  <a href="#" class="hdr-logo" onclick="showWelcome(event)">Wasi Cafe</a>
+  <div class="hdr-right">
+    <button class="hdr-btn" onclick="toggleDark()" aria-label="Dark mode" id="hdrDarkBtn">
+      <svg id="hdrDarkIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <button class="hdr-btn" onclick="toggleWifiModal()" aria-label="WiFi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+    </button>
+    <div class="lang-t">
+      <button class="lang-b on" id="bEs" onclick="setLang('es')">ES</button>
+      <button class="lang-b" id="bEn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- WiFi Modal -->
+<div class="wifi-modal-overlay" id="wifiModal" onclick="closeWifiModal(event)">
+  <div class="wifi-modal" onclick="event.stopPropagation()">
+    <div class="wifi-header" style="margin-bottom:1.2rem">
+      <svg class="wifi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+      <span class="wifi-title">WiFi Gratis</span>
+    </div>
+    <div class="wifi-qr" id="wifiQrModal" style="width:140px;height:140px;margin:0 auto 1.2rem"></div>
+    <div style="margin-bottom:0.5rem"><div class="wifi-detail-label">Red / Network</div><div class="wifi-detail-value" id="wifiNameModal"></div></div>
+    <div><div class="wifi-detail-label">Contrase&ntilde;a / Password</div><div class="wifi-detail-value pass" id="wifiPassModal"></div></div>
+    <p class="wifi-hint" style="margin-top:1rem"><span data-es="Escanea el QR para conectarte" data-en="Scan QR to connect automatically">Escanea el QR para conectarte</span></p>
+  </div>
+</div>
+
+<section class="hero">
+  <p class="hero-tag" data-es="Wasi Cafe &middot; San Isidro, Lima" data-en="Wasi Cafe &middot; San Isidro, Lima">Wasi Cafe &middot; San Isidro, Lima</p>
+  <h1 data-es="Nuestra Carta" data-en="Our Menu">Nuestra Carta</h1>
+  <p class="hero-p" data-es="Sabores peruanos auténticos y café de especialidad, preparados con alma en San Isidro." data-en="Authentic Peruvian flavors and specialty coffee, crafted with soul in San Isidro.">Sabores peruanos auténticos y café de especialidad, preparados con alma en San Isidro.</p>
+</section>
+
+<!-- Search -->
+<div class="search-wrap" id="searchWrap">
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" class="search-input" id="searchInput" placeholder="Buscar en la carta..." oninput="handleSearch()">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">&times;</button>
+  </div>
+</div>
+
+<!-- Promos -->
+<div class="promos" id="promos">
+  <div class="promos-header">
+    <div class="promos-tag">
+      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span data-es="PROMOCIONES" data-en="SPECIALS">PROMOCIONES</span>
+    </div>
+    <div class="promos-title" data-es="Combos Especiales" data-en="Special Combos">Combos Especiales</div>
+    <div class="promos-avail" id="promosAvail"></div>
+  </div>
+  <div class="promos-scroll" id="promosScroll"></div>
+</div>
+
+<nav class="cnav" id="cnav">
+  <div class="cnav-in" id="cnavIn"></div>
+</nav>
+
+<main class="mx" id="mx"></main>
+<div class="no-results" id="noResults" data-es="No encontramos resultados" data-en="No results found">No encontramos resultados</div>
+
+<footer class="ftr">
+  <p class="ftr-brand">Wasi Cafe</p>
+  <div class="ftr-social">
+    <a href="https://www.instagram.com/wasi.cafe/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://www.tiktok.com/@wasi.caf" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.39a8.16 8.16 0 004.76 1.52V7.46a4.85 4.85 0 01-1-.77z"/></svg></a>
+    <a href="https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima" target="_blank" aria-label="Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
+  </div>
+  <p data-es="Precios en <span class='ac'>Soles (S/)</span>. Servicio e impuestos incluidos." data-en="Prices in <span class='ac'>Peruvian Soles (S/)</span>. Service & taxes included.">Precios en <span class="ac">Soles (S/)</span>. Servicio e impuestos incluidos.</p>
+  <p class="ftr-addr">Luis Felipe Villar&aacute;n 904, San Isidro &middot; Lima<br><a href="https://wasicafe.com">wasicafe.com</a></p>
+</footer>
+
+<div class="bbar" id="bbar">
+  <select class="bbar-select" id="bbarSel" onchange="jumpTo(this.value)"></select>
+  <button class="bbar-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Ir arriba">
+    <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+</div>
+
+<!-- WhatsApp FAB -->
+<a class="whatsapp-fab" id="waFab" href="https://wa.me/51908724496" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</div><!-- /app-wrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+<script>
+// ═══ CONFIG ═══
+const WIFI_NAME = 'WASI';
+const WIFI_PASS = 'EFBE2023';
+const WIFI_TYPE = 'WPA';
+const WHATSAPP = '51908724496';
+
+// ═══ SCHEDULE ═══
+const SCHEDULE = {
+  // 0=Sunday, 1=Monday ... 6=Saturday
+  1: { open: 8, close: 21 },
+  2: { open: 8, close: 21 },
+  3: { open: 8, close: 21 },
+  4: { open: 8, close: 21 },
+  5: { open: 8, close: 21 },
+  6: { open: 9, close: 21 },
+  0: null // Domingo cerrado
+};
+
+// ═══ PROMOS ═══
+const PROMOS = [
+  { es: { n: 'Combo Hamburguesa', d: 'Hamburguesa Clásica + Papas Andinas + Chicha Morada' }, en: { n: 'Burger Combo', d: 'Classic Burger + Andean Fries + Chicha Morada' }, price: 20, oldPrice: 33.7, badge: { es: 'COMBO', en: 'COMBO' } },
+  { es: { n: 'Combo Milanesa', d: 'Milanesa de Pollo con pan + Papas Andinas' }, en: { n: 'Milanese Combo', d: 'Chicken Milanese with bread + Andean Fries' }, price: 21.9, oldPrice: 36.9, badge: { es: 'COMBO', en: 'COMBO' } },
+  { es: { n: 'Combo Milanesa Empanizada', d: 'Milanesa de Pollo empanizado + Papas Andinas' }, en: { n: 'Breaded Milanese Combo', d: 'Breaded Chicken Milanese + Andean Fries' }, price: 21.9, oldPrice: 36.9, badge: { es: 'COMBO', en: 'COMBO' } }
+];
+
+// ═══ BADGES MAP ═══
+const BADGES = {
+  'Club Sándwich': { type: 'popular', es: 'Popular', en: 'Popular' },
+  'Club Sandwich': { type: 'popular', es: 'Popular', en: 'Popular' },
+  'Hamburguesa Wasi': { type: 'popular', es: 'Popular', en: 'Popular' },
+  'Wasi Burger': { type: 'popular', es: 'Popular', en: 'Popular' },
+  'Caprese': { type: 'vegano', es: 'Vegano', en: 'Vegan' },
+  'Sándwich Light': { type: 'nuevo', es: 'Nuevo', en: 'New' },
+  'Light Sandwich': { type: 'nuevo', es: 'Nuevo', en: 'New' },
+};
+
+// ═══ MENU DATA ═══
+const D=[
+{id:"recomendaciones",feat:true,num:"01",es:{n:"Recomendaciones",s:"Lo más pedido por nuestros comensales"},en:{n:"House Favorites",s:"Our guests' most-loved dishes"},items:[
+{img:"https://images.meniuapp.com/35fee3c1f87034b010f9c234843faa6ba43e855577cdf2bb97ccc2d11e4259bd.png.webp",p:35,es:{n:"Hamburguesa Wasi",d:"Carne de res, huevo frito, tocino, jamón, queso y papas fritas"},en:{n:"Wasi Burger",d:"Beef patty, fried egg, bacon, ham, cheese and fries"}},
+{img:"https://images.meniuapp.com/6347fb863f7c2f62b9615c404624a62f488711b443860259ed9406127d85e40e.png.webp",p:47.9,es:{n:"Club Sándwich",d:"Pollo deshilachado, jamón inglés, queso edam en triple pan de miga"},en:{n:"Club Sandwich",d:"Shredded chicken, English ham, edam cheese on triple bread"}},
+{img:"https://images.meniuapp.com/37f679def62a179df0ed6f39ec7a9d05351a225638bde6b0c791d99da9f3d3ac.png.webp",p:13,es:{n:"Chocolate Caliente",d:"Chocolate artesanal peruano, cremoso y reconfortante"},en:{n:"Hot Chocolate",d:"Artisanal Peruvian chocolate, creamy and comforting"}},
+{img:"https://images.meniuapp.com/a824019ff1caf7123b7e87f7218a2a1e696357b7eb832e2b170780973eaf3873.png.webp",p:17,es:{n:"Torta de Chocolate",d:"Bizcocho húmedo de chocolate con ganache"},en:{n:"Chocolate Cake",d:"Rich moist chocolate sponge with ganache"}},
+{img:"https://images.meniuapp.com/b91714c3616d284ed2890a49a7de883b5f33ec1e96c185126922060163e07a35.png.webp",p:18,es:{n:"Cheesecake Frutos del Bosque",d:"Cremoso cheesecake con coulis de berries"},en:{n:"Berry Cheesecake",d:"Creamy cheesecake with wild berry coulis"}}]},
+{id:"sandwiches",num:"02",es:{n:"Sándwiches",s:"Recetas peruanas y clásicos reinventados"},en:{n:"Sandwiches",s:"Peruvian recipes & reimagined classics"},items:[
+{img:"https://images.meniuapp.com/4f1ec98271e432578531322c164298e901be1240881633ac860e77d433768f34.png.webp",p:23.9,es:{n:"Chicharrón Peruano",d:"Pan con chicharrón, camote frito y salsa criolla"},en:{n:"Peruvian Chicharrón",d:"Pork crackling, sweet potato and criolla relish"}},
+{img:"https://images.meniuapp.com/84f96b91846d96332031f7b5c34c8d7191eff13cc95f3d901159919c8765b1f5.png.webp",p:23.9,es:{n:"Sándwich de Asado",d:"Asado de res con salsa criolla en pan artesanal"},en:{n:"Roast Beef Sandwich",d:"Slow-roasted beef with criolla relish on artisan bread"}},
+{img:"https://images.meniuapp.com/19592cdd71c1eace7872bdf0176318a993159bc6a839cba525d524a460774dc2.png.webp",p:19.9,es:{n:"Butifarra",d:"Jamón del país con salsa criolla — el clásico peruano"},en:{n:"Butifarra",d:"Peru's iconic ham sandwich with criolla salsa"}},
+{img:"https://images.meniuapp.com/e75160917c788b820d13136024bda482d5150849f84c420ccdaf341b6efdf7e2.png.webp",p:21.9,es:{n:"Croissant Huevos y Jamón",d:"Hojaldre con huevos revueltos y jamón ahumado"},en:{n:"Egg & Ham Croissant",d:"Flaky croissant with scrambled eggs and smoked ham"}},
+{img:"https://images.meniuapp.com/2b130e38cb38ec6564ca6362539a333a58e2822b5312fee5a78d4a61079743dc.png.webp",p:19.9,es:{n:"Croissant de Pollo",d:"Pechuga deshilachada, mayonesa y lechuga"},en:{n:"Chicken Croissant",d:"Shredded chicken breast with mayo and lettuce"}},
+{img:"https://images.meniuapp.com/82f257626c8eadba0af054499908386072bdf45637d572de2fc7218db9ba8305.png.webp",p:21.9,es:{n:"Croissant Tropical",d:"Pollo, mayonesa, durazno y queso edam"},en:{n:"Tropical Croissant",d:"Chicken, mayo, peach and edam cheese"}},
+{img:"https://images.meniuapp.com/b295bc85d1f42bf0d2c3aaf9c3060b32975c4ef5aca14d447667411f4cd25159.png.webp",p:18.9,es:{n:"Croissant Mixto",d:"Jamón ahumado y queso edam"},en:{n:"Ham & Cheese Croissant",d:"Smoked ham and edam cheese"}},
+{img:"https://images.meniuapp.com/8c34655be241939fa9c7ef98188d50524186cfdbe5a641949538ea2808e85542.png.webp",p:21.9,es:{n:"Pollo con Palta",d:"Pollo deshilachado con palta en pan de miga"},en:{n:"Chicken & Avocado",d:"Shredded chicken with avocado on sliced bread"}},
+{img:"https://images.meniuapp.com/2b1185611d8b4e14feb26f89cd2221a44e6c3fcbe825497052a1237ea760e7bb.png.webp",p:15.9,es:{n:"Mixto Clásico",d:"Jamón ahumado y queso en pan tostado"},en:{n:"Classic Ham & Cheese",d:"Smoked ham and cheese on toasted bread"}},
+{img:"https://images.meniuapp.com/9ecc6d67d71317c0fdffccd21ac141996710d5bc364ad6ab96c5a8ce41985abd.png.webp",p:16.9,es:{n:"Mixto Especial",d:"Mixto planchado con queso derretido extra"},en:{n:"Deluxe Ham & Cheese",d:"Pressed sandwich with extra melted cheese"}},
+{img:"https://images.meniuapp.com/6628635a7e1d41b6874845b636219aca17068532ce846c9c04ca63550650fe31.png.webp",p:16.9,es:{n:"Caprese",d:"Mozzarella, tomate, albahaca y aceite de oliva"},en:{n:"Caprese",d:"Fresh mozzarella, tomato, basil and olive oil"}},
+{img:"https://images.meniuapp.com/80a7d39740ebf6353fd74b26faf1a89fa351b3e46cadd298d778c70a42a098cb.png.webp",p:15.9,es:{n:"Sándwich de Pollo",d:"Pollo deshilachado, mayonesa, lechuga y tomate"},en:{n:"Chicken Sandwich",d:"Shredded chicken, mayo, lettuce and tomato"}},
+{img:"https://images.meniuapp.com/24f7767f8358798a971f7f6e20ab46787a1b86d09e0a47d4913dc17d8a525359.png.webp",p:19.9,es:{n:"Sándwich de Pavo",d:"Pechuga de pavo, lechuga, tomate y mayonesa"},en:{n:"Turkey Sandwich",d:"Turkey breast, lettuce, tomato and mayo"}},
+{img:"https://images.meniuapp.com/074ccaa84378a21f7a4abc0ff56af8a04646646a6cdda70f6972bad2d7466621.png.webp",p:34.9,es:{n:"Bisteck Montado",d:"Bisteck, huevo frito, papas fritas y ensalada"},en:{n:"Steak & Egg Sandwich",d:"Grilled steak, fried egg, fries and salad"}},
+{img:"https://images.meniuapp.com/b49643846fda61d47c3bb1ab30fc9697ae82da42facf0d69195521b06cf4a973.png.webp",p:13.9,es:{n:"Choripán",d:"Chorizo parrillero con lechuga y chimichurri"},en:{n:"Choripán",d:"Grilled chorizo with lettuce and chimichurri"}},
+{img:"https://images.meniuapp.com/fcc31c613c7005f85769914e6c915f3e39f57817dc73da7e794ed7d69cad1dce.png.webp",p:16.9,es:{n:"Sándwich Light",d:"Pan integral, palta, huevo y semillas"},en:{n:"Light Sandwich",d:"Whole wheat, avocado, egg and seeds"}},
+{img:"https://images.meniuapp.com/b74da3e01a9d1682688a9e6d24986e04f800c6de69ddbd000a654599aa5cf4bd.png.webp",p:48.9,es:{n:"Club Wasi",d:"Pollo, chorizo, tocino, queso, lechuga y tomate"},en:{n:"Club Wasi",d:"Chicken, chorizo, bacon, cheese, lettuce and tomato"}},
+{img:"https://images.meniuapp.com/bab01fa6792c4ca9769edd0377be64c5ec09a96c83737f34eaf65c1697cda5f6.png.webp",p:29.9,es:{n:"Hamburguesa Royal",d:"Carne de res, huevo, jamón inglés y papas fritas"},en:{n:"Royal Burger",d:"Beef patty, fried egg, English ham and fries"}},
+{img:"https://images.meniuapp.com/6e0d19aada963e84ffcc978c61f9cd7583e34aa893f738c48947054da57b49fb.png.webp",p:25.9,es:{n:"Hamburguesa Clásica",d:"Carne de res, queso edam, lechuga y tomate"},en:{n:"Classic Burger",d:"Beef patty, edam cheese, lettuce and tomato"}},
+{img:"https://images.meniuapp.com/8daf2412a6326ba6d1d690ab3a471b3f90dc0e4c0a5d5780ef3617129a8dcb74.png.webp",p:29.9,es:{n:"Milanesa de Pollo",d:"Milanesa, tomate, lechuga, queso y mayonesa"},en:{n:"Chicken Milanese",d:"Breaded cutlet, tomato, lettuce, cheese and mayo"}},
+{img:"https://images.meniuapp.com/ce307ed16bc5a1ad850adfc8de804d20d6d8df0fe1bc44b06dc76158af6bb067.png.webp",p:25.9,es:{n:"Filete de Pollo",d:"Filete a la plancha en pan artesanal"},en:{n:"Grilled Chicken Fillet",d:"Grilled chicken fillet on artisan bread"}}]},
+{id:"omelettes",num:"03",es:{n:"Omelettes",s:"Preparados al momento con huevos frescos"},en:{n:"Omelettes",s:"Made to order with farm-fresh eggs"},items:[
+{img:"https://images.meniuapp.com/9b4b6e71f7f3633e7ceeed791efff4900c1180c8c313e5b15784ca5a0d2b8f9b.png.webp",p:17.5,es:{n:"Omelette de Queso",d:""},en:{n:"Cheese Omelette",d:""}},
+{img:"https://images.meniuapp.com/54dd1b3a1474b4c7b0aae3260de6bad8995106a0a473e2155a40e63ada87104d.png.webp",p:17.5,es:{n:"Omelette de Jamón",d:""},en:{n:"Ham Omelette",d:""}},
+{img:"https://images.meniuapp.com/e880ed2a4e57382c4c930490a52454816ab23c85e8d986c074ecc5460ff7ab1a.png.webp",p:19.5,es:{n:"Omelette de Tocino",d:""},en:{n:"Bacon Omelette",d:""}},
+{img:"https://images.meniuapp.com/dba812255f1b6c3de1f420eb5692a58ab0391ddc9d376438097c22487c997e33.png.webp",p:19.5,es:{n:"Omelette Jamón y Queso",d:""},en:{n:"Ham & Cheese Omelette",d:""}},
+{img:"https://images.meniuapp.com/81605654aa0ba7fd9aa74315ed28b51194b6319b6308257714b9d5695d90468e.png.webp",p:21.9,es:{n:"Omelette Tocino y Queso",d:""},en:{n:"Bacon & Cheese Omelette",d:""}},
+{img:"https://images.meniuapp.com/e67aac4593c7baa24bfad7d1cad365ce64fe37aace0216a0485097a0a14fea0e.png.webp",p:22.5,es:{n:"Omelette Completo",d:"Jamón, queso, tocino, tomate y pimiento"},en:{n:"Loaded Omelette",d:"Ham, cheese, bacon, tomato and bell pepper"}},
+{img:"https://images.meniuapp.com/50108d0073cf39ef55e18730fc209e84c6e6533bbd7bdaa75925cffe70c238f2.png.webp",p:22.5,es:{n:"Omelette de Pollo",d:""},en:{n:"Chicken Omelette",d:""}}]},
+{id:"salchipapas",num:"04",es:{n:"Salchipapas",s:"El antojo callejero favorito del Perú"},en:{n:"Salchipapas",s:"Peru's beloved street-food favorite"},items:[
+{img:"https://images.meniuapp.com/e14c5d152dbdc86bc8beaa3f636a72c1aaee55ec1ec20e04ed79b3e963366234.png.webp",p:25.9,es:{n:"Salchipapa",d:"Papas andinas fritas con hot dog"},en:{n:"Salchipapa",d:"Andean fried potatoes with hot dog"}},
+{img:"https://images.meniuapp.com/3e52932d4ee32c79a24bf28748796de495275533de644804a1be4df14fc26be7.png.webp",p:33,es:{n:"Salchipapa Especial",d:"Papas, chorizo, hot dog, huevo y queso"},en:{n:"Loaded Salchipapa",d:"Fries, chorizo, hot dog, fried egg and cheese"}}]},
+{id:"cafes",num:"05",es:{n:"Cafés",s:"Café de especialidad peruano con pasión"},en:{n:"Coffee",s:"Peruvian specialty coffee crafted with passion"},items:[
+{img:"https://images.meniuapp.com/4ef3d4db7522e1624710d4abd0dc65e799f5bb9d123c21ac8344b28a0a023249.png.webp",p:8,es:{n:"Espresso",d:"Shot intenso de café peruano"},en:{n:"Espresso",d:"Intense Peruvian single shot"}},
+{img:"https://images.meniuapp.com/780352bb15c7f2f43ec4057005cbd656a79c14cb25303b7c58d925d1edd4bf5d.png.webp",p:14,es:{n:"Espresso Doble",d:"Doble shot para los amantes del café fuerte"},en:{n:"Double Espresso",d:"Double shot for strong coffee lovers"}},
+{img:"https://images.meniuapp.com/634f9bee934f58bd27bb532810fd58d876ef81de97242f21434cc4ae3ce8e744.png.webp",p:8,es:{n:"Americano",d:"Espresso con agua caliente, suave y aromático"},en:{n:"Americano",d:"Espresso with hot water, smooth and aromatic"}},
+{img:"https://images.meniuapp.com/32132d62953303ab93c0c5aa52aea8f3c678bbef6c45f59b1b20041335ca3d15.png.webp",p:9,es:{n:"Cortado",d:"Espresso con un toque de leche vaporizada"},en:{n:"Cortado",d:"Espresso cut with steamed milk"}},
+{img:"https://images.meniuapp.com/4ef898e9a216b8cd709b08cd98f58e0816665f83f323b47cb6f2b5858bd1862c.png.webp",p:8,es:{n:"Ristretto",d:"Espresso corto, concentrado y lleno de sabor"},en:{n:"Ristretto",d:"Short concentrated espresso, full of flavor"}},
+{img:"https://images.meniuapp.com/0cbe65a9d604f54d28035af1970c985c29a9f10f51326c3c31bbe0c58a8c0da1.png.webp",p:10.9,es:{n:"Café con Leche",d:"Espresso con espuma de leche sedosa"},en:{n:"Café Latte",d:"Espresso with silky milk foam"}},
+{img:"https://images.meniuapp.com/4066c9a81ae450e5b18a2936c601f7a3688f3cd1635956441b34c97b57e9a85f.png.webp",p:12,es:{n:"Capuchino",d:"Espresso, leche vaporizada y espuma cremosa"},en:{n:"Cappuccino",d:"Espresso, steamed milk and creamy foam"}},
+{img:"https://images.meniuapp.com/546543b245a856a913d40db00df57193e299f94a7e77af5421bb39938c287534.png.webp",p:14,es:{n:"Capuchino con Crema",d:"Capuchino coronado con crema batida"},en:{n:"Cappuccino with Cream",d:"Cappuccino topped with whipped cream"}},
+{img:"https://images.meniuapp.com/5dec9cc5a416e1b2a59e562c0660390dbc87fc2497063991456ebd2f73f03a21.png.webp",p:12,es:{n:"Mocachino",d:"Espresso con chocolate y leche"},en:{n:"Mocha",d:"Espresso blended with chocolate and milk"}},
+{img:"https://images.meniuapp.com/4edb3f26019667f5623e526c9152dcd73351e3d133b693f1507a41193976864d.png.webp",p:8,es:{n:"Café Filtrado",d:"Café de filtro, suave y equilibrado"},en:{n:"Filter Coffee",d:"Pour-over, smooth and balanced"}},
+{img:"https://images.meniuapp.com/93e8286cfc87d3bd0a3ab658c8ae4685e3884ccd98c6d04bed117c265da657d9.png.webp",p:11,es:{n:"Tepuchino",d:"Nuestra creación exclusiva de té con espuma"},en:{n:"Tepuchino",d:"Our signature tea foam creation"}},
+{img:"https://images.meniuapp.com/37f679def62a179df0ed6f39ec7a9d05351a225638bde6b0c791d99da9f3d3ac.png.webp",p:13,es:{n:"Chocolate Caliente",d:"Chocolate artesanal peruano"},en:{n:"Hot Chocolate",d:"Artisanal Peruvian chocolate"}},
+{img:"https://images.meniuapp.com/e0014615e58531eedeaa552417f712b0cdc945d608b842fd78efcfe0a0192739.png.webp",p:15.9,es:{n:"Affogato Clásico",d:"Helado de vainilla ahogado en espresso"},en:{n:"Classic Affogato",d:"Vanilla gelato drowned in hot espresso"}},
+{img:"https://images.meniuapp.com/5b419eadb4ca7aaf73efaf2bc356f4b6e19ae8140188acace488495951e6e3b8.png.webp",p:17.9,es:{n:"Affogato Wasi + Pisco",d:"Nuestra receta secreta con ½ oz de pisco"},en:{n:"Wasi Affogato + Pisco",d:"Our secret recipe with ½ oz Peruvian pisco"}}]},
+{id:"infusiones",num:"06",cmp:true,es:{n:"Infusiones",s:"Hierbas aromáticas y tés tradicionales"},en:{n:"Herbal Teas",s:"Aromatic herbs and traditional teas"},items:[
+{img:"https://images.meniuapp.com/083b0e6e44118c6d39cd732273bc388db9b12b109cf01a4ce62347271c667a58.png.webp",p:9.5,es:{n:"Té",d:"Té clásico"},en:{n:"Tea",d:"Classic tea"}},
+{img:"https://images.meniuapp.com/a20bb4dc785c87ec3ab94cef0c8a48b7cbffdc043a567d1bd807d54abde2b584.png.webp",p:9.5,es:{n:"Anís",d:"Digestiva"},en:{n:"Anise",d:"Digestive"}},
+{img:"https://images.meniuapp.com/1e62200d1605b668dae5e4331e50b224587f5e3307aff15f6123bbaaa064c96b.png.webp",p:9.5,es:{n:"Jamaica",d:"Flor de jamaica"},en:{n:"Hibiscus",d:"Hibiscus flower"}},
+{img:"https://images.meniuapp.com/2c89bc42968de9b79d50ae7bbae654be839d42dacde9f869acf1dddc3fc8aed1.png.webp",p:9.5,es:{n:"Manzanilla",d:"Calmante"},en:{n:"Chamomile",d:"Calming"}},
+{img:"https://images.meniuapp.com/281da6cc0d57b42ad37f71d3c0a45b32b1851dde174cb54d9682dc5453e93a73.png.webp",p:9.5,es:{n:"Hierba Luisa",d:"Aromática"},en:{n:"Lemon Verbena",d:"Aromatic"}},
+{img:"https://images.meniuapp.com/258ac11175d79e110d301e1f2cb9f1b7a801a23d5733602eb3ab816cb3b95dcc.png.webp",p:9.5,es:{n:"Hierba Buena",d:"Refrescante"},en:{n:"Spearmint",d:"Refreshing"}}]},
+{id:"frappes",num:"07",es:{n:"Frappés",s:"Bebidas heladas cremosas"},en:{n:"Frappés",s:"Creamy iced blended drinks"},items:[
+{img:"https://images.meniuapp.com/08c84a8da45eac6eb84dd8e54ab1fa1d2fc81315391d4d3a8aad4342ffa6d5f5.png.webp",p:14.9,pl:22.9,es:{n:"Frappé de Caramelo",d:"Café, caramelo y crema helada"},en:{n:"Caramel Frappé",d:"Coffee, caramel and iced cream"}},
+{img:"https://images.meniuapp.com/b34b586d97f968cbc5c6b1d569220b206dd3e38ddbb9389a097ea3ac87605da0.png.webp",p:14.9,pl:23.9,es:{n:"Frappé de Mocha",d:"Chocolate con café helado"},en:{n:"Mocha Frappé",d:"Chocolate and iced coffee"}},
+{img:"https://images.meniuapp.com/8ee93fcd7802d4dc7aac4e9e0e005d5bd005b555c7389e1f413d3018ec8b9a83.png.webp",p:14.9,pl:22.9,es:{n:"Frappé de Café",d:"Espresso helado cremoso"},en:{n:"Coffee Frappé",d:"Iced espresso cream blend"}},
+{img:"https://images.meniuapp.com/cf34dd4b6b9ab171db9e00fb541092498bd527e52e2acc124d9ab05be0a10559.png.webp",p:15.9,pl:23.9,es:{n:"Frappé de Chocolate",d:"Chocolate helado cremoso"},en:{n:"Chocolate Frappé",d:"Creamy iced chocolate"}}]},
+{id:"frias",num:"08",es:{n:"Bebidas Frías",s:"Refréscate con sabores peruanos"},en:{n:"Cold Drinks",s:"Cool down with Peruvian flavors"},items:[
+{img:"https://images.meniuapp.com/0c561d540cc94adb44e2f15fd7262488c024e4ee80fa47f8589976e1ebbc5b62.png.webp",p:11.9,pl:30,es:{n:"Limonada",d:"Limonada natural"},en:{n:"Lemonade",d:"Natural lemonade"}},
+{img:"https://images.meniuapp.com/909554a5b5e3839567d7ddaa4a8cd41975cc28581238de5bb33267b3b34a209b.png.webp",p:11.9,pl:30,es:{n:"Maracuyá",d:"Jugo de maracuyá tropical"},en:{n:"Passion Fruit",d:"Tropical passion fruit juice"}},
+{img:"https://images.meniuapp.com/a1c539383b087a7695e2aba92f352b6c5690c46bb0e6e657987759a3a76012d9.png.webp",p:11.9,pl:30,es:{n:"Jamaica",d:"Flor de jamaica helada"},en:{n:"Hibiscus",d:"Iced hibiscus flower"}},
+{img:"https://images.meniuapp.com/9d9071a1b874f9f99053314981e922111690e4a8ea697020739b03dbd07b22c1.png.webp",p:12.9,pl:30,es:{n:"Chicha Morada",d:"Bebida ancestral de maíz morado"},en:{n:"Chicha Morada",d:"Ancestral purple corn drink"}},
+{img:"https://images.meniuapp.com/e019db5778aabd05c4375a9de3851dcaea489b05de79893d6c4e780d9550234d.png.webp",p:14.9,es:{n:"Café con Leche Frío",d:"Iced latte cremoso"},en:{n:"Iced Latte",d:"Creamy iced latte"}},
+{img:"https://images.meniuapp.com/f76665244f594bc8ca6a45b9cc9b3005c8c189d46315055ce6dd0cedce14227b.png.webp",p:13.9,es:{n:"Café Helado",d:"Espresso con agua fría y hielo"},en:{n:"Iced Coffee",d:"Espresso over ice"}},
+{img:"https://images.meniuapp.com/ff25884e2b3517e7fd547b91fda2932fe0df721614a088ea01ca6040f9ebad8d.png.webp",p:14.9,es:{n:"Tepuchino Helado",d:"Té helado con espuma"},en:{n:"Iced Tepuchino",d:"Iced tea foam creation"}},
+{img:"https://images.meniuapp.com/dd7977e33e8eef0c3c48c7d30658dcf9caace4928951360650545bde5df07e01.png.webp",p:16.9,es:{n:"Chocolate Helado",d:"Chocolate artesanal helado"},en:{n:"Iced Chocolate",d:"Artisanal iced chocolate"}},
+{img:"https://images.meniuapp.com/76cf293635551b757403f6d1d66ead9b5677270d6344734783c7da009138bfb5.png.webp",p:21.9,es:{n:"Milkshake",d:"Batido cremoso de helado artesanal"},en:{n:"Milkshake",d:"Creamy artisanal ice cream shake"}}]},
+{id:"frozen",num:"09",es:{n:"Frozen",s:"Granizados de frutas frescas"},en:{n:"Frozen Drinks",s:"Fresh fruit slushies"},items:[
+{img:"https://images.meniuapp.com/361f347036c383fc4d653d6f820bbeec41b38f3190fc337062d1ae3a4cd68b63.png.webp",p:16.9,pl:39,es:{n:"Frozen Maracuyá",d:""},en:{n:"Passion Fruit Frozen",d:""}},
+{img:"https://images.meniuapp.com/dddd62da0ec2818b8de52599dba4d4c3f71274782159c6eeeb7a4c11cceffbc8.png.webp",p:16.9,pl:39,es:{n:"Frozen Jamaica",d:""},en:{n:"Hibiscus Frozen",d:""}},
+{img:"https://images.meniuapp.com/68d02d82fe585e496667f56e4be8abea58bc2f5abe00799b1184f7e36070152c.png.webp",p:18.9,pl:39,es:{n:"Frozen Fresa",d:""},en:{n:"Strawberry Frozen",d:""}},
+{img:"https://images.meniuapp.com/ec105341fe5a611abb1fc7caf276ce6170fc6ed1104172d04e8813cddea84c63.png.webp",p:17.9,pl:39,es:{n:"Frozen Limón",d:""},en:{n:"Lemon Frozen",d:""}},
+{img:"https://images.meniuapp.com/d28559ead9b907b30ed5e81b74b3a889333824a9fb7829e69f504edcc1e41e91.png.webp",p:18.9,pl:39,es:{n:"Frozen Chicha",d:""},en:{n:"Chicha Frozen",d:""}},
+{img:"https://images.meniuapp.com/c7bfcc0fef9afa3e093342346c3e62f74063a0a5891b925b629ebc6ca6d99bb7.png.webp",p:17.9,pl:39,es:{n:"Frozen Piña",d:""},en:{n:"Pineapple Frozen",d:""}},
+{img:"https://images.meniuapp.com/2e66817215795baced851aa765b3f75b6d2dfaef0a4653968d520baa94f47712.png.webp",p:18.9,pl:39,es:{n:"Frozen Mango",d:""},en:{n:"Mango Frozen",d:""}},
+{img:"https://images.meniuapp.com/438fb4ba479b6f42570a8fcd255ce19bfba209fad18d5f9ffed3a28e1d239dbc.png.webp",p:18.9,es:{n:"Frozen Lúcuma",d:"Fruta peruana cremosa"},en:{n:"Lucuma Frozen",d:"Creamy Peruvian fruit"}},
+{img:"https://images.meniuapp.com/b541f8bb00d0242c510a4ad5071f7c02e196f859d4d8cf9c7eaa065ad831b415.png.webp",p:17.9,pl:39,es:{n:"Frozen Zanahoria-Limón",d:""},en:{n:"Carrot-Lemon Frozen",d:""}},
+{img:"https://images.meniuapp.com/f189e621d47c9c946ee8686de33a34ea887b168c031934f1de76541a5d6db377.png.webp",p:18.9,es:{n:"Frozen Naranja",d:""},en:{n:"Orange Frozen",d:""}},
+{img:"https://images.meniuapp.com/c11f86b151b1aac406c978c48e9419baad608865c3ed45db2d2c74191ea83042.png.webp",p:18.9,es:{n:"Frozen Tutifrutti",d:"Mezcla de frutas"},en:{n:"Tutti Frutti Frozen",d:"Mixed fruit blend"}}]},
+{id:"jugos",num:"10",es:{n:"Jugos",s:"Exprimidos al momento"},en:{n:"Fresh Juices",s:"Freshly squeezed to order"},items:[
+{img:"https://images.meniuapp.com/2861551dc73547752ca39477036d6a92f55e19ef863136a4ee5ac594521d913d.png.webp",p:12.9,es:{n:"Piña",d:"Piña fresca"},en:{n:"Pineapple",d:"Fresh pineapple"}},
+{img:"https://images.meniuapp.com/c311ab8024af70a43f722739e3a363e3d58ed04744b6bb7007bfc5ea668cdd81.png.webp",p:12.9,es:{n:"Papaya",d:"Gran digestivo"},en:{n:"Papaya",d:"Great for digestion"}},
+{img:"https://images.meniuapp.com/d8146a8ae2c9ce0a15691b784c19a04b11c71426b07d99be617ee1e18197e8cc.png.webp",p:14.9,es:{n:"Naranja",d:"Exprimida al momento"},en:{n:"Orange",d:"Freshly squeezed"}},
+{img:"https://images.meniuapp.com/87b3df66382b823afaf9c76e50060686f84025ee6359214e9352b60bcc2aa200.png.webp",p:13.9,es:{n:"Fresa",d:"Fresas frescas"},en:{n:"Strawberry",d:"Fresh strawberries"}},
+{img:"https://images.meniuapp.com/79b14978dbfc5a131d3e57c8919549d346ba200500db6ad5ba633488087e4918.png.webp",p:13.9,es:{n:"Mango",d:"Mango tropical"},en:{n:"Mango",d:"Tropical mango"}},
+{img:"https://images.meniuapp.com/c49e44725d9cd74dfe489ccd9409e555428adbdac7e086e85a29f78c148c94ef.png.webp",p:13.9,es:{n:"Jugo Surtido",d:"Papaya, piña, fresa y plátano"},en:{n:"Mixed Juice",d:"Papaya, pineapple, strawberry and banana"}},
+{img:"https://images.meniuapp.com/db6937a84acc502d9243cdb2d0907b1419780f4295d18ae3247b6e7f894295fb.png.webp",p:17.9,es:{n:"Jugo Especial",d:"Papaya, piña, fresa, plátano y algarrobina"},en:{n:"Special Juice",d:"Papaya, pineapple, strawberry, banana and carob"}}]},
+{id:"smoothies",num:"11",es:{n:"Smoothies",s:"Batidos cremosos con leche fresca"},en:{n:"Smoothies",s:"Creamy fruit shakes with fresh milk"},items:[
+{img:"https://images.meniuapp.com/3c214c2e32f610cb44a8b3c10e183d29c3cc384864d977a0e1fcb7e3f839dcb2.png.webp",p:16.9,es:{n:"Lúcuma",d:"Fruta peruana única con leche"},en:{n:"Lucuma",d:"Unique Peruvian fruit with milk"}},
+{img:"https://images.meniuapp.com/bfa3207b28612ec0a5cb5029e5b540845888d279a00708c07178b21e8fe38866.png.webp",p:16.9,es:{n:"Fresa",d:"Fresas frescas con leche"},en:{n:"Strawberry",d:"Fresh strawberries with milk"}},
+{img:"https://images.meniuapp.com/9b8d7bd50f3234264fef017169120ce39eae44011d17fd67773baabae6115d5c.png.webp",p:16.9,es:{n:"Papaya",d:"Papaya cremosa con leche"},en:{n:"Papaya",d:"Creamy papaya with milk"}},
+{img:"https://images.meniuapp.com/ed92a2982f397a2e54bf0e6db9b10cfc6eecfa10880e1eab703fc61c9b55b91d.png.webp",p:16.9,es:{n:"Plátano",d:"Cremoso y reconfortante"},en:{n:"Banana",d:"Creamy and comforting"}},
+{img:"https://images.meniuapp.com/43b845a83effea6a9ddf549b865b52411730ddc58ed8468914e1eb77f4d94ce5.png.webp",p:17.9,es:{n:"Palta",d:"Superalimento peruano con leche"},en:{n:"Avocado",d:"Peruvian superfood with milk"}},
+{img:"https://images.meniuapp.com/d1ee905cfaf4a02563b4dfc47fb32cfb04b2d5d42132c9b3ca44ee594f947261.png.webp",p:16.9,es:{n:"Piña",d:"Piña tropical con leche"},en:{n:"Pineapple",d:"Tropical pineapple with milk"}},
+{img:"https://images.meniuapp.com/c893b9e34db8cefca47de655ab4d8203079783956952d24389ef63a86b95c882.png.webp",p:16.9,es:{n:"Mango",d:"Mango dulce con leche fresca"},en:{n:"Mango",d:"Sweet mango with fresh milk"}}]},
+{id:"guarniciones",num:"12",cmp:true,es:{n:"Guarniciones",s:"Complementos para tu pedido"},en:{n:"Sides",s:"Add-ons to complete your order"},items:[
+{img:"https://images.meniuapp.com/52ce27d0eed56f16b6b5455f928762198356715586d727deb5cfccbceac2b472.png.webp",p:18,es:{n:"Papas Andinas",d:"Fritas al punto"},en:{n:"Andean Fries",d:"Golden fried"}},
+{img:"https://images.meniuapp.com/bf2e36e8219d316c1bd330c7f9a8fe6da8b4b3a3e64cc67aa3721cc32af98b5c.png.webp",p:12.9,es:{n:"Pan al Ajo",d:""},en:{n:"Garlic Bread",d:""}},
+{img:"https://images.meniuapp.com/254ef8e25eab692c6c606b9fd060d0b05faef78ed9c82bb4c2e3c38a47944764.png.webp",p:14.9,es:{n:"Huevos Revueltos",d:""},en:{n:"Scrambled Eggs",d:""}},
+{img:"https://images.meniuapp.com/d8abe2182b9853ee1c673f95665fc22c5597f30d002949254575060826d0c9f2.png.webp",p:16.9,es:{n:"Huevos con Jamón",d:""},en:{n:"Eggs with Ham",d:""}},
+{img:"https://images.meniuapp.com/cd9ef5d10e1bf009629814883bae68df2f1d2ca93e28a99fe54a89b68f3abb58.png.webp",p:18.9,es:{n:"Huevos Jamón y Queso",d:""},en:{n:"Eggs Ham & Cheese",d:""}},
+{img:"https://images.meniuapp.com/11f627f3331c159ded67c38b2d214489af3eae2bc0ac5998b894d9548dd3c396.png.webp",p:18.9,es:{n:"Huevos con Tocino",d:""},en:{n:"Eggs with Bacon",d:""}},
+{img:"https://images.meniuapp.com/e1c36850f892ab1618cbfd21e87ce1d7ec9d4f5221f1fa5dcc5b82ba081189b7.png.webp",p:12,es:{n:"Huevos Sancochados",d:"3 unidades"},en:{n:"Boiled Eggs",d:"3 pieces"}},
+{img:"https://images.meniuapp.com/8122ed96824f11b97d43733798fc2f660dca32596237f584a40ce10b6d466680.png.webp",p:9.9,es:{n:"Croissant",d:"De mantequilla"},en:{n:"Croissant",d:"Butter"}},
+{img:"https://images.meniuapp.com/227b5356d349d09c5ba569de4233db5305882b1317aca98d709084ce69921222.png.webp",p:14.9,es:{n:"Camote Frito",d:"Tubérculo peruano"},en:{n:"Sweet Potato",d:"Peruvian tuber"}},
+{img:"https://images.meniuapp.com/0f76c26364ac1de63f194627835bd9e31d6116ea7f96c1aeb07e0614c2bf791b.png.webp",p:6,es:{n:"Ensalada Criolla",d:"Cebolla, tomate, limón"},en:{n:"Criolla Salad",d:"Onion, tomato, lime"}},
+{img:"https://images.meniuapp.com/54e4af03edfe82f186aec0b849d93caa1f287b1ffa8c78808f7c0a4775c2854a.png.webp",p:9.9,es:{n:"Tostadas",d:""},en:{n:"Toast",d:""}}]},
+{id:"ensaladas",num:"13",es:{n:"Ensaladas",s:"Frescas y nutritivas"},en:{n:"Salads",s:"Fresh and nutritious"},items:[
+{img:"https://images.meniuapp.com/7c6a1f5eef441d56513b10ae38ac99dd85cf763c9d0eb4368ae5cee29cc1be8f.png.webp",p:34,es:{n:"Ensalada de Pollo",d:"Pollo, lechuga orgánica, tomate, palta y aderezo"},en:{n:"Chicken Salad",d:"Chicken, organic lettuce, tomato, avocado and dressing"}},
+{img:"https://images.meniuapp.com/cc978ac94b2cb348aee7660d7ec87c2111056dbbbde5ec273e5bd7b1caf3fc8a.png.webp",p:36,es:{n:"Ensalada César",d:"Pollo a la plancha, lechuga romana, crutones y César"},en:{n:"Caesar Salad",d:"Grilled chicken, romaine, croutons and Caesar dressing"}}]},
+{id:"tamales",num:"14",es:{n:"Tamales",s:"Tradición criolla"},en:{n:"Tamales",s:"Criolla tradition"},items:[
+{img:"https://images.meniuapp.com/51490ee7e6a31613985d4ed3a8e28911303506ce9d47e26ecdf24eca181c045e.png.webp",p:11.9,es:{n:"Tamal Criollo",d:"Con salsa criolla en pan francés"},en:{n:"Criolla Tamal",d:"With criolla salsa on French bread"}}]},
+{id:"postres",num:"15",es:{n:"Postres",s:"Dulzura artesanal para el final perfecto"},en:{n:"Desserts",s:"Artisanal sweetness for the perfect ending"},items:[
+{img:"https://images.meniuapp.com/eb3f84bc777ba194a00dc4395458c7f9b53ffc1e9cdcba0507f7d6de552199d1.png.webp",p:15.9,es:{n:"Pie de Limón",d:"Tarta de limón con merengue suizo"},en:{n:"Lemon Meringue Pie",d:"Lemon tart with Swiss meringue"}},
+{img:"https://images.meniuapp.com/ba825c19abb51a84f87f60f16ca21293d93331f704c029276d313f481e077a06.png.webp",p:15.9,es:{n:"Tres Leches",d:"Bizcocho bañado en tres leches"},en:{n:"Tres Leches",d:"Sponge cake soaked in three milks"}},
+{img:"https://images.meniuapp.com/5b993f3f5081bd924d6deb8f522b047730bc1caf03bf527adc82ce690fbd251d.png.webp",p:15.9,es:{n:"Pie de Manzana",d:"Tarta clásica horneada"},en:{n:"Apple Pie",d:"Classic baked apple pie"}},
+{img:"https://images.meniuapp.com/40e2378fc80f7649d97f7425b5672b8ce97bf28ac2b9cb54eb1c11a6307055d1.png.webp",p:17,es:{n:"Carrot Cake",d:"Zanahoria con frosting de queso crema"},en:{n:"Carrot Cake",d:"With cream cheese frosting"}},
+{img:"https://images.meniuapp.com/d6f28fdc18f0d14db8bdfba4550eaa607f1794be72115040c67efcd59e945a1f.png.webp",p:16.9,es:{n:"Brownie con Helado",d:"Brownie caliente + helado artesanal"},en:{n:"Brownie à la Mode",d:"Warm brownie + artisanal ice cream"}},
+{img:"https://images.meniuapp.com/0c09f6a98f41eee4051b53df6d3c7ef89ddbb44c097e9e358da73e6f68b83a36.png.webp",p:10.9,es:{n:"Brownie",d:"Chocolate denso y húmedo"},en:{n:"Brownie",d:"Dense moist chocolate"}},
+{img:"https://images.meniuapp.com/9b68bfacd017393f5d6c5fd344b5aa3e12ef0b33930ee0f280202ba0ea8cfb44.png.webp",p:17,es:{n:"Crema Volteada",d:"Flan de caramelo cremoso"},en:{n:"Crème Caramel",d:"Smooth caramel custard"}},
+{img:"https://images.meniuapp.com/9147a616453b0250476ef2e098a7d467c527bbbe7feb236156275656cd815cbd.png.webp",p:3,es:{n:"Alfajor",d:"Galleta con manjar blanco"},en:{n:"Alfajor",d:"Cookie with dulce de leche"}},
+{img:"https://images.meniuapp.com/37d1adece1058a3bec260085b8b33f1ca1eeed16a752a29d273fea244d050273.png.webp",p:8.9,es:{n:"Alfajor Wasi",d:"Nuestra versión premium"},en:{n:"Alfajor Wasi",d:"Our premium version"}},
+{img:"https://images.meniuapp.com/57b4f031968d14a3eac8dcdf36a206c67454a219e2252b4206c0db1e82e257d6.png.webp",p:10,es:{n:"Arroz con Leche",d:"Postre peruano clásico"},en:{n:"Rice Pudding",d:"Classic Peruvian dessert"}},
+{img:"https://images.meniuapp.com/ac6e3f6215007a43a82d5c730b48c5c17b277a720c876d3de059fe724824be04.png.webp",p:15.9,es:{n:"Pie de Maracuyá",d:"Tarta tropical de maracuyá"},en:{n:"Passion Fruit Pie",d:"Tropical passion fruit tart"}},
+{img:"https://images.meniuapp.com/54003009fc0cd17b03fd323b202daf5b04f7a0f000db672e474f7532d1de0a40.png.webp",p:19.9,es:{n:"Pastel de Acelga",d:"Pastel salado de acelga"},en:{n:"Chard Pie",d:"Savory chard pastry"}},
+{img:"https://images.meniuapp.com/06f57d78ab7976d153c820a06e9bdb377cbac726bb4ba49efd96f1d66ab6078f.png.webp",p:19.9,es:{n:"Croissant con Helado",d:"Croissant caliente + helado"},en:{n:"Croissant & Ice Cream",d:"Warm croissant + ice cream"}},
+{img:"https://images.meniuapp.com/a824019ff1caf7123b7e87f7218a2a1e696357b7eb832e2b170780973eaf3873.png.webp",p:17,es:{n:"Torta de Chocolate",d:"Bizcocho húmedo con ganache"},en:{n:"Chocolate Cake",d:"Moist sponge with ganache"}},
+{img:"https://images.meniuapp.com/7a6b5fe7492a1c9d6c9294f61cf73f13ee9c10646892b3ac63fc5af1779d0735.png.webp",p:18.9,es:{n:"Cheesecake Berries",d:"Cheesecake con frutos del bosque"},en:{n:"Berry Cheesecake",d:"Cheesecake with mixed berries"}}]},
+{id:"helados",num:"16",es:{n:"Helados",s:"Helado artesanal peruano"},en:{n:"Ice Cream",s:"Artisanal Peruvian gelato"},items:[
+{img:"https://images.meniuapp.com/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp",p:9.9,es:{n:"1 Bola",d:"Chocolate, fresa, lúcuma o vainilla"},en:{n:"Single Scoop",d:"Chocolate, strawberry, lucuma or vanilla"}},
+{img:"https://images.meniuapp.com/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp",p:16.9,es:{n:"2 Bolas",d:"Elige dos sabores"},en:{n:"Double Scoop",d:"Choose two flavors"}},
+{img:"https://images.meniuapp.com/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp",p:25.9,es:{n:"3 Bolas",d:"Elige tres sabores"},en:{n:"Triple Scoop",d:"Choose three flavors"}},
+{img:"https://images.meniuapp.com/0a173ae847bb992e2c9c78823509f55c3260f319e1786aef0e04b832cd5a7abf.png.webp",p:25.9,es:{n:"Banana Split",d:"Plátano, 3 bolas, salsas y crema"},en:{n:"Banana Split",d:"Banana, 3 scoops, sauces and cream"}}]},
+{id:"cocteles",num:"17",es:{n:"Cócteles",s:"Sabores peruanos con espíritu"},en:{n:"Cocktails",s:"Peruvian flavors with spirit"},items:[
+{img:"https://images.meniuapp.com/6afd21bf580ce07160c7af94ac428c7d2c54593b81195184d3cf09b53ff6479a.png.webp",p:16.9,es:{n:"Vino Tinto",d:"Copa de vino de la casa"},en:{n:"Red Wine",d:"House red wine glass"}},
+{img:"https://images.meniuapp.com/24aebf38a6f65b7ea15e0cfe8bf294d895c0bd381bda0933eb3d89a3868d6a84.png.webp",p:16.9,es:{n:"Piña Colada",d:"Ron, piña, coco y crema"},en:{n:"Piña Colada",d:"Rum, pineapple, coconut and cream"}},
+{img:"https://images.meniuapp.com/5ad197320469bb5101ca35422d5fcdca60cd154645581e146e0237eec8ba5156.png.webp",p:16.9,es:{n:"Pisco Sour",d:"Pisco, limón, jarabe y clara de huevo"},en:{n:"Pisco Sour",d:"Pisco, lime, syrup and egg white"}}]},
+{id:"empanadas",num:"18",es:{n:"Empanadas",s:"Horneadas al momento"},en:{n:"Empanadas",s:"Baked fresh to order"},items:[
+{img:"https://images.meniuapp.com/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp",p:11.9,es:{n:"Empanada de Pollo",d:"Rellena de pollo deshilachado"},en:{n:"Chicken Empanada",d:"Filled with shredded chicken"}},
+{img:"https://images.meniuapp.com/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp",p:11.9,es:{n:"Empanada de Carne",d:"Carne molida sazonada"},en:{n:"Beef Empanada",d:"Seasoned ground beef"}},
+{img:"https://images.meniuapp.com/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp",p:11.9,es:{n:"Empanada Mixta",d:"Pollo y carne combinados"},en:{n:"Mixed Empanada",d:"Chicken and beef combined"}}]}
+];
+
+let L='es';
+
+// ═══ STATUS & SCHEDULE ═══
+function updateStatus() {
+  const now = new Date();
+  // Lima is UTC-5
+  const lima = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
+  const day = lima.getDay();
+  const hour = lima.getHours();
+  const s = SCHEDULE[day];
+  const badge = document.getElementById('statusBadge');
+  const text = document.getElementById('statusText');
+  const sched = document.getElementById('scheduleText');
+
+  if (s && hour >= s.open && hour < s.close) {
+    badge.className = 'status-badge open';
+    text.textContent = L === 'es' ? `Abierto hasta ${s.close > 12 ? s.close - 12 : s.close} PM` : `Open until ${s.close > 12 ? s.close - 12 : s.close} PM`;
+  } else {
+    badge.className = 'status-badge closed';
+    text.textContent = L === 'es' ? 'Cerrado ahora' : 'Closed now';
+  }
+  sched.textContent = L === 'es'
+    ? 'Lun-Vie 8am-9pm \u00B7 Sáb 9am-9pm \u00B7 Dom Cerrado'
+    : 'Mon-Fri 8am-9pm \u00B7 Sat 9am-9pm \u00B7 Sun Closed';
+}
+
+// ═══ DARK MODE ═══
+let isDark = false;
+function toggleDark() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const sunSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+  document.getElementById('darkIcon').outerHTML = isDark ? sunSvg.replace('svg', 'svg id="darkIcon"') : moonSvg.replace('svg', 'svg id="darkIcon"');
+  document.getElementById('hdrDarkIcon').outerHTML = isDark ? sunSvg.replace('svg', 'svg id="hdrDarkIcon"') : moonSvg.replace('svg', 'svg id="hdrDarkIcon"');
+  const label = document.getElementById('darkLabel');
+  if (label) label.textContent = isDark ? (L==='es' ? 'Modo claro' : 'Light mode') : (L==='es' ? 'Modo oscuro' : 'Dark mode');
+  document.querySelector('meta[name="theme-color"]').content = isDark ? '#161210' : '#FFFAF5';
+}
+
+// ═══ WIFI QR ═══
+function generateWifiQR(id) {
+  const str = `WIFI:T:${WIFI_TYPE};S:${WIFI_NAME};P:${WIFI_PASS};;`;
+  const qr = qrcode(0, 'M'); qr.addData(str); qr.make();
+  const el = document.getElementById(id);
+  if (el) { el.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); const svg = el.querySelector('svg'); if (svg) { svg.style.width='100%'; svg.style.height='100%'; } }
+}
+
+// ═══ WELCOME / MENU TRANSITION ═══
+function enterMenu(lang) {
+  L = lang;
+  document.getElementById('welcome').classList.add('hide');
+  document.getElementById('appWrap').classList.add('show');
+  document.getElementById('bEs').classList.toggle('on', lang==='es');
+  document.getElementById('bEn').classList.toggle('on', lang==='en');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(e => e.innerHTML = e.getAttribute('data-'+lang));
+  document.getElementById('searchInput').placeholder = lang==='es' ? 'Buscar en la carta...' : 'Search the menu...';
+  render(); renderPromos();
+  document.body.style.overflow = '';
+  setTimeout(() => { generateWifiQR('wifiQrModal'); observeCards(); }, 300);
+}
+
+function showWelcome(e) {
+  e.preventDefault();
+  document.getElementById('welcome').classList.remove('hide');
+  document.getElementById('appWrap').classList.remove('show');
+  document.body.style.overflow = 'hidden';
+  window.scrollTo({ top: 0 });
+  updateStatus();
+}
+
+// ═══ WIFI MODAL ═══
+function toggleWifiModal() { document.getElementById('wifiModal').classList.toggle('show'); }
+function closeWifiModal(e) { if (e.target===e.currentTarget) document.getElementById('wifiModal').classList.remove('show'); }
+
+// ═══ SEARCH ═══
+function handleSearch() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  document.getElementById('searchClear').classList.toggle('show', q.length > 0);
+  const sections = document.querySelectorAll('.sec');
+  const promos = document.getElementById('promos');
+  let found = 0;
+  if (!q) { sections.forEach(s => s.style.display = ''); if (promos) promos.style.display = ''; document.getElementById('noResults').style.display = 'none'; return; }
+  if (promos) promos.style.display = 'none';
+  sections.forEach(s => {
+    const cards = s.querySelectorAll('.card');
+    let secVisible = false;
+    cards.forEach(c => {
+      const text = c.textContent.toLowerCase();
+      const match = text.includes(q);
+      c.style.display = match ? '' : 'none';
+      if (match) { secVisible = true; found++; }
+    });
+    s.style.display = secVisible ? '' : 'none';
+  });
+  document.getElementById('noResults').style.display = found ? 'none' : 'block';
+}
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  handleSearch();
+  document.getElementById('searchInput').focus();
+}
+
+// ═══ LANGUAGE ═══
+function setLang(l) {
+  L = l;
+  document.getElementById('bEs').classList.toggle('on', l==='es');
+  document.getElementById('bEn').classList.toggle('on', l==='en');
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-es]').forEach(e => e.innerHTML = e.getAttribute('data-'+l));
+  document.getElementById('searchInput').placeholder = l==='es' ? 'Buscar en la carta...' : 'Search the menu...';
+  render(); renderPromos(); updateStatus();
+}
+
+// ═══ PROMOS ═══
+function isPromoTime() {
+  const now = new Date();
+  const lima = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
+  const h = lima.getHours();
+  return h >= 12 && h < 16;
+}
+
+function renderPromos() {
+  const active = isPromoTime();
+  const promosEl = document.getElementById('promos');
+  const availEl = document.getElementById('promosAvail');
+  const clockSvg = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+
+  promosEl.classList.toggle('unavailable', !active);
+  if (active) {
+    availEl.className = 'promos-avail active';
+    availEl.innerHTML = clockSvg + ' ' + (L === 'es' ? 'Disponible ahora — 12 pm a 4 pm' : 'Available now — 12 pm to 4 pm');
+  } else {
+    availEl.className = 'promos-avail';
+    availEl.innerHTML = clockSvg + ' ' + (L === 'es' ? 'Disponible de 12 pm a 4 pm' : 'Available 12 pm to 4 pm');
+  }
+
+  document.getElementById('promosScroll').innerHTML = PROMOS.map(p => `
+    <div class="promo-card">
+      <div class="promo-card-body">
+        <div class="promo-badge">${p.badge[L]}</div>
+        <div class="promo-name">${p[L].n}</div>
+        <div class="promo-desc">${p[L].d}</div>
+        <div class="promo-price-row">
+          <span class="promo-price">S/ ${p.price.toFixed(2)}</span>
+          ${p.oldPrice ? `<span class="promo-old-price">S/ ${p.oldPrice.toFixed(2)}</span>` : ''}
+        </div>
+        <div class="promo-time ${active ? 'active' : ''}">
+          ${clockSvg}
+          ${active ? (L==='es' ? 'Disponible ahora' : 'Available now') : (L==='es' ? '12 pm – 4 pm' : '12 pm – 4 pm')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══ RENDER MENU ═══
+function render() {
+  const md = 'Med', lg = L==='es' ? 'Grande / Jarra' : 'Large / Pitcher';
+  document.getElementById('cnavIn').innerHTML = D.map(c =>
+    `<a class="cnav-a" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>`
+  ).join('');
+  document.getElementById('bbarSel').innerHTML = D.map(c =>
+    `<option value="${c.id}">${c.num}. ${c[L].n}</option>`
+  ).join('');
+  document.getElementById('mx').innerHTML = D.map(c => {
+    const gClass = c.cmp ? 'grid cmp' : c.feat ? 'grid feat' : 'grid';
+    const cards = c.items.map(i => {
+      const d = i[L], cls = c.cmp ? ' cmp' : c.feat ? ' feat' : '';
+      const badge = BADGES[d.n];
+      const badgeHtml = badge ? `<span class="card-badge ${badge.type}">${badge[L]}</span>` : '';
+      const sizes = i.pl ? `<div class="card-sizes">
+        <div class="card-sz"><span class="sz-price">S/ ${i.p.toFixed(2)}</span><span class="sz-label">${md}</span></div>
+        <div class="card-sz"><span class="sz-price alt">S/ ${i.pl.toFixed(2)}</span><span class="sz-label">${lg}</span></div>
+      </div>` : `<div class="card-pr">S/ ${i.p.toFixed(2)}</div>`;
+      return `<article class="card${cls}">
+        ${badgeHtml}
+        <div class="card-img"><img src="${i.img}" alt="${d.n}" loading="lazy" width="300" height="225"></div>
+        <div class="card-bd">
+          <div class="card-nm">${d.n}</div>
+          ${d.d ? `<div class="card-ds">${d.d}</div>` : ''}
+          ${sizes}
+        </div>
+      </article>`;
+    }).join('');
+    return `<section class="sec" id="${c.id}">
+      <div class="sec-hd">
+        <span class="sec-num">${c.num}</span>
+        <h2 class="sec-t">${c[L].n}</h2>
+        <p class="sec-st">${c[L].s}</p>
+        <div class="sec-div"><span class="l"></span><span class="d"></span><span class="l"></span></div>
+      </div>
+      <div class="${gClass}">${cards}</div>
+    </section>`;
+  }).join('');
+  document.querySelectorAll('.sec').forEach(s => secObs.observe(s));
+  observeCards();
+}
+
+function navClick(e, id) { e.preventDefault(); document.getElementById(id).scrollIntoView({ behavior:'smooth', block:'start' }); }
+function jumpTo(id) { document.getElementById(id).scrollIntoView({ behavior:'smooth', block:'start' }); }
+
+// ═══ SCROLL ANIMATIONS ═══
+function observeCards() {
+  const cards = document.querySelectorAll('.card:not(.visible)');
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach((en, i) => {
+      if (en.isIntersecting) {
+        setTimeout(() => en.target.classList.add('visible'), i * 50);
+        cObs.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -30px 0px' });
+  cards.forEach(c => cObs.observe(c));
+}
+
+// Header shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('hdr').classList.toggle('s', window.scrollY > 30);
+}, { passive: true });
+
+// Section observer for nav highlight
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      const id = en.target.id;
+      document.querySelectorAll('.cnav-a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+id));
+      const sel = document.getElementById('bbarSel');
+      if (sel) sel.value = id;
+      const link = document.querySelector(`.cnav-a[href="#${id}"]`);
+      if (link) link.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+    }
+  });
+}, { rootMargin: '-15% 0px -75% 0px' });
+
+// ═══ INIT ═══
+document.body.style.overflow = 'hidden';
+document.querySelectorAll('.wifi-detail-value:not(.pass)').forEach(el => {
+  if (el.id && el.id.includes('Name')) el.textContent = WIFI_NAME;
+});
+document.querySelectorAll('.wifi-detail-value.pass').forEach(el => el.textContent = WIFI_PASS);
+document.getElementById('wifiNameDisplay').textContent = WIFI_NAME;
+document.getElementById('wifiPassDisplay').textContent = WIFI_PASS;
+document.getElementById('wifiNameModal').textContent = WIFI_NAME;
+document.getElementById('wifiPassModal').textContent = WIFI_PASS;
+document.querySelector('.whatsapp-fab').href = `https://wa.me/${WHATSAPP}`;
+generateWifiQR('wifiQr');
+updateStatus();
+
+// ═══ DISMISS LOADER ═══
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loaderScreen').classList.add('hide'), 600);
+});
+</script>
+</body>
+</html>
