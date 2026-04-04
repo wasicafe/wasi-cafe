@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Wasi Cafe — Carta y Curso de Café en San Isidro, Lima</title>
 <meta name="description" content="Carta de café de especialidad y curso de barista en San Isidro, Lima. Postres artesanales, sándwiches peruanos. Clases desde S/300/mes. Wasi Cafe.">
+<meta name="keywords" content="curso de café Lima, curso barista San Isidro, clases de café especialidad, curso postres artesanales Lima, aprender latte art, curso barista Peru, Wasi Cafe curso, clases de reposteria Lima">
 <meta name="theme-color" content="#FFFAF5">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -60,29 +61,36 @@
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Curso de Café de Especialidad y Postres Artesanales",
-  "description": "Aprende técnicas de barista y preparación de postres artesanales en nuestro curso presencial en San Isidro, Lima. Incluye 4 clases al mes (1 por semana).",
+  "description": "Aprende técnicas de barista profesional, latte art, métodos de extracción y preparación de postres artesanales en San Isidro, Lima. 4 clases presenciales al mes con certificación.",
   "provider": {
     "@type": "Organization",
     "name": "Wasi Cafe",
-    "sameAs": "https://wasicafe.com/"
+    "sameAs": ["https://wasicafe.com/", "https://www.instagram.com/wasi.cafe/", "https://www.tiktok.com/@wasi.caf"],
+    "logo": "https://wasicafe.com/LOGOS.png"
   },
   "offers": {
     "@type": "Offer",
     "price": "300",
     "priceCurrency": "PEN",
     "availability": "https://schema.org/InStock",
-    "validFrom": "2026-04-04"
+    "validFrom": "2026-04-04",
+    "url": "https://wasicafe.com/#curso"
   },
   "hasCourseInstance": {
     "@type": "CourseInstance",
     "courseMode": "onsite",
+    "courseWorkload": "PT4H",
+    "instructor": {
+      "@type": "Organization",
+      "name": "Wasi Cafe Baristas"
+    },
     "courseSchedule": {
       "@type": "Schedule",
       "repeatFrequency": "P1W",
       "repeatCount": 4,
       "scheduleTimezone": "America/Lima"
     },
-    "locationCreated": {
+    "location": {
       "@type": "Place",
       "name": "Wasi Cafe",
       "address": {
@@ -95,7 +103,49 @@
       }
     }
   },
-  "inLanguage": "es"
+  "educationalLevel": "Beginner",
+  "teaches": ["Latte Art", "Coffee Extraction Methods", "Artisan Dessert Making", "Professional Cupping", "Barista Techniques"],
+  "inLanguage": "es",
+  "image": "https://wasicafe.com/LOGOS.png",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "200",
+    "bestRating": "5"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta el curso de café en Wasi Cafe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El curso de café de especialidad y postres artesanales tiene un costo de S/ 300 al mes, que incluye 4 clases presenciales (1 por semana) en nuestra sede de San Isidro, Lima."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué aprenderé en el curso de barista?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aprenderás técnicas de extracción de café de especialidad, latte art, cata profesional y elaboración de postres gourmet artesanales. Al completar el programa recibirás una certificación barista."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde se dictan las clases de café?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las clases son presenciales en Wasi Cafe, ubicado en Luis Felipe Villarán 904, San Isidro, Lima, Perú."
+      }
+    }
+  ]
 }
 </script>
 
@@ -529,6 +579,21 @@
     33% { transform: translate(6px, -10px) rotate(2deg); }
     66% { transform: translate(-4px, 8px) rotate(-1.5deg); }
   }
+  @keyframes cursoBounce {
+    0%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-6px); }
+    40% { transform: translateY(0); }
+    60% { transform: translateY(-3px); }
+    80% { transform: translateY(0); }
+  }
+  @keyframes cursoShimmer {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+  }
+  @keyframes cursoBorderRotate {
+    0% { --curso-border-angle: 0deg; }
+    100% { --curso-border-angle: 360deg; }
+  }
   .curso-section {
     padding: 3.5rem 0; position: relative; overflow: hidden;
     background: linear-gradient(180deg, var(--leche) 0%, rgba(200,148,62,0.06) 30%, rgba(181,101,29,0.04) 60%, var(--leche) 100%);
@@ -537,12 +602,13 @@
     max-width: 560px; margin: 0 auto; padding: 0 1.2rem; position: relative; z-index: 2;
   }
   .curso-badge {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    padding: 0.3rem 0.85rem; border-radius: 100px;
-    background: linear-gradient(135deg, rgba(200,148,62,0.12), rgba(181,101,29,0.08));
-    border: 1px solid rgba(200,148,62,0.25);
-    font-family: var(--body); font-size: 0.6rem; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.38rem 1rem; border-radius: 100px;
+    background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.1));
+    border: 1px solid rgba(200,148,62,0.3);
+    font-family: var(--body); font-size: 0.65rem; font-weight: 700;
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--oro); margin-bottom: 0.6rem;
+    animation: cursoBounce 2s ease-in-out 0.5s 1;
   }
   .curso-title {
     font-family: var(--display); font-size: 2rem; font-weight: 400;
@@ -558,6 +624,13 @@
     border: 1.5px solid rgba(212,197,181,0.4); border-radius: 20px;
     padding: 1.8rem 1.4rem;
     transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease;
+  }
+  .curso-card::before {
+    content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 22px; z-index: -1;
+    background: conic-gradient(from var(--curso-border-angle, 0deg), var(--oro), var(--terracota), rgba(200,148,62,0.2), var(--oro));
+    opacity: 0.3;
+    animation: cursoBorderRotate 8s linear infinite;
   }
   .curso-card:hover {
     transform: translateY(-3px); box-shadow: 0 12px 40px rgba(200,148,62,0.12);
@@ -612,6 +685,7 @@
     color: var(--suave); margin-top: 0.3rem;
   }
   .curso-cta {
+    position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     width: 100%; padding: 0.9rem 1.5rem; border: none; border-radius: 14px;
     background: linear-gradient(135deg, var(--oro), var(--terracota));
@@ -619,6 +693,11 @@
     letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
     transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s ease;
     animation: cursoPulse 3s ease-in-out infinite;
+  }
+  .curso-cta::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: cursoShimmer 3s ease-in-out infinite;
   }
   .curso-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
   .curso-cta:hover {
@@ -648,6 +727,13 @@
     background: radial-gradient(circle, var(--terracota), transparent 70%);
     animation-delay: -4s;
   }
+  .curso-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.2rem 0; padding: 1rem 0; }
+  .curso-stat { text-align: center; }
+  .curso-stat-num { display: block; font-family: var(--display); font-size: 1.6rem; font-weight: 700; color: var(--oro); line-height: 1; }
+  .curso-stat-label { font-family: var(--body); font-size: 0.62rem; font-weight: 400; color: var(--suave); text-transform: uppercase; letter-spacing: 0.1em; }
+  .curso-div { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 0.5rem 0; }
+  .curso-div .l { flex: 1; height: 1px; background: var(--linea); max-width: 60px; }
+  .curso-div .d { width: 5px; height: 5px; border-radius: 50%; background: var(--oro); }
   [data-theme="dark"] .curso-section {
     background: linear-gradient(180deg, var(--leche) 0%, rgba(200,148,62,0.04) 30%, rgba(181,101,29,0.03) 60%, var(--leche) 100%);
   }
@@ -1114,6 +1200,23 @@
           <p class="curso-feature-desc" data-es="Obtén tu certificado profesional al completar el programa" data-en="Earn your professional certificate upon completion">Obtén tu certificado profesional al completar el programa</p>
         </div>
       </div>
+
+      <div class="curso-stats">
+        <div class="curso-stat">
+          <span class="curso-stat-num">200+</span>
+          <span class="curso-stat-label" data-es="Alumnos" data-en="Students">Alumnos</span>
+        </div>
+        <div class="curso-stat">
+          <span class="curso-stat-num">4.9</span>
+          <span class="curso-stat-label" data-es="Valoración" data-en="Rating">Valoración</span>
+        </div>
+        <div class="curso-stat">
+          <span class="curso-stat-num">100%</span>
+          <span class="curso-stat-label" data-es="Práctico" data-en="Hands-on">Práctico</span>
+        </div>
+      </div>
+
+      <div class="curso-div"><span class="l"></span><span class="d"></span><span class="l"></span></div>
 
       <div class="curso-pricing">
         <span class="curso-price">S/ 300</span>
