@@ -155,6 +155,40 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .menu-cat p{font-size:.68rem;color:var(--text-muted);font-weight:300}
 .menu-cta-wrap{text-align:center}
 
+/* PROMOS HOME */
+.promos-home{padding:5rem 0;border-top:1px solid var(--border);background:linear-gradient(180deg,var(--bg) 0%,rgba(200,148,62,.03) 50%,var(--bg) 100%)}
+.promo-flash-badge{display:inline-block;padding:.5rem 1.5rem;border-radius:8px;background:linear-gradient(135deg,#EF4444,#DC2626);font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#fff;margin-bottom:1rem;animation:float 3s ease-in-out infinite}
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.5rem}
+.promo-home-card{padding:1.4rem 1.1rem;border-radius:18px;background:var(--bg-card);border:1px solid var(--border);text-align:center;transition:all .4s;position:relative;overflow:hidden}
+.promo-home-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra))}
+.promo-home-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.promo-home-price{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.4rem}
+.promo-home-card h3{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.promo-home-card p{font-size:.68rem;font-weight:300;color:var(--text-muted);line-height:1.5}
+.promo-home-note{text-align:center;font-size:.7rem;color:var(--text-dim);font-weight:500;letter-spacing:.04em}
+
+/* EVENTS */
+.events{padding:5rem 0;border-top:1px solid var(--border)}
+.events-card{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;padding:2.5rem 2rem;border-radius:28px;background:linear-gradient(135deg,rgba(200,148,62,.04),rgba(181,101,29,.02));border:1px solid rgba(200,148,62,.1);position:relative;overflow:hidden}
+.events-icon{font-size:2.5rem;margin-bottom:.5rem}
+.events-desc{font-size:.85rem;font-weight:300;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem}
+.events-packages{display:flex;flex-direction:column;gap:.7rem}
+.events-pkg{display:flex;align-items:flex-start;gap:.8rem;padding:1rem;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);transition:all .3s}
+.events-pkg:hover{border-color:var(--border-hover);background:rgba(200,148,62,.03)}
+.events-pkg-icon{font-size:1.5rem;flex-shrink:0;width:40px;text-align:center}
+.events-pkg strong{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.15rem}
+.events-pkg span{font-size:.7rem;font-weight:300;color:var(--text-muted);line-height:1.5}
+.events-visual{border-radius:20px;min-height:300px;border:1px solid var(--border)}
+
+@media(max-width:768px){
+  .promo-grid{grid-template-columns:repeat(2,1fr)}
+  .events-card{grid-template-columns:1fr}
+  .events-visual{min-height:200px}
+}
+@media(max-width:480px){
+  .promo-grid{grid-template-columns:1fr 1fr}
+}
+
 /* LANG PICKER MODAL */
 .lang-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
 .lang-modal.show{opacity:1;pointer-events:auto}
@@ -271,6 +305,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     <a href="#nosotros" class="nav-link active">Inicio</a>
     <a href="carta.html" class="nav-link">Carta</a>
     <a href="curso.html" class="nav-link">Curso</a>
+    <a href="#eventos" class="nav-link">Eventos</a>
     <a href="#ubicacion" class="nav-link">Ubicaci&oacute;n</a>
     <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer" class="nav-cta">Reservar</a>
   </div>
@@ -322,8 +357,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 <section class="about rv" id="nosotros">
   <div class="container">
     <div class="about-grid">
-      <div class="about-img">
-        <img src="LOGOS.png" alt="Wasi Cafe Interior">
+      <div class="about-img" style="background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80') center/cover no-repeat">
+        <img src="LOGOS.png" alt="Wasi Cafe Interior" style="display:none">
       </div>
       <div class="about-text">
         <p class="sec-label">Nuestra Historia</p>
@@ -394,6 +429,50 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
   </div>
 </section>
 
+<!-- ═══════════════ PROMOS ═══════════════ -->
+<section class="promos-home rv">
+  <div class="container">
+    <div class="text-center">
+      <div class="promo-flash-badge">REGRESARON</div>
+      <h2 class="sec-title">Promociones de <em>12 a 4pm</em></h2>
+      <p class="sec-sub mx-auto">Tus combos favoritos est&aacute;n de vuelta. Todos incluyen Papas Andinas + Bebida.</p>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 25.90</div>
+        <h3>Combo Filete</h3>
+        <p>Filete de Pollo + Papas Andinas + Bebida</p>
+      </div>
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 29.90</div>
+        <h3>Combo Chuleta</h3>
+        <p>Chuleta + Papas Andinas + Bebida</p>
+      </div>
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 29.90</div>
+        <h3>Combo Bistec</h3>
+        <p>Bistec + Papas Andinas + Bebida</p>
+      </div>
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 29.90</div>
+        <h3>Combo Milanesa</h3>
+        <p>Milanesa + Papas Andinas + Bebida</p>
+      </div>
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 29.90</div>
+        <h3>Combo Suprema</h3>
+        <p>Suprema de Pollo + Papas Andinas + Bebida</p>
+      </div>
+      <div class="promo-home-card rv">
+        <div class="promo-home-price">S/ 29.90</div>
+        <h3>Combo Hamburguesa</h3>
+        <p>Hamburguesa + Papas Andinas + Bebida</p>
+      </div>
+    </div>
+    <p class="promo-home-note">Disponible de Lunes a S&aacute;bado &middot; 12:00 pm a 4:00 pm</p>
+  </div>
+</section>
+
 <!-- ═══════════════ SPECIALTIES ═══════════════ -->
 <section class="specialties rv">
   <div class="container">
@@ -440,6 +519,50 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
         <p>Bizcocho h&uacute;medo de chocolate con ganache. Reci&eacute;n horneada.</p>
         <div class="spec-price">S/ 17.00</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ EVENTS ═══════════════ -->
+<section class="events rv" id="eventos">
+  <div class="container">
+    <div class="events-card">
+      <div class="events-content">
+        <div class="events-icon">&#127874;</div>
+        <p class="sec-label">Celebra con nosotros</p>
+        <h2 class="sec-title">Wasi Cafe para tus <em>eventos</em></h2>
+        <p class="events-desc">Reserva Wasi Cafe para cumplea&ntilde;os, reuniones corporativas, baby showers o cualquier celebraci&oacute;n especial. Nos encargamos de todo para que t&uacute; solo disfrutes.</p>
+        <div class="events-packages">
+          <div class="events-pkg rv">
+            <div class="events-pkg-icon">&#9749;</div>
+            <div>
+              <strong>Paquete Caf&eacute;</strong>
+              <span>Caf&eacute; de especialidad ilimitado + mesa de postres artesanales para todos tus invitados</span>
+            </div>
+          </div>
+          <div class="events-pkg rv">
+            <div class="events-pkg-icon">&#127828;</div>
+            <div>
+              <strong>Paquete Brunch</strong>
+              <span>S&aacute;ndwiches, jugos naturales, caf&eacute; y postres. Ideal para reuniones de 10+ personas</span>
+            </div>
+          </div>
+          <div class="events-pkg rv">
+            <div class="events-pkg-icon">&#127881;</div>
+            <div>
+              <strong>Paquete Cumplea&ntilde;os</strong>
+              <span>Decoraci&oacute;n tem&aacute;tica, torta personalizada, bocaditos y bebidas para el festejado y sus invitados</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem">
+          <a class="btn btn-gold" href="https://wa.me/51908724496?text=Hola!%20Me%20interesa%20reservar%20Wasi%20Cafe%20para%20un%20evento%20%F0%9F%8E%89" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotizar Evento
+          </a>
+        </div>
+      </div>
+      <div class="events-visual" style="background:url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80') center/cover no-repeat;border-radius:20px;min-height:300px"></div>
     </div>
   </div>
 </section>
