@@ -611,188 +611,344 @@
     border-color: rgba(200,148,62,0.25) !important;
   }
 
-  /* ═══ CURSO DE CAFÉ Y POSTRES ═══ */
-  @keyframes cursoGlow {
-    0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
-    50% { opacity: 0.7; transform: scale(1.05) rotate(1deg); }
-  }
-  @keyframes cursoPulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(200,148,62,0.35); }
-    50% { box-shadow: 0 6px 30px rgba(200,148,62,0.55), 0 0 60px rgba(181,101,29,0.15); }
-  }
-  @keyframes cursoFloat {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(6px, -10px) rotate(2deg); }
-    66% { transform: translate(-4px, 8px) rotate(-1.5deg); }
-  }
-  @keyframes cursoBounce {
-    0%, 100% { transform: translateY(0); }
-    20% { transform: translateY(-6px); }
-    40% { transform: translateY(0); }
-    60% { transform: translateY(-3px); }
-    80% { transform: translateY(0); }
-  }
-  @keyframes cursoShimmer {
-    0% { left: -100%; }
-    50%, 100% { left: 100%; }
-  }
-  @keyframes cursoBorderRotate {
-    0% { --curso-border-angle: 0deg; }
-    100% { --curso-border-angle: 360deg; }
-  }
+  /* ═══ CURSO DE CAFÉ Y POSTRES — PREMIUM DARK DESIGN ═══ */
+  @keyframes cursoShimmer { 0%{left:-100%} 50%,100%{left:200%} }
+  @keyframes cursoFloat { 0%,100%{transform:translate(0,0) rotate(0deg)} 33%{transform:translate(8px,-12px) rotate(2deg)} 66%{transform:translate(-6px,10px) rotate(-1.5deg)} }
+  @keyframes cursoPulse { 0%,100%{box-shadow:0 4px 20px rgba(200,148,62,0.3)} 50%{box-shadow:0 8px 40px rgba(200,148,62,0.5),0 0 80px rgba(181,101,29,0.15)} }
+  @keyframes cursoReveal { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes cursoCountUp { from{opacity:0;transform:scale(0.5)} to{opacity:1;transform:scale(1)} }
+  @keyframes cursoGlowOrb { 0%,100%{opacity:0.15;transform:scale(1)} 50%{opacity:0.3;transform:scale(1.1)} }
+  @keyframes cursoDraw { from{width:0} to{width:var(--line-target,100%)} }
+  @keyframes cursoBorderRotate { 0%{--curso-angle:0deg} 100%{--curso-angle:360deg} }
+
   .curso-section {
-    padding: 3.5rem 0; position: relative; overflow: hidden;
-    background: linear-gradient(180deg, var(--leche) 0%, rgba(200,148,62,0.06) 30%, rgba(181,101,29,0.04) 60%, var(--leche) 100%);
-  }
-  .curso-container {
-    max-width: 560px; margin: 0 auto; padding: 0 1.2rem; position: relative; z-index: 2;
-  }
-  .curso-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.38rem 1rem; border-radius: 100px;
-    background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.1));
-    border: 1px solid rgba(200,148,62,0.3);
-    font-family: var(--body); font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase; color: var(--oro); margin-bottom: 0.6rem;
-    animation: cursoBounce 2s ease-in-out 0.5s 1;
-  }
-  .curso-title {
-    font-family: var(--display); font-size: 2rem; font-weight: 400;
-    font-style: italic; color: var(--tostado); line-height: 1.1; margin-bottom: 0.35rem;
-  }
-  .curso-subtitle {
-    font-family: var(--body); font-size: 0.82rem; font-weight: 300;
-    color: var(--suave); line-height: 1.5; max-width: 380px; margin-bottom: 2rem;
-  }
-  .curso-card {
-    position: relative; background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    border: 1.5px solid rgba(212,197,181,0.4); border-radius: 20px;
-    padding: 1.8rem 1.4rem;
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease;
-  }
-  .curso-card::before {
-    content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border-radius: 22px; z-index: -1;
-    background: conic-gradient(from var(--curso-border-angle, 0deg), var(--oro), var(--terracota), rgba(200,148,62,0.2), var(--oro));
-    opacity: 0.3;
-    animation: cursoBorderRotate 8s linear infinite;
-  }
-  .curso-card:hover {
-    transform: translateY(-3px); box-shadow: 0 12px 40px rgba(200,148,62,0.12);
-  }
-  .curso-card-glow {
-    position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, var(--oro), var(--terracota), var(--oro));
-    background-size: 200% 200%; z-index: -1; opacity: 0.4;
-    filter: blur(12px); animation: cursoGlow 4s ease-in-out infinite;
-  }
-  .curso-features {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem;
-  }
-  .curso-feature {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-    gap: 0.5rem; padding: 0.8rem 0.5rem; border-radius: 14px;
-    background: rgba(200,148,62,0.04); border: 1px solid rgba(212,197,181,0.25);
-    transition: background 0.25s, border-color 0.25s;
-  }
-  .curso-feature:hover {
-    background: rgba(200,148,62,0.08); border-color: rgba(200,148,62,0.35);
-  }
-  .curso-feature-icon {
-    width: 40px; height: 40px; border-radius: 12px;
-    background: linear-gradient(135deg, var(--oro), var(--terracota));
-    display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;
-  }
-  .curso-feature-icon svg { width: 20px; height: 20px; }
-  .curso-feature-title {
-    font-family: var(--display); font-size: 0.92rem; font-weight: 600;
-    color: var(--tostado); line-height: 1.2;
-  }
-  .curso-feature-desc {
-    font-family: var(--body); font-size: 0.65rem; font-weight: 300;
-    color: var(--suave); line-height: 1.4;
-  }
-  .curso-pricing {
-    text-align: center; margin-bottom: 1.4rem; padding-top: 1.4rem;
-    border-top: 1px solid var(--linea);
-  }
-  .curso-price {
-    font-family: var(--display); font-size: 2.8rem; font-weight: 700;
-    color: var(--oro); line-height: 1; display: inline-flex; align-items: baseline;
-  }
-  .curso-price-period {
-    font-family: var(--body); font-size: 0.85rem; font-weight: 400;
-    color: var(--suave); margin-left: 0.2rem;
-  }
-  .curso-price-detail {
-    font-family: var(--body); font-size: 0.72rem; font-weight: 400;
-    color: var(--suave); margin-top: 0.3rem;
-  }
-  .curso-cta {
     position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    width: 100%; padding: 0.9rem 1.5rem; border: none; border-radius: 14px;
-    background: linear-gradient(135deg, var(--oro), var(--terracota));
-    color: #fff; font-family: var(--body); font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s ease;
-    animation: cursoPulse 3s ease-in-out infinite;
+    padding: 4rem 0 3rem;
+    background: #0D0A08;
+    color: #F5EDE3;
   }
-  .curso-cta::after {
-    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: cursoShimmer 3s ease-in-out infinite;
+  /* Ambient glow orbs */
+  .curso-section::before, .curso-section::after {
+    content:''; position:absolute; border-radius:50%; pointer-events:none;
+    animation: cursoGlowOrb 8s ease-in-out infinite;
   }
-  .curso-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
-  .curso-cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 28px rgba(200,148,62,0.45), 0 0 50px rgba(181,101,29,0.12);
+  .curso-section::before {
+    width:400px; height:400px; top:-10%; right:-15%;
+    background: radial-gradient(circle, rgba(200,148,62,0.12) 0%, transparent 70%);
   }
-  .curso-cta:active { transform: scale(0.98); }
-  .curso-guarantee {
-    text-align: center; font-family: var(--body); font-size: 0.62rem; font-weight: 400;
-    color: var(--suave); margin-top: 0.8rem;
-    display: flex; align-items: center; justify-content: center; gap: 0.3rem;
-  }
-  .curso-decorative {
-    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-    pointer-events: none; z-index: 1; overflow: hidden;
-  }
-  .curso-decorative::before, .curso-decorative::after {
-    content: ''; position: absolute; border-radius: 50%; opacity: 0.12;
-    animation: cursoFloat 10s ease-in-out infinite;
-  }
-  .curso-decorative::before {
-    width: 120px; height: 120px; top: 10%; right: -30px;
-    background: radial-gradient(circle, var(--oro), transparent 70%);
-  }
-  .curso-decorative::after {
-    width: 80px; height: 80px; bottom: 15%; left: -20px;
-    background: radial-gradient(circle, var(--terracota), transparent 70%);
+  .curso-section::after {
+    width:300px; height:300px; bottom:-5%; left:-10%;
+    background: radial-gradient(circle, rgba(181,101,29,0.1) 0%, transparent 70%);
     animation-delay: -4s;
   }
-  .curso-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.2rem 0; padding: 1rem 0; }
-  .curso-stat { text-align: center; }
-  .curso-stat-num { display: block; font-family: var(--display); font-size: 1.6rem; font-weight: 700; color: var(--oro); line-height: 1; }
-  .curso-stat-label { font-family: var(--body); font-size: 0.62rem; font-weight: 400; color: var(--suave); text-transform: uppercase; letter-spacing: 0.1em; }
-  .curso-div { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 0.5rem 0; }
-  .curso-div .l { flex: 1; height: 1px; background: var(--linea); max-width: 60px; }
-  .curso-div .d { width: 5px; height: 5px; border-radius: 50%; background: var(--oro); }
-  [data-theme="dark"] .curso-section {
-    background: linear-gradient(180deg, var(--leche) 0%, rgba(200,148,62,0.04) 30%, rgba(181,101,29,0.03) 60%, var(--leche) 100%);
+  /* Cursor glow */
+  .curso-glow {
+    position:fixed; width:600px; height:600px; border-radius:50%; pointer-events:none; z-index:0;
+    background: radial-gradient(circle, rgba(200,148,62,0.06) 0%, transparent 70%);
+    transform: translate(-300px,-300px);
+    transition: transform 0.15s ease-out;
+    display:none;
   }
-  [data-theme="dark"] .curso-card {
-    background: rgba(30,26,23,0.75); border-color: rgba(61,53,48,0.5);
+  .curso-container {
+    max-width: 700px; margin: 0 auto; padding: 0 1.2rem;
+    position: relative; z-index: 2;
   }
-  [data-theme="dark"] .curso-card:hover { box-shadow: 0 12px 40px rgba(200,148,62,0.08); }
-  [data-theme="dark"] .curso-card-glow { opacity: 0.25; }
-  [data-theme="dark"] .curso-feature {
-    background: rgba(200,148,62,0.05); border-color: rgba(61,53,48,0.4);
+  /* Badge */
+  .curso-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 1.1rem; border-radius: 100px;
+    background: rgba(200,148,62,0.08); border: 1px solid rgba(200,148,62,0.25);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #C8943E; margin-bottom: 1.2rem;
   }
-  [data-theme="dark"] .curso-feature:hover {
-    background: rgba(200,148,62,0.1); border-color: rgba(200,148,62,0.3);
+  .curso-badge-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse 2s infinite; }
+  /* Hero text */
+  .curso-title {
+    font-family: var(--display); font-size: 2.4rem; font-weight: 400;
+    color: #F5EDE3; line-height: 1.08; margin-bottom: 0.5rem;
+  }
+  .curso-title em { font-style: italic; color: #C8943E; }
+  .curso-subtitle {
+    font-size: 0.88rem; font-weight: 300; color: #A89888;
+    line-height: 1.6; max-width: 480px; margin-bottom: 1.5rem;
+  }
+  /* CTA buttons row */
+  .curso-ctas { display: flex; gap: 0.6rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .curso-cta {
+    position: relative; overflow: hidden;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.6rem; border: none; border-radius: 12px;
+    background: linear-gradient(135deg, #C8943E, #B5651D);
+    color: #fff; font-family: var(--body); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .curso-cta::after {
+    content:''; position:absolute; top:0; left:-100%; width:60%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: cursoShimmer 4s ease-in-out infinite;
+  }
+  .curso-cta:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(200,148,62,0.4), 0 0 60px rgba(200,148,62,0.1);
+  }
+  .curso-cta:active { transform: scale(0.97); }
+  .curso-cta svg { width:18px; height:18px; flex-shrink:0; }
+  .curso-cta-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.6rem; border-radius: 12px;
+    background: transparent; border: 1px solid rgba(200,148,62,0.3);
+    color: #C8943E; font-family: var(--body); font-size: 0.82rem; font-weight: 500;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .curso-cta-secondary:hover {
+    background: rgba(200,148,62,0.08); border-color: #C8943E;
+    transform: translateY(-1px);
+  }
+  .curso-cta-secondary svg { width:16px; height:16px; }
+
+  /* ═══ STATS BAR ═══ */
+  .curso-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+  .curso-stat {
+    text-align: center; padding: 1.2rem 0.5rem; border-radius: 16px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s;
+  }
+  .curso-stat:hover { background: rgba(200,148,62,0.06); border-color: rgba(200,148,62,0.15); transform: translateY(-2px); }
+  .curso-stat-num {
+    display: block; font-family: var(--display); font-size: 1.8rem; font-weight: 700;
+    color: #C8943E; line-height: 1; margin-bottom: 0.3rem;
+  }
+  .curso-stat-label {
+    font-size: 0.58rem; font-weight: 500; color: #8B7B6B;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+
+  /* ═══ BENTO GRID — SERVICES ═══ */
+  .curso-bento-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #C8943E; margin-bottom: 0.5rem;
+  }
+  .curso-bento-title {
+    font-family: var(--display); font-size: 1.6rem; font-weight: 400;
+    color: #F5EDE3; line-height: 1.15; margin-bottom: 0.3rem;
+  }
+  .curso-bento-sub { font-size: 0.78rem; font-weight: 300; color: #8B7B6B; margin-bottom: 1.5rem; }
+  .curso-bento {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 3rem;
+  }
+  .curso-bento-card {
+    position: relative; padding: 1.4rem 1.1rem; border-radius: 18px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden;
+  }
+  .curso-bento-card::before {
+    content:''; position:absolute; inset:0; border-radius:18px; opacity:0;
+    background: radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(200,148,62,0.08) 0%, transparent 60%);
+    transition: opacity 0.4s;
+  }
+  .curso-bento-card:hover::before { opacity:1; }
+  .curso-bento-card:hover {
+    border-color: rgba(200,148,62,0.2); transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(200,148,62,0.08);
+  }
+  .curso-bento-card.wide { grid-column: 1 / -1; }
+  .curso-bento-icon {
+    width: 44px; height: 44px; border-radius: 12px; margin-bottom: 0.9rem;
+    background: linear-gradient(135deg, rgba(200,148,62,0.15), rgba(181,101,29,0.1));
+    border: 1px solid rgba(200,148,62,0.2);
+    display: flex; align-items: center; justify-content: center; color: #C8943E;
+  }
+  .curso-bento-icon svg { width:22px; height:22px; }
+  .curso-bento-card h3 {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+    color: #F5EDE3; margin-bottom: 0.3rem; line-height: 1.2;
+  }
+  .curso-bento-card p {
+    font-size: 0.72rem; font-weight: 300; color: #8B7B6B; line-height: 1.5;
+  }
+  .curso-bento-tags {
+    display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem;
+  }
+  .curso-bento-tag {
+    padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.58rem; font-weight: 600;
+    background: rgba(200,148,62,0.08); color: #C8943E; letter-spacing: 0.04em;
+  }
+
+  /* ═══ TIMELINE — PROCESS ═══ */
+  .curso-timeline-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #C8943E; margin-bottom: 0.5rem;
+  }
+  .curso-timeline-title {
+    font-family: var(--display); font-size: 1.6rem; font-weight: 400;
+    color: #F5EDE3; line-height: 1.15; margin-bottom: 0.3rem;
+  }
+  .curso-timeline-sub { font-size: 0.78rem; font-weight: 300; color: #8B7B6B; margin-bottom: 1.8rem; }
+  .curso-timeline { position: relative; padding-left: 2.8rem; margin-bottom: 3rem; }
+  .curso-timeline::before {
+    content:''; position:absolute; left: 14px; top: 0; bottom: 0; width: 2px;
+    background: rgba(200,148,62,0.12);
+  }
+  .curso-timeline-line {
+    position:absolute; left: 14px; top: 0; width: 2px;
+    background: linear-gradient(180deg, #C8943E, #B5651D);
+    height: 0; transition: height 0.8s ease;
+  }
+  .curso-step {
+    position: relative; margin-bottom: 1.8rem;
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .curso-step.visible { opacity: 1; transform: translateY(0); }
+  .curso-step-num {
+    position: absolute; left: -2.8rem; top: 0;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: #0D0A08; border: 2px solid rgba(200,148,62,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: #C8943E;
+    transition: all 0.4s;
+  }
+  .curso-step.visible .curso-step-num {
+    background: linear-gradient(135deg, #C8943E, #B5651D);
+    border-color: transparent; color: #fff;
+  }
+  .curso-step h4 {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+    color: #F5EDE3; margin-bottom: 0.2rem;
+  }
+  .curso-step p { font-size: 0.72rem; font-weight: 300; color: #8B7B6B; line-height: 1.5; }
+
+  /* ═══ PRICING CARD ═══ */
+  .curso-pricing-section { margin-bottom: 3rem; text-align: center; }
+  .curso-pricing-card {
+    position: relative; padding: 2.5rem 1.5rem; border-radius: 24px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(200,148,62,0.15);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+  }
+  .curso-pricing-card::before {
+    content:''; position:absolute; inset:-2px; border-radius:26px; z-index:-1;
+    background: conic-gradient(from var(--curso-angle,0deg), rgba(200,148,62,0.3), rgba(181,101,29,0.15), rgba(200,148,62,0.05), rgba(200,148,62,0.3));
+    animation: cursoBorderRotate 10s linear infinite;
+  }
+  .curso-pricing-card::after {
+    content:''; position:absolute; inset:0; border-radius:24px; z-index:-1;
+    background: #0D0A08;
+  }
+  .curso-pricing-tag {
+    display: inline-block; padding: 0.3rem 0.8rem; border-radius: 6px;
+    background: linear-gradient(135deg, #C8943E, #B5651D);
+    font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #fff; margin-bottom: 1rem;
+  }
+  .curso-price {
+    font-family: var(--display); font-size: 3.5rem; font-weight: 700;
+    color: #C8943E; line-height: 1;
+  }
+  .curso-price-period {
+    font-family: var(--body); font-size: 0.95rem; font-weight: 400; color: #8B7B6B;
+  }
+  .curso-price-detail {
+    font-size: 0.75rem; font-weight: 300; color: #8B7B6B; margin-top: 0.4rem; margin-bottom: 1.5rem;
+  }
+  .curso-pricing-features {
+    display: flex; flex-direction: column; gap: 0.6rem; text-align: left;
+    max-width: 320px; margin: 0 auto 1.5rem;
+  }
+  .curso-pricing-feat {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; font-weight: 400; color: #D4C5B5;
+  }
+  .curso-pricing-feat svg { width:16px; height:16px; color:#22C55E; flex-shrink:0; }
+  .curso-pricing-cta {
+    position: relative; overflow: hidden;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 1rem 2.5rem; border: none; border-radius: 14px;
+    background: linear-gradient(135deg, #C8943E, #B5651D);
+    color: #fff; font-family: var(--body); font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    animation: cursoPulse 3s ease-in-out infinite;
+  }
+  .curso-pricing-cta::after {
+    content:''; position:absolute; top:0; left:-100%; width:50%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+    animation: cursoShimmer 3s ease-in-out infinite;
+  }
+  .curso-pricing-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 10px 40px rgba(200,148,62,0.5), 0 0 80px rgba(200,148,62,0.12);
+  }
+  .curso-pricing-cta:active { transform: scale(0.97); }
+  .curso-pricing-cta svg { width:20px; height:20px; }
+  .curso-guarantee {
+    text-align: center; font-size: 0.65rem; font-weight: 400;
+    color: #6B5B50; margin-top: 1rem;
+  }
+
+  /* ═══ FAQ ACCORDION ═══ */
+  .curso-faq-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #C8943E; margin-bottom: 0.5rem;
+  }
+  .curso-faq-title {
+    font-family: var(--display); font-size: 1.6rem; font-weight: 400;
+    color: #F5EDE3; line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .curso-faq { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .curso-faq-item {
+    border-radius: 14px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden; transition: all 0.3s;
+  }
+  .curso-faq-item:hover { border-color: rgba(200,148,62,0.15); }
+  .curso-faq-q {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+    padding: 1rem 1.2rem; cursor: pointer; user-select: none;
+  }
+  .curso-faq-q span {
+    font-size: 0.82rem; font-weight: 500; color: #E8DDD0; line-height: 1.4;
+  }
+  .curso-faq-q svg {
+    width:18px; height:18px; color:#C8943E; flex-shrink:0;
+    transition: transform 0.3s;
+  }
+  .curso-faq-item.open .curso-faq-q svg { transform: rotate(45deg); }
+  .curso-faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 1.2rem;
+  }
+  .curso-faq-item.open .curso-faq-a { max-height: 200px; padding: 0 1.2rem 1rem; }
+  .curso-faq-a p { font-size: 0.75rem; font-weight: 300; color: #8B7B6B; line-height: 1.6; }
+
+  /* ═══ FINAL CTA ═══ */
+  .curso-final {
+    text-align: center; padding: 2rem 0 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .curso-final-title {
+    font-family: var(--display); font-size: 1.8rem; font-weight: 400;
+    color: #F5EDE3; line-height: 1.15; margin-bottom: 0.4rem;
+  }
+  .curso-final-title em { color: #C8943E; font-style: italic; }
+  .curso-final-sub { font-size: 0.78rem; color: #8B7B6B; margin-bottom: 1.5rem; }
+  .curso-final-ctas { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+  .curso-final-note { font-size: 0.6rem; color: #6B5B50; margin-top: 1rem; }
+
+  /* ═══ RESPONSIVE CURSO ═══ */
+  @media (max-width: 639px) {
+    .curso-stats { grid-template-columns: repeat(2, 1fr); }
+    .curso-bento { grid-template-columns: 1fr; }
+    .curso-bento-card.wide { grid-column: auto; }
+    .curso-title { font-size: 1.9rem; }
+    .curso-price { font-size: 2.8rem; }
   }
 
   /* ═══ HERO ═══ */
@@ -990,11 +1146,10 @@
     .app-wrap { padding-bottom: 0; }
     .whatsapp-fab { bottom: 1.5rem; }
     .promos { padding: 0 1.5rem; }
-    .curso-section { padding: 4.5rem 0; }
-    .curso-container { max-width: 620px; }
-    .curso-title { font-size: 2.4rem; }
-    .curso-card { padding: 2.2rem 1.8rem; }
-    .curso-price { font-size: 3.2rem; }
+    .curso-container { max-width: 760px; }
+    .curso-title { font-size: 2.8rem; }
+    .curso-stats { grid-template-columns: repeat(4, 1fr); }
+    .curso-price { font-size: 3.8rem; }
   }
   @media (min-width: 1024px) {
     .mx { max-width: 1100px; }
@@ -1002,11 +1157,10 @@
     .grid.feat { grid-template-columns: repeat(3, 1fr); }
     .grid.cmp { grid-template-columns: repeat(4, 1fr); }
     .card-img { flex: 0 0 155px; width: 155px; }
-    .curso-section { padding: 5.5rem 0; }
-    .curso-container { max-width: 680px; }
-    .curso-title { font-size: 2.6rem; }
-    .curso-features { grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
-    .curso-card { padding: 2.5rem 2rem; }
+    .curso-container { max-width: 900px; }
+    .curso-title { font-size: 3.2rem; }
+    .curso-bento { grid-template-columns: repeat(3, 1fr); }
+    .curso-bento-card.wide { grid-column: auto; }
   }
 
   /* ═══ LOADING SCREEN ═══ */
@@ -1210,87 +1364,251 @@
   <div class="promos-scroll" id="promosScroll"></div>
 </div>
 
-<!-- ═══ CURSO DE CAFÉ Y POSTRES ═══ -->
+<!-- ═══ CURSO DE CAFÉ Y POSTRES — PREMIUM DARK ═══ -->
 <section class="curso-section" id="curso">
+  <div id="cursoGlow" class="curso-glow"></div>
   <div class="curso-container">
 
+    <!-- HERO -->
     <div class="curso-badge">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span data-es="NUEVO" data-en="NEW">NUEVO</span>
+      <span class="curso-badge-dot"></span>
+      <span data-es="INSCRIPCIONES ABIERTAS" data-en="ENROLLMENT OPEN">INSCRIPCIONES ABIERTAS</span>
     </div>
+    <h2 class="curso-title" data-es="Curso de<br><em>Caf&eacute; &amp; Postres</em>" data-en="Coffee &amp;<br><em>Desserts Course</em>">Curso de<br><em>Caf&eacute; &amp; Postres</em></h2>
+    <p class="curso-subtitle" data-es="Domina el arte del caf&eacute; de especialidad y la reposter&iacute;a artesanal con los baristas de Wasi Cafe en San Isidro, Lima." data-en="Master the art of specialty coffee and artisan pastry with the baristas of Wasi Cafe in San Isidro, Lima.">Domina el arte del caf&eacute; de especialidad y la reposter&iacute;a artesanal con los baristas de Wasi Cafe en San Isidro, Lima.</p>
 
-    <h2 class="curso-title" data-es="Curso de Café &amp; Postres" data-en="Coffee &amp; Desserts Course">Curso de Café &amp; Postres</h2>
-    <p class="curso-subtitle" data-es="Domina el arte del café de especialidad y la repostería artesanal con los baristas de Wasi Cafe" data-en="Master the art of specialty coffee and artisan pastry with the baristas of Wasi Cafe">Domina el arte del café de especialidad y la repostería artesanal con los baristas de Wasi Cafe</p>
-
-    <div class="curso-card-glow"></div>
-    <div class="curso-card">
-
-      <div class="curso-features">
-        <div class="curso-feature">
-          <div class="curso-feature-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><rect x="8" y="14" width="3" height="3" rx="0.5"/><rect x="13" y="14" width="3" height="3" rx="0.5"/></svg>
-          </div>
-          <h3 class="curso-feature-title" data-es="4 Clases al Mes" data-en="4 Classes per Month">4 Clases al Mes</h3>
-          <p class="curso-feature-desc" data-es="Una clase semanal con práctica guiada" data-en="One weekly class with guided practice">Una clase semanal con práctica guiada</p>
-        </div>
-
-        <div class="curso-feature">
-          <div class="curso-feature-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-          </div>
-          <h3 class="curso-feature-title" data-es="Café de Especialidad" data-en="Specialty Coffee">Café de Especialidad</h3>
-          <p class="curso-feature-desc" data-es="Técnicas de extracción, latte art y cata profesional" data-en="Extraction techniques, latte art &amp; professional cupping">Técnicas de extracción, latte art y cata profesional</p>
-        </div>
-
-        <div class="curso-feature">
-          <div class="curso-feature-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6 2 10c0 2.5 1.5 4.5 3 6l1 6h12l1-6c1.5-1.5 3-3.5 3-6 0-4-4.48-8-10-8z"/><path d="M9 22h6"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
-          </div>
-          <h3 class="curso-feature-title" data-es="Postres Artesanales" data-en="Artisan Desserts">Postres Artesanales</h3>
-          <p class="curso-feature-desc" data-es="Elaboración de postres gourmet y técnicas de presentación" data-en="Gourmet dessert making &amp; plating techniques">Elaboración de postres gourmet y técnicas de presentación</p>
-        </div>
-
-        <div class="curso-feature">
-          <div class="curso-feature-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-          </div>
-          <h3 class="curso-feature-title" data-es="Certificación Barista" data-en="Barista Certification">Certificación Barista</h3>
-          <p class="curso-feature-desc" data-es="Obtén tu certificado profesional al completar el programa" data-en="Earn your professional certificate upon completion">Obtén tu certificado profesional al completar el programa</p>
-        </div>
-      </div>
-
-      <div class="curso-stats">
-        <div class="curso-stat">
-          <span class="curso-stat-num">200+</span>
-          <span class="curso-stat-label" data-es="Alumnos" data-en="Students">Alumnos</span>
-        </div>
-        <div class="curso-stat">
-          <span class="curso-stat-num">4.9</span>
-          <span class="curso-stat-label" data-es="Valoración" data-en="Rating">Valoración</span>
-        </div>
-        <div class="curso-stat">
-          <span class="curso-stat-num">100%</span>
-          <span class="curso-stat-label" data-es="Práctico" data-en="Hands-on">Práctico</span>
-        </div>
-      </div>
-
-      <div class="curso-div"><span class="l"></span><span class="d"></span><span class="l"></span></div>
-
-      <div class="curso-pricing">
-        <span class="curso-price">S/ 300</span>
-        <span class="curso-price-period" data-es="/mes" data-en="/month">/mes</span>
-        <p class="curso-price-detail" data-es="4 clases al mes · 1 clase por semana" data-en="4 classes per month · 1 class per week">4 clases al mes · 1 clase por semana</p>
-      </div>
-
+    <div class="curso-ctas">
       <a class="curso-cta" href="https://wa.me/51908724496?text=Hola!%20Me%20interesa%20el%20curso%20de%20caf%C3%A9%20y%20postres%20de%20Wasi%20Cafe%20%F0%9F%8E%93%E2%98%95" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span data-es="Inscríbete Ahora" data-en="Enroll Now">Inscríbete Ahora</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-es="Inscr&iacute;bete por WhatsApp" data-en="Enroll via WhatsApp">Inscr&iacute;bete por WhatsApp</span>
       </a>
-
-      <p class="curso-guarantee" data-es="Cupos limitados · Clases presenciales en Wasi Cafe, San Isidro" data-en="Limited spots · In-person classes at Wasi Cafe, San Isidro">Cupos limitados · Clases presenciales en Wasi Cafe, San Isidro</p>
+      <a class="curso-cta-secondary" href="mailto:wasicafe@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        <span data-es="Enviar Email" data-en="Send Email">Enviar Email</span>
+      </a>
     </div>
 
-    <div class="curso-decorative"></div>
+    <!-- STATS -->
+    <div class="curso-stats">
+      <div class="curso-stat">
+        <span class="curso-stat-num" data-count="200" data-suffix="+">0</span>
+        <span class="curso-stat-label" data-es="Alumnos formados" data-en="Students trained">Alumnos formados</span>
+      </div>
+      <div class="curso-stat">
+        <span class="curso-stat-num" data-count="4" data-suffix="">0</span>
+        <span class="curso-stat-label" data-es="Clases al mes" data-en="Classes per month">Clases al mes</span>
+      </div>
+      <div class="curso-stat">
+        <span class="curso-stat-num" data-static="true">4.9</span>
+        <span class="curso-stat-label" data-es="Valoraci&oacute;n" data-en="Rating">Valoraci&oacute;n</span>
+      </div>
+      <div class="curso-stat">
+        <span class="curso-stat-num" data-count="100" data-suffix="%">0</span>
+        <span class="curso-stat-label" data-es="Pr&aacute;ctico" data-en="Hands-on">Pr&aacute;ctico</span>
+      </div>
+    </div>
+
+    <!-- BENTO GRID — QUÉ APRENDERÁS -->
+    <p class="curso-bento-label" data-es="Programa" data-en="Program">Programa</p>
+    <h3 class="curso-bento-title" data-es="Todo lo que aprender&aacute;s" data-en="Everything you'll learn">Todo lo que aprender&aacute;s</h3>
+    <p class="curso-bento-sub" data-es="Desde la t&eacute;cnica del barista hasta la creaci&oacute;n de postres gourmet &mdash; cubrimos todo." data-en="From barista technique to gourmet dessert creation &mdash; we cover it all.">Desde la t&eacute;cnica del barista hasta la creaci&oacute;n de postres gourmet &mdash; cubrimos todo.</p>
+
+    <div class="curso-bento">
+      <div class="curso-bento-card">
+        <div class="curso-bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        </div>
+        <h3 data-es="Caf&eacute; de Especialidad" data-en="Specialty Coffee">Caf&eacute; de Especialidad</h3>
+        <p data-es="T&eacute;cnicas de extracci&oacute;n profesional, m&eacute;todos filtrados y espresso perfecto con granos de origen peruano." data-en="Professional extraction techniques, filter methods and perfect espresso with Peruvian origin beans.">T&eacute;cnicas de extracci&oacute;n profesional, m&eacute;todos filtrados y espresso perfecto con granos de origen peruano.</p>
+        <div class="curso-bento-tags">
+          <span class="curso-bento-tag">Espresso</span>
+          <span class="curso-bento-tag">V60</span>
+          <span class="curso-bento-tag">Chemex</span>
+          <span class="curso-bento-tag">AeroPress</span>
+        </div>
+      </div>
+
+      <div class="curso-bento-card">
+        <div class="curso-bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C6.48 2 2 6 2 10c0 2.5 1.5 4.5 3 6l1 6h12l1-6c1.5-1.5 3-3.5 3-6 0-4-4.48-8-10-8z"/><path d="M9 22h6"/></svg>
+        </div>
+        <h3 data-es="Latte Art" data-en="Latte Art">Latte Art</h3>
+        <p data-es="Domina el vertido libre: corazones, rosettas, tulipanes y dise&ntilde;os avanzados sobre espuma cremosa." data-en="Master free pour: hearts, rosettas, tulips and advanced designs on creamy foam.">Domina el vertido libre: corazones, rosettas, tulipanes y dise&ntilde;os avanzados sobre espuma cremosa.</p>
+        <div class="curso-bento-tags">
+          <span class="curso-bento-tag">Vertido libre</span>
+          <span class="curso-bento-tag">Etching</span>
+        </div>
+      </div>
+
+      <div class="curso-bento-card">
+        <div class="curso-bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 data-es="Postres Gourmet" data-en="Gourmet Desserts">Postres Gourmet</h3>
+        <p data-es="Aprende a elaborar cheesecakes, tortas, mousses y postres de nivel restaurante con ingredientes peruanos." data-en="Learn to make cheesecakes, cakes, mousses and restaurant-level desserts with Peruvian ingredients.">Aprende a elaborar cheesecakes, tortas, mousses y postres de nivel restaurante con ingredientes peruanos.</p>
+        <div class="curso-bento-tags">
+          <span class="curso-bento-tag">Cheesecake</span>
+          <span class="curso-bento-tag">Tortas</span>
+          <span class="curso-bento-tag">Mousse</span>
+        </div>
+      </div>
+
+      <div class="curso-bento-card">
+        <div class="curso-bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3 data-es="Cata Profesional" data-en="Professional Cupping">Cata Profesional</h3>
+        <p data-es="Desarrolla tu paladar con sesiones de cata: identifica notas de origen, acidez, cuerpo y dulzura." data-en="Develop your palate with cupping sessions: identify origin notes, acidity, body and sweetness.">Desarrolla tu paladar con sesiones de cata: identifica notas de origen, acidez, cuerpo y dulzura.</p>
+        <div class="curso-bento-tags">
+          <span class="curso-bento-tag">Cupping</span>
+          <span class="curso-bento-tag">Notas</span>
+        </div>
+      </div>
+
+      <div class="curso-bento-card wide">
+        <div class="curso-bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3 data-es="Certificaci&oacute;n Barista Wasi Cafe" data-en="Wasi Cafe Barista Certification">Certificaci&oacute;n Barista Wasi Cafe</h3>
+        <p data-es="Al completar el programa recibir&aacute;s tu certificado profesional de barista avalado por Wasi Cafe. Ideal para tu CV o para emprender tu propio negocio de caf&eacute;." data-en="Upon completion you'll receive your professional barista certificate endorsed by Wasi Cafe. Ideal for your CV or to start your own coffee business.">Al completar el programa recibir&aacute;s tu certificado profesional de barista avalado por Wasi Cafe. Ideal para tu CV o para emprender tu propio negocio de caf&eacute;.</p>
+        <div class="curso-bento-tags">
+          <span class="curso-bento-tag">Certificado</span>
+          <span class="curso-bento-tag">Presencial</span>
+          <span class="curso-bento-tag">San Isidro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE — PROCESO -->
+    <p class="curso-timeline-label" data-es="Proceso" data-en="Process">Proceso</p>
+    <h3 class="curso-timeline-title" data-es="C&oacute;mo funciona el curso" data-en="How the course works">C&oacute;mo funciona el curso</h3>
+    <p class="curso-timeline-sub" data-es="Un proceso claro para que empieces a aprender desde la primera clase." data-en="A clear process so you start learning from day one.">Un proceso claro para que empieces a aprender desde la primera clase.</p>
+
+    <div class="curso-timeline" id="cursoTimeline">
+      <div class="curso-timeline-line" id="cursoTimelineLine"></div>
+      <div class="curso-step">
+        <span class="curso-step-num">01</span>
+        <h4 data-es="Inscripci&oacute;n por WhatsApp" data-en="WhatsApp Enrollment">Inscripci&oacute;n por WhatsApp</h4>
+        <p data-es="Esc&iacute;benos, elige tu horario y asegura tu cupo. Respondemos en menos de 2 horas." data-en="Message us, pick your schedule and secure your spot. We reply within 2 hours.">Esc&iacute;benos, elige tu horario y asegura tu cupo. Respondemos en menos de 2 horas.</p>
+      </div>
+      <div class="curso-step">
+        <span class="curso-step-num">02</span>
+        <h4 data-es="Clases Pr&aacute;cticas Semanales" data-en="Weekly Hands-on Classes">Clases Pr&aacute;cticas Semanales</h4>
+        <p data-es="Cada semana asistes a una clase presencial en Wasi Cafe donde practicas con equipos profesionales y caf&eacute; real." data-en="Each week you attend an in-person class at Wasi Cafe where you practice with pro equipment and real coffee.">Cada semana asistes a una clase presencial en Wasi Cafe donde practicas con equipos profesionales y caf&eacute; real.</p>
+      </div>
+      <div class="curso-step">
+        <span class="curso-step-num">03</span>
+        <h4 data-es="Postres &amp; Cata" data-en="Desserts &amp; Cupping">Postres &amp; Cata</h4>
+        <p data-es="Combina las t&eacute;cnicas de barista con la elaboraci&oacute;n de postres gourmet. Sesiones de cata profesional incluidas." data-en="Combine barista techniques with gourmet dessert making. Professional cupping sessions included.">Combina las t&eacute;cnicas de barista con la elaboraci&oacute;n de postres gourmet. Sesiones de cata profesional incluidas.</p>
+      </div>
+      <div class="curso-step">
+        <span class="curso-step-num">04</span>
+        <h4 data-es="Certificaci&oacute;n" data-en="Certification">Certificaci&oacute;n</h4>
+        <p data-es="Al completar las 4 clases recibes tu certificado barista profesional de Wasi Cafe." data-en="After completing all 4 classes you receive your professional barista certificate from Wasi Cafe.">Al completar las 4 clases recibes tu certificado barista profesional de Wasi Cafe.</p>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="curso-pricing-section">
+      <div class="curso-pricing-card">
+        <div class="curso-pricing-tag" data-es="INVERSI&Oacute;N MENSUAL" data-en="MONTHLY INVESTMENT">INVERSI&Oacute;N MENSUAL</div>
+        <div>
+          <span class="curso-price">S/ 300</span>
+          <span class="curso-price-period" data-es="/mes" data-en="/month"> /mes</span>
+        </div>
+        <p class="curso-price-detail" data-es="4 clases presenciales &middot; 1 clase por semana" data-en="4 in-person classes &middot; 1 class per week">4 clases presenciales &middot; 1 clase por semana</p>
+
+        <div class="curso-pricing-features">
+          <div class="curso-pricing-feat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span data-es="4 clases pr&aacute;cticas al mes" data-en="4 hands-on classes per month">4 clases pr&aacute;cticas al mes</span>
+          </div>
+          <div class="curso-pricing-feat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span data-es="Caf&eacute; de especialidad + postres gourmet" data-en="Specialty coffee + gourmet desserts">Caf&eacute; de especialidad + postres gourmet</span>
+          </div>
+          <div class="curso-pricing-feat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span data-es="Latte art y cata profesional" data-en="Latte art and professional cupping">Latte art y cata profesional</span>
+          </div>
+          <div class="curso-pricing-feat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span data-es="Materiales e ingredientes incluidos" data-en="Materials and ingredients included">Materiales e ingredientes incluidos</span>
+          </div>
+          <div class="curso-pricing-feat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span data-es="Certificaci&oacute;n barista profesional" data-en="Professional barista certification">Certificaci&oacute;n barista profesional</span>
+          </div>
+        </div>
+
+        <a class="curso-pricing-cta" href="https://wa.me/51908724496?text=Hola!%20Me%20interesa%20el%20curso%20de%20caf%C3%A9%20y%20postres%20de%20Wasi%20Cafe%20%F0%9F%8E%93%E2%98%95" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-es="Inscr&iacute;bete Ahora" data-en="Enroll Now">Inscr&iacute;bete Ahora</span>
+        </a>
+        <p class="curso-guarantee" data-es="Cupos limitados &middot; Respuesta en menos de 2 horas" data-en="Limited spots &middot; Reply within 2 hours">Cupos limitados &middot; Respuesta en menos de 2 horas</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <p class="curso-faq-label" data-es="Preguntas Frecuentes" data-en="FAQ">Preguntas Frecuentes</p>
+    <h3 class="curso-faq-title" data-es="Lo que necesitas saber" data-en="What you need to know">Lo que necesitas saber</h3>
+
+    <div class="curso-faq" id="cursoFaq">
+      <div class="curso-faq-item">
+        <div class="curso-faq-q" onclick="toggleCursoFaq(this)">
+          <span data-es="&iquest;Cu&aacute;nto cuesta el curso?" data-en="How much does the course cost?">&iquest;Cu&aacute;nto cuesta el curso?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="curso-faq-a">
+          <p data-es="El curso tiene un costo de S/ 300 al mes, que incluye 4 clases presenciales (1 por semana), todos los materiales, ingredientes de caf&eacute; de especialidad y certificaci&oacute;n." data-en="The course costs S/ 300 per month, which includes 4 in-person classes (1 per week), all materials, specialty coffee ingredients and certification.">El curso tiene un costo de S/ 300 al mes, que incluye 4 clases presenciales (1 por semana), todos los materiales, ingredientes de caf&eacute; de especialidad y certificaci&oacute;n.</p>
+        </div>
+      </div>
+      <div class="curso-faq-item">
+        <div class="curso-faq-q" onclick="toggleCursoFaq(this)">
+          <span data-es="&iquest;Necesito experiencia previa?" data-en="Do I need prior experience?">&iquest;Necesito experiencia previa?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="curso-faq-a">
+          <p data-es="No, el curso est&aacute; dise&ntilde;ado para principiantes. Empezamos desde cero y avanzamos hasta t&eacute;cnicas profesionales. Solo necesitas ganas de aprender." data-en="No, the course is designed for beginners. We start from scratch and progress to professional techniques. You just need the desire to learn.">No, el curso est&aacute; dise&ntilde;ado para principiantes. Empezamos desde cero y avanzamos hasta t&eacute;cnicas profesionales. Solo necesitas ganas de aprender.</p>
+        </div>
+      </div>
+      <div class="curso-faq-item">
+        <div class="curso-faq-q" onclick="toggleCursoFaq(this)">
+          <span data-es="&iquest;D&oacute;nde se dictan las clases?" data-en="Where are the classes held?">&iquest;D&oacute;nde se dictan las clases?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="curso-faq-a">
+          <p data-es="Las clases son 100% presenciales en Wasi Cafe, ubicado en Luis Felipe Villar&aacute;n 904, San Isidro, Lima. Practicar&aacute;s con equipos profesionales reales." data-en="Classes are 100% in-person at Wasi Cafe, located at Luis Felipe Villar&aacute;n 904, San Isidro, Lima. You'll practice with real professional equipment.">Las clases son 100% presenciales en Wasi Cafe, ubicado en Luis Felipe Villar&aacute;n 904, San Isidro, Lima. Practicar&aacute;s con equipos profesionales reales.</p>
+        </div>
+      </div>
+      <div class="curso-faq-item">
+        <div class="curso-faq-q" onclick="toggleCursoFaq(this)">
+          <span data-es="&iquest;Qu&eacute; incluye la certificaci&oacute;n?" data-en="What does the certification include?">&iquest;Qu&eacute; incluye la certificaci&oacute;n?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="curso-faq-a">
+          <p data-es="Al completar las 4 clases recibes un certificado profesional de barista avalado por Wasi Cafe. Incluye competencias en extracci&oacute;n, latte art, cata y reposter&iacute;a." data-en="After completing all 4 classes you receive a professional barista certificate endorsed by Wasi Cafe. It covers extraction, latte art, cupping and pastry skills.">Al completar las 4 clases recibes un certificado profesional de barista avalado por Wasi Cafe. Incluye competencias en extracci&oacute;n, latte art, cata y reposter&iacute;a.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="curso-final">
+      <h3 class="curso-final-title" data-es="Tu carrera barista<br>empieza <em>aqu&iacute;</em>" data-en="Your barista career<br>starts <em>here</em>">Tu carrera barista<br>empieza <em>aqu&iacute;</em></h3>
+      <p class="curso-final-sub" data-es="Inscr&iacute;bete hoy y transforma tu pasi&oacute;n por el caf&eacute; en una habilidad profesional." data-en="Enroll today and turn your passion for coffee into a professional skill.">Inscr&iacute;bete hoy y transforma tu pasi&oacute;n por el caf&eacute; en una habilidad profesional.</p>
+      <div class="curso-final-ctas">
+        <a class="curso-cta" href="https://wa.me/51908724496?text=Hola!%20Me%20interesa%20el%20curso%20de%20caf%C3%A9%20y%20postres%20de%20Wasi%20Cafe%20%F0%9F%8E%93%E2%98%95" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-es="Agendar por WhatsApp" data-en="Book via WhatsApp">Agendar por WhatsApp</span>
+        </a>
+        <a class="curso-cta-secondary" href="mailto:wasicafe@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          <span data-es="Enviar Email" data-en="Send Email">Enviar Email</span>
+        </a>
+      </div>
+      <p class="curso-final-note" data-es="Respuesta en menos de 2 horas &middot; Sin compromiso" data-en="Reply within 2 hours &middot; No commitment">Respuesta en menos de 2 horas &middot; Sin compromiso</p>
+    </div>
+
   </div>
 </section>
 
@@ -1772,6 +2090,100 @@ document.getElementById('wifiPassModal').textContent = WIFI_PASS;
 document.querySelector('.whatsapp-fab').href = `https://wa.me/${WHATSAPP}`;
 generateWifiQR('wifiQr');
 updateStatus();
+
+// ═══ CURSO — INTERACTIVE ANIMATIONS ═══
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Cursor glow on curso section (desktop only)
+  const cursoGlow = document.getElementById('cursoGlow');
+  const cursoSection = document.getElementById('curso');
+  if (cursoGlow && cursoSection && window.innerWidth > 1024 && !prefersReduced) {
+    cursoGlow.style.display = 'block';
+    let gX=0, gY=0, cX=0, cY=0;
+    cursoSection.addEventListener('mousemove', e => { gX = e.clientX; gY = e.clientY + window.scrollY - cursoSection.offsetTop; }, {passive:true});
+    (function ag(){ cX+=(gX-cX)*0.06; cY+=(gY-cY)*0.06; cursoGlow.style.transform='translate('+(cX-300)+'px,'+(cY-300)+'px)'; requestAnimationFrame(ag); })();
+  }
+
+  // Bento card 3D tilt + light (desktop)
+  if (window.innerWidth > 1024 && !prefersReduced) {
+    document.querySelectorAll('.curso-bento-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'rotateY('+(x*6)+'deg) rotateX('+(y*-6)+'deg) translateY(-4px)';
+        card.style.setProperty('--mouse-x', (x+0.5)*100+'%');
+        card.style.setProperty('--mouse-y', (y+0.5)*100+'%');
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  // Scroll reveal for curso elements
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.curso-step, .curso-bento-card, .curso-stat, .curso-faq-item').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    revObs.observe(el);
+  });
+  // Stagger bento cards
+  document.querySelectorAll('.curso-bento-card').forEach((c,i) => { c.style.transitionDelay = (i*80)+'ms'; });
+  document.querySelectorAll('.curso-stat').forEach((c,i) => { c.style.transitionDelay = (i*100)+'ms'; });
+  document.querySelectorAll('.curso-faq-item').forEach((c,i) => { c.style.transitionDelay = (i*80)+'ms'; });
+
+  // Visible class handler
+  const styleEl = document.createElement('style');
+  styleEl.textContent = '.curso-step.visible,.curso-bento-card.visible,.curso-stat.visible,.curso-faq-item.visible{opacity:1!important;transform:translateY(0)!important;}';
+  document.head.appendChild(styleEl);
+
+  // Counter animation
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.dataset.static) { countObs.unobserve(el); return; }
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const dur = 2000, start = performance.now();
+      (function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+        el.textContent = Math.round(ease * target) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      })(start);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.curso-stat-num[data-count]').forEach(el => countObs.observe(el));
+
+  // Timeline scroll-driven line
+  const tl = document.getElementById('cursoTimeline');
+  const tlLine = document.getElementById('cursoTimelineLine');
+  if (tl && tlLine && !prefersReduced) {
+    const steps = tl.querySelectorAll('.curso-step');
+    (function drawTL() {
+      const r = tl.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.min(Math.max((vh - r.top) / (r.height + vh * 0.3), 0), 1);
+      tlLine.style.height = (progress * 100) + '%';
+      steps.forEach(s => { if (s.getBoundingClientRect().top < vh * 0.85) s.classList.add('visible'); });
+      requestAnimationFrame(drawTL);
+    })();
+  }
+
+  // FAQ accordion
+  window.toggleCursoFaq = function(q) {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.curso-faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  };
+})();
 
 // ═══ DISMISS LOADER ═══
 window.addEventListener('load', () => {
