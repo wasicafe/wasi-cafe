@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /carta.html
+Allow: /curso.html
 
 Sitemap: https://wasicafe.com/sitemap.xml
+
+# Wasi Cafe — San Isidro, Lima, Peru
+# https://wasicafe.com
