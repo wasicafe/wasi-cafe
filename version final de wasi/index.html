@@ -209,11 +209,20 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 
 @media(max-width:768px){
   .promo-grid{grid-template-columns:repeat(2,1fr)}
+  .promo-home-prices{flex-direction:column;align-items:center;gap:.15rem}
+  .promo-home-old{font-size:.82rem}
+  .promo-home-price{font-size:1.5rem}
+  .promo-home-save{font-size:.5rem;padding:.12rem .35rem}
+  .promo-home-card h3{font-size:.88rem}
+  .promo-includes span{font-size:.58rem}
   .events-card{grid-template-columns:1fr}
   .events-visual{min-height:200px}
 }
-@media(max-width:480px){
-  .promo-grid{grid-template-columns:1fr 1fr}
+@media(max-width:400px){
+  .promo-grid{grid-template-columns:1fr}
+  .promo-home-prices{flex-direction:row;gap:.4rem}
+  .promo-home-price{font-size:1.8rem}
+  .promo-home-old{font-size:.9rem}
 }
 
 /* LANG PICKER MODAL */
