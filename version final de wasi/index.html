@@ -155,6 +155,18 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .menu-cat p{font-size:.68rem;color:var(--text-muted);font-weight:300}
 .menu-cta-wrap{text-align:center}
 
+/* LANG PICKER MODAL */
+.lang-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.lang-modal.show{opacity:1;pointer-events:auto}
+.lang-modal-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:2rem 1.5rem;width:100%;max-width:320px;text-align:center;transform:scale(.92) translateY(20px);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.lang-modal.show .lang-modal-card{transform:scale(1) translateY(0)}
+.lang-modal-title{font-family:var(--display);font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:1.2rem}
+.lang-modal-opts{display:flex;gap:.8rem}
+.lang-modal-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.3rem 1rem;border-radius:16px;background:var(--bg-card);border:1.5px solid var(--border);cursor:pointer;transition:all .3s;font-family:var(--body)}
+.lang-modal-btn:hover{border-color:var(--gold);background:rgba(200,148,62,.06);transform:translateY(-2px)}
+.lang-modal-flag{font-size:2rem;line-height:1}
+.lang-modal-label{font-size:.85rem;font-weight:600;color:var(--text);letter-spacing:.02em}
+
 /* ═══════════════ SPECIALTIES ═══════════════ */
 .specialties{padding:5rem 0;border-top:1px solid var(--border)}
 .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:2rem}
@@ -339,21 +351,38 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     </div>
 
     <div class="menu-cats">
-      <a href="carta.html" class="menu-cat rv">
+      <div class="menu-cat rv" onclick="openLangPicker('cafes')">
         <div class="menu-cat-icon">&#9749;</div>
         <h3>Caf&eacute;s</h3>
         <p>Espresso, latte, cappuccino, chocolate caliente y m&aacute;s</p>
-      </a>
-      <a href="carta.html" class="menu-cat rv">
+      </div>
+      <div class="menu-cat rv" onclick="openLangPicker('sandwiches')">
         <div class="menu-cat-icon">&#129386;</div>
         <h3>S&aacute;ndwiches</h3>
         <p>Chicharr&oacute;n, club s&aacute;ndwich, hamburguesas y croissants</p>
-      </a>
-      <a href="carta.html" class="menu-cat rv">
+      </div>
+      <div class="menu-cat rv" onclick="openLangPicker('postres')">
         <div class="menu-cat-icon">&#127856;</div>
         <h3>Postres</h3>
         <p>Cheesecake, torta de chocolate, torta tres leches y m&aacute;s</p>
-      </a>
+      </div>
+    </div>
+
+    <!-- Lang Picker Modal -->
+    <div class="lang-modal" id="langModal" onclick="closeLangModal(event)">
+      <div class="lang-modal-card" onclick="event.stopPropagation()">
+        <p class="lang-modal-title">Elige tu idioma</p>
+        <div class="lang-modal-opts">
+          <button class="lang-modal-btn" onclick="goToCarta('es')">
+            <span class="lang-modal-flag">&#127477;&#127466;</span>
+            <span class="lang-modal-label">Espa&ntilde;ol</span>
+          </button>
+          <button class="lang-modal-btn" onclick="goToCarta('en')">
+            <span class="lang-modal-flag">&#127482;&#127480;</span>
+            <span class="lang-modal-label">English</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="menu-cta-wrap rv">
@@ -559,6 +588,27 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
   }
+
+  // Lang picker modal for menu categories
+  let pendingSection = '';
+  window.openLangPicker = function(section) {
+    pendingSection = section;
+    document.getElementById('langModal').classList.add('show');
+  };
+  window.closeLangModal = function(e) {
+    document.getElementById('langModal').classList.remove('show');
+  };
+  window.goToCarta = function(lang) {
+    // Map homepage category names to carta.html section IDs
+    const sectionMap = {
+      cafes: lang === 'es' ? 'cafes' : 'coffees',
+      sandwiches: 'sandwiches',
+      postres: lang === 'es' ? 'postres' : 'desserts'
+    };
+    const sec = sectionMap[pendingSection] || '';
+    // Navigate to carta with lang and section params
+    window.location.href = 'carta.html?lang=' + lang + (sec ? '&sec=' + pendingSection : '');
+  };
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {

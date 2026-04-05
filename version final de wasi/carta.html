@@ -1259,18 +1259,6 @@
       </a>
     </div>
 
-    <!-- Curso CTA -->
-    <a href="curso.html" class="welcome-curso-btn">
-      <span class="welcome-curso-icon">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-      </span>
-      <span class="welcome-curso-text">
-        <strong data-es="Curso de Café & Postres" data-en="Coffee & Desserts Course">Curso de Café &amp; Postres</strong>
-        <small data-es="4 clases/mes · S/ 300 · Inscríbete" data-en="4 classes/month · S/ 300 · Enroll now">4 clases/mes · S/ 300 · Inscríbete</small>
-      </span>
-      <svg class="welcome-curso-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
-    </a>
-
     <!-- WiFi -->
     <div class="wifi-section">
       <div class="wifi-header">
@@ -1840,6 +1828,32 @@ document.getElementById('wifiPassModal').textContent = WIFI_PASS;
 document.querySelector('.whatsapp-fab').href = `https://wa.me/${WHATSAPP}`;
 generateWifiQR('wifiQr');
 updateStatus();
+
+// ═══ AUTO-ENTER FROM HOMEPAGE ═══
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang');
+  const sec = params.get('sec');
+  if (lang && (lang === 'es' || lang === 'en')) {
+    // Auto-enter menu with selected language, skip welcome screen
+    enterMenu(lang);
+    if (sec) {
+      // Map homepage category to carta section IDs
+      const sectionMap = {
+        cafes: 'cafes',
+        sandwiches: 'sandwiches',
+        postres: 'postres'
+      };
+      const targetId = sectionMap[sec];
+      if (targetId) {
+        setTimeout(() => {
+          const el = document.getElementById(targetId);
+          if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }, 500);
+      }
+    }
+  }
+})();
 
 // ═══ DISMISS LOADER ═══
 window.addEventListener('load', () => {
