@@ -162,9 +162,15 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .promo-home-card{padding:1.4rem 1.1rem;border-radius:18px;background:var(--bg-card);border:1px solid var(--border);text-align:center;transition:all .4s;position:relative;overflow:hidden}
 .promo-home-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra))}
 .promo-home-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.promo-home-price{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.4rem}
-.promo-home-card h3{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.promo-home-prices{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-bottom:.4rem}
+.promo-home-old{font-family:var(--display);font-size:1rem;font-weight:400;color:var(--text-dim);text-decoration:line-through}
+.promo-home-price{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
+.promo-home-save{display:inline-block;padding:.15rem .45rem;border-radius:5px;background:rgba(239,68,68,.15);color:#EF4444;font-size:.55rem;font-weight:700;letter-spacing:.04em;margin-bottom:.5rem}
+.promo-home-card h3{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
 .promo-home-card p{font-size:.68rem;font-weight:300;color:var(--text-muted);line-height:1.5}
+.promo-includes{display:flex;flex-direction:column;gap:.25rem;margin-top:.5rem;text-align:left}
+.promo-includes span{display:flex;align-items:center;gap:.35rem;font-size:.62rem;color:var(--text-mid)}
+.promo-includes svg{width:12px;height:12px;color:#22C55E;flex-shrink:0}
 .promo-home-note{text-align:center;font-size:.7rem;color:var(--text-dim);font-weight:500;letter-spacing:.04em}
 
 /* EVENTS */
@@ -439,34 +445,64 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     </div>
     <div class="promo-grid">
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 25.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 38.80</span><span class="promo-home-price">S/ 25.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 12.90</div>
         <h3>Combo Filete</h3>
-        <p>Filete de Pollo + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Filete de Pollo a la plancha</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 29.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 43.80</span><span class="promo-home-price">S/ 29.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 13.90</div>
         <h3>Combo Chuleta</h3>
-        <p>Chuleta + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Chuleta de cerdo</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 29.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 48.80</span><span class="promo-home-price">S/ 29.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 18.90</div>
         <h3>Combo Bistec</h3>
-        <p>Bistec + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bistec a la plancha</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 29.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 43.80</span><span class="promo-home-price">S/ 29.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 13.90</div>
         <h3>Combo Milanesa</h3>
-        <p>Milanesa + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Milanesa empanizada</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 29.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 43.80</span><span class="promo-home-price">S/ 29.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 13.90</div>
         <h3>Combo Suprema</h3>
-        <p>Suprema de Pollo + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Suprema de pollo</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
       <div class="promo-home-card rv">
-        <div class="promo-home-price">S/ 29.90</div>
+        <div class="promo-home-prices"><span class="promo-home-old">S/ 43.80</span><span class="promo-home-price">S/ 29.90</span></div>
+        <div class="promo-home-save">AHORRAS S/ 13.90</div>
         <h3>Combo Hamburguesa</h3>
-        <p>Hamburguesa + Papas Andinas + Bebida</p>
+        <div class="promo-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Hamburguesa cl&aacute;sica</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Papas Andinas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Bebida a elecci&oacute;n</span>
+        </div>
       </div>
     </div>
     <p class="promo-home-note">Disponible de Lunes a S&aacute;bado &middot; 12:00 pm a 4:00 pm</p>
