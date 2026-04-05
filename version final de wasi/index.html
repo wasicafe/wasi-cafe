@@ -1260,7 +1260,7 @@
     </div>
 
     <!-- Curso CTA -->
-    <a href="#curso" class="welcome-curso-btn" onclick="enterMenu(L||'es');setTimeout(()=>document.getElementById('curso').scrollIntoView({behavior:'smooth',block:'start'}),400);return false;">
+    <a href="curso.html" class="welcome-curso-btn">
       <span class="welcome-curso-icon">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
       </span>
@@ -1364,8 +1364,8 @@
   <div class="promos-scroll" id="promosScroll"></div>
 </div>
 
-<!-- ═══ CURSO DE CAFÉ Y POSTRES — PREMIUM DARK ═══ -->
-<section class="curso-section" id="curso">
+<!-- curso section removed — now at curso.html -->
+<div id="curso-removed" style="display:none">
   <div id="cursoGlow" class="curso-glow"></div>
   <div class="curso-container">
 
@@ -1919,11 +1919,9 @@ function handleSearch() {
   document.getElementById('searchClear').classList.toggle('show', q.length > 0);
   const sections = document.querySelectorAll('.sec');
   const promos = document.getElementById('promos');
-  const cursoSec = document.getElementById('curso');
   let found = 0;
-  if (!q) { sections.forEach(s => s.style.display = ''); if (promos) promos.style.display = ''; if (cursoSec) cursoSec.style.display = ''; document.getElementById('noResults').style.display = 'none'; return; }
+  if (!q) { sections.forEach(s => s.style.display = ''); if (promos) promos.style.display = ''; document.getElementById('noResults').style.display = 'none'; return; }
   if (promos) promos.style.display = 'none';
-  if (cursoSec) { const cursoMatch = cursoSec.textContent.toLowerCase().includes(q); cursoSec.style.display = cursoMatch ? '' : 'none'; if (cursoMatch) found++; }
   sections.forEach(s => {
     const cards = s.querySelectorAll('.card');
     let secVisible = false;
@@ -1999,12 +1997,11 @@ function renderPromos() {
 // ═══ RENDER MENU ═══
 function render() {
   const md = 'Med', lg = L==='es' ? 'Grande / Jarra' : 'Large / Pitcher';
-  const cursoNav = `<a class="cnav-a curso-nav-link" href="#curso" onclick="navClick(event,'curso')">${L==='es'?'Curso':'Course'}</a>`;
+  const cursoNav = `<a class="cnav-a curso-nav-link" href="curso.html">${L==='es'?'Curso':'Course'}</a>`;
   document.getElementById('cnavIn').innerHTML = cursoNav + D.map(c =>
     `<a class="cnav-a" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>`
   ).join('');
-  const cursoOpt = `<option value="curso">${L==='es'?'Curso de Café':'Coffee Course'}</option>`;
-  document.getElementById('bbarSel').innerHTML = cursoOpt + D.map(c =>
+  document.getElementById('bbarSel').innerHTML = D.map(c =>
     `<option value="${c.id}">${c.num}. ${c[L].n}</option>`
   ).join('');
   document.getElementById('mx').innerHTML = D.map(c => {
@@ -2090,100 +2087,6 @@ document.getElementById('wifiPassModal').textContent = WIFI_PASS;
 document.querySelector('.whatsapp-fab').href = `https://wa.me/${WHATSAPP}`;
 generateWifiQR('wifiQr');
 updateStatus();
-
-// ═══ CURSO — INTERACTIVE ANIMATIONS ═══
-(function(){
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Cursor glow on curso section (desktop only)
-  const cursoGlow = document.getElementById('cursoGlow');
-  const cursoSection = document.getElementById('curso');
-  if (cursoGlow && cursoSection && window.innerWidth > 1024 && !prefersReduced) {
-    cursoGlow.style.display = 'block';
-    let gX=0, gY=0, cX=0, cY=0;
-    cursoSection.addEventListener('mousemove', e => { gX = e.clientX; gY = e.clientY + window.scrollY - cursoSection.offsetTop; }, {passive:true});
-    (function ag(){ cX+=(gX-cX)*0.06; cY+=(gY-cY)*0.06; cursoGlow.style.transform='translate('+(cX-300)+'px,'+(cY-300)+'px)'; requestAnimationFrame(ag); })();
-  }
-
-  // Bento card 3D tilt + light (desktop)
-  if (window.innerWidth > 1024 && !prefersReduced) {
-    document.querySelectorAll('.curso-bento-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = 'rotateY('+(x*6)+'deg) rotateX('+(y*-6)+'deg) translateY(-4px)';
-        card.style.setProperty('--mouse-x', (x+0.5)*100+'%');
-        card.style.setProperty('--mouse-y', (y+0.5)*100+'%');
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
-  }
-
-  // Scroll reveal for curso elements
-  const revObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.curso-step, .curso-bento-card, .curso-stat, .curso-faq-item').forEach(el => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    revObs.observe(el);
-  });
-  // Stagger bento cards
-  document.querySelectorAll('.curso-bento-card').forEach((c,i) => { c.style.transitionDelay = (i*80)+'ms'; });
-  document.querySelectorAll('.curso-stat').forEach((c,i) => { c.style.transitionDelay = (i*100)+'ms'; });
-  document.querySelectorAll('.curso-faq-item').forEach((c,i) => { c.style.transitionDelay = (i*80)+'ms'; });
-
-  // Visible class handler
-  const styleEl = document.createElement('style');
-  styleEl.textContent = '.curso-step.visible,.curso-bento-card.visible,.curso-stat.visible,.curso-faq-item.visible{opacity:1!important;transform:translateY(0)!important;}';
-  document.head.appendChild(styleEl);
-
-  // Counter animation
-  const countObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      if (el.dataset.static) { countObs.unobserve(el); return; }
-      const target = parseInt(el.dataset.count, 10);
-      const suffix = el.dataset.suffix || '';
-      const dur = 2000, start = performance.now();
-      (function tick(now) {
-        const t = Math.min((now - start) / dur, 1);
-        const ease = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-        el.textContent = Math.round(ease * target) + suffix;
-        if (t < 1) requestAnimationFrame(tick);
-      })(start);
-      countObs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.curso-stat-num[data-count]').forEach(el => countObs.observe(el));
-
-  // Timeline scroll-driven line
-  const tl = document.getElementById('cursoTimeline');
-  const tlLine = document.getElementById('cursoTimelineLine');
-  if (tl && tlLine && !prefersReduced) {
-    const steps = tl.querySelectorAll('.curso-step');
-    (function drawTL() {
-      const r = tl.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.min(Math.max((vh - r.top) / (r.height + vh * 0.3), 0), 1);
-      tlLine.style.height = (progress * 100) + '%';
-      steps.forEach(s => { if (s.getBoundingClientRect().top < vh * 0.85) s.classList.add('visible'); });
-      requestAnimationFrame(drawTL);
-    })();
-  }
-
-  // FAQ accordion
-  window.toggleCursoFaq = function(q) {
-    const item = q.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.curso-faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  };
-})();
 
 // ═══ DISMISS LOADER ═══
 window.addEventListener('load', () => {
