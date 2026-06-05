@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Wasi Cafe — Caf&eacute; de Especialidad en San Isidro, Lima</title>
+<title>Wasi Cafe — Café de Especialidad en San Isidro, Lima</title>
 <meta name="description" content="Wasi Cafe: café de especialidad, sándwiches peruanos y postres artesanales en San Isidro, Lima. Curso de barista. Visítanos en Luis Felipe Villarán 904.">
 <meta name="keywords" content="Wasi Cafe, café especialidad Lima, cafetería San Isidro, brunch Lima, sándwiches peruanos, postres artesanales, curso barista Lima, café peruano, desayuno San Isidro, cafetería cerca Javier Prado">
 <meta name="theme-color" content="#0D0A08">
@@ -20,16 +20,16 @@
 <link rel="canonical" href="https://wasicafe.com/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Wasi Cafe — Caf&eacute; de Especialidad en San Isidro, Lima">
-<meta property="og:description" content="Caf&eacute; de especialidad, s&aacute;ndwiches peruanos y postres artesanales. Curso de barista. San Isidro, Lima.">
+<meta property="og:title" content="Wasi Cafe — Café de Especialidad en San Isidro, Lima">
+<meta property="og:description" content="Café de especialidad, sándwiches peruanos y postres artesanales. Curso de barista. San Isidro, Lima.">
 <meta property="og:image" content="https://wasicafe.com/LOGOS.png">
 <meta property="og:url" content="https://wasicafe.com/">
 <meta property="og:site_name" content="Wasi Cafe">
 <meta property="og:locale" content="es_PE">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wasi Cafe — Caf&eacute; de Especialidad en San Isidro, Lima">
-<meta name="twitter:description" content="Caf&eacute; de especialidad, s&aacute;ndwiches peruanos y postres artesanales. San Isidro, Lima.">
+<meta name="twitter:title" content="Wasi Cafe — Café de Especialidad en San Isidro, Lima">
+<meta name="twitter:description" content="Café de especialidad, sándwiches peruanos y postres artesanales. San Isidro, Lima.">
 <meta name="twitter:image" content="https://wasicafe.com/LOGOS.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,15 +54,10 @@
   "currenciesAccepted":"PEN",
   "paymentAccepted":"Efectivo, Yape, Plin, Tarjeta",
   "areaServed":{"@type":"City","name":"Lima","sameAs":"https://es.wikipedia.org/wiki/Lima"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"350","bestRating":"5"},
   "amenityFeature":[
     {"@type":"LocationFeatureSpecification","name":"WiFi gratuito","value":true},
     {"@type":"LocationFeatureSpecification","name":"Pet-friendly","value":true},
     {"@type":"LocationFeatureSpecification","name":"Espacio de trabajo","value":true}
-  ],
-  "review":[
-    {"@type":"Review","author":{"@type":"Person","name":"María G."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"El mejor café de especialidad en San Isidro. Los postres son increíbles y el ambiente es perfecto para trabajar."},
-    {"@type":"Review","author":{"@type":"Person","name":"Carlos R."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Excelentes sándwiches peruanos y el café es de primera. Siempre vuelvo por el chicharrón y un cappuccino."}
   ]
 }
 </script>
@@ -72,11 +67,16 @@
   --display:'Cormorant Garamond',Georgia,serif;
   --body:'Outfit',sans-serif;
   --gold:#C8943E; --gold-light:#DAA84E; --terra:#B5651D;
+  /* Dorado para texto pequeno: el fondo del sitio es oscuro, por lo que un
+     dorado MAS oscuro (#9A6E20) reduce el contraste por debajo de 4.5:1.
+     Se usa un dorado claro que rinde >=4.5:1 (AAA) sobre el fondo oscuro real. */
+  --gold-text:#DAA84E;
   --bg:#0D0A08; --bg2:#131010; --bg-card:rgba(255,255,255,0.03);
   --border:rgba(255,255,255,0.06); --border-hover:rgba(200,148,62,0.2);
-  --text:#F5EDE3; --text-mid:#D4C5B5; --text-muted:#8B7B6B; --text-dim:#6B5B50;
+  --text:#F5EDE3; --text-mid:#D4C5B5; --text-muted:#8B7B6B; --text-dim:#9B8B7E;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
 
@@ -107,16 +107,21 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .nav-links{display:flex;align-items:center;gap:.3rem}
 .nav-link{padding:.5rem 1rem;border-radius:8px;font-size:.72rem;font-weight:500;color:var(--text-muted);text-decoration:none;transition:all .25s;letter-spacing:.04em}
 .nav-link:hover{color:var(--text);background:rgba(255,255,255,.04)}
-.nav-link.active{color:var(--gold)}
+.nav-link.active{color:var(--gold-text)}
 .nav-cta{padding:.5rem 1.2rem;border-radius:10px;font-size:.72rem;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--terra));color:#fff;text-decoration:none;transition:all .3s;letter-spacing:.04em}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(200,148,62,.35)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);cursor:pointer}
+.nav-toggle-bar{display:block;width:20px;height:2px;margin:0 auto;border-radius:2px;background:var(--text);transition:transform .3s,opacity .3s}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* CONTAINER */
 .container{max-width:1100px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 .container-sm{max-width:760px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 
 /* SECTION HELPERS */
-.sec-label{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.sec-label{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-bottom:.5rem}
 .sec-title{font-family:var(--display);font-size:2rem;font-weight:400;color:var(--text);line-height:1.15;margin-bottom:.3rem}
 .sec-title em{font-style:italic;color:var(--gold)}
 .sec-sub{font-size:.85rem;font-weight:300;color:var(--text-muted);margin-bottom:2rem;max-width:500px}
@@ -185,7 +190,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .promo-home-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .promo-home-prices{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-bottom:.4rem}
 .promo-home-old{font-family:var(--display);font-size:1rem;font-weight:400;color:var(--text-dim);text-decoration:line-through}
-.promo-home-price{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
+.promo-home-price{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--gold-text);line-height:1}
 .promo-home-save{display:inline-block;padding:.15rem .45rem;border-radius:5px;background:rgba(239,68,68,.15);color:#EF4444;font-size:.55rem;font-weight:700;letter-spacing:.04em;margin-bottom:.5rem}
 .promo-home-card h3{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
 .promo-home-card p{font-size:.68rem;font-weight:300;color:var(--text-muted);line-height:1.5}
@@ -247,7 +252,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .spec-emoji{font-size:2.2rem;margin-bottom:.8rem;display:block}
 .spec-card h3{font-family:var(--display);font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
 .spec-card p{font-size:.72rem;font-weight:300;color:var(--text-muted);line-height:1.6}
-.spec-price{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--gold);margin-top:.5rem}
+.spec-price{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--gold-text);margin-top:.5rem}
 
 /* ═══════════════ COURSE PROMO ═══════════════ */
 .course-promo{padding:5rem 0;border-top:1px solid var(--border)}
@@ -287,7 +292,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .footer-brand{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--text-mid);margin-bottom:.5rem}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.8rem}
 .footer-links a{font-size:.72rem;color:var(--text-muted);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--gold)}
+.footer-links a:hover{color:var(--gold-text)}
 .footer-copy{font-size:.6rem;color:var(--text-dim)}
 
 /* WHATSAPP FAB */
@@ -312,7 +317,11 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
   .course-card{grid-template-columns:1fr;text-align:center}
   .course-feats{align-items:center}
   .visit-grid{grid-template-columns:1fr}
-  .nav-link{display:none}
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:.4rem;padding:1rem 1.5rem;background:rgba(13,10,8,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);box-shadow:0 8px 30px rgba(0,0,0,.4);transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .nav-link{display:block;padding:.7rem 1rem;font-size:.85rem;text-align:center}
+  .nav-cta{text-align:center}
   .sec-title{font-size:1.6rem}
 }
 @media(max-width:480px){
@@ -337,7 +346,12 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     <img src="LOGOS.png" alt="Wasi Cafe">
     <span>Wasi <b>Cafe</b></span>
   </a>
-  <div class="nav-links">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="#nosotros" class="nav-link active">Inicio</a>
     <a href="carta.html" class="nav-link">Carta</a>
     <a href="curso.html" class="nav-link">Curso</a>
@@ -689,7 +703,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
         </div>
         <div class="visit-detail">
           <div class="visit-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div class="visit-detail-text"><strong>WhatsApp</strong><span>+51 908 724 496</span></div>
+          <div class="visit-detail-text"><strong>WhatsApp</strong><span><a href="tel:+51908724496" style="color:inherit;text-decoration:none">+51 908 724 496</a></span></div>
         </div>
         <div class="visit-detail">
           <div class="visit-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg></div>
@@ -736,6 +750,31 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     }); }
   }, {passive:true});
 
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    const setNav = (open) => {
+      navLinks.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+    navToggle.addEventListener('click', () => {
+      setNav(!navLinks.classList.contains('open'));
+    });
+    // Close menu when a link is activated
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setNav(false));
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        setNav(false);
+        navToggle.focus();
+      }
+    });
+  }
+
   // Cursor glow (desktop)
   const glow = document.getElementById('cursorGlow');
   if (glow && window.innerWidth > 1024 && !prefersReduced) {
@@ -780,15 +819,26 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 
   // Lang picker modal for menu categories
   let pendingSection = '';
+  let langTrigger = null;
+  const langModal = document.getElementById('langModal');
   window.openLangPicker = function(section) {
     pendingSection = section;
-    document.getElementById('langModal').classList.add('show');
+    // Remember the element that opened the modal to restore focus on close
+    langTrigger = document.activeElement;
+    langModal.classList.add('show');
+    // Move focus into the dialog (first interactive option)
+    const firstBtn = langModal.querySelector('.lang-modal-btn');
+    if (firstBtn) firstBtn.focus();
   };
   window.closeLangModal = function(e) {
-    document.getElementById('langModal').classList.remove('show');
+    if (!langModal.classList.contains('show')) return;
+    langModal.classList.remove('show');
+    // Return focus to the trigger that opened the modal
+    if (langTrigger && typeof langTrigger.focus === 'function') langTrigger.focus();
+    langTrigger = null;
   };
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLangModal();
+    if (e.key === 'Escape' && langModal.classList.contains('show')) closeLangModal();
   });
   window.goToCarta = function(lang) {
     // Map homepage category names to carta.html section IDs

@@ -22,17 +22,17 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Wasi Cafe — Carta y Curso de Café en San Isidro, Lima">
-<meta property="og:description" content="Carta de café de especialidad y curso de barista con postres artesanales. 4 clases al mes desde S/300. Wasi Cafe, San Isidro, Lima.">
+<meta property="og:title" content="Carta de Wasi Cafe — Café de especialidad y más en San Isidro, Lima">
+<meta property="og:description" content="Descubre la carta de Wasi Cafe: café de especialidad peruano, sándwiches, hamburguesas, postres artesanales, omelettes y jugos. Precios en soles. San Isidro, Lima.">
 <meta property="og:image" content="https://wasicafe.com/LOGOS.png">
 <meta property="og:url" content="https://wasicafe.com/carta.html">
 <meta property="og:site_name" content="Wasi Cafe">
 <meta property="og:locale" content="es_PE">
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wasi Cafe — Carta y Curso de Café en San Isidro, Lima">
-<meta name="twitter:description" content="Carta de café de especialidad y curso de barista con postres artesanales. 4 clases al mes desde S/300. Wasi Cafe, San Isidro, Lima.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Carta de Wasi Cafe — Café de especialidad y más en San Isidro, Lima">
+<meta name="twitter:description" content="Descubre la carta de Wasi Cafe: café de especialidad peruano, sándwiches, hamburguesas, postres artesanales, omelettes y jugos. Precios en soles. San Isidro, Lima.">
 <meta name="twitter:image" content="https://wasicafe.com/LOGOS.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,7 @@
   "geo": { "@type": "GeoCoordinates", "latitude": -12.1015761, "longitude": -77.0289421 },
   "servesCuisine": ["Peruvian", "Coffee", "Breakfast", "Brunch"],
   "priceRange": "S/ 5 - S/ 49",
-  "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/" },
+  "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/carta.html" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "21:00" }
@@ -81,6 +81,7 @@
     "priceCurrency": "PEN",
     "availability": "https://schema.org/InStock",
     "validFrom": "2026-04-04",
+    "priceValidUntil": "2026-12-31",
     "url": "https://wasicafe.com/#curso"
   },
   "hasCourseInstance": {
@@ -113,13 +114,7 @@
   "educationalLevel": "Beginner",
   "teaches": ["Latte Art", "Coffee Extraction Methods", "Artisan Dessert Making", "Professional Cupping", "Barista Techniques"],
   "inLanguage": "es",
-  "image": "https://wasicafe.com/LOGOS.png",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "200",
-    "bestRating": "5"
-  }
+  "image": "https://wasicafe.com/LOGOS.png"
 }
 </script>
 
@@ -163,6 +158,7 @@
     --cacao: #5C3D2E;
     --terracota: #B5651D;
     --oro: #C8943E;
+    --oro-text: #9A6E20;
     --crema: #F5EDE3;
     --hueso: #FAF6F1;
     --arena: #E8DDD0;
@@ -183,6 +179,7 @@
     --cacao: #D4C5B5;
     --terracota: #D4883A;
     --oro: #DAA84E;
+    --oro-text: #E2B45C;
     --crema: #2A2320;
     --hueso: #1E1A17;
     --arena: #332C26;
@@ -226,6 +223,15 @@
   [data-theme="dark"] meta[name="theme-color"] { content: "#161210"; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  /* ═══ FOCUS VISIBLE (A11y) ═══ */
+  :focus-visible {
+    outline: 3px solid var(--oro);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  :focus:not(:focus-visible) { outline: none; }
+
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: var(--body);
@@ -498,7 +504,7 @@
     background: linear-gradient(135deg, rgba(200,148,62,0.12), rgba(181,101,29,0.08));
     border: 1px solid rgba(200,148,62,0.25);
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--oro); margin-bottom: 0.4rem;
+    color: var(--oro-text); margin-bottom: 0.4rem;
   }
   .promos-title {
     font-family: var(--display); font-size: 1.5rem; font-weight: 400;
@@ -533,7 +539,7 @@
   .promo-desc { font-size: 0.7rem; color: var(--suave); font-weight: 300; line-height: 1.4; margin-bottom: 0.5rem; }
   .promo-price-row { display: flex; align-items: baseline; gap: 0.5rem; }
   .promo-price {
-    font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: var(--oro);
+    font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: var(--oro-text);
   }
   .promo-old-price {
     font-size: 0.75rem; color: var(--suave); text-decoration: line-through; font-weight: 400;
@@ -579,7 +585,7 @@
   }
   .hero-tag {
     font-size: 0.62rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--oro); margin-bottom: 0.5rem; opacity: 0; animation: fu 0.6s 0.1s ease forwards;
+    color: var(--oro-text); margin-bottom: 0.5rem; opacity: 0; animation: fu 0.6s 0.1s ease forwards;
   }
   .hero h1 {
     font-family: var(--display); font-size: 2.6rem; font-weight: 400;
@@ -592,6 +598,20 @@
     opacity: 0; animation: fu 0.6s 0.4s ease forwards;
   }
   @keyframes fu { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ═══ HERO CTA (PEDIR) ═══ */
+  .hero-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    margin-top: 1.1rem; padding: 0.75rem 1.6rem;
+    background: #25D366; color: #fff; text-decoration: none;
+    font-family: var(--body); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.03em; border-radius: 100px;
+    box-shadow: 0 6px 18px rgba(37,211,102,0.3);
+    transition: transform 0.25s, box-shadow 0.25s;
+    opacity: 0; animation: fu 0.6s 0.55s ease forwards;
+  }
+  .hero-cta:hover, .hero-cta:active { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+  .hero-cta svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
 
   /* ═══ CATEGORY NAV ═══ */
   .cnav {
@@ -616,7 +636,7 @@
   .mx { padding: 0 0 3rem; }
   .sec { padding-top: 2.5rem; }
   .sec-hd { text-align: center; padding: 0 1rem; margin-bottom: 1.4rem; }
-  .sec-num { font-family: var(--display); font-size: 0.72rem; color: var(--oro); letter-spacing: 0.12em; }
+  .sec-num { font-family: var(--display); font-size: 0.72rem; color: var(--oro-text); letter-spacing: 0.12em; }
   .sec-t {
     font-family: var(--display); font-size: 1.75rem; font-weight: 400;
     font-style: italic; color: var(--tostado); line-height: 1.15; margin: 0.15rem 0 0.25rem;
@@ -654,10 +674,10 @@
     font-size: 0.72rem; font-weight: 300; color: var(--suave); line-height: 1.45;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .card-pr { font-family: var(--display); font-size: 1rem; font-weight: 600; color: var(--oro); margin-top: 0.35rem; }
+  .card-pr { font-family: var(--display); font-size: 1rem; font-weight: 600; color: var(--oro-text); margin-top: 0.35rem; }
   .card-sizes { display: flex; gap: 0.8rem; margin-top: 0.35rem; flex-wrap: wrap; }
   .card-sz { display: flex; flex-direction: column; align-items: flex-start; }
-  .sz-price { font-family: var(--display); font-size: 0.92rem; font-weight: 600; color: var(--oro); line-height: 1.2; }
+  .sz-price { font-family: var(--display); font-size: 0.92rem; font-weight: 600; color: var(--oro-text); line-height: 1.2; }
   .sz-price.alt { color: var(--terracota); }
   .sz-label {
     font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em;
@@ -852,12 +872,12 @@
 
     <!-- Language selector -->
     <div class="lang-cards">
-      <div class="lang-card" onclick="enterMenu('es')" role="button" tabindex="0">
+      <div class="lang-card" onclick="enterMenu('es')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();enterMenu('es');}" role="button" tabindex="0" aria-label="Ver la carta en español">
         <div class="lang-card-flag">&#127477;&#127466;</div>
         <div class="lang-card-label">Carta</div>
         <div class="lang-card-sub">Espa&ntilde;ol</div>
       </div>
-      <div class="lang-card" onclick="enterMenu('en')" role="button" tabindex="0">
+      <div class="lang-card" onclick="enterMenu('en')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();enterMenu('en');}" role="button" tabindex="0" aria-label="View the menu in English">
         <div class="lang-card-flag">&#127482;&#127480;</div>
         <div class="lang-card-label">Menu</div>
         <div class="lang-card-sub">English</div>
@@ -933,7 +953,7 @@
 
 <!-- WiFi Modal -->
 <div class="wifi-modal-overlay" id="wifiModal" onclick="closeWifiModal(event)">
-  <div class="wifi-modal" onclick="event.stopPropagation()">
+  <div class="wifi-modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="WiFi Gratis" tabindex="-1">
     <div class="wifi-header" style="margin-bottom:1.2rem">
       <svg class="wifi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
       <span class="wifi-title">WiFi Gratis</span>
@@ -949,14 +969,18 @@
   <p class="hero-tag" data-es="Wasi Cafe &middot; San Isidro, Lima" data-en="Wasi Cafe &middot; San Isidro, Lima">Wasi Cafe &middot; San Isidro, Lima</p>
   <h1 data-es="Nuestra Carta" data-en="Our Menu">Nuestra Carta</h1>
   <p class="hero-p" data-es="Sabores peruanos auténticos y café de especialidad, preparados con alma en San Isidro." data-en="Authentic Peruvian flavors and specialty coffee, crafted with soul in San Isidro.">Sabores peruanos auténticos y café de especialidad, preparados con alma en San Isidro.</p>
+  <a class="hero-cta" id="heroOrderCta" href="https://wa.me/51908724496?text=Hola%20Wasi%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer" aria-label="Hacer un pedido por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+    <span data-es="Pedir por WhatsApp" data-en="Order on WhatsApp">Pedir por WhatsApp</span>
+  </a>
 </section>
 
 <!-- Search -->
 <div class="search-wrap" id="searchWrap">
   <div class="search-box">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-    <input type="text" class="search-input" id="searchInput" placeholder="Buscar en la carta..." oninput="handleSearch()">
-    <button class="search-clear" id="searchClear" onclick="clearSearch()">&times;</button>
+    <input type="text" class="search-input" id="searchInput" placeholder="Buscar en la carta..." aria-label="Buscar en la carta" oninput="handleSearch()">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpiar búsqueda">&times;</button>
   </div>
 </div>
 
@@ -1275,8 +1299,29 @@ function showWelcome(e) {
 }
 
 // ═══ WIFI MODAL ═══
-function toggleWifiModal() { document.getElementById('wifiModal').classList.toggle('show'); }
-function closeWifiModal(e) { if (e.target===e.currentTarget) document.getElementById('wifiModal').classList.remove('show'); }
+let wifiModalLastFocus = null;
+function openWifiModal() {
+  const modal = document.getElementById('wifiModal');
+  wifiModalLastFocus = document.activeElement;
+  modal.classList.add('show');
+  const dialog = modal.querySelector('.wifi-modal');
+  if (dialog) dialog.focus();
+}
+function hideWifiModal() {
+  const modal = document.getElementById('wifiModal');
+  if (!modal.classList.contains('show')) return;
+  modal.classList.remove('show');
+  if (wifiModalLastFocus && typeof wifiModalLastFocus.focus === 'function') wifiModalLastFocus.focus();
+  wifiModalLastFocus = null;
+}
+function toggleWifiModal() {
+  const modal = document.getElementById('wifiModal');
+  if (modal.classList.contains('show')) hideWifiModal(); else openWifiModal();
+}
+function closeWifiModal(e) { if (e.target===e.currentTarget) hideWifiModal(); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('wifiModal').classList.contains('show')) hideWifiModal();
+});
 
 // ═══ SEARCH ═══
 function handleSearch() {
@@ -1450,6 +1495,8 @@ document.getElementById('wifiPassDisplay').textContent = WIFI_PASS;
 document.getElementById('wifiNameModal').textContent = WIFI_NAME;
 document.getElementById('wifiPassModal').textContent = WIFI_PASS;
 document.querySelector('.whatsapp-fab').href = `https://wa.me/${WHATSAPP}`;
+const heroCta = document.getElementById('heroOrderCta');
+if (heroCta) heroCta.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Wasi, quiero hacer un pedido')}`;
 generateWifiQR('wifiQr');
 updateStatus();
 

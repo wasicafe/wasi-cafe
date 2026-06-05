@@ -55,6 +55,7 @@
     "priceCurrency": "PEN",
     "availability": "https://schema.org/InStock",
     "validFrom": "2026-04-04",
+    "priceValidUntil": "2026-12-31",
     "url": "https://wasicafe.com/curso.html"
   },
   "hasCourseInstance": {
@@ -77,8 +78,7 @@
   "educationalLevel": "Beginner",
   "teaches": ["Latte Art", "Coffee Extraction Methods", "Artisan Dessert Making", "Professional Cupping", "Barista Techniques"],
   "inLanguage": "es",
-  "image": "https://wasicafe.com/LOGOS.png",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "200", "bestRating": "5" }
+  "image": "https://wasicafe.com/LOGOS.png"
 }
 </script>
 
@@ -101,6 +101,7 @@
     --body: 'Outfit', sans-serif;
     --gold: #C8943E;
     --gold-light: #DAA84E;
+    --gold-text: #DAA84E;
     --terra: #B5651D;
     --bg: #0D0A08;
     --bg-card: rgba(255,255,255,0.03);
@@ -117,6 +118,13 @@
     font-family: var(--body); background: var(--bg); color: var(--text);
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
     line-height: 1.6;
+  }
+
+  /* ═══ FOCUS VISIBLE (a11y) ═══ */
+  :focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   /* ═══ ANIMATIONS ═══ */
@@ -174,6 +182,14 @@
     letter-spacing:0.04em;
   }
   .nav-cta:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(200,148,62,0.35); }
+  .nav-toggle {
+    display:none; align-items:center; justify-content:center;
+    width:40px; height:40px; padding:0; border:none; border-radius:10px;
+    background:transparent; color:var(--text); cursor:pointer;
+    transition:background 0.25s;
+  }
+  .nav-toggle:hover { background:rgba(255,255,255,0.05); }
+  .nav-toggle svg { width:24px; height:24px; }
 
   /* ═══ CONTAINER ═══ */
   .container { max-width:760px; margin:0 auto; padding:0 1.2rem; position:relative; z-index:2; }
@@ -188,7 +204,7 @@
     padding:0.4rem 1.1rem; border-radius:100px;
     background:rgba(200,148,62,0.08); border:1px solid rgba(200,148,62,0.25);
     font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--gold); margin-bottom:1.5rem;
+    color:var(--gold-text); margin-bottom:1.5rem;
     opacity:0; animation:fadeUp 0.7s 0.2s ease forwards;
   }
   .hero-badge-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse 2s infinite; }
@@ -254,7 +270,7 @@
   /* ═══ SECTION HEADERS ═══ */
   .sec-label {
     font-size:0.6rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--gold); margin-bottom:0.5rem;
+    color:var(--gold-text); margin-bottom:0.5rem;
   }
   .sec-title {
     font-family:var(--display); font-size:1.8rem; font-weight:400;
@@ -449,7 +465,19 @@
     .bento-card.wide { grid-column:auto; }
     .pricing-amount { font-size:3rem; }
     .hero { min-height:auto; padding:7rem 0 2rem; }
-    .nav-link { display:none; }
+    .nav-toggle { display:flex; }
+    .nav-right {
+      position:absolute; top:100%; right:0; left:0;
+      flex-direction:column; align-items:stretch; gap:0.4rem;
+      padding:0.8rem 1.2rem 1.1rem;
+      background:rgba(13,10,8,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 12px 30px rgba(0,0,0,0.4);
+      display:none;
+    }
+    .nav-right.open { display:flex; }
+    .nav-link { padding:0.7rem 1rem; font-size:0.8rem; }
+    .nav-right .nav-cta { text-align:center; padding:0.7rem 1.2rem; font-size:0.78rem; }
   }
   @media (min-width:640px) {
     .container { max-width:800px; }
@@ -472,7 +500,10 @@
 <!-- Nav -->
 <nav class="nav" id="nav">
   <a href="/" class="nav-logo">Wasi <b>Cafe</b></a>
-  <div class="nav-right">
+  <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir men&uacute;" aria-expanded="false" aria-controls="navMenu">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="nav-right" id="navMenu">
     <a href="/" class="nav-link">Inicio</a>
     <a href="carta.html" class="nav-link">Carta</a>
     <a href="https://wa.me/51908724496?text=Hola!%20Me%20interesa%20el%20curso%20de%20caf%C3%A9%20y%20postres%20de%20Wasi%20Cafe%20%F0%9F%8E%93%E2%98%95" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Inscr&iacute;bete">Inscr&iacute;bete</a>
@@ -627,39 +658,39 @@
 
     <div class="faq-list" id="faqList">
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" onclick="toggleFaq(this)">
+        <div class="faq-q" id="faqQ1" role="button" tabindex="0" aria-expanded="false" aria-controls="faqA1" onclick="toggleFaq(this)">
           <span>&iquest;Cu&aacute;nto cuesta el curso?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="faq-a"><p>El curso tiene un costo de S/ 300 al mes, que incluye 4 clases presenciales (1 por semana), todos los materiales, ingredientes de caf&eacute; de especialidad y certificaci&oacute;n.</p></div>
+        <div class="faq-a" id="faqA1" role="region" aria-labelledby="faqQ1"><p>El curso tiene un costo de S/ 300 al mes, que incluye 4 clases presenciales (1 por semana), todos los materiales, ingredientes de caf&eacute; de especialidad y certificaci&oacute;n.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" onclick="toggleFaq(this)">
+        <div class="faq-q" id="faqQ2" role="button" tabindex="0" aria-expanded="false" aria-controls="faqA2" onclick="toggleFaq(this)">
           <span>&iquest;Necesito experiencia previa?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="faq-a"><p>No, el curso est&aacute; dise&ntilde;ado para principiantes. Empezamos desde cero y avanzamos hasta t&eacute;cnicas profesionales. Solo necesitas ganas de aprender.</p></div>
+        <div class="faq-a" id="faqA2" role="region" aria-labelledby="faqQ2"><p>No, el curso est&aacute; dise&ntilde;ado para principiantes. Empezamos desde cero y avanzamos hasta t&eacute;cnicas profesionales. Solo necesitas ganas de aprender.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" onclick="toggleFaq(this)">
+        <div class="faq-q" id="faqQ3" role="button" tabindex="0" aria-expanded="false" aria-controls="faqA3" onclick="toggleFaq(this)">
           <span>&iquest;D&oacute;nde se dictan las clases?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="faq-a"><p>Las clases son 100% presenciales en Wasi Cafe, ubicado en Luis Felipe Villar&aacute;n 904, San Isidro, Lima. Practicar&aacute;s con equipos profesionales reales.</p></div>
+        <div class="faq-a" id="faqA3" role="region" aria-labelledby="faqQ3"><p>Las clases son 100% presenciales en Wasi Cafe, ubicado en Luis Felipe Villar&aacute;n 904, San Isidro, Lima. Practicar&aacute;s con equipos profesionales reales.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" onclick="toggleFaq(this)">
+        <div class="faq-q" id="faqQ4" role="button" tabindex="0" aria-expanded="false" aria-controls="faqA4" onclick="toggleFaq(this)">
           <span>&iquest;Qu&eacute; incluye la certificaci&oacute;n?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="faq-a"><p>Al completar las 4 clases recibes un certificado profesional de barista avalado por Wasi Cafe. Incluye competencias en extracci&oacute;n, latte art, cata y reposter&iacute;a.</p></div>
+        <div class="faq-a" id="faqA4" role="region" aria-labelledby="faqQ4"><p>Al completar las 4 clases recibes un certificado profesional de barista avalado por Wasi Cafe. Incluye competencias en extracci&oacute;n, latte art, cata y reposter&iacute;a.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" role="button" tabindex="0" onclick="toggleFaq(this)">
+        <div class="faq-q" id="faqQ5" role="button" tabindex="0" aria-expanded="false" aria-controls="faqA5" onclick="toggleFaq(this)">
           <span>&iquest;Cu&aacute;ndo puedo empezar?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="faq-a"><p>Puedes inscribirte en cualquier momento. Los nuevos ciclos empiezan cada mes. Cont&aacute;ctanos por WhatsApp y te asignamos al pr&oacute;ximo grupo disponible.</p></div>
+        <div class="faq-a" id="faqA5" role="region" aria-labelledby="faqQ5"><p>Puedes inscribirte en cualquier momento. Los nuevos ciclos empiezan cada mes. Cont&aacute;ctanos por WhatsApp y te asignamos al pr&oacute;ximo grupo disponible.</p></div>
       </div>
     </div>
   </div>
@@ -712,6 +743,26 @@
       ticking = false;
     }); }
   }, {passive:true});
+
+  // Mobile nav hamburger
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (navToggle && navMenu) {
+    const closeMenu = () => {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menú');
+    };
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    });
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) { closeMenu(); navToggle.focus(); }
+    });
+  }
 
   // Cursor glow (desktop)
   const glow = document.getElementById('cursorGlow');
@@ -783,8 +834,15 @@
   window.toggleFaq = function(q) {
     const item = q.parentElement;
     const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      const h = i.querySelector('.faq-q');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      q.setAttribute('aria-expanded', 'true');
+    }
   };
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('keydown', e => {
