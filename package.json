@@ -1,0 +1,16 @@
+{
+  "name": "wasi-cafe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de Wasi Café — café de especialidad, brunch y curso de barismo en San Isidro, Lima.",
+  "homepage": "https://wasicafe.com",
+  "scripts": {
+    "start": "ruby \"version final de wasi/serve.rb\"",
+    "serve": "ruby \"version final de wasi/serve.rb\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wasicafe/wasi-cafe.git"
+  },
+  "license": "UNLICENSED"
+}

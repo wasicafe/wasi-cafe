@@ -15,22 +15,27 @@
 <meta name="author" content="Wasi Cafe">
 <meta name="language" content="Spanish">
 <meta name="revisit-after" content="7 days">
-<link rel="icon" type="image/png" href="LOGOS.png">
-<link rel="apple-touch-icon" href="LOGOS.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="canonical" href="https://wasicafe.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Wasi Cafe — Café de Especialidad en San Isidro, Lima">
 <meta property="og:description" content="Café de especialidad, sándwiches peruanos y postres artesanales. Curso de barista. San Isidro, Lima.">
-<meta property="og:image" content="https://wasicafe.com/LOGOS.png">
+<meta property="og:image" content="https://wasicafe.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta property="og:url" content="https://wasicafe.com/">
 <meta property="og:site_name" content="Wasi Cafe">
 <meta property="og:locale" content="es_PE">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Wasi Cafe — Café de Especialidad en San Isidro, Lima">
 <meta name="twitter:description" content="Café de especialidad, sándwiches peruanos y postres artesanales. San Isidro, Lima.">
-<meta name="twitter:image" content="https://wasicafe.com/LOGOS.png">
+<meta name="twitter:image" content="https://wasicafe.com/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,6 +82,8 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.7rem 1.2rem;border-radius:0 0 10px 0;background:var(--gold);color:#fff;font-size:.8rem;font-weight:600;text-decoration:none}
+.skip-link:focus{left:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
 
@@ -290,9 +297,13 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 /* ═══════════════ FOOTER ═══════════════ */
 .footer{text-align:center;padding:2.5rem 1.5rem;border-top:1px solid var(--border)}
 .footer-brand{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--text-mid);margin-bottom:.5rem}
-.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.8rem}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.8rem;flex-wrap:wrap}
 .footer-links a{font-size:.72rem;color:var(--text-muted);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--gold-text)}
+.footer-contact{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem 1.2rem;margin-bottom:.8rem;font-size:.7rem;color:var(--text-muted)}
+.footer-contact a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+.footer-contact a:hover{color:var(--gold-text)}
+.footer-meta{font-size:.68rem;color:var(--text-dim);margin-bottom:.6rem;line-height:1.6}
 .footer-copy{font-size:.6rem;color:var(--text-dim)}
 
 /* WHATSAPP FAB */
@@ -336,6 +347,7 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
 <div id="cursorGlow" class="cursor-glow"></div>
@@ -360,6 +372,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer" class="nav-cta">Reservar</a>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
@@ -719,6 +733,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="footer">
   <p class="footer-brand">Wasi Cafe</p>
@@ -729,7 +745,13 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     <a href="https://www.tiktok.com/@wasi.caf" target="_blank" rel="noopener noreferrer">TikTok</a>
     <a href="https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima" target="_blank" rel="noopener noreferrer">Mapa</a>
   </div>
-  <p class="footer-copy">&copy; 2026 Wasi Cafe &middot; Luis Felipe Villar&aacute;n 904, San Isidro, Lima &middot; Todos los derechos reservados</p>
+  <div class="footer-contact">
+    <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer">WhatsApp +51 908 724 496</a>
+    <a href="tel:+51908724496">Llamar +51 908 724 496</a>
+    <a href="mailto:wasicafe@gmail.com">wasicafe@gmail.com</a>
+  </div>
+  <p class="footer-meta">Luis Felipe Villar&aacute;n 904, San Isidro, Lima, Per&uacute;<br>Lun-Vie 8:00am&ndash;9:00pm &middot; S&aacute;b 9:00am&ndash;9:00pm &middot; Dom cerrado</p>
+  <p class="footer-copy">&copy; 2026 Wasi Cafe &middot; Todos los derechos reservados</p>
 </footer>
 
 <!-- WhatsApp FAB -->
