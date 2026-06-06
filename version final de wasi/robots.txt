@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
-Allow: /carta.html
-Allow: /curso.html
+Allow: /carta
+Allow: /curso
 
 Sitemap: https://wasicafe.com/sitemap.xml
 

@@ -18,10 +18,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" href="LOGOS.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="canonical" href="https://wasicafe.com/carta.html">
+<link rel="canonical" href="https://wasicafe.com/carta">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -31,7 +30,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta property="og:url" content="https://wasicafe.com/carta.html">
+<meta property="og:url" content="https://wasicafe.com/carta">
 <meta property="og:site_name" content="Wasi Cafe">
 <meta property="og:locale" content="es_PE">
 
@@ -62,7 +61,7 @@
   "geo": { "@type": "GeoCoordinates", "latitude": -12.1015761, "longitude": -77.0289421 },
   "servesCuisine": ["Peruvian", "Coffee", "Breakfast", "Brunch"],
   "priceRange": "S/ 5 - S/ 49",
-  "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/carta.html" },
+  "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/carta" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "21:00" }
@@ -89,7 +88,7 @@
     "availability": "https://schema.org/InStock",
     "validFrom": "2026-04-04",
     "priceValidUntil": "2026-12-31",
-    "url": "https://wasicafe.com/curso.html"
+    "url": "https://wasicafe.com/curso"
   },
   "hasCourseInstance": {
     "@type": "CourseInstance",
@@ -165,7 +164,7 @@
   "name": "Carta de Wasi Cafe",
   "description": "Café de especialidad peruano, sándwiches, hamburguesas, omelettes, postres artesanales, jugos y más. Precios en soles (PEN).",
   "inLanguage": "es",
-  "url": "https://wasicafe.com/carta.html",
+  "url": "https://wasicafe.com/carta",
   "provider": {
     "@type": "CafeOrCoffeeShop",
     "name": "Wasi Cafe",
@@ -2426,7 +2425,7 @@
 <div class="app-wrap" id="appWrap">
 
 <header class="hdr" id="hdr">
-  <a href="#" class="hdr-logo" onclick="showWelcome(event)">Wasi Cafe</a>
+  <a href="/" class="hdr-logo" onclick="showWelcome(event)">Wasi Cafe</a>
   <div class="hdr-right">
     <button class="hdr-btn" onclick="toggleDark()" aria-label="Dark mode" id="hdrDarkBtn">
       <svg id="hdrDarkIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
@@ -2488,7 +2487,7 @@
 </div>
 
 
-<nav class="cnav" id="cnav">
+<nav class="cnav" id="cnav" aria-label="Categorías de la carta">
   <div class="cnav-in" id="cnavIn"></div>
 </nav>
 
@@ -2514,7 +2513,7 @@
   </div>
   <p data-es="Precios en <span class='ac'>Soles (S/)</span>. Servicio e impuestos incluidos." data-en="Prices in <span class='ac'>Peruvian Soles (S/)</span>. Service & taxes included.">Precios en <span class="ac">Soles (S/)</span>. Servicio e impuestos incluidos.</p>
   <p class="ftr-hours" data-es="<span class='ac'>Horario:</span> Lun&ndash;Vie 8:00am&ndash;9:00pm &middot; S&aacute;b 9:00am&ndash;9:00pm &middot; Dom cerrado" data-en="<span class='ac'>Hours:</span> Mon&ndash;Fri 8:00am&ndash;9:00pm &middot; Sat 9:00am&ndash;9:00pm &middot; Sun closed"><span class="ac">Horario:</span> Lun&ndash;Vie 8:00am&ndash;9:00pm &middot; S&aacute;b 9:00am&ndash;9:00pm &middot; Dom cerrado</p>
-  <p class="ftr-addr"><a href="https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima" target="_blank" rel="noopener noreferrer">Luis Felipe Villar&aacute;n 904, San Isidro &middot; Lima, Per&uacute;</a><br><a href="https://wasicafe.com">wasicafe.com</a></p>
+  <p class="ftr-addr"><a href="https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima" target="_blank" rel="noopener noreferrer">Luis Felipe Villar&aacute;n 904, San Isidro &middot; Lima, Per&uacute;</a><br><a href="https://wasicafe.com/">wasicafe.com</a></p>
 </footer>
 
 <div class="bbar" id="bbar">
@@ -2908,7 +2907,7 @@ function renderPromos() {
 // ═══ RENDER MENU ═══
 function render() {
   const md = 'Med', lg = L==='es' ? 'Grande / Jarra' : 'Large / Pitcher';
-  const cursoNav = `<a class="cnav-a curso-nav-link" href="curso.html">${L==='es'?'Curso':'Course'}</a>`;
+  const cursoNav = `<a class="cnav-a curso-nav-link" href="/curso">${L==='es'?'Curso':'Course'}</a>`;
   document.getElementById('cnavIn').innerHTML = cursoNav + D.map(c =>
     `<a class="cnav-a" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>`
   ).join('');
