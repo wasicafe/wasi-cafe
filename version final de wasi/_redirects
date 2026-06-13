@@ -1,3 +1,4 @@
 /home.html  /  301
-# URL limpia del QR de mesa: wasicafe.com/mesa?n=5 sirve mesa.html (conserva ?n=)
-/mesa  /mesa.html  200
+# Nota: /mesa lo sirve Cloudflare Pages automáticamente desde mesa.html (URL
+# limpia, igual que /carta), conservando el query (?t=/?n=). NO añadir una regla
+# /mesa -> /mesa.html: choca con la URL limpia y crea un bucle de redirección.
