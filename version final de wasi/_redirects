@@ -1,4 +1,7 @@
 /home.html  /  301
+# La escuela vive en /curso (el botón de la home apunta ahí); /escuela redirige.
+/escuela  /curso  301
+/escuela.html  /curso  301
 # Nota: /mesa lo sirve Cloudflare Pages automáticamente desde mesa.html (URL
 # limpia, igual que /carta), conservando el query (?t=/?n=). NO añadir una regla
 # /mesa -> /mesa.html: choca con la URL limpia y crea un bucle de redirección.
