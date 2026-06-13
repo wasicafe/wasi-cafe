@@ -1,1 +1,3 @@
 /home.html  /  301
+# URL limpia del QR de mesa: wasicafe.com/mesa?n=5 sirve mesa.html (conserva ?n=)
+/mesa  /mesa.html  200

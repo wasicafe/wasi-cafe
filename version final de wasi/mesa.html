@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<title>Pedir en la mesa · Wasi Café</title>
+<meta name="theme-color" content="#FFFAF5">
+<meta name="description" content="Haz tu pedido desde la mesa en Wasi Café. Escanea, elige y el mesero te lo confirma. Pagas al final en tu mesa.">
+<!-- Esta página NO debe indexarse: es solo para clientes sentados en una mesa. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ylcsntehabyaycxlbaue.supabase.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --espresso:#1C1410; --tostado:#3D2B1F; --cacao:#5C3D2E; --terracota:#B5651D;
+    --oro:#C8943E; --oro-text:#9A6E20; --crema:#F5EDE3; --hueso:#FAF6F1;
+    --arena:#E8DDD0; --leche:#FFFAF5; --texto:#2A1F17; --suave:#6B5B50;
+    --linea:#D4C5B5; --card-bg:#ffffff;
+    --ok:#3E7D52; --danger:#B23B3B;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --body:'Outfit', sans-serif;
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-t: env(safe-area-inset-top, 0px);
+  }
+  [data-theme="dark"] {
+    --espresso:#F5EDE3; --tostado:#E8DDD0; --cacao:#D4C5B5; --terracota:#D4883A;
+    --oro:#DAA84E; --oro-text:#E2B45C; --crema:#2A2320; --hueso:#1E1A17;
+    --arena:#332C26; --leche:#161210; --texto:#E8DDD0; --suave:#A89888;
+    --linea:#3D3530; --card-bg:#1E1A17;
+    --ok:#5BAE78; --danger:#E07A7A;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html, body { background:var(--leche); color:var(--texto); font-family:var(--body); }
+  body { min-height:100dvh; overscroll-behavior-y:none; }
+  body.modal-open { overflow:hidden; }
+
+  /* ── Encabezado ── */
+  .hdr {
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; gap:0.75rem;
+    padding:calc(0.7rem + var(--safe-t)) 1rem 0.7rem;
+    background:color-mix(in srgb, var(--leche) 88%, transparent);
+    backdrop-filter:saturate(1.4) blur(12px);
+    -webkit-backdrop-filter:saturate(1.4) blur(12px);
+    border-bottom:1px solid var(--linea);
+  }
+  .hdr-logo { font-family:var(--display); font-size:1.3rem; font-weight:600; color:var(--tostado); line-height:1; text-decoration:none; }
+  .hdr-mesa { margin-left:auto; display:flex; align-items:center; gap:0.45rem;
+    background:rgba(200,148,62,0.12); border:1px solid var(--oro);
+    color:var(--oro-text); font-weight:700; font-size:0.82rem;
+    padding:0.35rem 0.7rem; border-radius:999px; white-space:nowrap; }
+  .hdr-mesa b { font-size:1rem; }
+  .icon-btn { display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
+    background:transparent; border:1px solid var(--linea); color:var(--tostado); cursor:pointer; }
+  .icon-btn svg { width:18px; height:18px; }
+
+  /* ── Hero / intro ── */
+  .intro { padding:1.4rem 1.1rem 0.4rem; text-align:center; }
+  .intro h1 { font-family:var(--display); font-weight:600; font-size:2rem; color:var(--tostado); line-height:1.05; }
+  .intro p { color:var(--suave); font-size:0.86rem; margin-top:0.35rem; }
+  .intro .flow { display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap; margin-top:0.9rem; }
+  .flow .step { display:flex; align-items:center; gap:0.35rem; font-size:0.7rem; color:var(--suave);
+    background:var(--card-bg); border:1px solid var(--linea); border-radius:999px; padding:0.3rem 0.6rem; }
+  .flow .step b { color:var(--terracota); }
+
+  /* ── Chips de categoría (scroll horizontal sticky) ── */
+  .cats { position:sticky; top:calc(3.5rem + var(--safe-t)); z-index:30;
+    display:flex; gap:0.45rem; overflow-x:auto; scrollbar-width:none;
+    padding:0.7rem 1rem; background:color-mix(in srgb, var(--leche) 92%, transparent);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--linea); }
+  .cats::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; font-family:var(--body); font-size:0.78rem; font-weight:600;
+    color:var(--suave); background:var(--card-bg); border:1px solid var(--linea);
+    border-radius:999px; padding:0.4rem 0.85rem; cursor:pointer; white-space:nowrap; transition:.15s; }
+  .chip.on { background:var(--tostado); color:var(--crema); border-color:var(--tostado); }
+
+  /* ── Secciones del menú ── */
+  main { padding:0.5rem 1rem calc(8rem + var(--safe-b)); max-width:640px; margin:0 auto; }
+  .sec { padding-top:1.3rem; scroll-margin-top:7rem; }
+  .sec-h { display:flex; align-items:baseline; gap:0.6rem; margin-bottom:0.7rem; }
+  .sec-h h2 { font-family:var(--display); font-size:1.5rem; font-weight:600; color:var(--tostado); }
+  .sec-h .ln { flex:1; height:1px; background:var(--linea); }
+
+  .item { display:flex; gap:0.85rem; align-items:flex-start; padding:0.85rem 0;
+    border-bottom:1px solid var(--linea); }
+  .item:last-child { border-bottom:0; }
+  .item-img { flex:0 0 64px; width:64px; height:64px; border-radius:12px; object-fit:cover;
+    background:var(--arena); border:1px solid var(--linea); }
+  .item-body { flex:1; min-width:0; }
+  .item-name { font-weight:600; font-size:0.95rem; color:var(--texto); line-height:1.25; }
+  .item-desc { font-size:0.76rem; color:var(--suave); margin-top:0.15rem; line-height:1.35;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .item-price { font-family:var(--display); font-weight:700; font-size:1.05rem; color:var(--oro-text); margin-top:0.3rem; }
+  .item-ctl { flex:0 0 auto; align-self:center; }
+
+  .add-btn { display:inline-flex; align-items:center; gap:0.3rem; font-family:var(--body);
+    font-weight:600; font-size:0.8rem; color:var(--crema); background:var(--terracota);
+    border:0; border-radius:10px; padding:0.5rem 0.8rem; cursor:pointer; min-height:40px; }
+  .add-btn:active { transform:scale(.96); }
+
+  .stepper { display:inline-flex; align-items:center; gap:0; background:var(--card-bg);
+    border:1px solid var(--oro); border-radius:10px; overflow:hidden; }
+  .stepper button { width:38px; height:40px; display:grid; place-items:center; background:transparent;
+    border:0; color:var(--terracota); font-size:1.25rem; font-weight:700; cursor:pointer; line-height:1; }
+  .stepper button:active { background:rgba(200,148,62,0.12); }
+  .stepper .q { min-width:30px; text-align:center; font-weight:700; font-size:0.95rem; color:var(--texto); }
+
+  /* ── Barra inferior flotante (ver pedido) ── */
+  .cartbar { position:fixed; left:0; right:0; bottom:0; z-index:45;
+    padding:0.7rem 1rem calc(0.7rem + var(--safe-b));
+    transform:translateY(120%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
+  .cartbar.show { transform:translateY(0); }
+  .cartbar-inner { max-width:640px; margin:0 auto; display:flex; align-items:center; gap:0.75rem;
+    background:var(--tostado); color:var(--crema); border-radius:16px; padding:0.75rem 0.85rem 0.75rem 1rem;
+    box-shadow:0 10px 30px rgba(28,20,16,0.35); cursor:pointer; }
+  .cartbar .count { display:grid; place-items:center; min-width:28px; height:28px; padding:0 0.4rem;
+    background:var(--oro); color:var(--espresso); border-radius:999px; font-weight:700; font-size:0.85rem; }
+  .cartbar .lbl { font-weight:600; font-size:0.92rem; }
+  .cartbar .tot { margin-left:auto; font-family:var(--display); font-weight:700; font-size:1.2rem; }
+  .cartbar .go { font-size:0.8rem; opacity:.85; }
+
+  /* ── Hoja del pedido (bottom sheet) ── */
+  .scrim { position:fixed; inset:0; z-index:50; background:rgba(28,20,16,0.55);
+    opacity:0; pointer-events:none; transition:opacity .2s; }
+  .scrim.show { opacity:1; pointer-events:auto; }
+  .sheet { position:fixed; left:0; right:0; bottom:0; z-index:55;
+    background:var(--leche); border-radius:22px 22px 0 0; border-top:1px solid var(--linea);
+    max-width:640px; margin:0 auto; max-height:88dvh; display:flex; flex-direction:column;
+    transform:translateY(100%); transition:transform .28s cubic-bezier(.2,.8,.2,1); }
+  .sheet.show { transform:translateY(0); }
+  .sheet-grip { width:42px; height:5px; border-radius:999px; background:var(--linea); margin:0.6rem auto 0.2rem; }
+  .sheet-h { display:flex; align-items:center; gap:0.6rem; padding:0.6rem 1.1rem; border-bottom:1px solid var(--linea); }
+  .sheet-h h3 { font-family:var(--display); font-size:1.4rem; font-weight:600; color:var(--tostado); }
+  .sheet-h .x { margin-left:auto; }
+  .sheet-body { overflow-y:auto; padding:0.4rem 1.1rem 0.5rem; -webkit-overflow-scrolling:touch; }
+  .cart-row { display:flex; align-items:center; gap:0.7rem; padding:0.7rem 0; border-bottom:1px solid var(--linea); }
+  .cart-row .nm { flex:1; min-width:0; }
+  .cart-row .nm b { font-weight:600; font-size:0.9rem; }
+  .cart-row .nm small { display:block; color:var(--suave); font-size:0.74rem; }
+  .cart-row .ln-tot { font-family:var(--display); font-weight:700; font-size:1rem; color:var(--oro-text); min-width:64px; text-align:right; }
+  .note-wrap { padding:0.9rem 0 0.4rem; }
+  .note-wrap label { display:block; font-size:0.72rem; font-weight:600; letter-spacing:0.04em;
+    text-transform:uppercase; color:var(--suave); margin-bottom:0.35rem; }
+  .note-wrap textarea { width:100%; resize:none; font-family:var(--body); font-size:0.88rem;
+    color:var(--texto); background:var(--card-bg); border:1px solid var(--linea); border-radius:12px;
+    padding:0.6rem 0.7rem; min-height:64px; }
+  .note-wrap textarea:focus { outline:2px solid var(--oro); outline-offset:1px; border-color:var(--oro); }
+
+  .sheet-foot { padding:0.8rem 1.1rem calc(1rem + var(--safe-b)); border-top:1px solid var(--linea); background:var(--leche); }
+  .sheet-foot .totrow { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:0.2rem; }
+  .sheet-foot .totrow .t1 { font-size:0.82rem; color:var(--suave); }
+  .sheet-foot .totrow .t2 { font-family:var(--display); font-weight:700; font-size:1.6rem; color:var(--tostado); }
+  .sheet-foot .pay-note { font-size:0.72rem; color:var(--suave); margin-bottom:0.7rem; display:flex; gap:0.35rem; align-items:flex-start; }
+  .sheet-foot .pay-note svg { width:14px; height:14px; color:var(--oro); flex-shrink:0; margin-top:1px; }
+  .send-btn { width:100%; min-height:54px; font-family:var(--body); font-weight:700; font-size:1.02rem;
+    color:#fff; background:var(--terracota); border:0; border-radius:14px; cursor:pointer; transition:.15s; }
+  .send-btn:active { transform:scale(.99); }
+  .send-btn:disabled { opacity:.6; cursor:default; }
+
+  /* ── Estados de pantalla completa (loading / error / éxito / sin mesa) ── */
+  .screen { min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:2rem 1.5rem; gap:0.9rem; }
+  .screen .emoji { font-size:3rem; }
+  .screen h2 { font-family:var(--display); font-size:1.9rem; font-weight:600; color:var(--tostado); }
+  .screen p { color:var(--suave); font-size:0.92rem; max-width:22rem; }
+  .screen .field { display:flex; gap:0.5rem; width:100%; max-width:18rem; margin-top:0.3rem; }
+  .screen input { flex:1; font-family:var(--body); font-size:1rem; text-align:center; color:var(--texto);
+    background:var(--card-bg); border:1px solid var(--linea); border-radius:12px; padding:0.7rem; }
+  .screen input:focus { outline:2px solid var(--oro); border-color:var(--oro); }
+  .screen .btn { font-family:var(--body); font-weight:700; font-size:0.95rem; color:#fff;
+    background:var(--terracota); border:0; border-radius:12px; padding:0.7rem 1.2rem; cursor:pointer; }
+  .screen .btn.ghost { background:transparent; color:var(--terracota); border:1px solid var(--terracota); }
+  .spinner { width:38px; height:38px; border-radius:50%; border:3px solid var(--linea); border-top-color:var(--terracota);
+    animation:spin .8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .ok-check { width:84px; height:84px; border-radius:50%; background:rgba(62,125,82,0.12);
+    display:grid; place-items:center; }
+  .ok-check svg { width:46px; height:46px; color:var(--ok); }
+  .toast { position:fixed; left:50%; bottom:calc(6.5rem + var(--safe-b)); transform:translateX(-50%) translateY(20px);
+    z-index:60; background:var(--danger); color:#fff; font-size:0.85rem; font-weight:500;
+    padding:0.6rem 1rem; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.25);
+    opacity:0; pointer-events:none; transition:.25s; max-width:90vw; text-align:center; }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+  .hidden { display:none !important; }
+  footer.legal { text-align:center; color:var(--suave); font-size:0.66rem; padding:1.5rem 1rem calc(1rem + var(--safe-b)); opacity:.7; }
+</style>
+</head>
+<body>
+
+<!-- CARGANDO -->
+<div id="loadingScreen" class="screen">
+  <div class="spinner"></div>
+  <p>Cargando la carta…</p>
+</div>
+
+<!-- SIN MESA / MESA NO ENCONTRADA -->
+<div id="noTableScreen" class="screen hidden">
+  <div class="emoji">☕️</div>
+  <h2>¿En qué mesa estás?</h2>
+  <p id="noTableMsg">Escribe el número de tu mesa para empezar a pedir. Lo encuentras en el QR de tu mesa.</p>
+  <form id="tableForm" class="field">
+    <input id="tableInput" inputmode="numeric" autocomplete="off" placeholder="N° de mesa" aria-label="Número de mesa">
+    <button class="btn" type="submit">Entrar</button>
+  </form>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <header class="hdr">
+    <a class="hdr-logo" href="/">Wasi Café</a>
+    <span class="hdr-mesa"><b id="mesaLabel">—</b></span>
+    <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema" title="Tema claro/oscuro">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </header>
+
+  <div class="intro">
+    <h1>Haz tu pedido</h1>
+    <p>Arma tu pedido y envíalo. El mesero te lo confirma.</p>
+    <div class="flow">
+      <span class="step"><b>1</b> Eliges</span>
+      <span class="step"><b>2</b> El mesero confirma</span>
+      <span class="step"><b>3</b> Pagas al final</span>
+    </div>
+  </div>
+
+  <div class="cats" id="cats"></div>
+  <main id="menu"></main>
+</div>
+
+<!-- BARRA INFERIOR -->
+<div class="cartbar" id="cartbar">
+  <div class="cartbar-inner" id="cartbarInner" role="button" tabindex="0">
+    <span class="count" id="cartCount">0</span>
+    <span class="lbl">Ver mi pedido</span>
+    <span class="tot" id="cartTotal">S/ 0.00</span>
+    <span class="go">›</span>
+  </div>
+</div>
+
+<!-- HOJA DEL PEDIDO -->
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Tu pedido">
+  <div class="sheet-grip"></div>
+  <div class="sheet-h">
+    <h3>Tu pedido</h3>
+    <span class="hdr-mesa"><b id="mesaLabel2">—</b></span>
+    <button class="icon-btn x" id="closeSheet" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="cartList"></div>
+  <div class="note-wrap" style="padding-left:1.1rem;padding-right:1.1rem;">
+    <label for="orderNote">Nota para el mesero (opcional)</label>
+    <textarea id="orderNote" maxlength="280" placeholder="Ej: sin azúcar, sin hielo, alguna alergia…"></textarea>
+  </div>
+  <div class="sheet-foot">
+    <div class="totrow"><span class="t1">Total estimado</span><span class="t2" id="sheetTotal">S/ 0.00</span></div>
+    <div class="pay-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span>El mesero confirma tu pedido antes de cocina. <b>Pagas al final en tu mesa</b> (no se paga aquí).</span>
+    </div>
+    <button class="send-btn" id="sendBtn">Enviar pedido a la mesa</button>
+  </div>
+</div>
+
+<!-- ÉXITO -->
+<div id="successScreen" class="screen hidden">
+  <div class="ok-check">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  </div>
+  <h2>¡Pedido enviado!</h2>
+  <p id="successMsg">Tu pedido llegó a la <b>Mesa —</b>. El mesero lo confirmará y lo llevará a cocina. Pagas al final en tu mesa.</p>
+  <button class="btn" id="orderMoreBtn">Pedir algo más</button>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer class="legal" id="legalFoot">Wasi Café · San Isidro, Lima · Precios en soles (PEN)</footer>
+
+<script>
+(function () {
+  "use strict";
+  // ── Configuración Supabase (anon key PÚBLICA por diseño) ──
+  var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
+  var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
+  var HEAD = { "apikey": ANON, "Authorization": "Bearer " + ANON };
+
+  // ── Estado ──
+  var mesa = null;               // etiqueta de la mesa, para mostrar ("Mesa 5")
+  var mesaId = null;             // id estable de la mesa (del QR) — ruteo no ambiguo
+  var categories = [];           // [{id,name,sort}]
+  var products = [];             // [{id,category_id,name,description,price,image_url}]
+  var cart = {};                 // { product_id: qty }
+  var sending = false;
+
+  // ── Utilidades ──
+  var $ = function (id) { return document.getElementById(id); };
+  function money(n) { return "S/ " + (Number(n) || 0).toFixed(2); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c];
+    });
+  }
+  function show(id) { $(id).classList.remove("hidden"); }
+  function hide(id) { $(id).classList.add("hidden"); }
+  // Etiqueta para mostrar: las mesas reales ya dicen "Mesa 5"/"Barra 2"/"Terraza 1".
+  // Si el cliente escribió solo un número ("5"), le anteponemos "Mesa".
+  function mesaDisplay() {
+    if (!mesa || mesa === "tu mesa") return "tu mesa";
+    return /^\d+$/.test(mesa) ? ("Mesa " + mesa) : mesa;
+  }
+  var toastT = null;
+  function toast(msg) {
+    var t = $("toast"); t.textContent = msg; t.classList.add("show");
+    if (toastT) clearTimeout(toastT);
+    toastT = setTimeout(function () { t.classList.remove("show"); }, 3200);
+  }
+
+  // ── Tema claro/oscuro (recuerda preferencia) ──
+  var SUN = '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  var MOON = '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+  function applyTheme(dark) {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    var ic = $("themeIcon"); if (ic) ic.outerHTML = dark ? SUN : MOON;
+    var mt = document.querySelector('meta[name="theme-color"]');
+    if (mt) mt.setAttribute("content", dark ? "#161210" : "#FFFAF5");
+    try { localStorage.setItem("wasi-theme", dark ? "dark" : "light"); } catch (e) {}
+  }
+  (function initTheme() {
+    var pref = null;
+    try { pref = localStorage.getItem("wasi-theme"); } catch (e) {}
+    var dark = pref ? pref === "dark" : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    applyTheme(!!dark);
+  })();
+
+  // ── Lee la mesa del QR: ?t=<id estable> (ruteo) y ?n=<etiqueta> (mostrar) ──
+  // El QR siempre lleva ambos. Un cliente que escribe a mano solo tiene la etiqueta.
+  function readTableParams() {
+    var p = new URLSearchParams(window.location.search);
+    mesaId = (p.get("t") || "").trim() || null;
+    mesa = (p.get("n") || p.get("mesa") || p.get("m") || "").trim() || null;
+  }
+
+  // ── Arranque ──
+  document.addEventListener("DOMContentLoaded", function () {
+    $("themeBtn").addEventListener("click", function () {
+      applyTheme(document.documentElement.getAttribute("data-theme") !== "dark");
+    });
+    $("tableForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = $("tableInput").value.trim();
+      if (!v) { $("tableInput").focus(); return; }
+      mesa = v;
+      var u = new URL(window.location.href);
+      u.searchParams.set("n", v);
+      window.history.replaceState({}, "", u);
+      startApp();
+    });
+    $("cartbarInner").addEventListener("click", openSheet);
+    $("cartbarInner").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSheet(); } });
+    $("closeSheet").addEventListener("click", closeSheet);
+    $("scrim").addEventListener("click", closeSheet);
+    $("sendBtn").addEventListener("click", submitOrder);
+    $("orderMoreBtn").addEventListener("click", function () {
+      hide("successScreen"); show("app"); renderCart(); updateBar();
+    });
+
+    readTableParams();
+    // Si el QR trae id pero no etiqueta (raro), igual se puede pedir.
+    if (mesaId && !mesa) mesa = "tu mesa";
+    if (!mesaId && !mesa) { hide("loadingScreen"); show("noTableScreen"); return; }
+    startApp();
+  });
+
+  function startApp() {
+    hide("noTableScreen"); show("loadingScreen"); hide("app");
+    $("mesaLabel").textContent = mesaDisplay();
+    $("mesaLabel2").textContent = mesaDisplay();
+    loadMenu();
+  }
+
+  // ── Carga del menú (categorías + productos disponibles) ──
+  function loadMenu() {
+    Promise.all([
+      fetch(SUPA + "/rest/v1/categories?select=id,name,sort&active=eq.true&order=sort,name", { headers: HEAD }),
+      fetch(SUPA + "/rest/v1/products?select=id,category_id,name,description,price,image_url,sort&available=eq.true&order=sort,name", { headers: HEAD })
+    ]).then(function (rs) {
+      if (!rs[0].ok || !rs[1].ok) throw new Error("menu");
+      return Promise.all([rs[0].json(), rs[1].json()]);
+    }).then(function (data) {
+      categories = data[0] || [];
+      products = data[1] || [];
+      renderMenu();
+      hide("loadingScreen"); show("app");
+    }).catch(function () {
+      hide("loadingScreen"); show("noTableScreen");
+      $("noTableMsg").textContent = "No pudimos cargar la carta. Revisa tu conexión y vuelve a intentar.";
+    });
+  }
+
+  // ── Render del menú por categorías ──
+  function renderMenu() {
+    var byCat = {};
+    products.forEach(function (p) {
+      var k = p.category_id || "_";
+      (byCat[k] = byCat[k] || []).push(p);
+    });
+    // Ordena categorías por 'sort'; las que tengan productos primero.
+    var cats = categories.filter(function (c) { return (byCat[c.id] || []).length; });
+    // Productos sin categoría (por si acaso) al final.
+    var orphans = byCat["_"] || [];
+
+    var chips = "", html = "";
+    cats.forEach(function (c) {
+      var cid = "sec-" + c.id;
+      chips += '<button class="chip" data-target="' + cid + '">' + esc(c.name) + '</button>';
+      html += '<section class="sec" id="' + cid + '"><div class="sec-h"><h2>' + esc(c.name) + '</h2><span class="ln"></span></div>' +
+        byCat[c.id].map(itemHTML).join("") + '</section>';
+    });
+    if (orphans.length) {
+      chips += '<button class="chip" data-target="sec-otros">Otros</button>';
+      html += '<section class="sec" id="sec-otros"><div class="sec-h"><h2>Otros</h2><span class="ln"></span></div>' +
+        orphans.map(itemHTML).join("") + '</section>';
+    }
+    if (!html) {
+      html = '<div class="screen" style="min-height:40dvh"><div class="emoji">😕</div><p>No hay productos disponibles ahora mismo.</p></div>';
+    }
+    $("cats").innerHTML = chips;
+    $("menu").innerHTML = html;
+
+    // Chips → scroll suave a la sección.
+    Array.prototype.forEach.call($("cats").querySelectorAll(".chip"), function (ch) {
+      ch.addEventListener("click", function () {
+        var el = $(ch.getAttribute("data-target"));
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    // Controles +/- y "Agregar" (delegación).
+    $("menu").addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-act]");
+      if (!btn) return;
+      var pid = btn.getAttribute("data-pid");
+      var act = btn.getAttribute("data-act");
+      if (act === "add" || act === "inc") setQty(pid, (cart[pid] || 0) + 1);
+      else if (act === "dec") setQty(pid, (cart[pid] || 0) - 1);
+    });
+    syncSpotlight();
+    updateBar();
+  }
+
+  function itemHTML(p) {
+    var img = p.image_url ? '<img class="item-img" src="' + esc(p.image_url) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : "";
+    var desc = p.description ? '<div class="item-desc">' + esc(p.description) + '</div>' : "";
+    return '<div class="item" data-row="' + p.id + '">' + img +
+      '<div class="item-body"><div class="item-name">' + esc(p.name) + '</div>' + desc +
+      '<div class="item-price">' + money(p.price) + '</div></div>' +
+      '<div class="item-ctl" id="ctl-' + p.id + '">' + ctlHTML(p.id) + '</div></div>';
+  }
+
+  function ctlHTML(pid) {
+    var q = cart[pid] || 0;
+    if (q <= 0) {
+      return '<button class="add-btn" data-act="add" data-pid="' + pid + '">+ Agregar</button>';
+    }
+    return '<div class="stepper"><button data-act="dec" data-pid="' + pid + '" aria-label="Quitar uno">−</button>' +
+      '<span class="q">' + q + '</span>' +
+      '<button data-act="inc" data-pid="' + pid + '" aria-label="Agregar uno">+</button></div>';
+  }
+
+  function setQty(pid, q) {
+    q = Math.max(0, Math.min(99, q | 0));
+    if (q <= 0) delete cart[pid]; else cart[pid] = q;
+    var ctl = $("ctl-" + pid);
+    if (ctl) ctl.innerHTML = ctlHTML(pid);
+    updateBar();
+    if (sheetOpen) renderCart();
+  }
+
+  // ── Resaltar chip de la sección visible al hacer scroll ──
+  var spotObserver = null;
+  function syncSpotlight() {
+    if (spotObserver) spotObserver.disconnect();
+    var chips = $("cats").querySelectorAll(".chip");
+    if (!chips.length || !("IntersectionObserver" in window)) return;
+    spotObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var id = en.target.id;
+        Array.prototype.forEach.call(chips, function (ch) {
+          ch.classList.toggle("on", ch.getAttribute("data-target") === id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    Array.prototype.forEach.call($("menu").querySelectorAll(".sec"), function (s) { spotObserver.observe(s); });
+  }
+
+  // ── Totales / barra ──
+  function cartCount() { var n = 0; for (var k in cart) n += cart[k]; return n; }
+  function cartTotal() {
+    var t = 0;
+    for (var k in cart) { var p = prodById(k); if (p) t += Number(p.price) * cart[k]; }
+    return t;
+  }
+  function prodById(id) {
+    for (var i = 0; i < products.length; i++) if (products[i].id === id) return products[i];
+    return null;
+  }
+  function updateBar() {
+    var n = cartCount();
+    $("cartCount").textContent = n;
+    $("cartTotal").textContent = money(cartTotal());
+    $("cartbar").classList.toggle("show", n > 0 && !sheetOpen && $("app").classList.contains("hidden") === false);
+  }
+
+  // ── Hoja del pedido ──
+  var sheetOpen = false;
+  function openSheet() {
+    if (cartCount() === 0) return;
+    renderCart();
+    sheetOpen = true;
+    document.body.classList.add("modal-open");
+    $("scrim").classList.add("show");
+    $("sheet").classList.add("show");
+    $("cartbar").classList.remove("show");
+  }
+  function closeSheet() {
+    sheetOpen = false;
+    document.body.classList.remove("modal-open");
+    $("scrim").classList.remove("show");
+    $("sheet").classList.remove("show");
+    updateBar();
+  }
+  function renderCart() {
+    var rows = "";
+    var keys = Object.keys(cart);
+    if (!keys.length) {
+      $("cartList").innerHTML = '<p style="padding:1.5rem 0;text-align:center;color:var(--suave)">Tu pedido está vacío.</p>';
+    } else {
+      keys.forEach(function (pid) {
+        var p = prodById(pid); if (!p) return;
+        var q = cart[pid];
+        rows += '<div class="cart-row"><div class="stepper"><button data-cact="dec" data-pid="' + pid + '">−</button>' +
+          '<span class="q">' + q + '</span><button data-cact="inc" data-pid="' + pid + '">+</button></div>' +
+          '<div class="nm"><b>' + esc(p.name) + '</b><small>' + money(p.price) + ' c/u</small></div>' +
+          '<div class="ln-tot">' + money(p.price * q) + '</div></div>';
+      });
+      $("cartList").innerHTML = rows;
+    }
+    $("sheetTotal").textContent = money(cartTotal());
+    var n = cartCount();
+    $("sendBtn").disabled = (n === 0 || sending);
+    $("sendBtn").textContent = sending ? "Enviando…" : (n === 0 ? "Tu pedido está vacío" : "Enviar pedido a la mesa");
+  }
+  // Steppers dentro de la hoja.
+  $("cartList").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-cact]"); if (!b) return;
+    var pid = b.getAttribute("data-pid");
+    setQty(pid, (cart[pid] || 0) + (b.getAttribute("data-cact") === "inc" ? 1 : -1));
+    // Si el carrito quedó vacío, cierra la hoja.
+    if (cartCount() === 0) closeSheet();
+  });
+
+  // ── Enviar el pedido (RPC place_table_order) ──
+  function submitOrder() {
+    if (sending) return;
+    var items = [];
+    for (var pid in cart) if (cart[pid] > 0) items.push({ product_id: pid, qty: cart[pid] });
+    if (!items.length) { toast("Agrega algo a tu pedido primero."); return; }
+    sending = true; renderCart();
+
+    var note = ($("orderNote").value || "").trim().slice(0, 280) || null;
+    // El servidor prioriza el id (del QR); la etiqueta es fallback para quien
+    // escribió el número a mano. Nunca se envía el precio: lo fija el servidor.
+    var payload = { p_items: items, p_notes: note };
+    if (mesaId) payload.p_table_id = mesaId;
+    if (mesa && mesa !== "tu mesa") payload.p_table = mesa;
+    fetch(SUPA + "/rest/v1/rpc/place_table_order", {
+      method: "POST",
+      headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      return r.json().then(function (body) { return { ok: r.ok, status: r.status, body: body }; });
+    }).then(function (res) {
+      sending = false;
+      if (res.ok && res.body && res.body.ok) {
+        // Éxito: limpiar y mostrar confirmación.
+        cart = {}; $("orderNote").value = "";
+        closeSheet();
+        renderMenuQuantities();
+        $("successMsg").innerHTML = "Tu pedido llegó a la <b>" + esc(mesaDisplay()) + "</b>. El mesero lo confirmará y lo llevará a cocina. <b>Pagas al final en tu mesa.</b>";
+        hide("app"); show("successScreen");
+        window.scrollTo(0, 0);
+      } else {
+        renderCart();
+        var msg = (res.body && res.body.message) ? res.body.message : "No se pudo enviar tu pedido. Intenta de nuevo.";
+        // Mensajes de la BD en español ya son claros (Mesa no encontrada, etc.)
+        toast(msg);
+      }
+    }).catch(function () {
+      sending = false; renderCart();
+      toast("Sin conexión. Revisa tu internet e intenta otra vez.");
+    });
+  }
+
+  // Tras enviar, refleja qty=0 en todas las tarjetas visibles.
+  function renderMenuQuantities() {
+    products.forEach(function (p) {
+      var ctl = $("ctl-" + p.id);
+      if (ctl) ctl.innerHTML = ctlHTML(p.id);
+    });
+    updateBar();
+  }
+})();
+</script>
+</body>
+</html>

@@ -8,7 +8,9 @@
   # CSP en modo Report-Only: VIGILA pero NO bloquea nada (cero riesgo de romper el
   # sitio en vivo). Si tras unos días no hay violaciones legítimas en la consola,
   # se puede pasar a 'Content-Security-Policy' (enforce).
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://images.unsplash.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'
+  # connect-src/img-src incluyen el backend Supabase: la página de pedido en mesa
+  # (mesa.html) lee la carta y envía el pedido contra la API de Supabase.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://images.unsplash.com https://ylcsntehabyaycxlbaue.supabase.co; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self' https://ylcsntehabyaycxlbaue.supabase.co; object-src 'none'; base-uri 'self'
 
 # Cached images: filenames are not content-hashed, so allow daily revalidation
 /*.webp
