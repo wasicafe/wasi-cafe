@@ -18,4 +18,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://wasicafe.com/blog</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url><loc>https://wasicafe.com/blog/cafe-de-especialidad-san-isidro-guia</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/brunch-en-san-isidro-que-pedir-como-elegir</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/curso-de-barista-en-lima-empezar-desde-cero</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/como-elegir-cafeteria-san-isidro</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
