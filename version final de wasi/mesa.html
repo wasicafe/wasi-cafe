@@ -181,6 +181,12 @@
   .ok-check { width:84px; height:84px; border-radius:50%; background:rgba(62,125,82,0.12);
     display:grid; place-items:center; }
   .ok-check svg { width:46px; height:46px; color:var(--ok); }
+  .review-cta { margin-top:2rem; padding-top:1.6rem; border-top:1px solid var(--linea); display:flex; flex-direction:column; align-items:center; gap:0.8rem; max-width:22rem; }
+  .review-cta p { font-size:0.84rem; color:var(--suave); }
+  .review-btn { display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--body); font-weight:600; font-size:0.9rem;
+    color:var(--tostado); background:var(--card-bg); border:1px solid var(--oro); border-radius:12px; padding:0.7rem 1.1rem; text-decoration:none; transition:.2s; }
+  .review-btn:active { transform:scale(.98); }
+  .review-btn .stars { color:#F5A623; letter-spacing:1px; }
   .toast { position:fixed; left:50%; bottom:calc(6.5rem + var(--safe-b)); transform:translateX(-50%) translateY(20px);
     z-index:60; background:var(--danger); color:#fff; font-size:0.85rem; font-weight:500;
     padding:0.6rem 1rem; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.25);
@@ -277,6 +283,12 @@
   <h2>¡Pedido enviado!</h2>
   <p id="successMsg">Tu pedido llegó a la <b>Mesa —</b>. El mesero lo confirmará y lo llevará a cocina. Pagas al final en tu mesa.</p>
   <button class="btn" id="orderMoreBtn">Pedir algo más</button>
+  <div class="review-cta">
+    <p>¿Te gusta tu experiencia en Wasi Café? ☕ Ayúdanos con una reseña</p>
+    <a class="review-btn" href="https://g.page/r/CYIVSAx9iBhZEBM/review" target="_blank" rel="noopener" aria-label="Déjanos una reseña en Google">
+      <span class="stars">★★★★★</span> Déjanos tu reseña en Google
+    </a>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
