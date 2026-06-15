@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://wasicafe.com/</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://wasicafe.com/carta</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://wasicafe.com/curso</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wasicafe.com/blog</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <url><loc>https://wasicafe.com/</loc><lastmod>2026-06-14</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wasicafe.com/carta</loc><lastmod>2026-06-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wasicafe.com/curso</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wasicafe.com/blog</loc><lastmod>2026-06-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wasicafe.com/blog/cafeterias-para-trabajar-laptop-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/cafeterias-pet-friendly-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/cafe-peruano-de-origen-cajamarca-cusco-amazonas-san-martin</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/metodos-de-filtrado-v60-chemex-aeropress-prensa-francesa</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/donde-desayunar-cerca-de-el-olivar-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/pedir-en-mesa-por-qr-cafeteria-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/postres-artesanales-cafeteria-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/sandwiches-peruanos-y-hamburguesas-san-isidro</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/como-preparar-cafe-de-especialidad-en-casa</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wasicafe.com/blog/cafeterias-de-especialidad-en-lima-guia-por-distritos</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wasicafe.com/blog/cafe-de-especialidad-san-isidro-guia</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wasicafe.com/blog/brunch-en-san-isidro-que-pedir-como-elegir</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wasicafe.com/blog/curso-de-barista-en-lima-empezar-desde-cero</loc><lastmod>2026-06-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
