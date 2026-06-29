@@ -2105,6 +2105,13 @@
     transition: 0.25s; flex-shrink: 0; white-space: nowrap; scroll-snap-align: start;
   }
   .cnav-a.on { color: var(--tostado); background: rgba(200,148,62,0.1); border-color: rgba(200,148,62,0.25); }
+  /* En pantallas anchas la barra ENVUELVE (centrada) en vez de cortarse: con
+     tantas categorías, en escritorio no hay scroll horizontal cómodo. En móvil
+     se mantiene el deslizable. */
+  @media (min-width: 768px) {
+    .cnav { overflow-x: visible; }
+    .cnav-in { flex-wrap: wrap; justify-content: center; min-width: 0; row-gap: 0.4rem; }
+  }
 
   /* ═══ SECTIONS ═══ */
   .mx { padding: 0 0 3rem; }
