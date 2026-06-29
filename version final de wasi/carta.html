@@ -2113,6 +2113,19 @@
     .cnav-in { flex-wrap: wrap; justify-content: center; min-width: 0; row-gap: 0.4rem; }
   }
 
+  /* ═══ SALUDO POR HORA (menú estratégico) ═══ */
+  .tod { text-align: center; padding: 1.6rem 1rem 0.2rem; }
+  .tod-g { font-family: var(--display); font-size: 1.5rem; font-style: italic; color: var(--tostado); line-height: 1.12; }
+  .tod-s { font-size: 0.8rem; font-weight: 300; color: var(--suave); margin: 0.35rem 0 0.85rem; }
+  .tod-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+  .tod-chip {
+    padding: 0.45rem 0.95rem; font-family: var(--body); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.03em; border-radius: 100px; text-decoration: none;
+    background: rgba(200,148,62,0.12); color: var(--tostado); border: 1px solid rgba(200,148,62,0.3);
+    transition: 0.2s;
+  }
+  .tod-chip:hover, .tod-chip:active { background: rgba(200,148,62,0.22); }
+
   /* ═══ SECTIONS ═══ */
   .mx { padding: 0 0 3rem; }
   .sec { padding-top: 2.5rem; }
@@ -2896,6 +2909,38 @@ function isPromoTime() {
   return h >= 12 && h < 16;
 }
 
+// ═══ MENÚ POR HORA (Lima) — muestra primero lo más relevante según el momento ═══
+function limaHour() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Lima' })).getHours();
+}
+function daypart() {
+  const h = limaHour();
+  if (h >= 5 && h < 11)  return { featured:['desayunos','cafes','omelettes'],
+    es:{g:'Buenos días', s:'Empieza el día con un desayuno recién hecho.'},
+    en:{g:'Good morning', s:'Start your day with a freshly made breakfast.'} };
+  if (h >= 11 && h < 16) return { featured:['recomendaciones','sandwiches','salchipapas'],
+    es:{g:'¡Buen provecho!', s:'Hora de almuerzo — sándwiches, hamburguesas y combos.'},
+    en:{g:'Enjoy your meal!', s:'Lunchtime — sandwiches, burgers and combos.'} };
+  if (h >= 16 && h < 19) return { featured:['cafes','postres','frappes','jugos'],
+    es:{g:'Buenas tardes', s:'Un café y algo dulce para la tarde.'},
+    en:{g:'Good afternoon', s:'Coffee and something sweet for the afternoon.'} };
+  if (h >= 19 && h < 23) return { featured:['cocteles','postres','sandwiches'],
+    es:{g:'Buenas noches', s:'Relájate con un cóctel o un postre.'},
+    en:{g:'Good evening', s:'Unwind with a cocktail or a dessert.'} };
+  return { featured:['cafes','postres'],
+    es:{g:'Bienvenido a Wasi', s:'Explora nuestra carta completa.'},
+    en:{g:'Welcome to Wasi', s:'Explore our full menu.'} };
+}
+// Copia de D con las categorías sugeridas de esta hora PRIMERO (renumeradas);
+// el resto mantiene su orden original. No muta D.
+function orderedD() {
+  const f = daypart().featured;
+  const rank = id => { const i = f.indexOf(id); return i === -1 ? 99 : i; };
+  return D.map((c, idx) => ({ c, idx }))
+    .sort((a, b) => (rank(a.c.id) - rank(b.c.id)) || (a.idx - b.idx))
+    .map((x, i) => Object.assign({}, x.c, { num: ('0' + (i + 1)).slice(-2) }));
+}
+
 function renderPromos() {
   const active = isPromoTime();
   const promosEl = document.getElementById('promos');
@@ -2934,13 +2979,17 @@ function renderPromos() {
 function render() {
   const md = 'Med', lg = L==='es' ? 'Grande / Jarra' : 'Large / Pitcher';
   const cursoNav = `<a class="cnav-a curso-nav-link" href="/curso">${L==='es'?'Curso':'Course'}</a>`;
-  document.getElementById('cnavIn').innerHTML = cursoNav + D.map(c =>
+  const DD = orderedD();
+  document.getElementById('cnavIn').innerHTML = cursoNav + DD.map(c =>
     `<a class="cnav-a" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>`
   ).join('');
-  document.getElementById('bbarSel').innerHTML = D.map(c =>
+  document.getElementById('bbarSel').innerHTML = DD.map(c =>
     `<option value="${c.id}">${c.num}. ${c[L].n}</option>`
   ).join('');
-  document.getElementById('main').innerHTML = D.map(c => {
+  const dp = daypart();
+  const todChips = dp.featured.map(id => { const c = D.find(x => x.id === id); return c ? `<a class="tod-chip" href="#${c.id}" onclick="navClick(event,'${c.id}')">${c[L].n}</a>` : ''; }).join('');
+  const todHtml = `<div class="tod"><div class="tod-g">${dp[L].g}</div><div class="tod-s">${dp[L].s}</div><div class="tod-chips">${todChips}</div></div>`;
+  document.getElementById('main').innerHTML = todHtml + DD.map(c => {
     const gClass = c.cmp ? 'grid cmp' : c.feat ? 'grid feat' : 'grid';
     const cards = c.items.map(i => {
       const d = i[L], cls = c.cmp ? ' cmp' : c.feat ? ' feat' : '';
