@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --espresso:#1C1410; --tostado:#3D2B1F; --cacao:#5C3D2E; --terracota:#B5651D;
+    --espresso:#1C1410; --tostado:#3D2B1F; --cacao:#5C3D2E; --terracota:#B5651D; --terracota-text:#9E5117;
     --oro:#C8943E; --oro-text:#9A6E20; --crema:#F5EDE3; --hueso:#FAF6F1;
     --arena:#E8DDD0; --leche:#FFFAF5; --texto:#2A1F17; --suave:#6B5B50;
     --linea:#D4C5B5; --card-bg:#ffffff;
@@ -28,7 +28,7 @@
     --safe-t: env(safe-area-inset-top, 0px);
   }
   [data-theme="dark"] {
-    --espresso:#F5EDE3; --tostado:#E8DDD0; --cacao:#D4C5B5; --terracota:#D4883A;
+    --espresso:#F5EDE3; --tostado:#E8DDD0; --cacao:#D4C5B5; --terracota:#D4883A; --terracota-text:#D4883A;
     --oro:#DAA84E; --oro-text:#E2B45C; --crema:#2A2320; --hueso:#1E1A17;
     --arena:#332C26; --leche:#161210; --texto:#E8DDD0; --suave:#A89888;
     --linea:#3D3530; --card-bg:#1E1A17;
@@ -66,7 +66,7 @@
   .intro .flow { display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap; margin-top:0.9rem; }
   .flow .step { display:flex; align-items:center; gap:0.35rem; font-size:0.7rem; color:var(--suave);
     background:var(--card-bg); border:1px solid var(--linea); border-radius:999px; padding:0.3rem 0.6rem; }
-  .flow .step b { color:var(--terracota); }
+  .flow .step b { color:var(--terracota-text); }
 
   /* ── Chips de categoría (scroll horizontal sticky) ── */
   .cats { position:sticky; top:calc(3.5rem + var(--safe-t)); z-index:30;
@@ -174,7 +174,7 @@
   .screen input:focus { outline:2px solid var(--oro); border-color:var(--oro); }
   .screen .btn { font-family:var(--body); font-weight:700; font-size:0.95rem; color:#fff;
     background:var(--terracota); border:0; border-radius:12px; padding:0.7rem 1.2rem; cursor:pointer; }
-  .screen .btn.ghost { background:transparent; color:var(--terracota); border:1px solid var(--terracota); }
+  .screen .btn.ghost { background:transparent; color:var(--terracota-text); border:1px solid var(--terracota); }
   .spinner { width:38px; height:38px; border-radius:50%; border:3px solid var(--linea); border-top-color:var(--terracota);
     animation:spin .8s linear infinite; }
   @keyframes spin { to { transform:rotate(360deg); } }

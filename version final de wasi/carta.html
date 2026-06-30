@@ -1618,6 +1618,7 @@
     --tostado: #3D2B1F;
     --cacao: #5C3D2E;
     --terracota: #B5651D;
+    --terracota-text: #9E5117; /* solo TEXTO: 4.97:1 sobre crema (AA). El acento de marca sigue siendo --terracota */
     --oro: #C8943E;
     --oro-text: #9A6E20;
     --crema: #F5EDE3;
@@ -1639,6 +1640,7 @@
     --tostado: #E8DDD0;
     --cacao: #D4C5B5;
     --terracota: #D4883A;
+    --terracota-text: #D4883A; /* en oscuro el terracota ya cumple AA (5.43:1) */
     --oro: #DAA84E;
     --oro-text: #E2B45C;
     --crema: #2A2320;
@@ -2172,7 +2174,7 @@
   .card-sizes { display: flex; gap: 0.8rem; margin-top: 0.35rem; flex-wrap: wrap; }
   .card-sz { display: flex; flex-direction: column; align-items: flex-start; }
   .sz-price { font-family: var(--display); font-size: 0.92rem; font-weight: 600; color: var(--oro-text); line-height: 1.2; }
-  .sz-price.alt { color: var(--terracota); }
+  .sz-price.alt { color: var(--terracota-text); }
   .sz-label {
     font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--suave);
@@ -2239,7 +2241,7 @@
   .ftr-social a:hover { background: rgba(200,148,62,0.1); color: var(--oro); border-color: var(--oro); }
   .ftr-social a svg { width: 16px; height: 16px; }
   .ftr-addr { margin-top: 0.6rem; font-size: 0.68rem; }
-  .ftr-addr a { color: var(--terracota); text-decoration: none; }
+  .ftr-addr a { color: var(--terracota-text); text-decoration: none; }
   .ftr-contact {
     display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.1rem;
     margin: 0.9rem auto 0; max-width: 360px;
