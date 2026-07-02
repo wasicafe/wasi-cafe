@@ -383,6 +383,12 @@
     });
 
     readTableParams();
+    // Validación TEMPRANA del QR: si ?t= no es un UUID válido (link manipulado
+    // o roto), se descarta AQUÍ — antes el error crudo de la BD ("invalid input
+    // syntax for type uuid") recién saltaba al pulsar Enviar, con el carrito ya
+    // armado. La etiqueta (?n=) queda como respaldo de ruteo.
+    var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (mesaId && !UUID_RE.test(mesaId)) mesaId = null;
     // Si el QR trae id pero no etiqueta (raro), igual se puede pedir.
     if (mesaId && !mesa) mesa = "tu mesa";
     if (!mesaId && !mesa) { hide("loadingScreen"); show("noTableScreen"); return; }
@@ -583,6 +589,8 @@
     var items = [];
     for (var pid in cart) if (cart[pid] > 0) items.push({ product_id: pid, qty: cart[pid] });
     if (!items.length) { toast("Agrega algo a tu pedido primero."); return; }
+    // Tope del servidor: 30 líneas por envío. Avisar ANTES de enviar.
+    if (items.length > 30) { toast("Máximo 30 productos distintos por envío. Envía este pedido y luego pide el resto."); return; }
     sending = true; renderCart();
 
     var note = ($("orderNote").value || "").trim().slice(0, 280) || null;
@@ -610,7 +618,9 @@
       } else {
         renderCart();
         var msg = (res.body && res.body.message) ? res.body.message : "No se pudo enviar tu pedido. Intenta de nuevo.";
-        // Mensajes de la BD en español ya son claros (Mesa no encontrada, etc.)
+        // Mensajes de la BD en español ya son claros (Mesa no encontrada, etc.);
+        // los TÉCNICOS de la API (uuid inválido, PGRST...) se traducen a humano.
+        if (/uuid|invalid input|pgrst|schema cache/i.test(msg)) msg = "El código QR de esta mesa no es válido. Escribe tu número de mesa o pide ayuda al mesero.";
         toast(msg);
       }
     }).catch(function () {
