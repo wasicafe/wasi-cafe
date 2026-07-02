@@ -139,6 +139,20 @@
   .pitem .no{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--gold);min-width:2.2rem;font-weight:500;line-height:1}
   .pitem h3{font-size:1rem;font-weight:400;color:var(--ink);line-height:1.4}
 
+  /* PROGRAMA — módulos con detalle de aprendizaje */
+  .module{margin-top:3rem;border-top:1px solid var(--line);padding-top:2.8rem}
+  .module-tag{font-family:var(--display);font-style:italic;font-size:1.05rem;color:var(--gold);letter-spacing:.02em}
+  .module-t{font-family:var(--display);font-size:1.9rem;font-weight:500;color:var(--ink);margin-top:.25rem;line-height:1.15}
+  .module-s{font-size:.95rem;color:var(--ink-soft);font-weight:300;margin-top:.6rem;max-width:46rem;line-height:1.6}
+  .mtopics{display:grid;grid-template-columns:1fr 1fr;gap:0 3.5rem;margin-top:2.4rem}
+  @media(max-width:760px){.mtopics{grid-template-columns:1fr;gap:0}}
+  .ptopic{display:flex;gap:1.4rem;align-items:flex-start;padding:1.8rem 0;border-top:1px solid var(--line)}
+  .ptopic .no{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--gold);min-width:2.2rem;font-weight:500;line-height:1.1}
+  .ptopic h4{font-size:1.02rem;font-weight:500;color:var(--ink);line-height:1.35}
+  .pdetail{list-style:none;margin:.75rem 0 0;padding:0;display:grid;gap:.5rem}
+  .pdetail li{position:relative;padding-left:1rem;font-size:.9rem;color:var(--ink-soft);font-weight:300;line-height:1.5}
+  .pdetail li::before{content:'';position:absolute;left:0;top:.6em;width:.34rem;height:.34rem;border-radius:50%;background:var(--gold-soft)}
+
   /* MODALIDADES */
   .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
   @media(max-width:760px){.modes{grid-template-columns:1fr}}
@@ -288,20 +302,65 @@
   <div class="wrap center">
     <p class="eyebrow reveal">El programa</p>
     <h2 class="title reveal" style="transition-delay:.05s">Todo lo que <em>aprenderás</em></h2>
-    <p class="lead reveal" style="transition-delay:.1s">Del arte del café a la administración de tu negocio. Nueve módulos, un oficio completo.</p>
+    <p class="lead reveal" style="transition-delay:.1s">Del arte del café a la administración de tu negocio. Módulo por módulo, esto es en detalle lo que vas a dominar.</p>
   </div>
   <div class="wrap">
-    <div class="program">
-      <div class="pitem reveal"><span class="no">01</span><h3>Preparación de bebidas calientes sin máquina espresso</h3></div>
-      <div class="pitem reveal" style="transition-delay:.04s"><span class="no">02</span><h3>Barismo para principiantes</h3></div>
-      <div class="pitem reveal" style="transition-delay:.08s"><span class="no">03</span><h3>Atención al cliente y servicio</h3></div>
-      <div class="pitem reveal" style="transition-delay:.12s"><span class="no">04</span><h3>Repostería para cafeterías</h3></div>
-      <div class="pitem reveal" style="transition-delay:.16s"><span class="no">05</span><h3>Costos y rentabilidad</h3></div>
-      <div class="pitem reveal" style="transition-delay:.2s"><span class="no">06</span><h3>Aspectos legales y tributarios básicos</h3></div>
-      <div class="pitem reveal" style="transition-delay:.24s"><span class="no">07</span><h3>Organización y administración del negocio</h3></div>
-      <div class="pitem reveal" style="transition-delay:.28s"><span class="no">08</span><h3>Marketing y ventas</h3></div>
-      <div class="pitem reveal" style="transition-delay:.32s"><span class="no">09</span><h3>Cómo iniciar con bajo presupuesto</h3></div>
+    <!-- ═══ MÓDULO 1 (puntos 1, 2, 6, 9 — profundizados) ═══ -->
+    <div class="module reveal">
+      <p class="module-tag">Módulo 1</p>
+      <h3 class="module-t">Fundamentos del café y arranque del negocio</h3>
+      <p class="module-s">Aprende a preparar bebidas de calidad sin equipo costoso y a poner en marcha tu cafetería desde cero: en regla y con poca inversión.</p>
+      <div class="mtopics">
+
+        <div class="ptopic"><span class="no">01</span><div>
+          <h4>Preparación de bebidas calientes sin máquina espresso</h4>
+          <ul class="pdetail">
+            <li>Métodos manuales: prensa francesa, goteo / V60, Chemex, Moka y Aeropress.</li>
+            <li>Ratios café–agua, temperatura y tiempo para una extracción consistente.</li>
+            <li>Espumado de leche sin vaporizador (batido, frasco y mini-espumador).</li>
+            <li>Recetas base: americano, café con leche, mocha y bebidas de temporada.</li>
+          </ul>
+        </div></div>
+
+        <div class="ptopic"><span class="no">02</span><div>
+          <h4>Barismo para principiantes</h4>
+          <ul class="pdetail">
+            <li>La molienda y su efecto en el sabor; cómo ajustarla según el método.</li>
+            <li>Cata básica: reconocer acidez, cuerpo, dulzor y defectos comunes.</li>
+            <li>Rutina de dosificado, preparación y limpieza del equipo.</li>
+            <li>Presentación de la taza y primeros trazos de arte latte.</li>
+          </ul>
+        </div></div>
+
+        <div class="ptopic"><span class="no">06</span><div>
+          <h4>Aspectos legales y tributarios básicos</h4>
+          <ul class="pdetail">
+            <li>Formalización: RUC y qué régimen te conviene (NRUS, RER o MYPE).</li>
+            <li>Comprobantes: boleta, factura y facturación electrónica.</li>
+            <li>Licencia de funcionamiento y requisitos sanitarios esenciales.</li>
+            <li>Obligaciones mensuales para operar tranquilo ante SUNAT.</li>
+          </ul>
+        </div></div>
+
+        <div class="ptopic"><span class="no">09</span><div>
+          <h4>Cómo iniciar con bajo presupuesto</h4>
+          <ul class="pdetail">
+            <li>Equipo mínimo viable para arrancar sin máquina espresso.</li>
+            <li>Dónde invertir primero y qué dejar para más adelante.</li>
+            <li>Proveedores, compras inteligentes y control de merma.</li>
+            <li>Modelos de arranque: carrito, barra pequeña o delivery.</li>
+          </ul>
+        </div></div>
+
+      </div>
     </div>
+
+    <!-- Puntos retirados de la vista (se reorganizarán en Módulo 2, 3… con el dueño):
+         03 Atención al cliente y servicio
+         04 Repostería para cafeterías
+         05 Costos y rentabilidad
+         07 Organización y administración del negocio
+         08 Marketing y ventas -->
   </div>
 </section>
 
