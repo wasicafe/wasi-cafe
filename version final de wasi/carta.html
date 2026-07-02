@@ -48,6 +48,7 @@
 {
   "@context": "https://schema.org",
   "@type": "CafeOrCoffeeShop",
+  "@id": "https://wasicafe.com/#localbusiness",
   "name": "Wasi Cafe",
   "address": {
     "@type": "PostalAddress",
@@ -59,7 +60,7 @@
   },
   "geo": { "@type": "GeoCoordinates", "latitude": -12.1015761, "longitude": -77.0289421 },
   "servesCuisine": ["Peruvian", "Coffee", "Breakfast", "Brunch"],
-  "priceRange": "S/ 5 - S/ 49",
+  "priceRange": "S/ 3 - S/ 69",
   "hasMenu": { "@type": "Menu", "url": "https://wasicafe.com/carta" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
@@ -2768,11 +2769,9 @@ let L='es';
 
 // ═══ STATUS & SCHEDULE ═══
 function updateStatus() {
-  const now = new Date();
-  // Lima is UTC-5
-  const lima = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
-  const day = lima.getDay();
-  const hour = lima.getHours();
+  const t = limaNow();
+  const day = t.day;
+  const hour = t.hour;
   const s = SCHEDULE[day];
   const badge = document.getElementById('statusBadge');
   const text = document.getElementById('statusText');
@@ -2903,35 +2902,54 @@ function setLang(l) {
   render(); renderPromos(); updateStatus();
 }
 
+// ═══ HORA DE LIMA (robusta) ═══
+// Intl.formatToParts en vez de new Date(toLocaleString(...)): el reparseo de
+// cadenas con formato US falla en algunos motores (p.ej. emiten "24:00" →
+// Invalid Date → getHours() NaN y todo caería a "Cerrado").
+const LIMA_FMT = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Lima', weekday: 'short', hour: 'numeric', hour12: false });
+const DAY_IDX = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+function limaNow() {
+  try {
+    const parts = LIMA_FMT.formatToParts(new Date());
+    const get = t => (parts.find(p => p.type === t) || {}).value;
+    let hour = parseInt(get('hour'), 10);
+    if (hour === 24) hour = 0; // algunos motores emiten 24 para la medianoche
+    const day = DAY_IDX[get('weekday')];
+    if (Number.isInteger(hour) && day !== undefined) return { day, hour };
+  } catch (e) { /* cae al respaldo */ }
+  const d = new Date(); // respaldo: hora local del dispositivo (Perú en la práctica)
+  return { day: d.getDay(), hour: d.getHours() };
+}
+function isOpenAt(t) { const s = SCHEDULE[t.day]; return !!s && t.hour >= s.open && t.hour < s.close; }
+
 // ═══ PROMOS ═══
 function isPromoTime() {
-  const now = new Date();
-  const lima = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
-  const h = lima.getHours();
-  return h >= 12 && h < 16;
+  const t = limaNow();
+  // Solo con la tienda ABIERTA: el domingo (cerrado) ya no dice "Disponible ahora".
+  return isOpenAt(t) && t.hour >= 12 && t.hour < 16;
 }
 
 // ═══ MENÚ POR HORA (Lima) — muestra primero lo más relevante según el momento ═══
-function limaHour() {
-  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Lima' })).getHours();
-}
+// Las bandas se derivan del HORARIO REAL (SCHEDULE): jamás saluda "Buenos días"
+// mientras el badge dice "Cerrado ahora".
 function daypart() {
-  const h = limaHour();
-  if (h >= 5 && h < 11)  return { featured:['desayunos','cafes','omelettes'],
+  const t = limaNow();
+  const s = SCHEDULE[t.day];
+  if (!s || t.hour < s.open || t.hour >= s.close) return { band:'cerrado', featured:['cafes','postres'],
+    es:{g:'Bienvenido a Wasi', s:'Explora la carta — te esperamos en nuestro horario de atención.'},
+    en:{g:'Welcome to Wasi', s:'Browse the menu — see you during opening hours.'} };
+  if (t.hour < 11)  return { band:'manana', featured:['desayunos','cafes','omelettes'],
     es:{g:'Buenos días', s:'Empieza el día con un desayuno recién hecho.'},
     en:{g:'Good morning', s:'Start your day with a freshly made breakfast.'} };
-  if (h >= 11 && h < 16) return { featured:['recomendaciones','sandwiches','salchipapas'],
+  if (t.hour < 16) return { band:'almuerzo', featured:['recomendaciones','sandwiches','salchipapas'],
     es:{g:'¡Buen provecho!', s:'Hora de almuerzo — sándwiches, hamburguesas y combos.'},
     en:{g:'Enjoy your meal!', s:'Lunchtime — sandwiches, burgers and combos.'} };
-  if (h >= 16 && h < 19) return { featured:['cafes','postres','frappes','jugos'],
+  if (t.hour < 19) return { band:'tarde', featured:['cafes','postres','frappes','jugos'],
     es:{g:'Buenas tardes', s:'Un café y algo dulce para la tarde.'},
     en:{g:'Good afternoon', s:'Coffee and something sweet for the afternoon.'} };
-  if (h >= 19 && h < 23) return { featured:['cocteles','postres','sandwiches'],
+  return { band:'noche', featured:['cocteles','postres','sandwiches'],
     es:{g:'Buenas noches', s:'Relájate con un cóctel o un postre.'},
     en:{g:'Good evening', s:'Unwind with a cocktail or a dessert.'} };
-  return { featured:['cafes','postres'],
-    es:{g:'Bienvenido a Wasi', s:'Explora nuestra carta completa.'},
-    en:{g:'Welcome to Wasi', s:'Explore our full menu.'} };
 }
 // Copia de D con las categorías sugeridas de esta hora PRIMERO (renumeradas);
 // el resto mantiene su orden original. No muta D.
@@ -3078,6 +3096,23 @@ if (typeof qrcode !== 'undefined') {
   try { generateWifiQR('wifiQr'); } catch (e) { /* el QR nunca debe abortar el script principal */ }
 }
 updateStatus();
+
+// ═══ REFRESCO POR HORA ═══
+// Una pestaña abierta cruza bordes de banda o de horario: recalcular cada 60s
+// y al volver al foco. Solo se re-renderiza si la banda o el estado de promos
+// CAMBIÓ (para no pisar el scroll del cliente cada minuto).
+let bandShown = daypart().band;
+let promoShown = isPromoTime();
+function refreshTimeState() {
+  updateStatus();
+  const b = daypart().band, p = isPromoTime();
+  const appVisible = document.getElementById('appWrap').classList.contains('show');
+  if (appVisible && b !== bandShown) { render(); renderPromos(); }
+  else if (appVisible && p !== promoShown) { renderPromos(); }
+  bandShown = b; promoShown = p;
+}
+setInterval(refreshTimeState, 60000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshTimeState(); });
 
 // ═══ AUTO-ENTER FROM HOMEPAGE ═══
 (function(){
