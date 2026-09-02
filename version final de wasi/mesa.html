@@ -99,13 +99,13 @@
   .item-ctl { flex:0 0 auto; align-self:center; }
 
   .add-btn { display:inline-flex; align-items:center; gap:0.3rem; font-family:var(--body);
-    font-weight:600; font-size:0.8rem; color:var(--crema); background:var(--terracota);
-    border:0; border-radius:10px; padding:0.5rem 0.8rem; cursor:pointer; min-height:40px; }
+    font-weight:600; font-size:0.8rem; color:#fff; background:#9E5117;
+    border:0; border-radius:10px; padding:0.5rem 0.8rem; cursor:pointer; min-height:44px; }
   .add-btn:active { transform:scale(.96); }
 
   .stepper { display:inline-flex; align-items:center; gap:0; background:var(--card-bg);
     border:1px solid var(--oro); border-radius:10px; overflow:hidden; }
-  .stepper button { width:38px; height:40px; display:grid; place-items:center; background:transparent;
+  .stepper button { width:44px; height:44px; display:grid; place-items:center; background:transparent;
     border:0; color:var(--terracota); font-size:1.25rem; font-weight:700; cursor:pointer; line-height:1; }
   .stepper button:active { background:rgba(200,148,62,0.12); }
   .stepper .q { min-width:30px; text-align:center; font-weight:700; font-size:0.95rem; color:var(--texto); }
@@ -158,7 +158,9 @@
   .sheet-foot .pay-note { font-size:0.72rem; color:var(--suave); margin-bottom:0.7rem; display:flex; gap:0.35rem; align-items:flex-start; }
   .sheet-foot .pay-note svg { width:14px; height:14px; color:var(--oro); flex-shrink:0; margin-top:1px; }
   .send-btn { width:100%; min-height:54px; font-family:var(--body); font-weight:700; font-size:1.02rem;
-    color:#fff; background:var(--terracota); border:0; border-radius:14px; cursor:pointer; transition:.15s; }
+    color:#fff; background:#9E5117; border:0; border-radius:14px; cursor:pointer; transition:.15s; }
+  /* #9E5117 fijo: blanco encima da 4.97:1 (AA) en modo claro Y oscuro;
+     var(--terracota) daba 3.74/2.85 y fallaba. */
   .send-btn:active { transform:scale(.99); }
   .send-btn:disabled { opacity:.6; cursor:default; }
 
