@@ -407,7 +407,7 @@
   // ── Carga del menú (categorías + productos disponibles) ──
   function loadMenu() {
     Promise.all([
-      fetch(SUPA + "/rest/v1/categories?select=id,name,sort&active=eq.true&order=sort,name", { headers: HEAD }),
+      fetch(SUPA + "/rest/v1/categories?select=id,name,sort&active=eq.true&name=neq.Capacitaci%C3%B3n&order=sort,name", { headers: HEAD }),   // "Capacitación" = productos de prueba del POS, nunca en la carta
       fetch(SUPA + "/rest/v1/products?select=id,category_id,name,description,price,image_url,sort&available=eq.true&order=sort,name", { headers: HEAD })
     ]).then(function (rs) {
       if (!rs[0].ok || !rs[1].ok) throw new Error("menu");
