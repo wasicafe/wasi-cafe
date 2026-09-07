@@ -244,6 +244,7 @@
   <div class="intro">
     <h1 id="introH1">Haz tu pedido</h1>
     <p id="introP">Arma tu pedido y envíalo. El mesero te lo confirma.</p>
+    <p style="margin:.5rem 0 0;font-size:.82rem"><a href="/sellos" id="sellosLink" style="color:var(--oro-text);font-weight:600;text-decoration:none">☕ Mis sellos: 10 cafés, 1 gratis ›</a></p>
     <div class="flow">
       <span class="step"><b>1</b> <span id="step1">Eliges</span></span>
       <span class="step"><b>2</b> <span id="step2">El mesero confirma</span></span>
@@ -371,6 +372,7 @@
     var on = document.getElementById("orderNote"); if (on) on.placeholder = t("notePh");
     set("totLabel", t("totLabel")); set("payNote", t("payNote"), true); set("successH2", t("successH2")); set("orderMoreBtn", t("orderMore"));
     set("btnMozo", t("mozo")); set("btnCuenta", t("cuenta"));
+    var sl = document.getElementById("sellosLink"); if (sl) sl.textContent = lang === "en" ? "☕ My stamps: 10 coffees, 1 free ›" : "☕ Mis sellos: 10 cafés, 1 gratis ›";
     var lb = document.getElementById("langBtn"); if (lb) { lb.textContent = lang === "en" ? "ES" : "EN"; lb.title = lang === "en" ? "Ver en español" : "View in English"; }
   }
 

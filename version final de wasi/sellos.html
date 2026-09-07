@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis sellos · Wasi Café</title>
+<meta name="description" content="Consulta tus sellos de Wasi Café: cada visita con café suma un sello y a los 10, un café gratis.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFAF5">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ylcsntehabyaycxlbaue.supabase.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --espresso:#1C1410; --tostado:#3D2B1F; --oro:#C8943E; --oro-text:#9A6E20; --crema:#F5EDE3;
+    --leche:#FFFAF5; --texto:#2A1F17; --suave:#6B5B50; --linea:#D4C5B5; --card-bg:#ffffff; --ok:#2E6B3A;
+    --display:'Cormorant Garamond', Georgia, serif; --body:'Outfit', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --espresso:#F5EDE3; --tostado:#E8DDD0; --oro:#DAA84E; --oro-text:#E2B45C; --crema:#2A2320; --leche:#161210; --texto:#E8DDD0; --suave:#A89888; --linea:#3D3530; --card-bg:#1E1A17; --ok:#7BC08A; }
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--leche); color:var(--texto); font-family:var(--body); }
+  .wrap { max-width:420px; margin:0 auto; padding:1.2rem 1.1rem 3rem; }
+  .logo { font-family:var(--display); font-size:1.4rem; font-weight:600; color:var(--tostado); text-decoration:none; }
+  h1 { font-family:var(--display); font-weight:600; font-size:2.1rem; color:var(--tostado); margin:1.2rem 0 .2rem; line-height:1.05; }
+  .sub { color:var(--suave); font-size:.92rem; margin:0 0 1.1rem; }
+  .field { display:flex; gap:.5rem; }
+  input { flex:1; min-width:0; font:inherit; font-size:1.1rem; padding:.8rem .9rem; border:1px solid var(--linea); border-radius:12px; background:var(--card-bg); color:var(--texto); }
+  button { font:inherit; font-weight:700; padding:.8rem 1.1rem; border-radius:12px; border:0; background:var(--tostado); color:var(--crema); cursor:pointer; }
+  button:disabled { opacity:.6; }
+  .card { margin-top:1.2rem; background:var(--card-bg); border:1px solid var(--linea); border-radius:18px; padding:1.2rem; box-shadow:0 10px 30px rgba(28,20,16,.08); }
+  .card.hidden, .hidden { display:none; }
+  .stamps { display:grid; grid-template-columns:repeat(5, 1fr); gap:.6rem; margin:1rem 0; }
+  .stamp { aspect-ratio:1; border-radius:50%; border:2px dashed var(--linea); display:grid; place-items:center; font-size:1.4rem; color:var(--suave); }
+  .stamp.on { border:2px solid var(--oro); background:rgba(200,148,62,.14); color:var(--oro-text); }
+  .big { font-family:var(--display); font-size:2rem; font-weight:700; color:var(--tostado); line-height:1; }
+  .msg { margin-top:.6rem; color:var(--suave); font-size:.92rem; }
+  .ready { background:rgba(200,148,62,.14); border:1px solid var(--oro); color:var(--oro-text); border-radius:12px; padding:.7rem .9rem; font-weight:700; margin-top:.8rem; }
+  .rules { margin-top:1.4rem; color:var(--suave); font-size:.86rem; line-height:1.5; }
+  .rules b { color:var(--texto); }
+  .err { color:#B5651D; font-weight:600; margin-top:.8rem; }
+  .en { color:var(--suave); font-size:.8rem; margin-top:.3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="logo" href="/">Wasi Café</a>
+  <h1>Mis sellos ☕</h1>
+  <p class="sub">Cada visita con café suma un sello. Al completar, un café gratis.</p>
+  <p class="en">Every visit with coffee earns a stamp. Complete the card, get a free coffee.</p>
+  <form class="field" id="f">
+    <input id="k" inputmode="numeric" autocomplete="tel" placeholder="Tu celular o DNI" aria-label="Celular o DNI">
+    <button type="submit" id="b">Ver</button>
+  </form>
+  <p class="err hidden" id="err"></p>
+
+  <div class="card hidden" id="card">
+    <div class="big" id="big">0 de 10</div>
+    <div class="stamps" id="stamps"></div>
+    <div class="ready hidden" id="ready"></div>
+    <p class="msg" id="msg"></p>
+  </div>
+
+  <div class="rules">
+    <b>Cómo funciona:</b> al pagar, dile al cajero tu celular o DNI. Cada pedido con café o frappé suma 1 sello.
+    Al llegar a la meta, pide tu premio en caja: se sirve como cortesía. Los sellos que sobran se quedan para la próxima.
+  </div>
+</div>
+<script>
+(function () {
+  "use strict";
+  var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
+  var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
+  var $ = function (id) { return document.getElementById(id); };
+  function norm(v) { return (v || "").replace(/\D/g, ""); }
+  function show(el, on) { el.classList.toggle("hidden", !on); }
+  function pinta(r) {
+    show($("err"), false);
+    var card = $("card"); show(card, true);
+    var need = r.needed || 10, st = r.found ? (r.stamps || 0) : 0;
+    $("big").textContent = st + " de " + need;
+    var html = "";
+    for (var i = 0; i < need; i++) html += '<div class="stamp' + (i < st ? " on" : "") + '">' + (i < st ? "☕" : "") + "</div>";
+    $("stamps").innerHTML = html;
+    var ready = $("ready"); show(ready, !!r.ready);
+    if (r.ready) ready.textContent = "🎉 ¡Completaste tu tarjeta! Pide tu " + r.reward + " en caja.";
+    var m = "";
+    if (!r.found) m = "Aún no tienes sellos con este número. Dilo en caja en tu próxima visita y empezamos.";
+    else if (!r.ready) m = "Te faltan " + (need - st) + (need - st === 1 ? " sello" : " sellos") + " para tu " + r.reward + ".";
+    if (r.found && r.redeemed) m += " Premios canjeados: " + r.redeemed + ".";
+    $("msg").textContent = m;
+  }
+  function buscar(k) {
+    k = norm(k);
+    if (k.length < 8 || k.length > 9) { $("err").textContent = "Escribe tu celular (9 dígitos) o tu DNI (8)."; show($("err"), true); return; }
+    $("b").disabled = true;
+    fetch(SUPA + "/rest/v1/rpc/loyalty_public", {
+      method: "POST", headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_key: k })
+    }).then(function (r) { return r.json(); }).then(function (r) {
+      $("b").disabled = false;
+      if (!r || !r.ok) { $("err").textContent = (r && r.message) || "No se pudo consultar. Intenta de nuevo."; show($("err"), true); return; }
+      pinta(r);
+      try { history.replaceState(null, "", "?c=" + k); } catch (e) {}
+    }).catch(function () { $("b").disabled = false; $("err").textContent = "Sin conexión. Intenta de nuevo."; show($("err"), true); });
+  }
+  $("f").addEventListener("submit", function (e) { e.preventDefault(); buscar($("k").value); });
+  var c = norm(new URLSearchParams(location.search).get("c"));
+  if (c) { $("k").value = c; buscar(c); }
+})();
+</script>
+</body>
+</html>
