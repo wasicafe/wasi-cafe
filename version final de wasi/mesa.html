@@ -59,6 +59,14 @@
     background:transparent; border:1px solid var(--linea); color:var(--tostado); cursor:pointer; }
   .icon-btn svg { width:18px; height:18px; }
 
+  /* ── Ayuda en mesa: llamar al mozo / pedir la cuenta ── */
+  .ayuda { display:none; gap:0.5rem; max-width:640px; margin:0.75rem auto 0; padding:0 1rem; }
+  .ayuda.show { display:flex; }
+  .ayuda button { flex:1; min-height:44px; border-radius:12px; border:1px solid var(--oro);
+    background:rgba(200,148,62,0.10); color:var(--oro-text); font-weight:700; font-size:0.9rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:0.4rem; }
+  .ayuda button:disabled { opacity:.55; cursor:default; }
+
   /* ── Hero / intro ── */
   .intro { padding:1.4rem 1.1rem 0.4rem; text-align:center; }
   .intro h1 { font-family:var(--display); font-weight:600; font-size:2rem; color:var(--tostado); line-height:1.05; }
@@ -226,6 +234,10 @@
       <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
   </header>
+  <div class="ayuda" id="ayudaBar" aria-label="Ayuda en tu mesa">
+    <button type="button" id="btnMozo">🙋 Llamar al mozo</button>
+    <button type="button" id="btnCuenta">🧾 Pedir la cuenta</button>
+  </div>
 
   <div class="intro">
     <h1>Haz tu pedido</h1>
@@ -401,6 +413,8 @@
     hide("noTableScreen"); show("loadingScreen"); hide("app");
     $("mesaLabel").textContent = mesaDisplay();
     $("mesaLabel2").textContent = mesaDisplay();
+    // Botones de ayuda solo cuando la mesa viene del QR (id estable).
+    if (mesaId) $("ayudaBar").classList.add("show");
     loadMenu();
   }
 
@@ -639,6 +653,32 @@
     });
     updateBar();
   }
+
+  // ── Ayuda en mesa: avisa al mesero sin pedir nada (llega a la pantalla de Mesas) ──
+  var ayudaCool = { mozo: 0, cuenta: 0 };
+  function pedirAyuda(kind, btn) {
+    if (!mesaId) { toast("Escanea el QR de tu mesa para usar esta opción."); return; }
+    var now = Date.now();
+    if (ayudaCool[kind] && now - ayudaCool[kind] < 60000) { toast(kind === "mozo" ? "Ya avisamos al mozo, ya viene." : "Ya pedimos tu cuenta, en un momento la traen."); return; }
+    btn.disabled = true;
+    fetch(SUPA + "/rest/v1/rpc/request_service", {
+      method: "POST",
+      headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_table_id: mesaId, p_kind: kind })
+    }).then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        if (res.ok && res.body && res.body.ok) {
+          ayudaCool[kind] = Date.now();
+          toast(kind === "mozo" ? "Listo, el mozo ya viene a tu mesa." : "Listo, ya pedimos tu cuenta.");
+          setTimeout(function () { btn.disabled = false; }, 60000);
+        } else {
+          btn.disabled = false;
+          toast((res.body && res.body.message) || "No se pudo avisar. Llama al mesero directamente.");
+        }
+      }).catch(function () { btn.disabled = false; toast("Sin conexión. Llama al mesero directamente."); });
+  }
+  $("btnMozo").addEventListener("click", function () { pedirAyuda("mozo", this); });
+  $("btnCuenta").addEventListener("click", function () { pedirAyuda("cuenta", this); });
 })();
 </script>
 </body>
