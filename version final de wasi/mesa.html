@@ -58,6 +58,7 @@
   .icon-btn { display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
     background:transparent; border:1px solid var(--linea); color:var(--tostado); cursor:pointer; }
   .icon-btn svg { width:18px; height:18px; }
+  .lang-btn { width:auto; padding:0 0.7rem; border-radius:999px; font-weight:700; font-size:0.8rem; letter-spacing:.04em; }
 
   /* ── Ayuda en mesa: llamar al mozo / pedir la cuenta ── */
   .ayuda { display:none; gap:0.5rem; max-width:640px; margin:0.75rem auto 0; padding:0 1rem; }
@@ -211,7 +212,7 @@
 <!-- CARGANDO -->
 <div id="loadingScreen" class="screen">
   <div class="spinner"></div>
-  <p>Cargando la carta…</p>
+  <p id="loadingMsg">Cargando la carta…</p>
 </div>
 
 <!-- SIN MESA / MESA NO ENCONTRADA -->
@@ -221,7 +222,7 @@
   <p id="noTableMsg">Escribe el número de tu mesa para empezar a pedir. Lo encuentras en el QR de tu mesa.</p>
   <form id="tableForm" class="field">
     <input id="tableInput" inputmode="numeric" autocomplete="off" placeholder="N° de mesa" aria-label="Número de mesa">
-    <button class="btn" type="submit">Entrar</button>
+    <button class="btn" type="submit" id="enterBtn">Entrar</button>
   </form>
 </div>
 
@@ -230,22 +231,23 @@
   <header class="hdr">
     <a class="hdr-logo" href="/">Wasi Café</a>
     <span class="hdr-mesa"><b id="mesaLabel">—</b></span>
+    <button class="icon-btn lang-btn" id="langBtn" aria-label="Change language / Cambiar idioma" title="English / Español">EN</button>
     <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema" title="Tema claro/oscuro">
       <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
   </header>
-  <div class="ayuda" id="ayudaBar" aria-label="Ayuda en tu mesa">
+  <div class="ayuda" id="ayudaBar" aria-label="Ayuda en tu mesa / Help at your table">
     <button type="button" id="btnMozo">🙋 Llamar al mozo</button>
     <button type="button" id="btnCuenta">🧾 Pedir la cuenta</button>
   </div>
 
   <div class="intro">
-    <h1>Haz tu pedido</h1>
-    <p>Arma tu pedido y envíalo. El mesero te lo confirma.</p>
+    <h1 id="introH1">Haz tu pedido</h1>
+    <p id="introP">Arma tu pedido y envíalo. El mesero te lo confirma.</p>
     <div class="flow">
-      <span class="step"><b>1</b> Eliges</span>
-      <span class="step"><b>2</b> El mesero confirma</span>
-      <span class="step"><b>3</b> Pagas al final</span>
+      <span class="step"><b>1</b> <span id="step1">Eliges</span></span>
+      <span class="step"><b>2</b> <span id="step2">El mesero confirma</span></span>
+      <span class="step"><b>3</b> <span id="step3">Pagas al final</span></span>
     </div>
   </div>
 
@@ -257,7 +259,7 @@
 <div class="cartbar" id="cartbar">
   <div class="cartbar-inner" id="cartbarInner" role="button" tabindex="0">
     <span class="count" id="cartCount">0</span>
-    <span class="lbl">Ver mi pedido</span>
+    <span class="lbl" id="cartLbl">Ver mi pedido</span>
     <span class="tot" id="cartTotal">S/ 0.00</span>
     <span class="go">›</span>
   </div>
@@ -268,7 +270,7 @@
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Tu pedido">
   <div class="sheet-grip"></div>
   <div class="sheet-h">
-    <h3>Tu pedido</h3>
+    <h3 id="sheetTitle">Tu pedido</h3>
     <span class="hdr-mesa"><b id="mesaLabel2">—</b></span>
     <button class="icon-btn x" id="closeSheet" aria-label="Cerrar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -276,14 +278,14 @@
   </div>
   <div class="sheet-body" id="cartList"></div>
   <div class="note-wrap" style="padding-left:1.1rem;padding-right:1.1rem;">
-    <label for="orderNote">Nota para el mesero (opcional)</label>
+    <label for="orderNote" id="noteLabel">Nota para el mesero (opcional)</label>
     <textarea id="orderNote" maxlength="280" placeholder="Ej: sin azúcar, sin hielo, alguna alergia…"></textarea>
   </div>
   <div class="sheet-foot">
-    <div class="totrow"><span class="t1">Total estimado</span><span class="t2" id="sheetTotal">S/ 0.00</span></div>
+    <div class="totrow"><span class="t1" id="totLabel">Total estimado</span><span class="t2" id="sheetTotal">S/ 0.00</span></div>
     <div class="pay-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span>El mesero confirma tu pedido antes de cocina. <b>Pagas al final en tu mesa</b> (no se paga aquí).</span>
+      <span id="payNote">El mesero confirma tu pedido antes de cocina. <b>Pagas al final en tu mesa</b> (no se paga aquí).</span>
     </div>
     <button class="send-btn" id="sendBtn">Enviar pedido a la mesa</button>
   </div>
@@ -294,7 +296,7 @@
   <div class="ok-check">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
   </div>
-  <h2>¡Pedido enviado!</h2>
+  <h2 id="successH2">¡Pedido enviado!</h2>
   <p id="successMsg">Tu pedido llegó a la <b>Mesa —</b>. El mesero lo confirmará y lo llevará a cocina. Pagas al final en tu mesa.</p>
   <button class="btn" id="orderMoreBtn">Pedir algo más</button>
   <div class="review-cta">
@@ -315,6 +317,62 @@
   var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
   var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
   var HEAD = { "apikey": ANON, "Authorization": "Bearer " + ANON };
+
+  // ── Idioma: español por defecto; inglés si el cliente lo elige, si viene ?lang=en
+  //    o si su celular está en inglés. Los nombres en inglés vienen de la base
+  //    (name_en / description_en); si faltan, se muestra el español.
+  var T = {
+    es: { loading:"Cargando la carta…", enter:"Entrar", tablePh:"N° de mesa", noTable:"Escribe el número de tu mesa para empezar a pedir. Lo encuentras en el QR de tu mesa.",
+      introH1:"Haz tu pedido", introP:"Arma tu pedido y envíalo. El mesero te lo confirma.", step1:"Eliges", step2:"El mesero confirma", step3:"Pagas al final",
+      cartLbl:"Ver mi pedido", sheetTitle:"Tu pedido", noteLabel:"Nota para el mesero (opcional)", notePh:"Ej: sin azúcar, sin hielo, alguna alergia…",
+      totLabel:"Total estimado", payNote:"El mesero confirma tu pedido antes de cocina. <b>Pagas al final en tu mesa</b> (no se paga aquí).",
+      send:"Enviar pedido a la mesa", sendEmpty:"Tu pedido está vacío", sending:"Enviando…", add:"+ Agregar", each:"c/u", cartEmpty:"Tu pedido está vacío.",
+      successH2:"¡Pedido enviado!", orderMore:"Pedir algo más", yourTable:"tu mesa", table:"Mesa ",
+      mozo:"🙋 Llamar al mozo", cuenta:"🧾 Pedir la cuenta", mozoOk:"Listo, el mozo ya viene a tu mesa.", cuentaOk:"Listo, ya pedimos tu cuenta.",
+      mozoAgain:"Ya avisamos al mozo, ya viene.", cuentaAgain:"Ya pedimos tu cuenta, en un momento la traen.", scanFirst:"Escanea el QR de tu mesa para usar esta opción.",
+      noConn:"Sin conexión. Revisa tu internet e intenta otra vez.", callFail:"No se pudo avisar. Llama al mesero directamente.", callNoConn:"Sin conexión. Llama al mesero directamente.",
+      addFirst:"Agrega algo a tu pedido primero.", max30:"Máximo 30 productos distintos por envío. Envía este pedido y luego pide el resto.",
+      badQr:"El código QR de esta mesa no es válido. Escribe tu número de mesa o pide ayuda al mesero.", sendFail:"No se pudo enviar tu pedido. Intenta de nuevo.",
+      successMsg:function(m){ return "Tu pedido llegó a la <b>" + m + "</b>. El mesero lo confirmará y lo llevará a cocina. <b>Pagas al final en tu mesa.</b>"; } },
+    en: { loading:"Loading the menu…", enter:"Enter", tablePh:"Table number", noTable:"Type your table number to start ordering. You'll find it on your table's QR code.",
+      introH1:"Place your order", introP:"Build your order and send it. Your waiter confirms it.", step1:"You choose", step2:"Waiter confirms", step3:"Pay at the end",
+      cartLbl:"View my order", sheetTitle:"Your order", noteLabel:"Note for the waiter (optional)", notePh:"E.g. no sugar, no ice, any allergy…",
+      totLabel:"Estimated total", payNote:"Your waiter confirms the order before it goes to the kitchen. <b>You pay at the end, at your table</b> (no payment here).",
+      send:"Send order to my table", sendEmpty:"Your order is empty", sending:"Sending…", add:"+ Add", each:"each", cartEmpty:"Your order is empty.",
+      successH2:"Order sent!", orderMore:"Order something else", yourTable:"your table", table:"Table ",
+      mozo:"🙋 Call the waiter", cuenta:"🧾 Ask for the bill", mozoOk:"Done, your waiter is on the way.", cuentaOk:"Done, we've asked for your bill.",
+      mozoAgain:"We already called your waiter, coming soon.", cuentaAgain:"Your bill is already on its way.", scanFirst:"Scan your table's QR code to use this option.",
+      noConn:"No connection. Check your internet and try again.", callFail:"Couldn't notify. Please call your waiter directly.", callNoConn:"No connection. Please call your waiter directly.",
+      addFirst:"Add something to your order first.", max30:"Up to 30 different items per order. Send this one and then order the rest.",
+      badQr:"This table's QR code is not valid. Type your table number or ask your waiter.", sendFail:"Your order could not be sent. Please try again.",
+      successMsg:function(m){ return "Your order reached <b>" + m + "</b>. Your waiter will confirm it and send it to the kitchen. <b>You pay at the end, at your table.</b>"; } }
+  };
+  var lang = "es";
+  function detectLang() {
+    try {
+      var q = new URLSearchParams(window.location.search).get("lang");
+      if (q === "en" || q === "es") { localStorage.setItem("wasi.lang", q); return q; }
+      var saved = localStorage.getItem("wasi.lang");
+      if (saved === "en" || saved === "es") return saved;
+    } catch (e) {}
+    var nav = (navigator.language || "").toLowerCase();
+    return nav.indexOf("en") === 0 ? "en" : "es";
+  }
+  function t(k) { return T[lang][k]; }
+  function nombre(p) { return (lang === "en" && p.name_en) ? p.name_en : p.name; }
+  function descripcion(p) { return (lang === "en" && p.description_en) ? p.description_en : p.description; }
+  function applyLang() {
+    document.documentElement.setAttribute("lang", lang);
+    var set = function (id, v, html) { var el = document.getElementById(id); if (!el) return; if (html) el.innerHTML = v; else el.textContent = v; };
+    set("loadingMsg", t("loading")); set("enterBtn", t("enter")); set("noTableMsg", t("noTable"));
+    var ti = document.getElementById("tableInput"); if (ti) ti.placeholder = t("tablePh");
+    set("introH1", t("introH1")); set("introP", t("introP")); set("step1", t("step1")); set("step2", t("step2")); set("step3", t("step3"));
+    set("cartLbl", t("cartLbl")); set("sheetTitle", t("sheetTitle")); set("noteLabel", t("noteLabel"));
+    var on = document.getElementById("orderNote"); if (on) on.placeholder = t("notePh");
+    set("totLabel", t("totLabel")); set("payNote", t("payNote"), true); set("successH2", t("successH2")); set("orderMoreBtn", t("orderMore"));
+    set("btnMozo", t("mozo")); set("btnCuenta", t("cuenta"));
+    var lb = document.getElementById("langBtn"); if (lb) { lb.textContent = lang === "en" ? "ES" : "EN"; lb.title = lang === "en" ? "Ver en español" : "View in English"; }
+  }
 
   // ── Estado ──
   var mesa = null;               // etiqueta de la mesa, para mostrar ("Mesa 5")
@@ -337,8 +395,8 @@
   // Etiqueta para mostrar: las mesas reales ya dicen "Mesa 5"/"Barra 2"/"Terraza 1".
   // Si el cliente escribió solo un número ("5"), le anteponemos "Mesa".
   function mesaDisplay() {
-    if (!mesa || mesa === "tu mesa") return "tu mesa";
-    return /^\d+$/.test(mesa) ? ("Mesa " + mesa) : mesa;
+    if (!mesa || mesa === "tu mesa") return t("yourTable");
+    return /^\d+$/.test(mesa) ? (t("table") + mesa) : mesa;
   }
   var toastT = null;
   function toast(msg) {
@@ -367,6 +425,17 @@
   // ── Lee la mesa del QR: ?t=<id estable> (ruteo) y ?n=<etiqueta> (mostrar) ──
   // El QR siempre lleva ambos. Un cliente que escribe a mano solo tiene la etiqueta.
   function readTableParams() {
+    lang = detectLang();
+    applyLang();
+    var lbtn = document.getElementById("langBtn");
+    if (lbtn) lbtn.addEventListener("click", function () {
+      lang = lang === "en" ? "es" : "en";
+      try { localStorage.setItem("wasi.lang", lang); } catch (e) {}
+      applyLang();
+      if (typeof renderMenu === "function" && categories.length) { renderMenu(); renderMenuQuantities(); }
+      if (typeof renderCart === "function") renderCart();
+      $("mesaLabel").textContent = mesaDisplay(); $("mesaLabel2").textContent = mesaDisplay();
+    });
     var p = new URLSearchParams(window.location.search);
     mesaId = (p.get("t") || "").trim() || null;
     mesa = (p.get("n") || p.get("mesa") || p.get("m") || "").trim() || null;
@@ -421,8 +490,8 @@
   // ── Carga del menú (categorías + productos disponibles) ──
   function loadMenu() {
     Promise.all([
-      fetch(SUPA + "/rest/v1/categories?select=id,name,sort&active=eq.true&name=neq.Capacitaci%C3%B3n&order=sort,name", { headers: HEAD }),   // "Capacitación" = productos de prueba del POS, nunca en la carta
-      fetch(SUPA + "/rest/v1/products?select=id,category_id,name,description,price,image_url,sort&available=eq.true&order=sort,name", { headers: HEAD })
+      fetch(SUPA + "/rest/v1/categories?select=id,name,name_en,sort&active=eq.true&name=neq.Capacitaci%C3%B3n&order=sort,name", { headers: HEAD }),   // "Capacitación" = productos de prueba del POS, nunca en la carta
+      fetch(SUPA + "/rest/v1/products?select=id,category_id,name,name_en,description,description_en,price,image_url,sort&available=eq.true&order=sort,name", { headers: HEAD })
     ]).then(function (rs) {
       if (!rs[0].ok || !rs[1].ok) throw new Error("menu");
       return Promise.all([rs[0].json(), rs[1].json()]);
@@ -452,8 +521,8 @@
     var chips = "", html = "";
     cats.forEach(function (c) {
       var cid = "sec-" + c.id;
-      chips += '<button class="chip" data-target="' + cid + '">' + esc(c.name) + '</button>';
-      html += '<section class="sec" id="' + cid + '"><div class="sec-h"><h2>' + esc(c.name) + '</h2><span class="ln"></span></div>' +
+      chips += '<button class="chip" data-target="' + cid + '">' + esc((lang === "en" && c.name_en) ? c.name_en : c.name) + '</button>';
+      html += '<section class="sec" id="' + cid + '"><div class="sec-h"><h2>' + esc((lang === "en" && c.name_en) ? c.name_en : c.name) + '</h2><span class="ln"></span></div>' +
         byCat[c.id].map(itemHTML).join("") + '</section>';
     });
     if (orphans.length) {
@@ -489,9 +558,9 @@
 
   function itemHTML(p) {
     var img = p.image_url ? '<img class="item-img" src="' + esc(p.image_url) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : "";
-    var desc = p.description ? '<div class="item-desc">' + esc(p.description) + '</div>' : "";
+    var desc = descripcion(p) ? '<div class="item-desc">' + esc(descripcion(p)) + '</div>' : "";
     return '<div class="item" data-row="' + p.id + '">' + img +
-      '<div class="item-body"><div class="item-name">' + esc(p.name) + '</div>' + desc +
+      '<div class="item-body"><div class="item-name">' + esc(nombre(p)) + '</div>' + desc +
       '<div class="item-price">' + money(p.price) + '</div></div>' +
       '<div class="item-ctl" id="ctl-' + p.id + '">' + ctlHTML(p.id) + '</div></div>';
   }
@@ -499,7 +568,7 @@
   function ctlHTML(pid) {
     var q = cart[pid] || 0;
     if (q <= 0) {
-      return '<button class="add-btn" data-act="add" data-pid="' + pid + '">+ Agregar</button>';
+      return '<button class="add-btn" data-act="add" data-pid="' + pid + '">' + t("add") + '</button>';
     }
     return '<div class="stepper"><button data-act="dec" data-pid="' + pid + '" aria-label="Quitar uno">−</button>' +
       '<span class="q">' + q + '</span>' +
@@ -573,14 +642,14 @@
     var rows = "";
     var keys = Object.keys(cart);
     if (!keys.length) {
-      $("cartList").innerHTML = '<p style="padding:1.5rem 0;text-align:center;color:var(--suave)">Tu pedido está vacío.</p>';
+      $("cartList").innerHTML = '<p style="padding:1.5rem 0;text-align:center;color:var(--suave)">' + t("cartEmpty") + '</p>';
     } else {
       keys.forEach(function (pid) {
         var p = prodById(pid); if (!p) return;
         var q = cart[pid];
         rows += '<div class="cart-row"><div class="stepper"><button data-cact="dec" data-pid="' + pid + '">−</button>' +
           '<span class="q">' + q + '</span><button data-cact="inc" data-pid="' + pid + '">+</button></div>' +
-          '<div class="nm"><b>' + esc(p.name) + '</b><small>' + money(p.price) + ' c/u</small></div>' +
+          '<div class="nm"><b>' + esc(nombre(p)) + '</b><small>' + money(p.price) + ' ' + t("each") + '</small></div>' +
           '<div class="ln-tot">' + money(p.price * q) + '</div></div>';
       });
       $("cartList").innerHTML = rows;
@@ -588,7 +657,7 @@
     $("sheetTotal").textContent = money(cartTotal());
     var n = cartCount();
     $("sendBtn").disabled = (n === 0 || sending);
-    $("sendBtn").textContent = sending ? "Enviando…" : (n === 0 ? "Tu pedido está vacío" : "Enviar pedido a la mesa");
+    $("sendBtn").textContent = sending ? t("sending") : (n === 0 ? t("sendEmpty") : t("send"));
   }
   // Steppers dentro de la hoja.
   $("cartList").addEventListener("click", function (e) {
@@ -604,9 +673,9 @@
     if (sending) return;
     var items = [];
     for (var pid in cart) if (cart[pid] > 0) items.push({ product_id: pid, qty: cart[pid] });
-    if (!items.length) { toast("Agrega algo a tu pedido primero."); return; }
+    if (!items.length) { toast(t("addFirst")); return; }
     // Tope del servidor: 30 líneas por envío. Avisar ANTES de enviar.
-    if (items.length > 30) { toast("Máximo 30 productos distintos por envío. Envía este pedido y luego pide el resto."); return; }
+    if (items.length > 30) { toast(t("max30")); return; }
     sending = true; renderCart();
 
     var note = ($("orderNote").value || "").trim().slice(0, 280) || null;
@@ -628,20 +697,20 @@
         cart = {}; $("orderNote").value = "";
         closeSheet();
         renderMenuQuantities();
-        $("successMsg").innerHTML = "Tu pedido llegó a la <b>" + esc(mesaDisplay()) + "</b>. El mesero lo confirmará y lo llevará a cocina. <b>Pagas al final en tu mesa.</b>";
+        $("successMsg").innerHTML = t("successMsg")(esc(mesaDisplay()));
         hide("app"); show("successScreen");
         window.scrollTo(0, 0);
       } else {
         renderCart();
-        var msg = (res.body && res.body.message) ? res.body.message : "No se pudo enviar tu pedido. Intenta de nuevo.";
+        var msg = (res.body && res.body.message) ? res.body.message : t("sendFail");
         // Mensajes de la BD en español ya son claros (Mesa no encontrada, etc.);
         // los TÉCNICOS de la API (uuid inválido, PGRST...) se traducen a humano.
-        if (/uuid|invalid input|pgrst|schema cache/i.test(msg)) msg = "El código QR de esta mesa no es válido. Escribe tu número de mesa o pide ayuda al mesero.";
+        if (/uuid|invalid input|pgrst|schema cache/i.test(msg)) msg = t("badQr");
         toast(msg);
       }
     }).catch(function () {
       sending = false; renderCart();
-      toast("Sin conexión. Revisa tu internet e intenta otra vez.");
+      toast(t("noConn"));
     });
   }
 
@@ -657,9 +726,9 @@
   // ── Ayuda en mesa: avisa al mesero sin pedir nada (llega a la pantalla de Mesas) ──
   var ayudaCool = { mozo: 0, cuenta: 0 };
   function pedirAyuda(kind, btn) {
-    if (!mesaId) { toast("Escanea el QR de tu mesa para usar esta opción."); return; }
+    if (!mesaId) { toast(t("scanFirst")); return; }
     var now = Date.now();
-    if (ayudaCool[kind] && now - ayudaCool[kind] < 60000) { toast(kind === "mozo" ? "Ya avisamos al mozo, ya viene." : "Ya pedimos tu cuenta, en un momento la traen."); return; }
+    if (ayudaCool[kind] && now - ayudaCool[kind] < 60000) { toast(kind === "mozo" ? t("mozoAgain") : t("cuentaAgain")); return; }
     btn.disabled = true;
     fetch(SUPA + "/rest/v1/rpc/request_service", {
       method: "POST",
@@ -669,13 +738,13 @@
       .then(function (res) {
         if (res.ok && res.body && res.body.ok) {
           ayudaCool[kind] = Date.now();
-          toast(kind === "mozo" ? "Listo, el mozo ya viene a tu mesa." : "Listo, ya pedimos tu cuenta.");
+          toast(kind === "mozo" ? t("mozoOk") : t("cuentaOk"));
           setTimeout(function () { btn.disabled = false; }, 60000);
         } else {
           btn.disabled = false;
-          toast((res.body && res.body.message) || "No se pudo avisar. Llama al mesero directamente.");
+          toast((res.body && res.body.message) || t("callFail"));
         }
-      }).catch(function () { btn.disabled = false; toast("Sin conexión. Llama al mesero directamente."); });
+      }).catch(function () { btn.disabled = false; toast(t("callNoConn")); });
   }
   $("btnMozo").addEventListener("click", function () { pedirAyuda("mozo", this); });
   $("btnCuenta").addEventListener("click", function () { pedirAyuda("cuenta", this); });
