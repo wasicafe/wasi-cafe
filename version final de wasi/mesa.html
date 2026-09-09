@@ -316,6 +316,7 @@
   "use strict";
   // ── Configuración Supabase (anon key PÚBLICA por diseño) ──
   var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
+  var SLUG = "wasi";                 // la cafetería que sirve esta página
   var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
   var HEAD = { "apikey": ANON, "Authorization": "Bearer " + ANON };
 
@@ -491,15 +492,24 @@
 
   // ── Carga del menú (categorías + productos disponibles) ──
   function loadMenu() {
-    Promise.all([
-      fetch(SUPA + "/rest/v1/categories?select=id,name,name_en,sort&active=eq.true&name=neq.Capacitaci%C3%B3n&order=sort,name", { headers: HEAD }),   // "Capacitación" = productos de prueba del POS, nunca en la carta
-      fetch(SUPA + "/rest/v1/products?select=id,category_id,name,name_en,description,description_en,price,image_url,sort&available=eq.true&order=sort,name", { headers: HEAD })
-    ]).then(function (rs) {
-      if (!rs[0].ok || !rs[1].ok) throw new Error("menu");
-      return Promise.all([rs[0].json(), rs[1].json()]);
+    // Se pide por carta_publica(slug) en vez de leer las tablas directo.
+    //
+    // Leerlas directo funcionaba solo mientras existiera UNA cafetería: esas
+    // tablas llevan una política que exige tenant_id = current_tenant(), y para
+    // un visitante sin sesión eso se resolvía con un respaldo que se apaga en
+    // cuanto hay una segunda cafetería. Ese día la carta habría salido vacía.
+    // carta_publica es SECURITY DEFINER y filtra por slug, así que no depende
+    // de ese respaldo y además deja servir la carta de cualquier cafetería.
+    fetch(SUPA + "/rest/v1/rpc/carta_publica", {
+      method: "POST",
+      headers: Object.assign({ "Content-Type": "application/json" }, HEAD),
+      body: JSON.stringify({ p_slug: SLUG })
+    }).then(function (r) {
+      if (!r.ok) throw new Error("menu");
+      return r.json();
     }).then(function (data) {
-      categories = data[0] || [];
-      products = data[1] || [];
+      categories = (data && data.categorias) || [];
+      products = (data && data.productos) || [];
       renderMenu();
       hide("loadingScreen"); show("app");
     }).catch(function () {

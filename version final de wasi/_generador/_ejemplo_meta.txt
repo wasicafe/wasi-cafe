@@ -1,0 +1,17 @@
+<title>Cold brew en casa: receta y ratio paso a paso | Wasi Café</title>
+<meta name="theme-color" content="#F7F1E8">
+<meta name="description" content="Receta de cold brew paso a paso: ratio, tiempo de reposo y conservación. Guía de Wasi Café, cafetería de especialidad peruana en San Isidro, Lima.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://wasicafe.com/blog/como-preparar-cold-brew-en-casa">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cold brew en casa: café frío, suave y sin amargor">
+<meta property="og:description" content="Receta de cold brew paso a paso: ratio, tiempo de reposo y conservación. Guía de Wasi Café, cafetería de especialidad peruana en San Isidro, Lima.">
+<meta property="og:url" content="https://wasicafe.com/blog/como-preparar-cold-brew-en-casa">
+<meta property="og:image" content="https://wasicafe.com/og-image.png">
+<meta property="og:site_name" content="Wasi Café">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cold brew en casa: café frío, suave y sin amargor">
+<meta name="twitter:description" content="Receta de cold brew paso a paso: ratio, tiempo de reposo y conservación. Guía de Wasi Café, cafetería de especialidad peruana en San Isidro, Lima.">
+<meta name="twitter:image" content="https://wasicafe.com/og-image.png">
