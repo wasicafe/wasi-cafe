@@ -13,7 +13,7 @@ Uso:  python3 generar.py ficha.json [ficha2.json ...]
 import json, sys, pathlib, html, re
 
 AQUI = pathlib.Path(__file__).resolve().parent
-SITIO = AQUI.parent
+SITIO = AQUI.parent / 'version final de wasi'
 BLOG = SITIO / 'blog'
 BASE = 'https://wasicafe.com'
 
@@ -87,6 +87,21 @@ def datos(f: dict) -> str:
                      json.dumps(b, ensure_ascii=False) + '</script>' for b in bloques)
 
 
+def resolver_relacionados(f: dict) -> list:
+    """Los títulos de los enlaces relacionados salen del H1 REAL del post enlazado.
+    Escribirlos en la ficha invita a inventarlos (pasó en el primer post: los tres
+    estaban mal). Si el slug no existe, es un error, no un enlace roto silencioso."""
+    out = []
+    for r in f.get('relacionados', []):
+        slug = r['slug'] if isinstance(r, dict) else r
+        ruta = BLOG / f'{slug}.html'
+        if not ruta.exists():
+            raise ValueError(f'relacionado inexistente: {slug}')
+        m = re.search(r'<h1>(.*?)</h1>', ruta.read_text(encoding='utf-8'), re.S)
+        out.append({'slug': slug, 'titulo': html.unescape(m.group(1)).strip()})
+    return out
+
+
 def articulo(f: dict) -> str:
     p = [f'<div class="crumbs"><a href="/">Inicio</a><span>›</span>'
          f'<a href="/blog">Blog</a><span>›</span>{esc(f["tituloCorto"])}</div></div>',
@@ -110,10 +125,11 @@ def articulo(f: dict) -> str:
              'de%20Wasi%20Caf%C3%A9%20%E2%98%95" target="_blank" rel="noopener">'
              'Escríbenos por WhatsApp</a></div>')
     p.append('  <a class="back" href="/blog">← Volver al blog</a>')
-    if f.get('relacionados'):
+    rel = resolver_relacionados(f)
+    if rel:
         p.append('  <div style="margin-top:1.4rem">' + ''.join(
             f'<a class="back" href="/blog/{r["slug"]}" style="display:block">'
-            f'› {esc(r["titulo"])}</a>' for r in f['relacionados']) + '</div></div>')
+            f'› {r["titulo"]}</a>' for r in rel) + '</div></div>')
     else:
         p.append('</div>')
     p.append('</article>')
@@ -151,7 +167,12 @@ def main() -> None:
     total, malos = 0, 0
     for ruta in sys.argv[1:]:
         for f in json.loads(pathlib.Path(ruta).read_text(encoding='utf-8')):
-            h = generar(f)
+            try:
+                h = generar(f)
+            except ValueError as e:
+                malos += 1
+                print(f'  ✗ {f["slug"]}\n      {e}')
+                continue
             fallos = revisar(h, f)
             if fallos:
                 malos += 1

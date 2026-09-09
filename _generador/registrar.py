@@ -15,13 +15,26 @@ Uso:  python3 registrar.py
 import re, json, pathlib, html
 
 AQUI = pathlib.Path(__file__).resolve().parent
-SITIO = AQUI.parent
+SITIO = AQUI.parent / 'version final de wasi'
 BLOG = SITIO / 'blog'
 BASE = 'https://wasicafe.com'
 
-# Páginas fijas del sitio, con su prioridad. El resto sale del blog.
-FIJAS = [('/', '1.0', 'weekly'), ('/carta', '0.9', 'weekly'), ('/curso', '0.8', 'monthly'),
-         ('/blog', '0.8', 'weekly'), ('/sellos', '0.5', 'monthly')]
+# Páginas fijas del sitio, con la prioridad y frecuencia que ya tenían. El resto
+# sale del blog. /sellos y /mesa NO van: son páginas de uso personal (tarjeta
+# de sellos por celular, pedido desde la mesa) y no tienen sentido en un buscador.
+FIJAS = [('/', 'index.html', '1.0', 'weekly'), ('/carta', 'carta.html', '0.9', 'weekly'),
+         ('/curso', 'curso.html', '0.8', 'monthly'), ('/blog', 'blog.html', '0.7', 'daily')]
+
+
+def ultima_modificacion(archivo):
+    """Fecha del último commit que tocó el archivo: el lastmod honesto."""
+    import subprocess
+    try:
+        f = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', archivo],
+                           cwd=SITIO, capture_output=True, text=True, timeout=10).stdout.strip()
+        return f or None
+    except Exception:
+        return None
 
 
 def leer(p):
@@ -63,8 +76,14 @@ def main() -> None:
     print(f'  blog.html: {len(posts)} tarjetas' + (f' + listado JSON-LD' if n2 else ' (JSON-LD sin tocar)'))
 
     # ── sitemap ──
-    urls = [f'  <url><loc>{BASE}{r}</loc><changefreq>{c}</changefreq><priority>{p}</priority></url>'
-            for r, p, c in FIJAS]
+    import datetime
+    hoy = datetime.date.today().isoformat()
+    urls = []
+    for ruta, archivo, prio, freq in FIJAS:
+        # /blog cambia cada vez que entra un post, aunque blog.html lo regenere este script
+        lm = hoy if ruta == '/blog' else (ultima_modificacion(archivo) or hoy)
+        urls.append(f'  <url><loc>{BASE}{ruta}</loc><lastmod>{lm}</lastmod>'
+                    f'<changefreq>{freq}</changefreq><priority>{prio}</priority></url>')
     urls += [f'  <url><loc>{BASE}/blog/{d["slug"]}</loc><lastmod>{d["fecha"]}</lastmod>'
              f'<changefreq>monthly</changefreq><priority>0.6</priority></url>' for d in posts]
     (SITIO / 'sitemap.xml').write_text(
