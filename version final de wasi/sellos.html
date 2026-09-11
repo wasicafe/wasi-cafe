@@ -140,7 +140,9 @@
       $("b").disabled = false;
       if (!r || !r.ok) { $("err").textContent = (r && r.message) || "No se pudo consultar. Intenta de nuevo."; show($("err"), true); return; }
       pinta(r);
-      clave = r.found ? k : ""; mostrarWallet();
+      // `r.clave` es el identificador real de la tarjeta: puede no ser lo que
+      // escribió (si buscó con su DNI y la tarjeta va por su celular, o al revés).
+      clave = r.found ? (r.clave || k) : ""; mostrarWallet();
       try { history.replaceState(null, "", "?c=" + k); } catch (e) {}
     }).catch(function () { $("b").disabled = false; $("err").textContent = "Sin conexión. Intenta de nuevo."; show($("err"), true); });
   }
