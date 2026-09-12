@@ -67,6 +67,7 @@
     <div class="ready hidden" id="ready"></div>
     <p class="msg" id="msg"></p>
     <button type="button" class="wallet hidden" id="wallet"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg><span id="wallet-txt">Guardar en Google Wallet</span></button>
+    <a class="wallet hidden" id="wallet-apple" href="#"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg><span>Añadir a Apple Wallet</span></a>
     <p class="wallet-nota hidden" id="wallet-nota">Tu tarjeta se actualiza sola en el celular con cada sello.</p>
   </div>
 
@@ -102,15 +103,17 @@
   // Google Wallet: la tarjeta del cliente en su celular. Se oculta en iPhone
   // (allí es Apple Wallet, aún no disponible) y si la función no está lista.
   var WALLET = SUPA + "/functions/v1/wallet-google", walletListo = false, clave = "";
+  var APPLE = SUPA + "/functions/v1/wallet-apple", appleListo = false;
   var esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream;
   function mostrarWallet() {
-    var on = walletListo && !!clave;
-    show($("wallet"), on); show($("wallet-nota"), on);
+    var g = walletListo && !!clave, a = appleListo && !!clave;
+    show($("wallet"), g); show($("wallet-apple"), a);
+    if (a) $("wallet-apple").href = APPLE + "/pase/wasi/" + clave;
+    show($("wallet-nota"), g || a);
   }
-  if (!esIOS) {
-    fetch(WALLET, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "ping" }) })
-      .then(function (r) { walletListo = (r.status === 200); mostrarWallet(); }).catch(function () {});
-  }
+  fetch((esIOS ? APPLE : WALLET), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "ping" }) })
+    .then(function (r) { if (esIOS) appleListo = (r.status === 200); else walletListo = (r.status === 200); mostrarWallet(); })
+    .catch(function () {});
   $("wallet").addEventListener("click", function () {
     var b = $("wallet"), t = $("wallet-txt");
     b.disabled = true; t.textContent = "Preparando tu tarjeta…";
