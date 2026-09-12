@@ -1,159 +1,236 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mis sellos · Wasi Café</title>
-<meta name="description" content="Consulta tus sellos de Wasi Café: cada visita con café suma un sello y a los 10, un café gratis.">
+<meta name="description" content="Consulta tus sellos de Wasi Café: cada visita con café suma un sello y al completar la tarjeta, el siguiente va por cuenta de la casa.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FFFAF5">
+<meta name="theme-color" content="#0D0A08">
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://ylcsntehabyaycxlbaue.supabase.co" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --espresso:#1C1410; --tostado:#3D2B1F; --oro:#C8943E; --oro-text:#9A6E20; --crema:#F5EDE3;
-    --leche:#FFFAF5; --texto:#2A1F17; --suave:#6B5B50; --linea:#D4C5B5; --card-bg:#ffffff; --ok:#2E6B3A;
-    --display:'Cormorant Garamond', Georgia, serif; --body:'Outfit', system-ui, sans-serif;
+  :root{
+    --fondo:#0D0A08; --tinta:#F5EDE3; --tinta-media:#D4C5B5; --tinta-baja:#9B8B7E;
+    --oro:#C8943E; --oro-claro:#DAA84E; --terra:#B5651D;
+    --papel:#F7F1E8; --papel-tinta:#241a13; --papel-baja:#7A6959; --papel-linea:#E2D6C6;
+    --display:'Cormorant Garamond',Georgia,serif; --texto:'Outfit',system-ui,-apple-system,sans-serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --espresso:#F5EDE3; --tostado:#E8DDD0; --oro:#DAA84E; --oro-text:#E2B45C; --crema:#2A2320; --leche:#161210; --texto:#E8DDD0; --suave:#A89888; --linea:#3D3530; --card-bg:#1E1A17; --ok:#7BC08A; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--texto);-webkit-font-smoothing:antialiased}
+  body{
+    min-height:100svh;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(181,101,29,.20) 0%, rgba(13,10,8,0) 60%),
+      radial-gradient(80% 50% at 100% 100%, rgba(200,148,62,.08) 0%, rgba(13,10,8,0) 70%),
+      var(--fondo);
   }
-  * { box-sizing:border-box; }
-  html, body { margin:0; background:var(--leche); color:var(--texto); font-family:var(--body); }
-  .wrap { max-width:420px; margin:0 auto; padding:1.2rem 1.1rem 3rem; }
-  .logo { font-family:var(--display); font-size:1.4rem; font-weight:600; color:var(--tostado); text-decoration:none; }
-  h1 { font-family:var(--display); font-weight:600; font-size:2.1rem; color:var(--tostado); margin:1.2rem 0 .2rem; line-height:1.05; }
-  .sub { color:var(--suave); font-size:.92rem; margin:0 0 1.1rem; }
-  .field { display:flex; gap:.5rem; }
-  input { flex:1; min-width:0; font:inherit; font-size:1.1rem; padding:.8rem .9rem; border:1px solid var(--linea); border-radius:12px; background:var(--card-bg); color:var(--texto); }
-  button { font:inherit; font-weight:700; padding:.8rem 1.1rem; border-radius:12px; border:0; background:var(--tostado); color:var(--crema); cursor:pointer; }
-  button:disabled { opacity:.6; }
-  .card { margin-top:1.2rem; background:var(--card-bg); border:1px solid var(--linea); border-radius:18px; padding:1.2rem; box-shadow:0 10px 30px rgba(28,20,16,.08); }
-  .card.hidden, .hidden { display:none; }
-  .stamps { display:grid; grid-template-columns:repeat(5, 1fr); gap:.6rem; margin:1rem 0; }
-  .stamp { aspect-ratio:1; border-radius:50%; border:2px dashed var(--linea); display:grid; place-items:center; font-size:1.4rem; color:var(--suave); }
-  .stamp.on { border:2px solid var(--oro); background:rgba(200,148,62,.14); color:var(--oro-text); }
-  .big { font-family:var(--display); font-size:2rem; font-weight:700; color:var(--tostado); line-height:1; }
-  .msg { margin-top:.6rem; color:var(--suave); font-size:.92rem; }
-  .ready { background:rgba(200,148,62,.14); border:1px solid var(--oro); color:var(--oro-text); border-radius:12px; padding:.7rem .9rem; font-weight:700; margin-top:.8rem; }
-  .rules { margin-top:1.4rem; color:var(--suave); font-size:.86rem; line-height:1.5; }
-  .rules b { color:var(--texto); }
-  .wallet { text-decoration:none; display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%; margin-top:1rem;
-    background:var(--espresso); color:var(--crema); border:1px solid var(--linea); font-size:1rem; }
-  .wallet svg { width:22px; height:22px; flex:none; }
-  .wallet-nota { margin:.5rem 0 0; color:var(--suave); font-size:.82rem; text-align:center; }
-  .err { color:#B5651D; font-weight:600; margin-top:.8rem; }
-  .en { color:var(--suave); font-size:.8rem; margin-top:.3rem; }
-  /* Debe ir al final: .wallet usa display:flex y pisaba a .hidden. */
-  .hidden { display:none !important; }
+  .wrap{max-width:440px;margin:0 auto;padding:34px 20px 56px}
+
+  /* ── Cabecera con la marca ─────────────────────────────────────────── */
+  .marca{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;color:inherit;text-decoration:none}
+  .marca img{width:88px;height:88px;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(181,101,29,.35))}
+  .marca .nombre{font-family:var(--display);font-size:1.9rem;font-weight:600;letter-spacing:.01em;line-height:1}
+  .marca .etiqueta{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);font-weight:600}
+  h1{font-family:var(--display);font-weight:600;font-size:2.5rem;line-height:1.05;margin:26px 0 6px;text-align:center}
+  .intro{color:var(--tinta-media);font-size:.98rem;line-height:1.55;margin:0 auto 22px;max-width:32ch;text-align:center}
+
+  /* ── Buscador ──────────────────────────────────────────────────────── */
+  form{display:flex;gap:8px;margin-bottom:18px}
+  input[type=text]{
+    flex:1;min-width:0;font:inherit;font-size:1.05rem;padding:14px 16px;border-radius:14px;
+    border:1px solid rgba(245,237,227,.18);background:rgba(245,237,227,.06);color:var(--tinta);
+  }
+  input::placeholder{color:var(--tinta-baja)}
+  input:focus{outline:2px solid var(--oro);outline-offset:1px;background:rgba(245,237,227,.09)}
+  button.ver{
+    font:inherit;font-weight:600;padding:14px 22px;border:0;border-radius:14px;cursor:pointer;
+    background:linear-gradient(180deg,var(--oro-claro),var(--oro));color:#1a1209;
+  }
+  button.ver:disabled{opacity:.55}
+
+  /* ── La tarjeta ────────────────────────────────────────────────────── */
+  .tarjeta{
+    background:var(--papel);color:var(--papel-tinta);border-radius:22px;padding:22px 20px 20px;
+    box-shadow:0 26px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(200,148,62,.35);
+    position:relative;overflow:hidden;
+  }
+  .tarjeta::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(90% 60% at 50% -20%, rgba(200,148,62,.16), transparent 60%)}
+  .t-cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .t-cab .t{font-family:var(--display);font-size:1.3rem;font-weight:600}
+  .t-cab .n{font-size:.82rem;color:var(--papel-baja);font-variant-numeric:lining-nums tabular-nums;letter-spacing:.04em}
+  .grilla{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 14px}
+  .sello{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1.5px dashed var(--papel-linea);color:#C9B9A6}
+  .sello svg{width:56%;height:56%}
+  .sello.on{border:1.5px solid var(--oro);background:linear-gradient(180deg,rgba(200,148,62,.20),rgba(200,148,62,.10));color:var(--terra)}
+  .cuenta{display:flex;align-items:baseline;gap:10px;margin-top:2px}
+  .cuenta b{font-family:var(--display);font-size:2.5rem;font-weight:700;line-height:1;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
+  .cuenta span{color:var(--papel-baja);font-size:.95rem}
+  .barra{height:6px;border-radius:99px;background:var(--papel-linea);overflow:hidden;margin:12px 0 10px}
+  .barra i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--terra),var(--oro-claro));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .msg{margin:0;color:var(--papel-baja);font-size:.95rem;line-height:1.5}
+  .premio{margin:12px 0 0;padding:12px 14px;border-radius:14px;font-weight:600;
+    background:linear-gradient(180deg,rgba(200,148,62,.22),rgba(200,148,62,.12));border:1px solid rgba(200,148,62,.55)}
+
+  /* ── Botones de cartera ────────────────────────────────────────────── */
+  .cartera{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:16px;
+    padding:15px 18px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;
+    background:#14100D;color:#F7F1E8;font:inherit;font-size:1rem;font-weight:600}
+  .cartera:active{transform:translateY(1px)}
+  .cartera svg{width:22px;height:22px;flex:none}
+  .nota-cartera{margin:9px 0 0;text-align:center;font-size:.8rem;color:var(--papel-baja)}
+
+  .como{margin:24px 0 0;color:var(--tinta-media);font-size:.9rem;line-height:1.6}
+  .como b{color:var(--tinta)}
+  .otro{margin:16px 0 0;font-size:.86rem;color:var(--tinta-baja);text-align:center}
+  .otro a{color:var(--tinta-baja)}
+  .pie{margin:30px 0 0;text-align:center;font-size:.78rem;color:var(--tinta-baja)}
+  .pie a{color:var(--oro);text-decoration:none}
+  .err{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:rgba(181,101,29,.16);
+    border:1px solid rgba(181,101,29,.5);color:#F0C9A0;font-size:.92rem}
+  .oculto{display:none !important}
+  @media (prefers-reduced-motion:reduce){ .barra i{transition:none} }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="logo" href="/">Wasi Café</a>
-  <h1>Mis sellos ☕</h1>
-  <p class="sub">Cada visita con café suma un sello. Al completar, un café gratis.</p>
-  <p class="en">Every visit with coffee earns a stamp. Complete the card, get a free coffee.</p>
-  <form class="field" id="f">
-    <input id="k" inputmode="numeric" autocomplete="tel" placeholder="Tu celular o DNI" aria-label="Celular o DNI">
-    <button type="submit" id="b">Ver</button>
+  <a class="marca" href="/" aria-label="Wasi Café">
+    <img src="/icon-512.png" alt="" width="88" height="88">
+    <span class="nombre">Wasi Café</span>
+    <span class="etiqueta">Tarjeta de sellos</span>
+  </a>
+
+  <h1>Mis sellos</h1>
+  <p class="intro">Cada visita con café suma un sello. Al completar la tarjeta, el siguiente va por cuenta de la casa.</p>
+
+  <form id="f" autocomplete="on">
+    <input id="k" type="text" inputmode="numeric" autocomplete="tel" placeholder="Tu celular o DNI" aria-label="Tu celular o DNI">
+    <button class="ver" id="b" type="submit">Ver</button>
   </form>
-  <p class="err hidden" id="err"></p>
 
-  <div class="card hidden" id="card">
-    <div class="big" id="big">0 de 10</div>
-    <div class="stamps" id="stamps"></div>
-    <div class="ready hidden" id="ready"></div>
+  <p class="err oculto" id="err" role="alert"></p>
+
+  <section class="tarjeta oculto" id="card" aria-live="polite">
+    <div class="t-cab"><span class="t">Tu tarjeta</span><span class="n" id="clave"></span></div>
+    <div class="grilla" id="stamps"></div>
+    <div class="cuenta"><b id="big">0</b><span id="de">de 10 sellos</span></div>
+    <div class="barra"><i id="barra" style="width:0%"></i></div>
     <p class="msg" id="msg"></p>
-    <button type="button" class="wallet hidden" id="wallet"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg><span id="wallet-txt">Guardar en Google Wallet</span></button>
-    <a class="wallet hidden" id="wallet-apple" href="#"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg><span>Añadir a Apple Wallet</span></a>
-    <p class="wallet-nota hidden" id="wallet-nota">Tu tarjeta se actualiza sola en el celular con cada sello.</p>
-  </div>
+    <p class="premio oculto" id="ready"></p>
 
-  <div class="rules">
-    <b>Cómo funciona:</b> al pagar, dile al cajero tu celular o DNI. Cada pedido con café o frappé suma 1 sello.
-    Al llegar a la meta, pide tu premio en caja: se sirve como cortesía. Los sellos que sobran se quedan para la próxima.
-  </div>
+    <a class="cartera oculto" id="wallet-apple" href="#">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg>
+      <span>Añadir a Apple Wallet</span>
+    </a>
+    <button class="cartera oculto" id="wallet" type="button">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="13" width="4" height="2.5" rx="1" fill="#DAA84E"/></svg>
+      <span id="wallet-txt">Guardar en Google Wallet</span>
+    </button>
+    <p class="nota-cartera oculto" id="wallet-nota">Se actualiza sola en tu celular con cada sello.</p>
+  </section>
+
+  <p class="como"><b>Cómo funciona:</b> al pagar, dile al cajero tu celular o DNI. Cada pedido con café o frappé suma un sello. Al llegar a la meta, pide tu premio en caja: se sirve como cortesía. Los sellos que sobran se quedan para la próxima.</p>
+  <p class="otro oculto" id="otro">La próxima vez tu tarjeta se abre sola en este celular. <a href="#" id="olvidar">¿No eres tú? Cambiar número</a></p>
+  <p class="pie">Programa de fidelidad de Wasi Café · gestionado con <a href="https://qoripos.com">Qori</a></p>
 </div>
+
 <script>
 (function () {
   "use strict";
   var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
   var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
+  var WALLET = SUPA + "/functions/v1/wallet-google", APPLE = SUPA + "/functions/v1/wallet-apple";
+  var MEM = "wasi.sellos";
   var $ = function (id) { return document.getElementById(id); };
-  function norm(v) { return (v || "").replace(/\D/g, ""); }
-  function show(el, on) { el.classList.toggle("hidden", !on); }
-  function pinta(r) {
-    show($("err"), false);
-    var card = $("card"); show(card, true);
-    var need = r.needed || 10, st = r.found ? (r.stamps || 0) : 0;
-    $("big").textContent = st + " de " + need;
-    var html = "";
-    for (var i = 0; i < need; i++) html += '<div class="stamp' + (i < st ? " on" : "") + '">' + (i < st ? "☕" : "") + "</div>";
-    $("stamps").innerHTML = html;
-    var ready = $("ready"); show(ready, !!r.ready);
-    if (r.ready) ready.textContent = "🎉 ¡Completaste tu tarjeta! Pide tu " + r.reward + " en caja.";
-    var m = "";
-    if (!r.found) m = "Aún no tienes sellos con este número. Dilo en caja en tu próxima visita y empezamos.";
-    else if (!r.ready) m = "Te faltan " + (need - st) + (need - st === 1 ? " sello" : " sellos") + " para tu " + r.reward + ".";
-    if (r.found && r.redeemed) m += " Premios canjeados: " + r.redeemed + ".";
-    $("msg").textContent = m;
-  }
-  // Google Wallet: la tarjeta del cliente en su celular. Se oculta en iPhone
-  // (allí es Apple Wallet, aún no disponible) y si la función no está lista.
-  var WALLET = SUPA + "/functions/v1/wallet-google", walletListo = false, clave = "";
-  var APPLE = SUPA + "/functions/v1/wallet-apple", appleListo = false;
+  var norm = function (v) { return (v || "").replace(/\D/g, ""); };
+  var show = function (el, on) { el.classList.toggle("oculto", !on); };
+  var TAZA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16 10h2a2.5 2.5 0 0 1 0 5h-2"/></svg>';
+  var walletListo = false, appleListo = false, clave = "";
   var esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream;
-  function mostrarWallet() {
-    var g = walletListo && !!clave, a = appleListo && !!clave;
-    show($("wallet"), g); show($("wallet-apple"), a);
+
+  function mostrarCartera() {
+    var a = appleListo && !!clave, g = walletListo && !!clave;
+    show($("wallet-apple"), a); show($("wallet"), g); show($("wallet-nota"), a || g);
     if (a) $("wallet-apple").href = APPLE + "/pase/wasi/" + clave;
-    show($("wallet-nota"), g || a);
   }
   fetch((esIOS ? APPLE : WALLET), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "ping" }) })
-    .then(function (r) { if (esIOS) appleListo = (r.status === 200); else walletListo = (r.status === 200); mostrarWallet(); })
+    .then(function (r) { if (esIOS) appleListo = (r.status === 200); else walletListo = (r.status === 200); mostrarCartera(); })
     .catch(function () {});
+
   $("wallet").addEventListener("click", function () {
     var b = $("wallet"), t = $("wallet-txt");
     b.disabled = true; t.textContent = "Preparando tu tarjeta…";
-    fetch(WALLET, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ accion: "guardar", slug: "wasi", key: clave }) })
+    fetch(WALLET, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "guardar", slug: "wasi", key: clave }) })
       .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j || {} }; }); })
       .then(function (x) {
         b.disabled = false; t.textContent = "Guardar en Google Wallet";
         if (x.s === 200 && x.j.url) { location.href = x.j.url; return; }
-        if (x.s === 503) { walletListo = false; mostrarWallet(); return; }
-        $("err").textContent = x.j.error || "No se pudo preparar la tarjeta. Intenta de nuevo."; show($("err"), true);
+        if (x.s === 503) { walletListo = false; mostrarCartera(); return; }
+        error(x.j.error || "No se pudo preparar la tarjeta. Intenta de nuevo.");
       })
-      .catch(function () {
-        b.disabled = false; t.textContent = "Guardar en Google Wallet";
-        $("err").textContent = "Sin conexión. Intenta de nuevo."; show($("err"), true);
-      });
+      .catch(function () { b.disabled = false; t.textContent = "Guardar en Google Wallet"; error("Sin conexión. Intenta de nuevo."); });
   });
+
+  function error(t) { $("err").textContent = t; show($("err"), true); }
+
+  function premio(r) {
+    // El premio viene como "1 café gratis" y en la frase quedaría "tu 1 café".
+    return String(r.reward || "café gratis").replace(/^\s*1\s+/, "");
+  }
+
+  function pinta(r, k) {
+    show($("err"), false); show($("card"), true);
+    var need = r.needed || 10, st = r.found ? (r.stamps || 0) : 0;
+    $("clave").textContent = (k.length === 9) ? k.replace(/(\d{3})(?=\d)/g, "$1 ") : k;
+    var html = "";
+    for (var i = 0; i < need; i++) html += '<div class="sello' + (i < st ? " on" : "") + '">' + (i < st ? TAZA : "") + "</div>";
+    $("stamps").innerHTML = html;
+    $("big").textContent = st;
+    $("de").textContent = "de " + need + (need === 1 ? " sello" : " sellos");
+    $("barra").style.width = Math.min(100, Math.round(st / need * 100)) + "%";
+    show($("ready"), !!r.ready);
+    if (r.ready) $("ready").textContent = "¡Completaste tu tarjeta! Pide tu " + premio(r) + " en caja.";
+    var m = "";
+    if (!r.found) m = "Aún no tienes sellos con este número. Dilo en caja en tu próxima visita y empezamos.";
+    else if (!r.ready) m = "Te falta" + (need - st === 1 ? "" : "n") + " " + (need - st) + (need - st === 1 ? " sello" : " sellos") + " para tu " + premio(r) + ".";
+    if (r.found && r.redeemed) m += " Premios canjeados: " + r.redeemed + ".";
+    $("msg").textContent = m;
+    clave = r.found ? ((r.clave || k).replace(/\D/g, "")) : "";
+    mostrarCartera();
+    if (r.found) { try { localStorage.setItem(MEM, k); } catch (e) {} show($("otro"), true); }
+  }
 
   function buscar(k) {
     k = norm(k);
-    if (k.length < 8 || k.length > 9) { $("err").textContent = "Escribe tu celular (9 dígitos) o tu DNI (8)."; show($("err"), true); return; }
+    if (k.length < 8 || k.length > 9) { error("Escribe tu celular (9 dígitos) o tu DNI (8)."); return; }
     $("b").disabled = true;
     fetch(SUPA + "/rest/v1/rpc/loyalty_public", {
       method: "POST", headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
       body: JSON.stringify({ p_key: k })
     }).then(function (r) { return r.json(); }).then(function (r) {
       $("b").disabled = false;
-      if (!r || !r.ok) { $("err").textContent = (r && r.message) || "No se pudo consultar. Intenta de nuevo."; show($("err"), true); return; }
-      pinta(r);
-      // `r.clave` es el identificador real de la tarjeta: puede no ser lo que
-      // escribió (si buscó con su DNI y la tarjeta va por su celular, o al revés).
-      clave = r.found ? (r.clave || k) : ""; mostrarWallet();
+      if (!r || !r.ok) { error((r && r.message) || "No se pudo consultar. Intenta de nuevo."); return; }
+      pinta(r, k);
       try { history.replaceState(null, "", "?c=" + k); } catch (e) {}
-    }).catch(function () { $("b").disabled = false; $("err").textContent = "Sin conexión. Intenta de nuevo."; show($("err"), true); });
+    }).catch(function () { $("b").disabled = false; error("Sin conexión. Intenta de nuevo."); });
   }
+
   $("f").addEventListener("submit", function (e) { e.preventDefault(); buscar($("k").value); });
-  var c = norm(new URLSearchParams(location.search).get("c"));
-  if (c) { $("k").value = c; buscar(c); }
+  $("olvidar").addEventListener("click", function (e) {
+    e.preventDefault();
+    try { localStorage.removeItem(MEM); } catch (x) {}
+    show($("card"), false); show($("otro"), false); clave = ""; mostrarCartera();
+    $("k").value = ""; $("k").focus();
+  });
+
+  var recordado = ""; try { recordado = localStorage.getItem(MEM) || ""; } catch (e) {}
+  var inicial = norm(new URLSearchParams(location.search).get("c")) || recordado;
+  if (inicial) { $("k").value = inicial; buscar(inicial); }
 })();
 </script>
 </body>
