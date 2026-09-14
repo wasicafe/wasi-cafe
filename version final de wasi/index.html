@@ -841,11 +841,16 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
       var h = suma("00:00", m % 1440), o = document.createElement("option");
       o.value = h; o.textContent = h; sel.appendChild(o);
     }
-    if (!sel.options.length) {
+    var hay = sel.options.length > 0;
+    if (!hay) {
       var o2 = document.createElement("option");
       o2.value = ""; o2.textContent = "Ya no hay horas este d\u00eda";
       sel.appendChild(o2);
     }
+    // Sin horas no se deja enviar: el servidor lo rechazaría igual, pero con
+    // un mensaje que no explica que el problema es el día elegido.
+    $("rsv-enviar").disabled = !hay;
+    return hay;
   }
 
   function arrancar(c) {
@@ -866,7 +871,13 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     // servidor acepta.
     $("rsv-horario").textContent = "Atendemos de " + c.abre + " a " + c.cierra +
       ". La \u00faltima reserva es a las " + (c.ultima || suma(c.cierra, -c.paso)) + ".";
-    pintarHoras();
+    // Si hoy ya cerró —lo normal si alguien entra de noche—, se abre en el día
+    // siguiente. Aterrizar en un formulario que dice "ya no hay horas" es la
+    // forma más rápida de que la persona se vaya.
+    if (!pintarHoras() && d.value === hoy && d.max > hoy) {
+      d.value = masDias(hoy, 1);
+      pintarHoras();
+    }
     d.addEventListener("change", pintarHoras);
     show($("rsv-form"), true);
   }
