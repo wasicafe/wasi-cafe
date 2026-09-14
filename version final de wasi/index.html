@@ -144,6 +144,17 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .sellos-nota{font-size:.78rem;color:var(--text-muted);margin-top:1.1rem}
 .oculto{display:none!important}
 .sellos-form{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.6rem 0 .2rem}
+.rsv-grid{display:grid;gap:.9rem;grid-template-columns:1fr 1fr;margin:1.6rem 0 .4rem;text-align:left}
+.rsv-grid .rsv-ancho{grid-column:1/-1}
+.rsv-campo{display:block}
+.rsv-campo>span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.35rem}
+.rsv-campo input,.rsv-campo select,.rsv-campo textarea{width:100%;padding:.72rem .9rem;border-radius:10px;border:1px solid rgba(200,148,62,.3);background:rgba(0,0,0,.2);color:var(--text);font-size:.9rem;font-family:inherit}
+.rsv-campo input:focus,.rsv-campo select:focus,.rsv-campo textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.rsv-campo textarea{resize:vertical;min-height:64px}
+.rsv-nota{font-size:.78rem;color:var(--text-muted);margin-top:.9rem}
+.rsv-ok{text-align:center}
+.rsv-codigo{display:inline-block;margin:.8rem 0;padding:.5rem 1.1rem;border-radius:10px;border:1px solid rgba(200,148,62,.35);background:rgba(200,148,62,.08);font-size:1.1rem;letter-spacing:.06em;color:var(--gold)}
+@media(max-width:560px){.rsv-grid{grid-template-columns:1fr}}
 .sellos-form input{padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(200,148,62,.3);background:rgba(0,0,0,.2);color:var(--text);font-size:.9rem;font-family:inherit;width:210px;text-align:center}
 .sellos-form input:focus{outline:2px solid var(--gold);outline-offset:1px}
 .sellos-err{color:#E4674F;font-size:.82rem;margin-top:.7rem}
@@ -404,8 +415,9 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
     <a href="/blog" class="nav-link">Blog</a>
     <a href="#eventos" class="nav-link">Eventos</a>
     <a href="#ubicacion" class="nav-link">Ubicaci&oacute;n</a>
+    <a href="#reservar" class="nav-link">Reservar</a>
     <a href="#sellos" class="nav-link">Sellos</a>
-    <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer" class="nav-cta">Reservar</a>
+    <a href="#reservar" class="nav-cta">Reservar</a>
   </div>
 </nav>
 
@@ -702,6 +714,201 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 </section>
 
 <!-- ═══════════════ COURSE PROMO ═══════════════ -->
+<!-- ═══════════════ RESERVAR MESA ═══════════════ -->
+<!-- La solicitud entra al sistema del café como PENDIENTE y alguien la aprueba
+     o la rechaza desde el POS. Por eso aquí nunca se dice "confirmada": se
+     dice que la pedimos y que avisamos. Los horarios y el tope de días los
+     manda la base (reservas_web_config); si el café apaga las reservas en
+     línea, este formulario desaparece solo y queda el WhatsApp. -->
+<section class="sellos-home rv" id="reservar">
+  <div class="container">
+    <p class="sec-label">Reservas</p>
+    <h2 class="sec-title">Apartar una <em>mesa</em></h2>
+    <div class="sellos-card">
+      <p class="sec-sub mx-auto" id="rsv-intro">Déjanos tus datos y te confirmamos por WhatsApp. Toma un minuto.</p>
+
+      <form class="oculto" id="rsv-form" novalidate>
+        <div class="rsv-grid">
+          <label class="rsv-campo"><span>Día</span>
+            <input type="date" id="rsv-dia" required>
+          </label>
+          <label class="rsv-campo"><span>Hora</span>
+            <select id="rsv-hora" required></select>
+          </label>
+          <label class="rsv-campo"><span>Personas</span>
+            <select id="rsv-personas" required></select>
+          </label>
+          <label class="rsv-campo"><span>Tu celular</span>
+            <input type="tel" id="rsv-tel" inputmode="numeric" autocomplete="tel" maxlength="12"
+                   placeholder="9XX XXX XXX" required>
+          </label>
+          <label class="rsv-campo rsv-ancho"><span>Tu nombre</span>
+            <input type="text" id="rsv-nombre" autocomplete="name" maxlength="80" placeholder="Nombre y apellido" required>
+          </label>
+          <label class="rsv-campo rsv-ancho"><span>Algo que debamos saber (opcional)</span>
+            <textarea id="rsv-nota" maxlength="300" placeholder="Cumpleaños, silla de bebé, mesa junto a la ventana…"></textarea>
+          </label>
+        </div>
+        <div class="sellos-form">
+          <button class="btn btn-gold" id="rsv-enviar" type="submit">Pedir la reserva</button>
+        </div>
+        <p class="rsv-nota" id="rsv-horario"></p>
+      </form>
+
+      <p class="sellos-err oculto" id="rsv-err" role="alert"></p>
+
+      <div class="oculto rsv-ok" id="rsv-listo">
+        <p class="sec-sub mx-auto" style="margin-bottom:.2rem">Ya la pedimos. <strong>Falta que la confirmemos.</strong></p>
+        <p class="rsv-codigo" id="rsv-codigo"></p>
+        <p class="rsv-nota" id="rsv-resumen"></p>
+        <p class="rsv-nota">Te escribimos por WhatsApp en cuanto la revisemos. Si es para hoy y tienes prisa,
+          <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer">escríbenos directo</a>.</p>
+      </div>
+
+      <p class="rsv-nota oculto" id="rsv-cerrado">
+        Ahora mismo no estamos tomando reservas por la web.
+        <a href="https://wa.me/51908724496" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a> y lo vemos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co";
+  var ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
+  var $ = function (id) { return document.getElementById(id); };
+  var show = function (el, on) { if (el) el.classList.toggle("oculto", !on); };
+  var cfg = null;
+
+  function rpc(nombre, cuerpo) {
+    return fetch(SUPA + "/rest/v1/rpc/" + nombre, {
+      method: "POST",
+      headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify(cuerpo)
+    }).then(function (r) {
+      return r.json().catch(function () { return null; }).then(function (j) {
+        if (!r.ok) throw new Error((j && (j.message || j.error)) || "No se pudo completar");
+        return j;
+      });
+    });
+  }
+
+  function error(m) { $("rsv-err").textContent = m || ""; show($("rsv-err"), !!m); }
+
+  // Suma minutos a "HH:MM" y devuelve "HH:MM". Aritmética de reloj, sin fechas:
+  // construir un Date con la hora del café en el navegador del visitante es
+  // justo lo que corre las horas cuando está en otro país.
+  function suma(hhmm, min) {
+    var p = hhmm.split(":"), t = (+p[0]) * 60 + (+p[1]) + min;
+    return ("0" + Math.floor(t / 60)).slice(-2) + ":" + ("0" + (t % 60)).slice(-2);
+  }
+  var aMin = function (hhmm) { var p = hhmm.split(":"); return (+p[0]) * 60 + (+p[1]); };
+
+  // Hoy en Lima (UTC-5 fijo: Perú no cambia de hora).
+  function hoyLima() { return new Date(Date.now() - 5 * 3600000).toISOString().slice(0, 10); }
+  function masDias(iso, n) {
+    return new Date(new Date(iso + "T00:00:00Z").getTime() + n * 86400000).toISOString().slice(0, 10);
+  }
+  function ahoraLimaMin() {
+    var d = new Date(Date.now() - 5 * 3600000);
+    return d.getUTCHours() * 60 + d.getUTCMinutes();
+  }
+
+  // Las horas posibles, cada media hora, hasta que la reserva ya no quepa
+  // antes del cierre. Si el día elegido es hoy, se quitan las que ya pasaron.
+  //
+  // Se cuenta en minutos y el cierre puede pasar de 1440 (local que cierra
+  // pasada la medianoche): sumar horas con el reloj las hace dar la vuelta, y
+  // entonces las 23:00 parecen caber en un café que cierra a las 22:00. Ese
+  // fallo exacto estuvo en la base y está corregido; aquí se replica la misma
+  // cuenta para que el desplegable no ofrezca horas que el servidor rechaza.
+  function pintarHoras() {
+    var sel = $("rsv-hora"), dia = $("rsv-dia").value;
+    var abre = aMin(cfg.abre), cierra = aMin(cfg.cierra);
+    if (cierra <= abre) cierra += 1440;
+    var ultima = cierra - cfg.paso;
+    var desde = abre;
+    if (dia === hoyLima()) {
+      var ahora = ahoraLimaMin();
+      // De madrugada, en un local que cierra pasada medianoche, "ahora"
+      // pertenece al turno de anoche: se cuenta como hora tardía, no temprana.
+      if (cierra > 1440 && ahora < cierra - 1440) ahora += 1440;
+      desde = Math.max(desde, Math.ceil((ahora + 40) / 30) * 30);
+    }
+    sel.innerHTML = "";
+    for (var m = Math.ceil(desde / 30) * 30; m <= ultima; m += 30) {
+      var h = suma("00:00", m % 1440), o = document.createElement("option");
+      o.value = h; o.textContent = h; sel.appendChild(o);
+    }
+    if (!sel.options.length) {
+      var o2 = document.createElement("option");
+      o2.value = ""; o2.textContent = "Ya no hay horas este d\u00eda";
+      sel.appendChild(o2);
+    }
+  }
+
+  function arrancar(c) {
+    cfg = c;
+    if (!c || !c.activo) { show($("rsv-cerrado"), true); show($("rsv-intro"), false); return; }
+    var hoy = hoyLima();
+    var d = $("rsv-dia");
+    d.min = hoy; d.max = masDias(hoy, c.dias_max || 90); d.value = hoy;
+    var pers = $("rsv-personas");
+    for (var i = 1; i <= 12; i++) {
+      var o = document.createElement("option");
+      o.value = i; o.textContent = i + (i === 1 ? " persona" : " personas");
+      if (i === 2) o.selected = true;
+      pers.appendChild(o);
+    }
+    // La última hora la calcula la base y viene en la configuración: si se
+    // recalculara aquí, tarde o temprano diría una hora distinta a la que el
+    // servidor acepta.
+    $("rsv-horario").textContent = "Atendemos de " + c.abre + " a " + c.cierra +
+      ". La \u00faltima reserva es a las " + (c.ultima || suma(c.cierra, -c.paso)) + ".";
+    pintarHoras();
+    d.addEventListener("change", pintarHoras);
+    show($("rsv-form"), true);
+  }
+
+  $("rsv-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    error("");
+    var dia = $("rsv-dia").value, hora = $("rsv-hora").value;
+    var nombre = $("rsv-nombre").value.trim();
+    var tel = $("rsv-tel").value.replace(/\D/g, "");
+    if (!dia || !hora) { error("Elige el d\u00eda y la hora."); return; }
+    if (nombre.length < 2) { error("Escribe tu nombre."); return; }
+    if (tel.length < 9) { error("Escribe tu celular, es como te avisamos."); return; }
+
+    var btn = $("rsv-enviar");
+    btn.disabled = true; btn.textContent = "Enviando\u2026";
+    // Se manda la hora con el desfase de Lima escrito a mano: as\u00ed significa
+    // la misma hora para quien reserva desde Per\u00fa y desde el extranjero.
+    rpc("reservar_publico", {
+      p_slug: "wasi", p_nombre: nombre, p_telefono: tel,
+      p_personas: parseInt($("rsv-personas").value, 10),
+      p_fecha: dia + "T" + hora + ":00-05:00",
+      p_nota: $("rsv-nota").value.trim() || null
+    }).then(function (r) {
+      if (!r || !r.ok) throw new Error((r && r.error) || "No se pudo registrar");
+      $("rsv-codigo").textContent = r.codigo || "";
+      $("rsv-resumen").textContent = "Para el " + dia.slice(8, 10) + "/" + dia.slice(5, 7) +
+        " a las " + hora + ", " + $("rsv-personas").value + " persona(s), a nombre de " + nombre + ".";
+      show($("rsv-form"), false); show($("rsv-intro"), false); show($("rsv-listo"), true);
+    }).catch(function (err) {
+      error(err.message || "No se pudo registrar la reserva.");
+      btn.disabled = false; btn.textContent = "Pedir la reserva";
+    });
+  });
+
+  rpc("reservas_web_config", { p_slug: "wasi" }).then(arrancar).catch(function () {
+    // Sin configuraci\u00f3n no se inventa un horario: queda el WhatsApp.
+    show($("rsv-cerrado"), true); show($("rsv-intro"), false);
+  });
+})();
+</script>
+
 <!-- ═══════════════ TARJETA DE SELLOS ═══════════════ -->
 <!-- Funciona aquí mismo: se escribe el celular y sale el botón del wallet,
      sin salir de la portada. Usa las mismas llamadas que /sellos, que están
