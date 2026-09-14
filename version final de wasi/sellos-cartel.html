@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cartel de sellos para imprimir · Wasi Café</title>
+<meta name="robots" content="noindex">
+<!--
+  CARTEL PARA EL MOSTRADOR.
+  Se abre, se imprime y se pone junto a la caja. El QR lleva a la sección de
+  sellos de la portada, donde el cliente escribe su número y guarda la tarjeta
+  en su wallet. A diferencia del QR del talón, este es GENERAL: sirve para
+  cualquiera, incluso para quien todavía no tiene sellos.
+  El QR se dibuja en SVG con la librería que ya está en el sitio, así que se
+  imprime nítido a cualquier tamaño.
+-->
+<style>
+  :root{ --tinta:#1C1815; --oro:#A8801F; --papel:#FBF8F3; --suave:#6E655C }
+  *{box-sizing:border-box}
+  body{margin:0;background:#EDE9E3;font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--tinta);display:flex;flex-direction:column;align-items:center;gap:18px;padding:28px 16px 60px}
+  .aviso{max-width:520px;font-size:13.5px;line-height:1.6;color:#4A423B;text-align:center}
+  .aviso b{color:var(--tinta)}
+  .tarjeta{width:105mm;min-height:148mm;background:var(--papel);border-radius:6px;padding:14mm 11mm;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+  .marca{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--oro)}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:400;line-height:1.15;margin:8px 0 0}
+  h1 em{font-style:italic;color:var(--oro)}
+  .bajada{font-size:13px;line-height:1.55;color:var(--suave);margin:10px 0 0;max-width:34ch}
+  .qr{margin:16px 0 12px;padding:9px;background:#fff;border:1px solid rgba(28,24,21,.1);border-radius:5px;line-height:0}
+  .qr svg{width:46mm;height:46mm;display:block}
+  .pasos{text-align:left;font-size:12px;line-height:1.5;color:#4A423B;margin:0;padding:0;list-style:none;counter-reset:p}
+  .pasos li{counter-increment:p;padding-left:20px;position:relative;margin:5px 0}
+  .pasos li::before{content:counter(p);position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:var(--oro);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .sellos{display:flex;gap:4px;margin:14px 0 0}
+  .sello{width:15px;height:15px;border-radius:50%;border:1px solid rgba(168,128,31,.45)}
+  .sello.on{background:rgba(168,128,31,.22);border-color:var(--oro)}
+  .pie{margin-top:auto;padding-top:12px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9A9088}
+  .wallets{display:flex;gap:12px;justify-content:center;margin-top:10px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
+  @media print{
+    @page{size:A6;margin:0}
+    body{background:#fff;padding:0;gap:0}
+    .aviso{display:none}
+    .tarjeta{width:105mm;height:148mm;border-radius:0;box-shadow:none;page-break-after:avoid}
+  }
+</style>
+</head>
+<body>
+
+<p class="aviso">
+  <b>Cartel para el mostrador.</b> Imprime esta página —sale en tamaño A6, como una postal— y ponla junto a la caja.
+  Este QR es <b>general</b>: sirve para cualquier cliente, incluso para quien todavía no tiene sellos.
+  El del talón, en cambio, es personal de cada uno.
+</p>
+
+<div class="tarjeta">
+  <div class="marca">Wasi Café</div>
+  <h1>Tu tarjeta de sellos,<br>en tu <em>celular</em></h1>
+  <p class="bajada">Cada café suma un sello. Al completar la tarjeta, el siguiente va por cuenta de la casa.</p>
+
+  <div class="qr" id="qr"></div>
+
+  <ul class="pasos">
+    <li>Escanea este código con la cámara</li>
+    <li>Escribe tu celular o tu DNI</li>
+    <li>Guárdala en tu wallet y listo</li>
+  </ul>
+
+  <div class="wallets"><span>Google Wallet</span><span>·</span><span>Apple Wallet</span></div>
+
+  <div class="sellos">
+    <span class="sello on"></span><span class="sello on"></span><span class="sello on"></span>
+    <span class="sello on"></span><span class="sello on"></span><span class="sello"></span>
+    <span class="sello"></span><span class="sello"></span><span class="sello"></span><span class="sello"></span>
+  </div>
+
+  <div class="pie">Se actualiza sola con cada visita</div>
+</div>
+
+<script src="qrcode.min.js"></script>
+<script>
+(function () {
+  var destino = "https://wasicafe.com/#sellos";
+  try {
+    var q = qrcode(0, "M");
+    q.addData(destino);
+    q.make();
+    document.getElementById("qr").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  } catch (e) {
+    // Si la librería no cargara, al menos que se vea la dirección escrita.
+    document.getElementById("qr").textContent = destino;
+  }
+})();
+</script>
+</body>
+</html>
