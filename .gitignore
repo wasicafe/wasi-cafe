@@ -2,3 +2,6 @@
 .claude/
 wasi-cafe-carta-mobile.html
 wasicafe-branding.html
+
+# Caché local de wrangler: no es código.
+.wrangler/
