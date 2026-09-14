@@ -142,6 +142,15 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 .sellos-wallet{display:inline-flex;align-items:center;gap:.45rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
 .sellos-wallet svg{width:15px;height:15px}
 .sellos-nota{font-size:.78rem;color:var(--text-muted);margin-top:1.1rem}
+.oculto{display:none!important}
+.sellos-form{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:1.6rem 0 .2rem}
+.sellos-form input{padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(200,148,62,.3);background:rgba(0,0,0,.2);color:var(--text);font-size:.9rem;font-family:inherit;width:210px;text-align:center}
+.sellos-form input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.sellos-err{color:#E4674F;font-size:.82rem;margin-top:.7rem}
+.sellos-cuenta{margin-top:1rem;font-size:.95rem;color:var(--text-muted)}
+.sellos-cuenta strong{font-family:var(--display);font-size:2rem;color:var(--gold);display:block;line-height:1}
+.sellos-msg{font-size:.85rem;color:var(--text-muted);margin-top:.5rem}
+.sellos-otro{margin-top:1rem;background:none;border:0;color:var(--text-muted);font-size:.76rem;text-decoration:underline;cursor:pointer;font-family:inherit}
 .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);cursor:pointer}
 .nav-toggle-bar{display:block;width:20px;height:2px;margin:0 auto;border-radius:2px;background:var(--text);transition:transform .3s,opacity .3s}
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -694,39 +703,136 @@ body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font
 
 <!-- ═══════════════ COURSE PROMO ═══════════════ -->
 <!-- ═══════════════ TARJETA DE SELLOS ═══════════════ -->
+<!-- Funciona aquí mismo: se escribe el celular y sale el botón del wallet,
+     sin salir de la portada. Usa las mismas llamadas que /sellos, que están
+     probadas: loyalty_public para consultar y wallet-google / wallet-apple
+     para guardar. El botón de Apple solo se muestra en iPhone, porque un
+     pase de Apple no se instala en otro sitio. -->
 <section class="sellos-home rv" id="sellos">
   <div class="container">
     <p class="sec-label">Programa de fidelidad</p>
     <h2 class="sec-title">Tu tarjeta de sellos, en tu <em>celular</em></h2>
     <div class="sellos-card">
-      <div class="sellos-stamps">
-        <span class="sellos-dot on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8h1a3 3 0 010 6h-1"/><path d="M3 8h14v5a5 5 0 01-5 5H8a5 5 0 01-5-5z"/></svg></span>
-        <span class="sellos-dot on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8h1a3 3 0 010 6h-1"/><path d="M3 8h14v5a5 5 0 01-5 5H8a5 5 0 01-5-5z"/></svg></span>
-        <span class="sellos-dot on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8h1a3 3 0 010 6h-1"/><path d="M3 8h14v5a5 5 0 01-5 5H8a5 5 0 01-5-5z"/></svg></span>
-        <span class="sellos-dot on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8h1a3 3 0 010 6h-1"/><path d="M3 8h14v5a5 5 0 01-5 5H8a5 5 0 01-5-5z"/></svg></span>
-        <span class="sellos-dot on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8h1a3 3 0 010 6h-1"/><path d="M3 8h14v5a5 5 0 01-5 5H8a5 5 0 01-5-5z"/></svg></span>
-        <span class="sellos-dot"></span>
-        <span class="sellos-dot"></span>
-        <span class="sellos-dot"></span>
-        <span class="sellos-dot"></span>
-        <span class="sellos-dot"></span>
-      </div>
       <p class="sec-sub mx-auto">Cada caf&eacute; suma un sello. Al completar la tarjeta, el siguiente va por cuenta de la casa.
       Gu&aacute;rdala en tu celular y se actualiza sola cada vez que vienes: sin apps y sin cartones que se pierdan.</p>
-      <div class="sellos-wallets">
-        <span class="sellos-wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="6" width="20" height="13" rx="2.5"/><path d="M2 10h20"/><path d="M17 15h2"/></svg> Google Wallet</span>
-        <span class="sellos-wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 3c.2 1.5-.4 2.9-1.4 3.9-1 1-2.4 1.6-3.7 1.5-.2-1.4.5-2.9 1.5-3.8C13.4 3.5 14.8 3 16 3z"/><path d="M20 16.6c-.6 1.4-.9 2-1.7 3.2-1.1 1.7-2.6 3.8-4.5 3.8-1.7 0-2.1-1.1-4.4-1.1-2.3 0-2.8 1.1-4.5 1.1-1.9 0-3.3-1.9-4.4-3.6C-.9 16-1.2 10.4 1.3 7.6c1-1.2 2.5-1.9 3.9-1.9 1.8 0 2.9 1.1 4.4 1.1 1.4 0 2.3-1.1 4.4-1.1 1.2 0 2.5.5 3.5 1.4-3.1 1.8-2.6 6.3.5 7.5z"/></svg> Apple Wallet</span>
+
+      <form class="sellos-form" id="sellos-form" novalidate>
+        <input id="sellos-k" inputmode="numeric" autocomplete="tel" maxlength="9"
+               placeholder="Tu celular o DNI" aria-label="Tu celular o DNI">
+        <button class="btn btn-gold" id="sellos-ver" type="submit">Ver mi tarjeta</button>
+      </form>
+
+      <p class="sellos-err oculto" id="sellos-err" role="alert"></p>
+
+      <div class="oculto" id="sellos-tarjeta">
+        <div class="sellos-stamps" id="sellos-stamps"></div>
+        <p class="sellos-cuenta"><strong id="sellos-big">0</strong> <span id="sellos-de">de 10 sellos</span></p>
+        <p class="sellos-msg" id="sellos-msg"></p>
+        <div class="sellos-wallets">
+          <button class="btn btn-gold oculto" id="sellos-wallet" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="13" rx="2.5"/><path d="M2 10h20"/><path d="M17 15h2"/></svg>
+            <span id="sellos-wallet-txt">Guardar en Google Wallet</span>
+          </button>
+          <a class="btn btn-outline oculto" id="sellos-wallet-apple" href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.9-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3 .7 1.2 0 2-1.1 2.8-2.2.5-.8.9-1.6 1.2-2.5-2.2-.8-2.8-2.6-2.8-3.8zM14.2 5.8c.6-.8 1.1-1.9 1-3-1 0-2.2.7-2.9 1.5-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.6 2.9-1.4z"/></svg>
+            A&ntilde;adir a Apple Wallet
+          </a>
+        </div>
+        <p class="sellos-nota oculto" id="sellos-nota">Se actualiza sola en tu celular con cada sello.</p>
+        <button class="sellos-otro oculto" id="sellos-otro" type="button">&iquest;No eres t&uacute;? Cambiar n&uacute;mero</button>
       </div>
-      <div style="margin-top:1.4rem">
-        <a class="btn btn-gold" href="/sellos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M12 9.2l1 2.1 2.3.3-1.7 1.6.4 2.3-2-1.1-2 1.1.4-2.3-1.7-1.6 2.3-.3z"/></svg>
-          Guardar mi tarjeta
-        </a>
-      </div>
-      <p class="sellos-nota">Solo necesitas tu n&uacute;mero de celular. El bot&oacute;n de Apple Wallet aparece si entras desde un iPhone.</p>
     </div>
   </div>
 </section>
+
+<script>
+(function () {
+  var SUPA = "https://ylcsntehabyaycxlbaue.supabase.co", ANON = "sb_publishable_YabO2b0FX5aedXkrh31FUQ_dcCMp1n8";
+  var WALLET = SUPA + "/functions/v1/wallet-google", APPLE = SUPA + "/functions/v1/wallet-apple";
+  var MEM = "wasi.sellos";
+  var $ = function (id) { return document.getElementById(id); };
+  var norm = function (v) { return (v || "").replace(/\D/g, ""); };
+  var show = function (el, on) { if (el) el.classList.toggle("oculto", !on); };
+  var TAZA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16 10h2a2.5 2.5 0 0 1 0 5h-2"/></svg>';
+  var listoGoogle = false, listoApple = false, clave = "";
+  var esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream;
+
+  function error(m) { $("sellos-err").textContent = m; show($("sellos-err"), !!m); }
+
+  function verWallets() {
+    var a = listoApple && !!clave, g = listoGoogle && !!clave;
+    show($("sellos-wallet-apple"), a); show($("sellos-wallet"), g); show($("sellos-nota"), a || g);
+    if (a) $("sellos-wallet-apple").href = APPLE + "/pase/wasi/" + clave;
+  }
+
+  // Se pregunta solo por el wallet del aparato: el otro no serviría de nada.
+  fetch(esIOS ? APPLE : WALLET, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "ping" }) })
+    .then(function (r) { if (esIOS) listoApple = (r.status === 200); else listoGoogle = (r.status === 200); verWallets(); })
+    .catch(function () {});
+
+  function pinta(r, k) {
+    error("");
+    show($("sellos-tarjeta"), true);
+    var need = r.needed || 10, st = r.found ? (r.stamps || 0) : 0;
+    var html = "";
+    for (var i = 0; i < need; i++) html += '<span class="sellos-dot' + (i < st ? " on" : "") + '">' + (i < st ? TAZA : "") + "</span>";
+    $("sellos-stamps").innerHTML = html;
+    $("sellos-big").textContent = st;
+    $("sellos-de").textContent = "de " + need + (need === 1 ? " sello" : " sellos");
+    var premio = String(r.reward || "café gratis").replace(/^\s*1\s+/, "");
+    var m = "";
+    if (!r.found) m = "Aún no tienes sellos con este número. Dilo en caja en tu próxima visita y empezamos.";
+    else if (r.ready) m = "¡Completaste tu tarjeta! Pide tu " + premio + " en caja.";
+    else m = "Te falta" + (need - st === 1 ? "" : "n") + " " + (need - st) + (need - st === 1 ? " sello" : " sellos") + " para tu " + premio + ".";
+    $("sellos-msg").textContent = m;
+    clave = r.found ? ((r.clave || k).replace(/\D/g, "")) : "";
+    verWallets();
+    show($("sellos-otro"), !!r.found);
+    if (r.found) { try { localStorage.setItem(MEM, k); } catch (e) {} }
+  }
+
+  function buscar(k) {
+    k = norm(k);
+    if (k.length < 8 || k.length > 9) { error("Escribe tu celular (9 dígitos) o tu DNI (8)."); return; }
+    $("sellos-ver").disabled = true;
+    fetch(SUPA + "/rest/v1/rpc/loyalty_public", {
+      method: "POST",
+      headers: { "apikey": ANON, "Authorization": "Bearer " + ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_key: k }),
+    }).then(function (r) { return r.json(); }).then(function (r) {
+      $("sellos-ver").disabled = false;
+      if (!r || !r.ok) { error((r && r.message) || "No se pudo consultar. Intenta de nuevo."); return; }
+      pinta(r, k);
+    }).catch(function () { $("sellos-ver").disabled = false; error("Sin conexión. Intenta de nuevo."); });
+  }
+
+  $("sellos-form").addEventListener("submit", function (e) { e.preventDefault(); buscar($("sellos-k").value); });
+
+  $("sellos-wallet").addEventListener("click", function () {
+    var b = $("sellos-wallet"), t = $("sellos-wallet-txt");
+    b.disabled = true; t.textContent = "Preparando tu tarjeta…";
+    fetch(WALLET, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accion: "guardar", slug: "wasi", key: clave }) })
+      .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j || {} }; }); })
+      .then(function (x) {
+        b.disabled = false; t.textContent = "Guardar en Google Wallet";
+        if (x.s === 200 && x.j.url) { location.href = x.j.url; return; }
+        if (x.s === 503) { listoGoogle = false; verWallets(); return; }
+        error(x.j.error || "No se pudo preparar la tarjeta. Intenta de nuevo.");
+      })
+      .catch(function () { b.disabled = false; t.textContent = "Guardar en Google Wallet"; error("Sin conexión. Intenta de nuevo."); });
+  });
+
+  $("sellos-otro").addEventListener("click", function () {
+    try { localStorage.removeItem(MEM); } catch (e) {}
+    clave = ""; verWallets(); show($("sellos-tarjeta"), false); show($("sellos-otro"), false);
+    $("sellos-k").value = ""; $("sellos-k").focus();
+  });
+
+  // Si ya consultó antes en este celular, se abre sola.
+  var recordado = ""; try { recordado = localStorage.getItem(MEM) || ""; } catch (e) {}
+  if (recordado) { $("sellos-k").value = recordado; buscar(recordado); }
+})();
+</script>
 
 <section class="course-promo rv">
   <div class="container">
