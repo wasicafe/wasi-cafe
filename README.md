@@ -15,7 +15,7 @@ Sitio **estático** (HTML/CSS/JS plano, sin framework ni bundler). El CSS y el J
 | Archivo | Rol |
 |---|---|
 | `index.html` | **Home**, servida como `/`. Fuente de verdad de la portada. |
-| `carta.html` | Carta / menú (`/carta.html`). Incluye JSON-LD `Menu` con todas las secciones e ítems. |
+| `carta.html` | Carta / menú (`/carta.html`). **Lee la carta del POS en vivo** (`carta_publica`, bloque `CARTA-EN-VIVO`): lo que el café cambia en su sistema se ve aquí sin tocar el código. Lo que está escrito en el archivo (`const D`, `const PROMOS`, JSON-LD `Menu`) es el RESPALDO: se ve si el POS no responde y es lo que lee Google sin JavaScript. Para refrescarlo: `node actualizar-carta.mjs` (con `--ver` solo muestra qué cambiaría). |
 | `curso.html` | Curso de café & barismo (`/curso.html`). |
 | `404.html` | Página de error con marca (Cloudflare la sirve en 404). |
 | `manifest.webmanifest` | Manifiesto PWA. |
