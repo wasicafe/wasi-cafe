@@ -1,0 +1,1185 @@
+[
+{
+"cat": "Desayunos",
+"n": "Continental",
+"d": "1 café (Americano/Café con leche) · 1 jugo (Papaya/Piña) · Tostadas de pan molde (Integral/Blanco) · Mermelada y mantequilla",
+"p": 19.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Amanecer Criollo",
+"d": "1 café Americano · 1 sándwich de chicharrón",
+"p": 27.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Desayuno Americano",
+"d": "1 café (Americano/Café con leche) · 1 jugo (Papaya/Piña) · Huevos (Revueltos/Fritos) · Tostadas (Blanco/Integral) · Mermelada y mantequilla",
+"p": 23.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Light",
+"d": "1 café (Americano/Café con leche) · Huevos (Duros/Revueltos/Fritos) · Porción de palta · Tostadas de pan de molde (Integral/Blanco)",
+"p": 24.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Tradición Wasi",
+"d": "2 cafés (Americano/Café con leche) · 2 jugos (Papaya/Piña) · 250 gr chicharrón · 1 tamal de pollo · 100 gr salchicha huachana · 4 panes franceses · Camote frito · Salsa criolla",
+"p": 78.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Pollo Wasi",
+"d": "1 café (Americano/Espresso/Con leche) · 1 jugo (Papaya/Piña) · 1 sándwich de pollo",
+"p": 25.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Desayuno Tamalero",
+"d": "1 café (Americano/Espresso/Con leche) · 1 tamal · 1 pan francés · Salsa criolla",
+"p": 21.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Dúo Café",
+"d": "1 café (Americano/Café con leche) · 1 mixto clásico (jamón y queso)",
+"p": 19.9,
+"img": ""
+},
+{
+"cat": "Desayunos",
+"n": "Trío Completo",
+"d": "1 café (Americano/Café con leche) · 1 jugo (Papaya/Piña) · 1 mixto completo (jamón, queso y huevo)",
+"p": 25.9,
+"img": ""
+},
+{
+"cat": "Cafés",
+"n": "Affogato Clásico",
+"d": "Helado de vainilla ahogado en espresso",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/e0014615e58531eedeaa552417f712b0cdc945d608b842fd78efcfe0a0192739.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Affogato Wasi + Pisco",
+"d": "Nuestra receta secreta con ½ oz de pisco",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/5b419eadb4ca7aaf73efaf2bc356f4b6e19ae8140188acace488495951e6e3b8.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Americano",
+"d": "Espresso con agua caliente, suave y aromático",
+"p": 9,
+"img": "https://wasicafe.com/img/menu/634f9bee934f58bd27bb532810fd58d876ef81de97242f21434cc4ae3ce8e744.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Americano + Pie",
+"d": "",
+"p": 18.5,
+"img": ""
+},
+{
+"cat": "Cafés",
+"n": "Café con Leche",
+"d": "Espresso con espuma de leche sedosa",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/0cbe65a9d604f54d28035af1970c985c29a9f10f51326c3c31bbe0c58a8c0da1.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Café Filtrado",
+"d": "Café de filtro, suave y equilibrado",
+"p": 8,
+"img": "https://wasicafe.com/img/menu/4edb3f26019667f5623e526c9152dcd73351e3d133b693f1507a41193976864d.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Capuchino",
+"d": "Espresso, leche vaporizada y espuma cremosa",
+"p": 12,
+"img": "https://wasicafe.com/img/menu/4066c9a81ae450e5b18a2936c601f7a3688f3cd1635956441b34c97b57e9a85f.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Capuchino con Crema",
+"d": "Capuchino coronado con crema batida",
+"p": 14,
+"img": "https://wasicafe.com/img/menu/546543b245a856a913d40db00df57193e299f94a7e77af5421bb39938c287534.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Chocolate Caliente",
+"d": "Chocolate artesanal peruano",
+"p": 13.9,
+"img": "https://wasicafe.com/img/menu/37f679def62a179df0ed6f39ec7a9d05351a225638bde6b0c791d99da9f3d3ac.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Cortado",
+"d": "Espresso con un toque de leche vaporizada",
+"p": 9,
+"img": "https://wasicafe.com/img/menu/32132d62953303ab93c0c5aa52aea8f3c678bbef6c45f59b1b20041335ca3d15.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Espresso",
+"d": "Shot intenso de café peruano",
+"p": 9,
+"img": "https://wasicafe.com/img/menu/4ef3d4db7522e1624710d4abd0dc65e799f5bb9d123c21ac8344b28a0a023249.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Espresso Doble",
+"d": "Doble shot para los amantes del café fuerte",
+"p": 14,
+"img": "https://wasicafe.com/img/menu/780352bb15c7f2f43ec4057005cbd656a79c14cb25303b7c58d925d1edd4bf5d.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Mocachino",
+"d": "Espresso con chocolate y leche",
+"p": 12,
+"img": "https://wasicafe.com/img/menu/5dec9cc5a416e1b2a59e562c0660390dbc87fc2497063991456ebd2f73f03a21.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Ristretto",
+"d": "Espresso corto, concentrado y lleno de sabor",
+"p": 8,
+"img": "https://wasicafe.com/img/menu/4ef898e9a216b8cd709b08cd98f58e0816665f83f323b47cb6f2b5858bd1862c.png.webp"
+},
+{
+"cat": "Cafés",
+"n": "Tepuchino",
+"d": "Nuestra creación exclusiva de té con espuma",
+"p": 12,
+"img": "https://wasicafe.com/img/menu/93e8286cfc87d3bd0a3ab658c8ae4685e3884ccd98c6d04bed117c265da657d9.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Anís",
+"d": "Digestiva",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/a20bb4dc785c87ec3ab94cef0c8a48b7cbffdc043a567d1bd807d54abde2b584.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Hierba Buena",
+"d": "Refrescante",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/258ac11175d79e110d301e1f2cb9f1b7a801a23d5733602eb3ab816cb3b95dcc.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Hierba Luisa",
+"d": "Aromática",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/281da6cc0d57b42ad37f71d3c0a45b32b1851dde174cb54d9682dc5453e93a73.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Jamaica",
+"d": "Flor de jamaica helada",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/a1c539383b087a7695e2aba92f352b6c5690c46bb0e6e657987759a3a76012d9.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Manzanilla",
+"d": "Calmante",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/2c89bc42968de9b79d50ae7bbae654be839d42dacde9f869acf1dddc3fc8aed1.png.webp"
+},
+{
+"cat": "Infusiones",
+"n": "Té",
+"d": "Té clásico",
+"p": 11,
+"img": "https://wasicafe.com/img/menu/083b0e6e44118c6d39cd732273bc388db9b12b109cf01a4ce62347271c667a58.png.webp"
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Café Grande",
+"d": "Tamaño grande",
+"p": 22.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Café mediano",
+"d": "",
+"p": 15.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Caramelo Grande",
+"d": "Tamaño grande",
+"p": 22.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Caramelo mediano",
+"d": "",
+"p": 15.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Chocolate Grande",
+"d": "Tamaño grande",
+"p": 23.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Chocolate mediano",
+"d": "",
+"p": 16.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Moca Grande",
+"d": "Tamaño grande",
+"p": 23.9,
+"img": ""
+},
+{
+"cat": "Frappés",
+"n": "Frappé de Moca mediano",
+"d": "",
+"p": 15.9,
+"img": ""
+},
+{
+"cat": "Bebidas Frías",
+"n": "Agua 500 ml",
+"d": "",
+"p": 5,
+"img": ""
+},
+{
+"cat": "Bebidas Frías",
+"n": "Café con Leche Helado",
+"d": "Iced latte cremoso",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/e019db5778aabd05c4375a9de3851dcaea489b05de79893d6c4e780d9550234d.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Café Helado",
+"d": "Espresso con agua fría y hielo",
+"p": 14.9,
+"img": "https://wasicafe.com/img/menu/f76665244f594bc8ca6a45b9cc9b3005c8c189d46315055ce6dd0cedce14227b.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Chicha Morada",
+"d": "Bebida ancestral de maíz morado",
+"p": 13.9,
+"img": "https://wasicafe.com/img/menu/9d9071a1b874f9f99053314981e922111690e4a8ea697020739b03dbd07b22c1.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Chocolate Helado",
+"d": "Chocolate artesanal helado",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/dd7977e33e8eef0c3c48c7d30658dcf9caace4928951360650545bde5df07e01.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Gaseosa 600 ml",
+"d": "",
+"p": 6,
+"img": ""
+},
+{
+"cat": "Bebidas Frías",
+"n": "Jamaica Helada",
+"d": "",
+"p": 11.9,
+"img": ""
+},
+{
+"cat": "Bebidas Frías",
+"n": "Limonada",
+"d": "Limonada natural",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/0c561d540cc94adb44e2f15fd7262488c024e4ee80fa47f8589976e1ebbc5b62.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Maracuyá",
+"d": "Jugo de maracuyá tropical",
+"p": 11.9,
+"img": "https://wasicafe.com/img/menu/909554a5b5e3839567d7ddaa4a8cd41975cc28581238de5bb33267b3b34a209b.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Milk Shake",
+"d": "Batido cremoso de helado artesanal",
+"p": 23.9,
+"img": "https://wasicafe.com/img/menu/76cf293635551b757403f6d1d66ead9b5677270d6344734783c7da009138bfb5.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Té Helado",
+"d": "16 oz",
+"p": 14.9,
+"img": ""
+},
+{
+"cat": "Bebidas Frías",
+"n": "Tepuchino Helado",
+"d": "Té helado con espuma",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/ff25884e2b3517e7fd547b91fda2932fe0df721614a088ea01ca6040f9ebad8d.png.webp"
+},
+{
+"cat": "Bebidas Frías",
+"n": "Zanahoria con Limón",
+"d": "16 oz",
+"p": 13.9,
+"img": ""
+},
+{
+"cat": "Frozen",
+"n": "Frozen Chicha Morada",
+"d": "",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/d28559ead9b907b30ed5e81b74b3a889333824a9fb7829e69f504edcc1e41e91.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Fresa",
+"d": "",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/68d02d82fe585e496667f56e4be8abea58bc2f5abe00799b1184f7e36070152c.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Jamaica",
+"d": "",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/dddd62da0ec2818b8de52599dba4d4c3f71274782159c6eeeb7a4c11cceffbc8.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Limón",
+"d": "",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/ec105341fe5a611abb1fc7caf276ce6170fc6ed1104172d04e8813cddea84c63.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Lúcuma",
+"d": "Fruta peruana cremosa",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/438fb4ba479b6f42570a8fcd255ce19bfba209fad18d5f9ffed3a28e1d239dbc.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Mango",
+"d": "",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/2e66817215795baced851aa765b3f75b6d2dfaef0a4653968d520baa94f47712.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Maracuyá",
+"d": "",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/361f347036c383fc4d653d6f820bbeec41b38f3190fc337062d1ae3a4cd68b63.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Naranja",
+"d": "",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/f189e621d47c9c946ee8686de33a34ea887b168c031934f1de76541a5d6db377.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Piña",
+"d": "",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/c7bfcc0fef9afa3e093342346c3e62f74063a0a5891b925b629ebc6ca6d99bb7.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Tuti Fruti",
+"d": "Mezcla de frutas",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/c11f86b151b1aac406c978c48e9419baad608865c3ed45db2d2c74191ea83042.png.webp"
+},
+{
+"cat": "Frozen",
+"n": "Frozen Zanahoria con Limón",
+"d": "",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/b541f8bb00d0242c510a4ad5071f7c02e196f859d4d8cf9c7eaa065ad831b415.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo de Fresa",
+"d": "Fresas frescas",
+"p": 14.9,
+"img": "https://wasicafe.com/img/menu/87b3df66382b823afaf9c76e50060686f84025ee6359214e9352b60bcc2aa200.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo de Mango",
+"d": "Mango tropical",
+"p": 14.9,
+"img": "https://wasicafe.com/img/menu/79b14978dbfc5a131d3e57c8919549d346ba200500db6ad5ba633488087e4918.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo de Naranja",
+"d": "Exprimida al momento",
+"p": 14.9,
+"img": "https://wasicafe.com/img/menu/d8146a8ae2c9ce0a15691b784c19a04b11c71426b07d99be617ee1e18197e8cc.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo de Papaya",
+"d": "Gran digestivo",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/c311ab8024af70a43f722739e3a363e3d58ed04744b6bb7007bfc5ea668cdd81.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo de Piña",
+"d": "Piña fresca",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/2861551dc73547752ca39477036d6a92f55e19ef863136a4ee5ac594521d913d.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo Especial",
+"d": "Papaya, piña, fresa, plátano y algarrobina",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/db6937a84acc502d9243cdb2d0907b1419780f4295d18ae3247b6e7f894295fb.png.webp"
+},
+{
+"cat": "Jugos",
+"n": "Jugo Surtido",
+"d": "Papaya, piña, fresa y plátano",
+"p": 13.9,
+"img": "https://wasicafe.com/img/menu/c49e44725d9cd74dfe489ccd9409e555428adbdac7e086e85a29f78c148c94ef.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Fresa con Leche",
+"d": "Fresas frescas con leche",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/bfa3207b28612ec0a5cb5029e5b540845888d279a00708c07178b21e8fe38866.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Lúcuma con Leche",
+"d": "Fruta peruana única con leche",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/3c214c2e32f610cb44a8b3c10e183d29c3cc384864d977a0e1fcb7e3f839dcb2.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Mango con Leche",
+"d": "Mango dulce con leche fresca",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/c893b9e34db8cefca47de655ab4d8203079783956952d24389ef63a86b95c882.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Palta con Leche",
+"d": "Superalimento peruano con leche",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/43b845a83effea6a9ddf549b865b52411730ddc58ed8468914e1eb77f4d94ce5.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Papaya con Leche",
+"d": "Papaya cremosa con leche",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/9b8d7bd50f3234264fef017169120ce39eae44011d17fd67773baabae6115d5c.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Piña con Leche",
+"d": "Piña tropical con leche",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/d1ee905cfaf4a02563b4dfc47fb32cfb04b2d5d42132c9b3ca44ee594f947261.png.webp"
+},
+{
+"cat": "Batidos",
+"n": "Plátano con Leche",
+"d": "Cremoso y reconfortante",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/ed92a2982f397a2e54bf0e6db9b10cfc6eecfa10880e1eab703fc61c9b55b91d.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Bisteck Montado",
+"d": "",
+"p": 35.9,
+"img": ""
+},
+{
+"cat": "Sándwiches",
+"n": "Butifarra",
+"d": "Jamón del país con salsa criolla — el clásico peruano",
+"p": 20.9,
+"img": "https://wasicafe.com/img/menu/19592cdd71c1eace7872bdf0176318a993159bc6a839cba525d524a460774dc2.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Caprese",
+"d": "Mozzarella, tomate, albahaca y aceite de oliva",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/6628635a7e1d41b6874845b636219aca17068532ce846c9c04ca63550650fe31.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Chicharrón",
+"d": "Pan con chicharrón, camote frito y salsa criolla",
+"p": 24.9,
+"img": "https://wasicafe.com/img/menu/4f1ec98271e432578531322c164298e901be1240881633ac860e77d433768f34.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Choripán",
+"d": "",
+"p": 13.9,
+"img": ""
+},
+{
+"cat": "Sándwiches",
+"n": "Club Sandwich",
+"d": "Pollo deshilachado, chorizo, queso Edam, huevo frito, tocino, lechuga y tomate en pan de molde blanco, con papas andinas fritas (4 porciones)",
+"p": 52.9,
+"img": "https://wasicafe.com/img/menu/6347fb863f7c2f62b9615c404624a62f488711b443860259ed9406127d85e40e.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Club Wasi",
+"d": "Pollo, chorizo, tocino, queso, lechuga y tomate",
+"p": 58.9,
+"img": "https://wasicafe.com/img/menu/b74da3e01a9d1682688a9e6d24986e04f800c6de69ddbd000a654599aa5cf4bd.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Croissant de Pollo",
+"d": "Pechuga deshilachada, mayonesa y lechuga",
+"p": 21.9,
+"img": "https://wasicafe.com/img/menu/2b130e38cb38ec6564ca6362539a333a58e2822b5312fee5a78d4a61079743dc.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Croissant Huevos y Jamón",
+"d": "Hojaldre con huevos revueltos y jamón ahumado",
+"p": 22.9,
+"img": "https://wasicafe.com/img/menu/e75160917c788b820d13136024bda482d5150849f84c420ccdaf341b6efdf7e2.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Croissant Mixto",
+"d": "Jamón ahumado y queso edam",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/b295bc85d1f42bf0d2c3aaf9c3060b32975c4ef5aca14d447667411f4cd25159.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Filete de Pollo",
+"d": "Filete a la plancha en pan artesanal",
+"p": 26.9,
+"img": "https://wasicafe.com/img/menu/ce307ed16bc5a1ad850adfc8de804d20d6d8df0fe1bc44b06dc76158af6bb067.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Hamburguesa Clásica",
+"d": "Carne de res, queso edam, lechuga y tomate",
+"p": 26.9,
+"img": "https://wasicafe.com/img/menu/6e0d19aada963e84ffcc978c61f9cd7583e34aa893f738c48947054da57b49fb.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Hamburguesa Royal",
+"d": "Carne de res, huevo, jamón inglés y papas fritas",
+"p": 33.9,
+"img": "https://wasicafe.com/img/menu/bab01fa6792c4ca9769edd0377be64c5ec09a96c83737f34eaf65c1697cda5f6.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Hamburguesa Wasi",
+"d": "Carne de res, huevo frito, tocino, jamón inglés, queso Edam, lechuga y tomate en pan de hamburguesa, con papas andinas fritas",
+"p": 36.9,
+"img": "https://wasicafe.com/img/menu/35fee3c1f87034b010f9c234843faa6ba43e855577cdf2bb97ccc2d11e4259bd.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Mixto Clásico",
+"d": "Jamón ahumado y queso en pan tostado",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/2b1185611d8b4e14feb26f89cd2221a44e6c3fcbe825497052a1237ea760e7bb.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Mixto Especial",
+"d": "Mixto planchado con queso derretido extra",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/9ecc6d67d71317c0fdffccd21ac141996710d5bc364ad6ab96c5a8ce41985abd.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Pollo con Palta",
+"d": "Pollo deshilachado con palta en pan de miga",
+"p": 22.9,
+"img": "https://wasicafe.com/img/menu/8c34655be241939fa9c7ef98188d50524186cfdbe5a641949538ea2808e85542.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Sándwich de Asado",
+"d": "Asado de res con salsa criolla en pan artesanal",
+"p": 24.9,
+"img": "https://wasicafe.com/img/menu/84f96b91846d96332031f7b5c34c8d7191eff13cc95f3d901159919c8765b1f5.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Sándwich de Milanesa",
+"d": "Milanesa, tomate, lechuga, queso y mayonesa",
+"p": 29.9,
+"img": "https://wasicafe.com/img/menu/8daf2412a6326ba6d1d690ab3a471b3f90dc0e4c0a5d5780ef3617129a8dcb74.png.webp"
+},
+{
+"cat": "Sándwiches",
+"n": "Sándwich de Pavo",
+"d": "",
+"p": 20.9,
+"img": ""
+},
+{
+"cat": "Sándwiches",
+"n": "Sándwich de Pollo",
+"d": "",
+"p": 16.9,
+"img": ""
+},
+{
+"cat": "Sándwiches",
+"n": "Sándwich Light",
+"d": "",
+"p": 17.9,
+"img": ""
+},
+{
+"cat": "Sándwiches",
+"n": "Tropical Croissant",
+"d": "Pollo, mayonesa, durazno y queso edam",
+"p": 22.9,
+"img": "https://wasicafe.com/img/menu/82f257626c8eadba0af054499908386072bdf45637d572de2fc7218db9ba8305.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette Completo",
+"d": "Jamón, queso, tocino, tomate y pimiento",
+"p": 24.9,
+"img": "https://wasicafe.com/img/menu/e67aac4593c7baa24bfad7d1cad365ce64fe37aace0216a0485097a0a14fea0e.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette de Jamón",
+"d": "",
+"p": 18.5,
+"img": "https://wasicafe.com/img/menu/54dd1b3a1474b4c7b0aae3260de6bad8995106a0a473e2155a40e63ada87104d.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette de Pollo",
+"d": "",
+"p": 22.5,
+"img": "https://wasicafe.com/img/menu/50108d0073cf39ef55e18730fc209e84c6e6533bbd7bdaa75925cffe70c238f2.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette de Queso",
+"d": "",
+"p": 18.5,
+"img": "https://wasicafe.com/img/menu/9b4b6e71f7f3633e7ceeed791efff4900c1180c8c313e5b15784ca5a0d2b8f9b.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette de Tocino",
+"d": "",
+"p": 21,
+"img": "https://wasicafe.com/img/menu/e880ed2a4e57382c4c930490a52454816ab23c85e8d986c074ecc5460ff7ab1a.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette Jamón y Queso",
+"d": "",
+"p": 23.9,
+"img": "https://wasicafe.com/img/menu/dba812255f1b6c3de1f420eb5692a58ab0391ddc9d376438097c22487c997e33.png.webp"
+},
+{
+"cat": "Omelettes",
+"n": "Omelette Tocino y Queso",
+"d": "",
+"p": 24.9,
+"img": "https://wasicafe.com/img/menu/81605654aa0ba7fd9aa74315ed28b51194b6319b6308257714b9d5695d90468e.png.webp"
+},
+{
+"cat": "Salchipapas",
+"n": "Salchipapa",
+"d": "",
+"p": 26.9,
+"img": ""
+},
+{
+"cat": "Salchipapas",
+"n": "Salchipapa Especial",
+"d": "Papas, chorizo, hot dog, huevo y queso",
+"p": 34.9,
+"img": "https://wasicafe.com/img/menu/3e52932d4ee32c79a24bf28748796de495275533de644804a1be4df14fc26be7.png.webp"
+},
+{
+"cat": "Promociones",
+"n": "Combo Bistec",
+"d": "",
+"p": 29.9,
+"img": ""
+},
+{
+"cat": "Promociones",
+"n": "Combo Chuleta",
+"d": "",
+"p": 29.9,
+"img": ""
+},
+{
+"cat": "Promociones",
+"n": "Combo Filete",
+"d": "",
+"p": 25.9,
+"img": ""
+},
+{
+"cat": "Promociones",
+"n": "Combo Hamburguesa",
+"d": "",
+"p": 29.9,
+"img": ""
+},
+{
+"cat": "Promociones",
+"n": "Combo Milanesa",
+"d": "",
+"p": 29.9,
+"img": ""
+},
+{
+"cat": "Promociones",
+"n": "Combo Suprema",
+"d": "",
+"p": 29.9,
+"img": ""
+},
+{
+"cat": "Dulce Pausa",
+"n": "Croissant+ chocolate",
+"d": "",
+"p": 18.4,
+"img": ""
+},
+{
+"cat": "Dulce Pausa",
+"n": "Empanada+ capuchino",
+"d": "",
+"p": 20.4,
+"img": ""
+},
+{
+"cat": "Dulce Pausa",
+"n": "Pie + capuchino",
+"d": "",
+"p": 21.4,
+"img": ""
+},
+{
+"cat": "Dulce Pausa",
+"n": "Torta  + capuchino",
+"d": "",
+"p": 23.4,
+"img": ""
+},
+{
+"cat": "Dulce Pausa",
+"n": "Torta de chocolate + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 21.4,
+"img": "https://wasicafe.com/img/menu/a824019ff1caf7123b7e87f7218a2a1e696357b7eb832e2b170780973eaf3873.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Crema volteada + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 21.4,
+"img": "https://wasicafe.com/img/menu/9b68bfacd017393f5d6c5fd344b5aa3e12ef0b33930ee0f280202ba0ea8cfb44.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Torta tres leches + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 21.4,
+"img": "https://wasicafe.com/img/menu/ba825c19abb51a84f87f60f16ca21293d93331f704c029276d313f481e077a06.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Carrot cake + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 21.4,
+"img": "https://wasicafe.com/img/menu/40e2378fc80f7649d97f7425b5672b8ce97bf28ac2b9cb54eb1c11a6307055d1.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Pie de limón + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 19.4,
+"img": "https://wasicafe.com/img/menu/eb3f84bc777ba194a00dc4395458c7f9b53ffc1e9cdcba0507f7d6de552199d1.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Pie de manzana + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 19.4,
+"img": "https://wasicafe.com/img/menu/5b993f3f5081bd924d6deb8f522b047730bc1caf03bf527adc82ce690fbd251d.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Empanada + Café Americano",
+"d": "Cambia a Capuchino por S/ 2 más",
+"p": 18.4,
+"img": "https://wasicafe.com/img/menu/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp"
+},
+{
+"cat": "Dulce Pausa",
+"n": "Croissant + Café Americano",
+"d": "Cambia a Chocolate por S/ 3 más",
+"p": 15.4,
+"img": "https://wasicafe.com/img/menu/8122ed96824f11b97d43733798fc2f660dca32596237f584a40ce10b6d466680.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Alfajor",
+"d": "Galleta con manjar blanco",
+"p": 3,
+"img": "https://wasicafe.com/img/menu/9147a616453b0250476ef2e098a7d467c527bbbe7feb236156275656cd815cbd.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Alfajor Wasi",
+"d": "Nuestra versión premium",
+"p": 8.9,
+"img": "https://wasicafe.com/img/menu/37d1adece1058a3bec260085b8b33f1ca1eeed16a752a29d273fea244d050273.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Brownie",
+"d": "Chocolate denso y húmedo",
+"p": 10.9,
+"img": "https://wasicafe.com/img/menu/0c09f6a98f41eee4051b53df6d3c7ef89ddbb44c097e9e358da73e6f68b83a36.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Brownie con Helado",
+"d": "Brownie caliente + helado artesanal",
+"p": 19,
+"img": "https://wasicafe.com/img/menu/d6f28fdc18f0d14db8bdfba4550eaa607f1794be72115040c67efcd59e945a1f.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Carrot Cake",
+"d": "Zanahoria con frosting de queso crema",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/40e2378fc80f7649d97f7425b5672b8ce97bf28ac2b9cb54eb1c11a6307055d1.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Cheesecake de Frutos del Bosque",
+"d": "Cheesecake con frutos del bosque",
+"p": 18.9,
+"img": "https://wasicafe.com/img/menu/7a6b5fe7492a1c9d6c9294f61cf73f13ee9c10646892b3ac63fc5af1779d0735.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Crema Volteada",
+"d": "Flan de caramelo cremoso",
+"p": 18,
+"img": "https://wasicafe.com/img/menu/9b68bfacd017393f5d6c5fd344b5aa3e12ef0b33930ee0f280202ba0ea8cfb44.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Croissant con Helado",
+"d": "Croissant caliente + helado",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/06f57d78ab7976d153c820a06e9bdb377cbac726bb4ba49efd96f1d66ab6078f.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Pastel de Acelga",
+"d": "Pastel salado de acelga",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/54003009fc0cd17b03fd323b202daf5b04f7a0f000db672e474f7532d1de0a40.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Pie de Limón",
+"d": "Tarta de limón con merengue suizo",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/eb3f84bc777ba194a00dc4395458c7f9b53ffc1e9cdcba0507f7d6de552199d1.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Pie de Manzana",
+"d": "Tarta clásica horneada",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/5b993f3f5081bd924d6deb8f522b047730bc1caf03bf527adc82ce690fbd251d.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Pie de Maracuyá",
+"d": "Tarta tropical de maracuyá",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/ac6e3f6215007a43a82d5c730b48c5c17b277a720c876d3de059fe724824be04.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Torta de Chocolate",
+"d": "Bizcocho húmedo con ganache",
+"p": 18,
+"img": "https://wasicafe.com/img/menu/a824019ff1caf7123b7e87f7218a2a1e696357b7eb832e2b170780973eaf3873.png.webp"
+},
+{
+"cat": "Postres",
+"n": "Tres Leches",
+"d": "Bizcocho bañado en tres leches",
+"p": 18,
+"img": "https://wasicafe.com/img/menu/ba825c19abb51a84f87f60f16ca21293d93331f704c029276d313f481e077a06.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Camote Frito",
+"d": "Tubérculo peruano",
+"p": 14.9,
+"img": "https://wasicafe.com/img/menu/227b5356d349d09c5ba569de4233db5305882b1317aca98d709084ce69921222.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Croissant",
+"d": "De mantequilla",
+"p": 9.9,
+"img": "https://wasicafe.com/img/menu/8122ed96824f11b97d43733798fc2f660dca32596237f584a40ce10b6d466680.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Ensalada Criolla",
+"d": "Cebolla, tomate, limón",
+"p": 6,
+"img": "https://wasicafe.com/img/menu/0f76c26364ac1de63f194627835bd9e31d6116ea7f96c1aeb07e0614c2bf791b.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "HUEVO",
+"d": "",
+"p": 4,
+"img": ""
+},
+{
+"cat": "Guarniciones",
+"n": "Huevos con Jamón",
+"d": "",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/d8abe2182b9853ee1c673f95665fc22c5597f30d002949254575060826d0c9f2.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Huevos con Tocino",
+"d": "",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/11f627f3331c159ded67c38b2d214489af3eae2bc0ac5998b894d9548dd3c396.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Huevos Jamón y Queso",
+"d": "",
+"p": 19.9,
+"img": "https://wasicafe.com/img/menu/cd9ef5d10e1bf009629814883bae68df2f1d2ca93e28a99fe54a89b68f3abb58.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Huevos Revueltos",
+"d": "",
+"p": 15.9,
+"img": "https://wasicafe.com/img/menu/254ef8e25eab692c6c606b9fd060d0b05faef78ed9c82bb4c2e3c38a47944764.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Huevos Sancochados",
+"d": "3 unidades",
+"p": 13,
+"img": "https://wasicafe.com/img/menu/e1c36850f892ab1618cbfd21e87ce1d7ec9d4f5221f1fa5dcc5b82ba081189b7.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Pan al Ajo",
+"d": "",
+"p": 13.9,
+"img": "https://wasicafe.com/img/menu/bf2e36e8219d316c1bd330c7f9a8fe6da8b4b3a3e64cc67aa3721cc32af98b5c.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Papas Andinas",
+"d": "Fritas al punto",
+"p": 18,
+"img": "https://wasicafe.com/img/menu/52ce27d0eed56f16b6b5455f928762198356715586d727deb5cfccbceac2b472.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Porción de salchicha huachana",
+"d": "",
+"p": 14.9,
+"img": ""
+},
+{
+"cat": "Guarniciones",
+"n": "Tostadas",
+"d": "",
+"p": 9.9,
+"img": "https://wasicafe.com/img/menu/54e4af03edfe82f186aec0b849d93caa1f287b1ffa8c78808f7c0a4775c2854a.png.webp"
+},
+{
+"cat": "Guarniciones",
+"n": "Zumo de Limón",
+"d": "",
+"p": 5,
+"img": ""
+},
+{
+"cat": "Ensaladas",
+"n": "Ensalada César",
+"d": "Pollo a la plancha, lechuga romana, crutones y César",
+"p": 37.9,
+"img": "https://wasicafe.com/img/menu/cc978ac94b2cb348aee7660d7ec87c2111056dbbbde5ec273e5bd7b1caf3fc8a.png.webp"
+},
+{
+"cat": "Ensaladas",
+"n": "Ensalada de Pollo",
+"d": "Pollo, lechuga orgánica, tomate, palta y aderezo",
+"p": 35,
+"img": "https://wasicafe.com/img/menu/7c6a1f5eef441d56513b10ae38ac99dd85cf763c9d0eb4368ae5cee29cc1be8f.png.webp"
+},
+{
+"cat": "Tamales",
+"n": "Tamal Criollo",
+"d": "Con salsa criolla en pan francés",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/51490ee7e6a31613985d4ed3a8e28911303506ce9d47e26ecdf24eca181c045e.png.webp"
+},
+{
+"cat": "Helados",
+"n": "1 Bola",
+"d": "Chocolate, fresa, lúcuma o vainilla",
+"p": 9.9,
+"img": "https://wasicafe.com/img/menu/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp"
+},
+{
+"cat": "Helados",
+"n": "2 Bolas",
+"d": "Elige dos sabores",
+"p": 16.9,
+"img": "https://wasicafe.com/img/menu/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp"
+},
+{
+"cat": "Helados",
+"n": "3 Bolas",
+"d": "Elige tres sabores",
+"p": 25.9,
+"img": "https://wasicafe.com/img/menu/e4c1566e8039cd3a16df703166fb9541f64695830b8ce3da89564f8bad4ccac7.png.webp"
+},
+{
+"cat": "Helados",
+"n": "Banana Split",
+"d": "Plátano, 3 bolas, salsas y crema",
+"p": 25.9,
+"img": "https://wasicafe.com/img/menu/0a173ae847bb992e2c9c78823509f55c3260f319e1786aef0e04b832cd5a7abf.png.webp"
+},
+{
+"cat": "Cócteles",
+"n": "Piña Colada",
+"d": "Ron, piña, coco y crema",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/24aebf38a6f65b7ea15e0cfe8bf294d895c0bd381bda0933eb3d89a3868d6a84.png.webp"
+},
+{
+"cat": "Cócteles",
+"n": "Pisco Sour",
+"d": "Pisco, limón, jarabe y clara de huevo",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/5ad197320469bb5101ca35422d5fcdca60cd154645581e146e0237eec8ba5156.png.webp"
+},
+{
+"cat": "Cócteles",
+"n": "Vino Tinto de Verano",
+"d": "Copa de vino de la casa",
+"p": 17.9,
+"img": "https://wasicafe.com/img/menu/6afd21bf580ce07160c7af94ac428c7d2c54593b81195184d3cf09b53ff6479a.png.webp"
+},
+{
+"cat": "Empanadas",
+"n": "Empanada de Carne",
+"d": "Carne molida sazonada",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp"
+},
+{
+"cat": "Empanadas",
+"n": "Empanada de Pollo",
+"d": "Rellena de pollo deshilachado",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp"
+},
+{
+"cat": "Empanadas",
+"n": "Empanada Mixta",
+"d": "Pollo y carne combinados",
+"p": 12.9,
+"img": "https://wasicafe.com/img/menu/b8c93b22d9f822e0317558476e551151b12f0c882c1caf90c7ca906169984238.png.webp"
+},
+{
+"cat": "Combo Bebida + Postre",
+"n": "Capuchino + Pie",
+"d": "",
+"p": 20.5,
+"img": ""
+},
+{
+"cat": "Combo Bebida + Postre",
+"n": "Chocolate Caliente + Croissant",
+"d": "",
+"p": 17.5,
+"img": ""
+}
+]

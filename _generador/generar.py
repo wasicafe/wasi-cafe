@@ -108,6 +108,30 @@ def galeria(fotos: list) -> str:
             f'gap:1rem;margin:1.4rem 0 1.8rem">{celdas}</div>')
 
 
+GUIAS = [
+    ('desayunos-en-san-isidro-carta-precios-horario', 'Desayunos en San Isidro'),
+    ('almuerzo-en-san-isidro-combos-y-precios', 'Almuerzo en San Isidro'),
+    ('brunch-en-san-isidro-que-pedir-como-elegir', 'Brunch en San Isidro'),
+    ('cafe-de-especialidad-san-isidro-guia', 'Café de especialidad'),
+    ('sandwiches-peruanos-y-hamburguesas-san-isidro', 'Sándwiches'),
+    ('postres-artesanales-cafeteria-san-isidro', 'Postres'),
+    ('cafeterias-para-trabajar-laptop-san-isidro', 'Trabajar con laptop'),
+    ('cafeteria-en-san-isidro-horario-como-llegar', 'Horario y cómo llegar'),
+]
+
+
+def guias(slug: str) -> str:
+    """Bloque fijo con las guías principales: cada post empuja a las páginas que
+    deben ganar las búsquedas locales. Se omite el enlace a sí mismo."""
+    chip = ('display:inline-block;padding:.45rem .9rem;border:1px solid var(--line);border-radius:999px;'
+            'font-size:.88rem;color:var(--ink);text-decoration:none;background:var(--paper)')
+    items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios')]
+    return ('  <nav class="read guias" aria-label="Guías de Wasi Café en San Isidro" style="display:block;margin-top:2.6rem">'
+            '<p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .8rem">'
+            'Guías de Wasi Café en San Isidro</p><ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem">'
+            + ''.join(f'<li><a href="{h}" style="{chip}">{t}</a></li>' for h, t in items) + '</ul></nav>')
+
+
 def resolver_relacionados(f: dict) -> list:
     """Los títulos de los enlaces relacionados salen del H1 REAL del post enlazado.
     Escribirlos en la ficha invita a inventarlos (pasó en el primer post: los tres
@@ -150,6 +174,7 @@ def articulo(f: dict) -> str:
         p.append('<section class="faq read"><h2>Preguntas frecuentes</h2>' + ''.join(
             f'<details><summary>{esc(q["p"])}</summary><p>{q["r"]}</p></details>'
             for q in f['faq']) + '</section>')
+    p.append(guias(f['slug']))
     p.append('  <div class="read"><div class="cta"><h3>Te esperamos en Wasi Café</h3>'
              '<p>Cafetería de especialidad en San Isidro. Ven a probar nuestro café, '
              'brunch y postres, o escríbenos.</p>'
