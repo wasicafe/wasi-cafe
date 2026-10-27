@@ -54,9 +54,9 @@ def datos(f: dict) -> str:
     bloques = [
         {"@context": "https://schema.org", "@type": "BlogPosting",
          "headline": f['h1'], "description": f['descripcion'], "inLanguage": "es-PE",
-         "datePublished": f['fecha'], "dateModified": f['fecha'],
+         "datePublished": f['fecha'], "dateModified": f.get('modificado', f['fecha']),
          "mainEntityOfPage": {"@type": "WebPage", "@id": url},
-         "image": f'{BASE}/og-image.png',
+         "image": portada(f),
          "author": {"@type": "Organization", "name": "Wasi Café", "url": BASE},
          "publisher": {"@type": "Organization", "name": "Wasi Café",
                        "logo": {"@type": "ImageObject", "url": f'{BASE}/LOGOS.png'}},
@@ -87,6 +87,27 @@ def datos(f: dict) -> str:
                      json.dumps(b, ensure_ascii=False) + '</script>' for b in bloques)
 
 
+def portada(f: dict) -> str:
+    """Primera foto real del artículo (si la hay) para los datos estructurados."""
+    for s in f.get('secciones', []):
+        for x in s.get('fotos', []):
+            return BASE + x['src']
+    return f'{BASE}/og-image.png'
+
+
+def galeria(fotos: list) -> str:
+    """Fotos reales de la carta, con nombre y precio. Pequeñas (429 px), por eso
+    van en rejilla y nunca estiradas a todo el ancho."""
+    celdas = ''.join(
+        f'<figure style="margin:0"><img src="{esc(x["src"])}" alt="{esc(x["alt"])}" '
+        f'width="429" height="333" loading="lazy" decoding="async" '
+        f'style="width:100%;height:auto;aspect-ratio:429/333;object-fit:cover;border-radius:14px;display:block">'
+        f'<figcaption style="font-size:.86rem;color:var(--ink-soft);margin-top:.45rem;line-height:1.4">'
+        f'{esc(x["pie"])}</figcaption></figure>' for x in fotos)
+    return ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,calc(50% - .5rem)),1fr));'
+            f'gap:1rem;margin:1.4rem 0 1.8rem">{celdas}</div>')
+
+
 def resolver_relacionados(f: dict) -> list:
     """Los títulos de los enlaces relacionados salen del H1 REAL del post enlazado.
     Escribirlos en la ficha invita a inventarlos (pasó en el primer post: los tres
@@ -102,17 +123,28 @@ def resolver_relacionados(f: dict) -> list:
     return out
 
 
+MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+         'septiembre', 'octubre', 'noviembre', 'diciembre']
+
+
+def fecha_legible(iso: str) -> str:
+    a, m, d = iso.split('-')
+    return f'{int(d)} de {MESES[int(m) - 1]} de {a}'
+
+
 def articulo(f: dict) -> str:
     p = [f'<div class="crumbs"><a href="/">Inicio</a><span>›</span>'
          f'<a href="/blog">Blog</a><span>›</span>{esc(f["tituloCorto"])}</div></div>',
          '', '<article>',
          f'<div class="read ahero"><p class="eyebrow">{esc(f["eyebrow"])}</p>'
          f'<h1>{esc(f["h1"])}</h1>',
-         '<p class="ameta">Blog de Wasi Café · San Isidro, Lima</p></div>',
+         '<p class="ameta">Blog de Wasi Café · San Isidro, Lima' + (f' · Actualizado el {fecha_legible(f["modificado"])}' if f.get('modificado') else '') + '</p></div>',
          '<div class="read prose">', f['intro']]
     for s in f['secciones']:
         p.append(f'<h2>{esc(s["h2"])}</h2>')
         p.append(s['html'])
+        if s.get('fotos'):
+            p.append(galeria(s['fotos']))
     p.append('</div>')
     if f.get('faq'):
         p.append('<section class="faq read"><h2>Preguntas frecuentes</h2>' + ''.join(
@@ -120,7 +152,7 @@ def articulo(f: dict) -> str:
             for q in f['faq']) + '</section>')
     p.append('  <div class="read"><div class="cta"><h3>Te esperamos en Wasi Café</h3>'
              '<p>Cafetería de especialidad en San Isidro. Ven a probar nuestro café, '
-             'brunch y postres — o escríbenos.</p>'
+             'brunch y postres, o escríbenos.</p>'
              '<a class="btn" href="https://wa.me/51908724496?text=Hola!%20Quiero%20info%20'
              'de%20Wasi%20Caf%C3%A9%20%E2%98%95" target="_blank" rel="noopener">'
              'Escríbenos por WhatsApp</a></div>')

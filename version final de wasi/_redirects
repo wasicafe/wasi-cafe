@@ -5,3 +5,7 @@
 # Nota: /mesa lo sirve Cloudflare Pages automáticamente desde mesa.html (URL
 # limpia, igual que /carta), conservando el query (?t=/?n=). NO añadir una regla
 # /mesa -> /mesa.html: choca con la URL limpia y crea un bucle de redirección.
+
+# Wasi no abre los domingos: el artículo que invitaba a ir un domingo se retiró
+# (26/10/2026) y su dirección lleva al de horario y cómo llegar.
+/blog/desconectar-un-domingo-en-cafeteria-san-isidro  /blog/cafeteria-en-san-isidro-horario-como-llegar  301
