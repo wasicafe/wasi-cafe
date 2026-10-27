@@ -47,7 +47,7 @@
 <p>Si prefieres saltarte la espera, en nuestro local de San Isidro lo dejamos listo para ti. Puedes pedirlo desde la mesa con nuestro sistema por QR en la ruta <a href="/mesa">/mesa</a> y disfrutarlo recién servido.</p>
 
 <h2>Qué café peruano funciona mejor en frío</h2>
-<p>En frío, los matices del grano se perciben de manera distinta, así que vale la pena elegir bien el origen. En Wasi Café trabajamos café de especialidad peruano de <strong>Cajamarca, Cusco, Amazonas y San Martín</strong>, y cada uno aporta algo diferente al cold brew.</p>
+<p>En frío, los matices del grano se perciben de manera distinta, así que vale la pena elegir bien el origen. En Wasi Café trabajamos café de especialidad peruano de <strong>Cusco, Cajamarca, Junín, Amazonas y San Martín</strong>, y cada uno aporta algo diferente al cold brew.</p>
 <ul>
 <li><strong>Cajamarca y Amazonas:</strong> perfiles equilibrados con notas dulces y achocolatadas, perfectos para un cold brew redondo y fácil de beber.</li>
 <li><strong>Cusco:</strong> cuerpo más presente y dulzor a caramelo, ideal si te gusta un concentrado con carácter.</li>
