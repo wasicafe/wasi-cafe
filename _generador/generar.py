@@ -100,7 +100,7 @@ def datos(f: dict) -> str:
                     "address": {"@type": "PostalAddress",
                                 "streetAddress": "Luis Felipe Villarán 904",
                                 "addressLocality": "San Isidro", "addressRegion": "Lima",
-                                "postalCode": "15073", "addressCountry": "PE"},
+                                "postalCode": "15046", "addressCountry": "PE"},
                     "geo": {"@type": "GeoCoordinates", "latitude": -12.1015761,
                             "longitude": -77.0289421},
                     "servesCuisine": ["Café de especialidad", "Peruvian", "Brunch"],
