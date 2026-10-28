@@ -86,6 +86,13 @@ def main() -> None:
                     f'<changefreq>{freq}</changefreq><priority>{prio}</priority></url>')
     urls += [f'  <url><loc>{BASE}/blog/{d["slug"]}</loc><lastmod>{d["fecha"]}</lastmod>'
              f'<changefreq>monthly</changefreq><priority>0.6</priority></url>' for d in posts]
+    # páginas de producto (las crea productos.py) y su índice
+    if (SITIO / 'productos.html').exists():
+        urls.append(f'  <url><loc>{BASE}/productos</loc><lastmod>{ultima_modificacion("productos.html") or hoy}</lastmod>'
+                    f'<changefreq>weekly</changefreq><priority>0.7</priority></url>')
+    for pr in sorted((SITIO / 'producto').glob('*.html')):
+        urls.append(f'  <url><loc>{BASE}/producto/{pr.stem}</loc><lastmod>{ultima_modificacion("producto/" + pr.name) or hoy}</lastmod>'
+                    f'<changefreq>monthly</changefreq><priority>0.5</priority></url>')
     (SITIO / 'sitemap.xml').write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

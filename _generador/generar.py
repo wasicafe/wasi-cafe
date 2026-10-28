@@ -152,10 +152,10 @@ def guias(slug: str, idioma: str = 'es') -> str:
     chip = ('display:inline-block;padding:.45rem .9rem;border:1px solid var(--line);border-radius:999px;'
             'font-size:.88rem;color:var(--ink);text-decoration:none;background:var(--paper)')
     if idioma == 'en':
-        items = [(f'/blog/{s}', e) for (s, _), e in zip(GUIAS, GUIAS_EN)] + [('/carta', 'Menu with prices')]
+        items = [(f'/blog/{s}', e) for (s, _), e in zip(GUIAS, GUIAS_EN)] + [('/carta', 'Menu with prices'), ('/productos', 'All products (in Spanish)')]
         titulo = 'More Wasi Café guides'
     else:
-        items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios')]
+        items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios'), ('/productos', 'Todos los productos')]
         titulo = 'Guías de Wasi Café en San Isidro'
     return ('  <nav class="read guias" aria-label="Guías de Wasi Café en San Isidro" style="display:block;margin-top:2.6rem">'
             '<p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .8rem">'
