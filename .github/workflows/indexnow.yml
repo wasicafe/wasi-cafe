@@ -1,0 +1,57 @@
+# Avisa a los buscadores (IndexNow: Bing, Yandex, Seznam, Naver, Yep) cada vez
+# que se sube un cambio a la web. Bing recibe el aviso vía Yandex: su endpoint
+# directo responde 403 «UserForbiddedToAccessSite» (verificado 27/10/2026),
+# pero los avisos compartidos sí le llegan (panel IndexNow de Bing, fuente «Self»).
+# La clave es pública: está en https://wasicafe.com/<clave>.txt
+name: Avisar a buscadores
+
+on:
+  push:
+    branches: [main]
+    paths: ['version final de wasi/**']
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Páginas cambiadas
+        id: urls
+        run: |
+          SITIO="version final de wasi"
+          git diff --name-only HEAD~1 HEAD -- "$SITIO" \
+            | grep -E '\.html$|sitemap\.xml$|llms\.txt$' \
+            | sed "s|^$SITIO/||" \
+            | sed -E 's|^index\.html$||; s|/index\.html$|/|; s|\.html$||' \
+            | sed 's|^|https://wasicafe.com/|' > urls.txt || true
+          # Si cambió el índice del blog o la carta, que relean también el mapa del sitio.
+          grep -qE 'blog$|carta$' urls.txt && echo "https://wasicafe.com/sitemap.xml" >> urls.txt || true
+          sort -u urls.txt -o urls.txt
+          echo "total=$(wc -l < urls.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
+          cat urls.txt
+
+      - name: Esperar a que Cloudflare publique
+        if: steps.urls.outputs.total != '0'
+        run: |
+          # Cloudflare Pages tarda ~1 min; se espera a que la primera URL responda 200.
+          U=$(head -1 urls.txt)
+          for i in $(seq 1 20); do
+            sleep 15
+            [ "$(curl -s -o /dev/null -w '%{http_code}' "$U")" = "200" ] && break
+          done
+          sleep 30
+
+      - name: Avisar por IndexNow
+        if: steps.urls.outputs.total != '0'
+        run: |
+          KEY=7e2eff04159e619de028c499a0fb0de8
+          LISTA=$(python3 -c "import json;print(json.dumps([l.strip() for l in open('urls.txt') if l.strip()][:10000]))")
+          for EP in yandex.com search.seznam.cz searchadvisor.naver.com indexnow.yep.com; do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST "https://$EP/indexnow" \
+              -H 'Content-Type: application/json; charset=utf-8' \
+              -d "{\"host\":\"wasicafe.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://wasicafe.com/$KEY.txt\",\"urlList\":$LISTA}")
+            echo "$EP -> $CODE"
+          done
