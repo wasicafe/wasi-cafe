@@ -26,6 +26,28 @@ def esc(t: str) -> str:
     return html.escape(t, quote=True)
 
 
+# Textos fijos por idioma. Una ficha con "idioma": "en" sale entera en inglés
+# (lang del <html>, og:locale, migas, fechas, CTA y bloque de guías).
+TXT = {
+    'es': {'locale': 'es_PE', 'lang': 'es-PE', 'inicio': 'Inicio', 'faq': 'Preguntas frecuentes',
+           'meta': 'Blog de Wasi Café · San Isidro, Lima', 'actualizado': ' · Actualizado el ',
+           'cta_t': 'Te esperamos en Wasi Café',
+           'cta_p': 'Cafetería de especialidad en San Isidro. Ven a probar nuestro café, brunch y postres, o escríbenos.',
+           'cta_b': 'Escríbenos por WhatsApp', 'cta_w': 'Hola!%20Quiero%20info%20de%20Wasi%20Caf%C3%A9%20%E2%98%95',
+           'volver': '← Volver al blog'},
+    'en': {'locale': 'en_US', 'lang': 'en', 'inicio': 'Home', 'faq': 'Frequently asked questions',
+           'meta': 'Wasi Café blog · San Isidro, Lima', 'actualizado': ' · Updated ',
+           'cta_t': 'See you at Wasi Café',
+           'cta_p': 'Specialty coffee shop in San Isidro, Lima. Come for coffee, breakfast, brunch and desserts, or message us.',
+           'cta_b': 'Message us on WhatsApp', 'cta_w': 'Hi!%20I%27d%20like%20info%20about%20Wasi%20Caf%C3%A9%20%E2%98%95',
+           'volver': '← Back to the blog'},
+}
+
+
+def tx(f: dict) -> dict:
+    return TXT[f.get('idioma', 'es')]
+
+
 def meta(f: dict) -> str:
     url = f'{BASE}/blog/{f["slug"]}'
     d, og = esc(f['descripcion']), esc(f.get('ogTitulo', f['h1']))
@@ -42,7 +64,7 @@ def meta(f: dict) -> str:
         f'<meta property="og:url" content="{url}">\n'
         f'<meta property="og:image" content="{BASE}/og-image.png">\n'
         f'<meta property="og:site_name" content="Wasi Café">\n'
-        f'<meta property="og:locale" content="es_PE">\n'
+        f'<meta property="og:locale" content="{tx(f)["locale"]}">\n'
         f'<meta name="twitter:card" content="summary_large_image">\n'
         f'<meta name="twitter:title" content="{og}">\n'
         f'<meta name="twitter:description" content="{d}">\n'
@@ -53,7 +75,7 @@ def datos(f: dict) -> str:
     url = f'{BASE}/blog/{f["slug"]}'
     bloques = [
         {"@context": "https://schema.org", "@type": "BlogPosting",
-         "headline": f['h1'], "description": f['descripcion'], "inLanguage": "es-PE",
+         "headline": f['h1'], "description": f['descripcion'], "inLanguage": tx(f)["lang"],
          "datePublished": f['fecha'], "dateModified": f.get('modificado', f['fecha']),
          "mainEntityOfPage": {"@type": "WebPage", "@id": url},
          "image": portada(f),
@@ -62,7 +84,7 @@ def datos(f: dict) -> str:
                        "logo": {"@type": "ImageObject", "url": f'{BASE}/LOGOS.png'}},
          "about": f.get('about', ["Café de especialidad", "Perú"])},
         {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": BASE + '/'},
+            {"@type": "ListItem", "position": 1, "name": tx(f)["inicio"], "item": BASE + '/'},
             {"@type": "ListItem", "position": 2, "name": "Blog", "item": BASE + '/blog'},
             {"@type": "ListItem", "position": 3, "name": f['tituloCorto'], "item": url}]},
     ]
@@ -120,15 +142,24 @@ GUIAS = [
 ]
 
 
-def guias(slug: str) -> str:
+GUIAS_EN = ['Breakfast (in Spanish)', 'Lunch (in Spanish)', 'Brunch (in Spanish)', 'Specialty coffee (in Spanish)',
+            'Sandwiches (in Spanish)', 'Desserts (in Spanish)', 'Working with a laptop (in Spanish)', 'Hours and directions (in Spanish)']
+
+
+def guias(slug: str, idioma: str = 'es') -> str:
     """Bloque fijo con las guías principales: cada post empuja a las páginas que
     deben ganar las búsquedas locales. Se omite el enlace a sí mismo."""
     chip = ('display:inline-block;padding:.45rem .9rem;border:1px solid var(--line);border-radius:999px;'
             'font-size:.88rem;color:var(--ink);text-decoration:none;background:var(--paper)')
-    items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios')]
+    if idioma == 'en':
+        items = [(f'/blog/{s}', e) for (s, _), e in zip(GUIAS, GUIAS_EN)] + [('/carta', 'Menu with prices')]
+        titulo = 'More Wasi Café guides'
+    else:
+        items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios')]
+        titulo = 'Guías de Wasi Café en San Isidro'
     return ('  <nav class="read guias" aria-label="Guías de Wasi Café en San Isidro" style="display:block;margin-top:2.6rem">'
             '<p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .8rem">'
-            'Guías de Wasi Café en San Isidro</p><ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem">'
+            f'{titulo}</p><ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem">'
             + ''.join(f'<li><a href="{h}" style="{chip}">{t}</a></li>' for h, t in items) + '</ul></nav>')
 
 
@@ -156,13 +187,25 @@ def fecha_legible(iso: str) -> str:
     return f'{int(d)} de {MESES[int(m) - 1]} de {a}'
 
 
+MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+          'September', 'October', 'November', 'December']
+
+
+def fecha_idioma(f: dict) -> str:
+    if f.get('idioma') == 'en':
+        a, m, d = f['modificado'].split('-')
+        return f'{MONTHS[int(m) - 1]} {int(d)}, {a}'
+    return fecha_legible(f['modificado'])
+
+
 def articulo(f: dict) -> str:
-    p = [f'<div class="crumbs"><a href="/">Inicio</a><span>›</span>'
+    T = tx(f)
+    p = [f'<div class="crumbs"><a href="/">{T["inicio"]}</a><span>›</span>'
          f'<a href="/blog">Blog</a><span>›</span>{esc(f["tituloCorto"])}</div></div>',
          '', '<article>',
          f'<div class="read ahero"><p class="eyebrow">{esc(f["eyebrow"])}</p>'
          f'<h1>{esc(f["h1"])}</h1>',
-         '<p class="ameta">Blog de Wasi Café · San Isidro, Lima' + (f' · Actualizado el {fecha_legible(f["modificado"])}' if f.get('modificado') else '') + '</p></div>',
+         f'<p class="ameta">{T["meta"]}' + (f'{T["actualizado"]}{fecha_idioma(f)}' if f.get('modificado') else '') + '</p></div>',
          '<div class="read prose">', f['intro']]
     for s in f['secciones']:
         p.append(f'<h2>{esc(s["h2"])}</h2>')
@@ -171,17 +214,15 @@ def articulo(f: dict) -> str:
             p.append(galeria(s['fotos']))
     p.append('</div>')
     if f.get('faq'):
-        p.append('<section class="faq read"><h2>Preguntas frecuentes</h2>' + ''.join(
+        p.append(f'<section class="faq read"><h2>{T["faq"]}</h2>' + ''.join(
             f'<details><summary>{esc(q["p"])}</summary><p>{q["r"]}</p></details>'
             for q in f['faq']) + '</section>')
-    p.append(guias(f['slug']))
-    p.append('  <div class="read"><div class="cta"><h3>Te esperamos en Wasi Café</h3>'
-             '<p>Cafetería de especialidad en San Isidro. Ven a probar nuestro café, '
-             'brunch y postres, o escríbenos.</p>'
-             '<a class="btn" href="https://wa.me/51908724496?text=Hola!%20Quiero%20info%20'
-             'de%20Wasi%20Caf%C3%A9%20%E2%98%95" target="_blank" rel="noopener">'
-             'Escríbenos por WhatsApp</a></div>')
-    p.append('  <a class="back" href="/blog">← Volver al blog</a>')
+    p.append(guias(f['slug'], f.get('idioma', 'es')))
+    p.append(f'  <div class="read"><div class="cta"><h3>{T["cta_t"]}</h3>'
+             f'<p>{T["cta_p"]}</p>'
+             f'<a class="btn" href="https://wa.me/51908724496?text={T["cta_w"]}" target="_blank" rel="noopener">'
+             f'{T["cta_b"]}</a></div>')
+    p.append(f'  <a class="back" href="/blog">{T["volver"]}</a>')
     rel = resolver_relacionados(f)
     if rel:
         p.append('  <div style="margin-top:1.4rem">' + ''.join(
@@ -194,7 +235,10 @@ def articulo(f: dict) -> str:
 
 
 def generar(ficha: dict) -> str:
-    return (PARTES['A_cabecera'] + meta(ficha) + PARTES['B_recursos'] +
+    cab = PARTES['A_cabecera']
+    if ficha.get('idioma') == 'en':
+        cab = cab.replace('<html lang="es"', '<html lang="en"', 1)
+    return (cab + meta(ficha) + PARTES['B_recursos'] +
             datos(ficha) + PARTES['C_chrome'] + articulo(ficha) + PARTES['D_pie'])
 
 
