@@ -17,6 +17,7 @@ Su lema, **"Un café, una oportunidad."**, refleja su propuesta: café peruano d
 - [Curso de barista (Escuela del Café)](https://wasicafe.com/curso): curso de barista desde cero, presencial y online, con certificación WasiBaristas.
 - [Blog](https://wasicafe.com/blog): guías de café de especialidad, brunch en San Isidro, curso de barista y cultura cafetera de Lima.
 - [Pedido en mesa (QR)](https://wasicafe.com/mesa): carta y pedido en la mesa por código QR para clientes en el local.
+- [Todos los productos](https://wasicafe.com/productos): una página por producto, con foto, precio y combos. En inglés: https://wasicafe.com/en/products
 
 ## Guías principales del blog
 

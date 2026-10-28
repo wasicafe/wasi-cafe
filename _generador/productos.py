@@ -27,6 +27,7 @@ import generar  # partes fijas, guías y ficha del negocio idénticas a las del 
 
 SITIO = generar.SITIO
 DESTINO = SITIO / 'producto'
+DESTINO_EN = SITIO / 'en' / 'product'
 BASE = generar.BASE
 HOY = datetime.date.today().isoformat()
 MAPA = 'https://maps.google.com/?q=Wasi+Cafe+Luis+Felipe+Villaran+904+San+Isidro+Lima'
@@ -83,15 +84,24 @@ def leer_carta() -> list:
     prods = []
     for c in cats:
         cat = c['es']['n']
+        cat_en = (c.get('en') or {}).get('n') or cat
         if cat in OCULTAS:
             continue
         for it in c['items']:
-            prods.append({'cat': cat, 'n': it['es']['n'], 'd': (it['es'].get('d') or '').strip(),
+            prods.append({'cat': cat, 'cat_en': cat_en, 'n': it['es']['n'], 'd': (it['es'].get('d') or '').strip(),
                           'p': float(it['p']), 'img': it.get('img', ''),
                           'en': it.get('en', {}).get('n', ''), 'en_d': it.get('en', {}).get('d', '')})
     for x in prods:
         x['slug'] = slug_de(x['n'], x['cat'])
+        x['en'] = x['en'] or x['n']
+        x['slug_en'] = slug_de(x['en'], x['cat_en'])
     return prods
+
+
+def alternos(x: dict) -> str:
+    es, en = f'{BASE}/producto/{x["slug"]}', f'{BASE}/en/product/{x["slug_en"]}'
+    return (f'<link rel="alternate" hreflang="es" href="{es}">\n<link rel="alternate" hreflang="en" href="{en}">\n'
+            f'<link rel="alternate" hreflang="x-default" href="{es}">\n')
 
 
 def frase_desc(d: str) -> str:
@@ -173,7 +183,7 @@ def pagina(x: dict, prods: list, con_pagina: set, top: set) -> str:
     meta = (f'<title>{e(titulo)}</title>\n<meta name="theme-color" content="#F7F1E8">\n'
             f'<meta name="description" content="{e(desc)}">\n'
             f'<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">\n'
-            f'<link rel="canonical" href="{url}">\n<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
+            f'<link rel="canonical" href="{url}">\n' + alternos(x) + f'<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
             f'<meta property="og:type" content="product">\n<meta property="og:title" content="{e(nombre)} · {pv} · Wasi Café">\n'
             f'<meta property="og:description" content="{e(desc)}">\n<meta property="og:url" content="{url}">\n'
             f'<meta property="og:image" content="{BASE}{e(img)}">\n<meta property="og:site_name" content="Wasi Café">\n'
@@ -196,6 +206,126 @@ def pagina(x: dict, prods: list, con_pagina: set, top: set) -> str:
             generar.PARTES['C_chrome'] + '\n'.join(art) + generar.PARTES['D_pie'])
 
 
+def pagina_en(x: dict, prods: list, con_pagina: set, top: set) -> str:
+    cat, nombre = x['cat_en'], x['en']
+    url = f'{BASE}/en/product/{x["slug_en"]}'
+    img = '/' + x['img'].split('wasicafe.com/')[1]
+    pv = precio(x['p'])
+    titulo = f'{nombre}: {pv} in San Isidro, Lima | Wasi Café'
+    if len(titulo) > 65:
+        titulo = f'{nombre} | Wasi Café, San Isidro, Lima'
+    if len(titulo) > 65:
+        titulo = f'{nombre[:48].rstrip()} | Wasi Café'
+    d_en = frase_desc(x['en_d'])
+    desc = f'{nombre} at Wasi Café, San Isidro, Lima: {pv}. ' + (d_en + ' ' if d_en else '') + 'Order at your table by QR or to go.'
+    if len(desc) > 165:
+        desc = f'{nombre} at Wasi Café, San Isidro, Lima: {pv}. Order at your table by QR or to go.'
+    e = generar.esc
+    T = generar.TXT['en']
+    n_norm = norm(x['n'])
+    combos = [c for c in prods if c['cat'] in COMBOS and c['n'] != x['n'] and len(n_norm) >= 4
+              and (re.search(r'\b' + re.escape(n_norm) + r'\b', norm(c['n'])) or re.search(r'\b' + re.escape(n_norm) + r'\b', norm(c['d'])))]
+    hermanos = [h for h in prods if h['cat'] == x['cat'] and h['n'] != x['n']]
+
+    def enlace(h):
+        t = f'{e(h["en"])} ({precio(h["p"])})'
+        return f'<a href="/en/product/{h["slug_en"]}">{t}</a>' if h['slug'] in con_pagina else t
+
+    cuerpo = [f'<figure style="margin:0 auto 1.4rem;max-width:429px"><img src="{e(img)}" alt="{e(nombre)} at Wasi Café, San Isidro, Lima" '
+              f'width="429" height="333" decoding="async" style="width:100%;height:auto;aspect-ratio:429/333;object-fit:cover;border-radius:14px;display:block"></figure>',
+              f'<p style="font-family:var(--display);font-size:2rem;color:var(--ink);margin:0 0 .6rem">{pv}</p>']
+    p1 = (d_en + ' ' if d_en else '') + f'Part of the <strong>{e(cat)}</strong> menu at Wasi Café, a specialty coffee shop in San Isidro, Lima.'
+    if x['n'] in top:
+        p1 += f' One of our most ordered items in {e(cat.lower())}.'
+    p1 += ' Prices are in Peruvian soles (S/).'
+    cuerpo.append(f'<p>{p1}</p>')
+    if combos:
+        cuerpo.append('<h2>Also in these combos</h2><ul>' + ''.join(
+            f'<li>{enlace(c)}' + (f': {e(c["en_d"])}' if c['en_d'] else '') + '</li>' for c in combos[:8]) + '</ul>')
+    if hermanos:
+        cuerpo.append(f'<h2>More {e(cat.lower())} on the menu</h2><ul>' + ''.join(f'<li>{enlace(h)}</li>' for h in hermanos[:10]) + '</ul>')
+    cuerpo.append('<h2>Where to order it</h2>'
+                  '<p>At <strong>Wasi Café</strong>, Luis Felipe Villarán 904, San Isidro, Lima, a short walk from Javier Prado Avenue. '
+                  'Open Monday to Friday from 8:00 a.m. to 9:00 p.m. and Saturday from 9:00 a.m. to 9:00 p.m.; closed on Sundays. '
+                  'Scan the QR code on your table to order, or ask for it to go. We accept cash, cards, Yape and Plin.</p>'
+                  f'<p><a href="{MAPA}" target="_blank" rel="noopener">Open in Google Maps</a> · <a href="/carta">Full menu (English available)</a>'
+                  ' · Guide: <a href="/blog/coffee-shop-in-san-isidro-lima-wasi-cafe">Wasi Café for visitors</a>'
+                  f' · <a href="/producto/{x["slug"]}" hreflang="es">En español</a></p>'
+                  f'<p style="font-size:.86rem;color:var(--ink-soft)">Menu price as of {generar.MONTHS[int(HOY[5:7]) - 1]} {int(HOY[8:])}, {HOY[:4]}. '
+                  'The online menu updates automatically from our register.</p>')
+    faq = [(f'How much is the {nombre} at Wasi Café?', f'{pv} on the Wasi Café menu in San Isidro, Lima.'),
+           (f'Can I order the {nombre} to go?', 'Yes, everything on the menu can be ordered to go.'),
+           ('Where is Wasi Café?', 'At Luis Felipe Villarán 904, San Isidro, Lima, a short walk from Javier Prado Avenue.')]
+    ld_item = {"@context": "https://schema.org", "@type": "MenuItem", "name": nombre, "description": x['en_d'] or nombre,
+               "image": BASE + img, "url": url, "inLanguage": "en",
+               "offers": {"@type": "Offer", "price": f'{x["p"]:.2f}', "priceCurrency": "PEN", "availability": "https://schema.org/InStock"}}
+    ld_migas = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + '/'},
+        {"@type": "ListItem", "position": 2, "name": "Products", "item": BASE + '/en/products'},
+        {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]}
+    ld_faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faq]}
+    negocio = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+                         generar.datos({'slug': x['slug'], 'descripcion': desc, 'h1': nombre, 'tituloCorto': nombre, 'fecha': HOY,
+                                        'secciones': [], 'intro': '', 'idioma': 'en'}), re.S)[-1]
+    ld = ''.join(f'<script type="application/ld+json">{json.dumps(b, ensure_ascii=False)}</script>\n' for b in (ld_item, ld_migas, ld_faq))
+    ld += f'<script type="application/ld+json">{negocio}</script>\n'
+    meta = (f'<title>{e(titulo)}</title>\n<meta name="theme-color" content="#F7F1E8">\n'
+            f'<meta name="description" content="{e(desc)}">\n'
+            f'<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">\n'
+            f'<link rel="canonical" href="{url}">\n' + alternos(x) + '<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
+            f'<meta property="og:type" content="product">\n<meta property="og:title" content="{e(nombre)} · {pv} · Wasi Café">\n'
+            f'<meta property="og:description" content="{e(desc)}">\n<meta property="og:url" content="{url}">\n'
+            f'<meta property="og:image" content="{BASE}{e(img)}">\n<meta property="og:site_name" content="Wasi Café">\n'
+            f'<meta property="og:locale" content="en_US">\n<meta name="twitter:card" content="summary_large_image">\n'
+            f'<meta name="twitter:title" content="{e(nombre)} · {pv} · Wasi Café">\n<meta name="twitter:description" content="{e(desc)}">\n'
+            f'<meta name="twitter:image" content="{BASE}{e(img)}">\n')
+    art = [f'<div class="crumbs"><a href="/">Home</a><span>›</span><a href="/en/products">Products</a><span>›</span>{e(nombre)}</div></div>',
+           '', '<article>',
+           f'<div class="read ahero"><p class="eyebrow">{e(cat)}</p><h1>{e(nombre)}</h1>'
+           f'<p class="ameta">Wasi Café menu · San Isidro, Lima</p></div>',
+           '<div class="read prose">', '\n'.join(cuerpo), '</div>',
+           f'<section class="faq read"><h2>{T["faq"]}</h2>' + ''.join(
+               f'<details><summary>{e(q)}</summary><p>{e(r)}</p></details>' for q, r in faq) + '</section>',
+           generar.guias('__producto__', 'en'),
+           f'  <div class="read"><div class="cta"><h3>{T["cta_t"]}</h3><p>{T["cta_p"]}</p>'
+           f'<a class="btn" href="https://wa.me/51908724496?text={T["cta_w"]}" target="_blank" rel="noopener">{T["cta_b"]}</a></div>',
+           '  <a class="back" href="/en/products">← All products</a></div>', '</article>']
+    cab = generar.PARTES['A_cabecera'].replace('<html lang="es"', '<html lang="en"', 1)
+    return (cab + meta + generar.PARTES['B_recursos'] + ld + generar.PARTES['C_chrome'] + '\n'.join(art) + generar.PARTES['D_pie'])
+
+
+def indice_en(prods: list, con_pagina: set) -> str:
+    e = generar.esc
+    url = f'{BASE}/en/products'
+    desc = 'Every product on the Wasi Café menu in San Isidro, Lima, with photo and price: coffee, breakfast, sandwiches, desserts, juices and more.'
+    por_cat = {}
+    for x in prods:
+        por_cat.setdefault(x['cat_en'], []).append(x)
+    bloques = [f'<h2>{e(cat)}</h2><ul>' + ''.join(
+        (f'<li><a href="/en/product/{x["slug_en"]}">{e(x["en"])}</a> · {precio(x["p"])}</li>' if x['slug'] in con_pagina
+         else f'<li>{e(x["en"])} · {precio(x["p"])}</li>') for x in xs) + '</ul>' for cat, xs in por_cat.items()]
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": "Wasi Café products",
+          "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{BASE}/en/product/{x["slug_en"]}', "name": x['en']}
+                              for i, x in enumerate([p for p in prods if p['slug'] in con_pagina])]}
+    meta = (f'<title>Wasi Café menu items and prices | San Isidro, Lima</title>\n<meta name="theme-color" content="#F7F1E8">\n'
+            f'<meta name="description" content="{e(desc)}">\n<meta name="robots" content="index, follow">\n'
+            f'<link rel="canonical" href="{url}">\n<link rel="alternate" hreflang="es" href="{BASE}/productos">\n'
+            f'<link rel="alternate" hreflang="en" href="{url}">\n<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
+            f'<meta property="og:title" content="Wasi Café menu items and prices">\n<meta property="og:description" content="{e(desc)}">\n'
+            f'<meta property="og:url" content="{url}">\n<meta property="og:image" content="{BASE}/og-image.png">\n<meta property="og:locale" content="en_US">\n')
+    art = ['<div class="crumbs"><a href="/">Home</a><span>›</span>Products</div></div>', '', '<article>',
+           '<div class="read ahero"><p class="eyebrow">Wasi Café menu</p><h1>Every product, with photo and price</h1>'
+           '<p class="ameta">Wasi Café · San Isidro, Lima</p></div>',
+           '<div class="read prose"><p>Each product with a photo has its own page: price, description, the combos it comes in and where to order it. '
+           'Prices are in Peruvian soles (S/). <a href="/productos" hreflang="es">En español</a>.</p>' + ''.join(bloques) + '</div>',
+           generar.guias('__producto__', 'en'), '</article>']
+    cab = generar.PARTES['A_cabecera'].replace('<html lang="es"', '<html lang="en"', 1)
+    return (cab + meta + generar.PARTES['B_recursos'] +
+            f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n' +
+            generar.PARTES['C_chrome'] + '\n'.join(art) + generar.PARTES['D_pie'])
+
+
 def indice(prods: list, con_pagina: set) -> str:
     e = generar.esc
     url = f'{BASE}/productos'
@@ -214,7 +344,8 @@ def indice(prods: list, con_pagina: set) -> str:
                                     for i, x in enumerate([p for p in prods if p['slug'] in con_pagina])]}
     meta = (f'<title>Productos y precios de Wasi Café | San Isidro, Lima</title>\n<meta name="theme-color" content="#F7F1E8">\n'
             f'<meta name="description" content="{e(desc)}">\n<meta name="robots" content="index, follow">\n'
-            f'<link rel="canonical" href="{url}">\n<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
+            f'<link rel="canonical" href="{url}">\n<link rel="alternate" hreflang="es" href="{url}">\n'
+            f'<link rel="alternate" hreflang="en" href="{BASE}/en/products">\n<link rel="icon" href="/favicon-32x32.png" sizes="32x32">\n'
             f'<meta property="og:title" content="Productos y precios de Wasi Café">\n<meta property="og:description" content="{e(desc)}">\n'
             f'<meta property="og:url" content="{url}">\n<meta property="og:image" content="{BASE}/og-image.png">\n<meta property="og:locale" content="es_PE">\n')
     art = ['<div class="crumbs"><a href="/">Inicio</a><span>›</span>Productos</div></div>', '', '<article>',
@@ -278,6 +409,32 @@ def main() -> None:
         if viejo.name not in vigentes:
             viejo.unlink()
             print('  − retirado', viejo.name)
+    slugs_en = [x['slug_en'] for x in prods if x['slug'] in con_pagina]
+    dup_en = {s for s in slugs_en if slugs_en.count(s) > 1}
+    if dup_en:
+        raise SystemExit(f'slugs en inglés repetidos: {dup_en}')
+    DESTINO_EN.mkdir(parents=True, exist_ok=True)
+    vig_en = set()
+    for x in prods:
+        if x['slug'] not in con_pagina:
+            continue
+        h = pagina_en(x, prods, con_pagina, top)
+        f = revisar(h)
+        if f:
+            malos += 1
+            print('  ✗ en', x['slug_en'], f)
+            continue
+        (DESTINO_EN / f'{x["slug_en"]}.html').write_text(h, encoding='utf-8')
+        vig_en.add(f'{x["slug_en"]}.html')
+    for viejo in DESTINO_EN.glob('*.html'):
+        if viejo.name not in vig_en:
+            viejo.unlink()
+            print('  − retirado en/', viejo.name)
+    h = indice_en(prods, con_pagina)
+    if revisar(h):
+        raise SystemExit(f'índice en inglés con fallos: {revisar(h)}')
+    (SITIO / 'en' / 'products.html').write_text(h, encoding='utf-8')
+    print(f'  {len(vig_en)} páginas en inglés en en/product/ + en/products.html')
     h = indice(prods, con_pagina)
     if revisar(h):
         raise SystemExit(f'índice con fallos: {revisar(h)}')

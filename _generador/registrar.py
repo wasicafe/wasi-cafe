@@ -93,6 +93,12 @@ def main() -> None:
     for pr in sorted((SITIO / 'producto').glob('*.html')):
         urls.append(f'  <url><loc>{BASE}/producto/{pr.stem}</loc><lastmod>{ultima_modificacion("producto/" + pr.name) or hoy}</lastmod>'
                     f'<changefreq>monthly</changefreq><priority>0.5</priority></url>')
+    if (SITIO / 'en' / 'products.html').exists():
+        urls.append(f'  <url><loc>{BASE}/en/products</loc><lastmod>{ultima_modificacion("en/products.html") or hoy}</lastmod>'
+                    f'<changefreq>weekly</changefreq><priority>0.6</priority></url>')
+    for pr in sorted((SITIO / 'en' / 'product').glob('*.html')):
+        urls.append(f'  <url><loc>{BASE}/en/product/{pr.stem}</loc><lastmod>{ultima_modificacion("en/product/" + pr.name) or hoy}</lastmod>'
+                    f'<changefreq>monthly</changefreq><priority>0.4</priority></url>')
     (SITIO / 'sitemap.xml').write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

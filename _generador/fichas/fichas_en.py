@@ -234,10 +234,10 @@ fichas.append({
             f"<strong>frappé</strong> in medium or large, from {s('Frappé de Café mediano')}. The mocha frappé is the most ordered.</p>")},
         {"h2": "Herbal teas, the Lima way", "html": (
             f"<p>After a meal, many people in Lima drink an herbal infusion instead of coffee. Each costs <strong>{s('Manzanilla')}</strong>: "
-            "chamomile (<em>manzanilla</em>), anise (<em>anís</em>), lemon verbena (<em>hierba luisa</em>), mint (<em>hierba buena</em>), "
+            "chamomile (<em>manzanilla</em>), anise (<em>anís</em>), lemongrass (<em>hierba luisa</em>), mint (<em>hierba buena</em>), "
             "black tea and iced hibiscus (<em>jamaica</em>). We also have the <strong>tepuchino</strong>, a house creation: tea topped with milk foam, "
             "like a cappuccino without coffee.</p>"),
-         "fotos": [foto('Hierba Luisa', 'Lemon verbena tea'), foto('Tepuchino', 'Tepuchino')]},
+         "fotos": [foto('Hierba Luisa', 'Lemongrass tea'), foto('Tepuchino', 'Tepuchino')]},
         where("Payments by cash, card, Yape or Plin. "),
     ],
     "faq": [
