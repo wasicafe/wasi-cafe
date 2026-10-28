@@ -234,12 +234,46 @@ def articulo(f: dict) -> str:
     return '\n'.join(p)
 
 
+_MAPA_PROD = {}
+
+
+def mapa_productos(idioma: str) -> list:
+    """(nombre, url) de cada producto con página propia, el nombre más largo primero
+    para que «Pie de limón + Café Americano» gane a «Pie de limón»."""
+    if idioma not in _MAPA_PROD:
+        import productos  # import tardío: productos importa este módulo
+        lista = []
+        for x in productos.leer_carta():
+            if not x['img']:
+                continue
+            if idioma == 'en':
+                lista.append((x['en'], f'/en/product/{x["slug_en"]}'))
+            else:
+                lista.append((x['n'], f'/producto/{x["slug"]}'))
+        _MAPA_PROD[idioma] = sorted(lista, key=lambda z: -len(z[0]))
+    return _MAPA_PROD[idioma]
+
+
+def enlazar_productos(h: str, idioma: str = 'es') -> str:
+    """Convierte «<strong>Pie de Limón (S/ 15.90)</strong>» del artículo en enlace a la
+    página del producto. Solo dentro del artículo, solo con el precio al lado (así no se
+    enlaza una palabra suelta) y sin tocar lo que ya es enlace: se puede correr dos veces."""
+    i, j = h.find('<div class="read prose">'), h.find('</article>')
+    if i < 0 or j < 0:
+        return h
+    cuerpo = h[i:j]
+    for nombre, url in mapa_productos(idioma):
+        pat = re.compile(r'<strong>(' + re.escape(esc(nombre)) + r')( \(S/ [\d.]+\))', re.I)
+        cuerpo = pat.sub(lambda m: f'<strong><a href="{url}">{m.group(1)}</a>{m.group(2)}', cuerpo)
+    return h[:i] + cuerpo + h[j:]
+
+
 def generar(ficha: dict) -> str:
     cab = PARTES['A_cabecera']
     if ficha.get('idioma') == 'en':
         cab = cab.replace('<html lang="es"', '<html lang="en"', 1)
     return (cab + meta(ficha) + PARTES['B_recursos'] +
-            datos(ficha) + PARTES['C_chrome'] + articulo(ficha) + PARTES['D_pie'])
+            datos(ficha) + PARTES['C_chrome'] + enlazar_productos(articulo(ficha), ficha.get('idioma', 'es')) + PARTES['D_pie'])
 
 
 def revisar(h: str, f: dict) -> list:
