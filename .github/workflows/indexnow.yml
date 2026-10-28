@@ -16,13 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Páginas cambiadas
         id: urls
         run: |
           SITIO="version final de wasi"
-          git diff --name-only HEAD~1 HEAD -- "$SITIO" \
+          # Todo lo que trajo este push (pueden ser varios commits), no solo el último.
+          ANTES="${{ github.event.before }}"
+          git cat-file -e "$ANTES" 2>/dev/null || ANTES="HEAD~1"
+          git diff --name-only "$ANTES" HEAD -- "$SITIO" \
             | grep -E '\.html$|sitemap\.xml$|llms\.txt$' \
             | sed "s|^$SITIO/||" \
             | sed -E 's|^index\.html$||; s|/index\.html$|/|; s|\.html$||' \
