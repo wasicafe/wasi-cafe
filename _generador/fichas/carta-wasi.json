@@ -541,7 +541,7 @@
 {
 "cat": "Sándwiches",
 "n": "Butifarra",
-"d": "Jamón del país con salsa criolla — el clásico peruano",
+"d": "Jamón del país con salsa criolla, el clásico peruano",
 "p": 20.9,
 "img": "https://wasicafe.com/img/menu/19592cdd71c1eace7872bdf0176318a993159bc6a839cba525d524a460774dc2.png.webp"
 },
@@ -799,28 +799,28 @@
 },
 {
 "cat": "Dulce Pausa",
-"n": "Croissant+ chocolate",
+"n": "Croissant + Chocolate",
 "d": "",
 "p": 18.4,
 "img": ""
 },
 {
 "cat": "Dulce Pausa",
-"n": "Empanada+ capuchino",
+"n": "Empanada + Capuchino",
 "d": "",
 "p": 20.4,
 "img": ""
 },
 {
 "cat": "Dulce Pausa",
-"n": "Pie + capuchino",
+"n": "Pie + Capuchino",
 "d": "",
 "p": 21.4,
 "img": ""
 },
 {
 "cat": "Dulce Pausa",
-"n": "Torta  + capuchino",
+"n": "Torta + Capuchino",
 "d": "",
 "p": 23.4,
 "img": ""
@@ -1002,7 +1002,7 @@
 },
 {
 "cat": "Guarniciones",
-"n": "HUEVO",
+"n": "Huevo",
 "d": "",
 "p": 4,
 "img": ""
