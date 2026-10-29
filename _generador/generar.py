@@ -134,6 +134,7 @@ GUIAS = [
     ('desayunos-en-san-isidro-carta-precios-horario', 'Desayunos en San Isidro'),
     ('almuerzo-en-san-isidro-combos-y-precios', 'Almuerzo en San Isidro'),
     ('brunch-en-san-isidro-que-pedir-como-elegir', 'Brunch en San Isidro'),
+    ('bodas-pequenas-en-san-isidro-local-para-20-a-30-personas', 'Bodas pequeñas'),
     ('cafe-de-especialidad-san-isidro-guia', 'Café de especialidad'),
     ('sandwiches-peruanos-y-hamburguesas-san-isidro', 'Sándwiches'),
     ('postres-artesanales-cafeteria-san-isidro', 'Postres'),
@@ -142,7 +143,7 @@ GUIAS = [
 ]
 
 
-GUIAS_EN = ['Breakfast (in Spanish)', 'Lunch (in Spanish)', 'Brunch (in Spanish)', 'Specialty coffee (in Spanish)',
+GUIAS_EN = ['Breakfast (in Spanish)', 'Lunch (in Spanish)', 'Brunch (in Spanish)', 'Small weddings', 'Specialty coffee (in Spanish)',
             'Sandwiches (in Spanish)', 'Desserts (in Spanish)', 'Working with a laptop (in Spanish)', 'Hours and directions (in Spanish)']
 
 
@@ -152,7 +153,10 @@ def guias(slug: str, idioma: str = 'es') -> str:
     chip = ('display:inline-block;padding:.45rem .9rem;border:1px solid var(--line);border-radius:999px;'
             'font-size:.88rem;color:var(--ink);text-decoration:none;background:var(--paper)')
     if idioma == 'en':
-        items = [(f'/blog/{s}', e) for (s, _), e in zip(GUIAS, GUIAS_EN)] + [('/carta', 'Menu with prices'), ('/productos', 'All products (in Spanish)')]
+        # en inglés, «Small weddings» va a la guía de bodas EN, no a la española
+        en_propio = {'bodas-pequenas-en-san-isidro-local-para-20-a-30-personas': 'small-wedding-venue-san-isidro-lima'}
+        items = [(f'/blog/{en_propio.get(s, s)}', e) for (s, _), e in zip(GUIAS, GUIAS_EN) if en_propio.get(s, s) != slug]
+        items += [('/carta', 'Menu with prices'), ('/productos', 'All products (in Spanish)')]
         titulo = 'More Wasi Café guides'
     else:
         items = [(f'/blog/{s}', t) for s, t in GUIAS if s != slug] + [('/carta', 'Carta con precios'), ('/productos', 'Todos los productos')]

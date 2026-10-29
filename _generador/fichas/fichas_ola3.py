@@ -339,11 +339,11 @@ fichas.append({
 # ------------------------------------------------------------ 6. Eventos y reservas
 fichas.append({
     "slug": "eventos-y-cumpleanos-en-cafeteria-san-isidro",
-    "tituloSeo": "Eventos y cumpleaños en una cafetería de San Isidro | Wasi Café",
-    "h1": "Eventos, cumpleaños y reuniones en San Isidro: paquetes y reservas en Wasi Café",
+    "tituloSeo": "Eventos, bodas y cumpleaños en San Isidro | Wasi Café",
+    "h1": "Eventos, bodas pequeñas y cumpleaños en San Isidro: paquetes y reservas en Wasi Café",
     "tituloCorto": "Eventos y cumpleaños en San Isidro",
     "ogTitulo": "Celebra en Wasi Café: eventos y cumpleaños en San Isidro",
-    "descripcion": "Cumpleaños, baby showers y reuniones de empresa en San Isidro: paquetes Café, Brunch y Cumpleaños en Wasi Café, y cómo reservar mesa para grupos.",
+    "descripcion": "Bodas pequeñas, cumpleaños, baby showers y reuniones en San Isidro: local exclusivo para 20 a 30 personas y paquetes Café y Brunch en Wasi Café.",
     "eyebrow": "eventos en San Isidro",
     "fecha": HOY, "modificado": HOY,
     "about": ["Eventos", "Cumpleaños", "San Isidro"],
@@ -352,7 +352,12 @@ fichas.append({
         "organizamos <strong>cumpleaños, reuniones corporativas, baby showers</strong> y otras celebraciones, y también reservamos mesa para grupos. "
         "Esta guía explica los paquetes y cómo pedirlos.</p>"),
     "secciones": [
-        {"h2": "Los tres paquetes", "html": (
+        {"h2": "Bodas y cumpleaños con el local exclusivo", "html": (
+            "<p>Para <strong>bodas pequeñas y cumpleaños de 20 a 30 personas</strong>, Wasi Café queda <strong>solo para tu celebración</strong>, "
+            "con <strong>decoración, comida y torta</strong>, cualquier día que coordinemos. Lo contamos a detalle en "
+            "<a href=\"/blog/bodas-pequenas-en-san-isidro-local-para-20-a-30-personas\">bodas pequeñas en San Isidro</a> y en "
+            "<a href=\"/blog/local-para-cumpleanos-en-san-isidro-20-a-30-personas\">local para cumpleaños en San Isidro</a>.</p>")},
+        {"h2": "Los otros paquetes", "html": (
             "<ul><li><strong>Paquete Café:</strong> café de especialidad ilimitado y mesa de postres artesanales para todos los invitados.</li>"
             "<li><strong>Paquete Brunch:</strong> sándwiches, jugos naturales, café y postres. Ideal para reuniones de 10 personas o más.</li>"
             "<li><strong>Paquete Cumpleaños:</strong> decoración temática, torta personalizada, bocaditos y bebidas para el festejado y sus invitados.</li></ul>"
